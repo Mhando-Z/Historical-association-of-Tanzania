@@ -8,6 +8,7 @@ import FAQSection from "./FAQ";
 import PromoSect from "../Components.jsx/PromoSection";
 import CallForAction from "../Components.jsx/CallForAction";
 import Countdown from "../Components.jsx/TimeRemainingStats";
+import Partners from "../Components.jsx/Partners";
 
 function HomePage() {
   return (
@@ -28,6 +29,7 @@ function HomePage() {
       <div className="mt-16"></div>
       <FAQSection />
       <ContactUs />
+      <Partners />
     </div>
   );
 }

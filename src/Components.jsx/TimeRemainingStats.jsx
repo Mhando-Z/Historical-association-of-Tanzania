@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
+import HomePageContext from "../Context/HomePageContext";
 
 const Countdown = () => {
-  const conferenceDate = new Date("2024-12-15T00:00:00").getTime();
+  const { ConferenceSect } = useContext(HomePageContext);
+  // const days = ConferenceSect[0]?.Day;
+  // const year = ConferenceSect[0]?.year;
+  // const month = ConferenceSect[0]?.month;
+
+  // const all=(`"${year}-${month}-${days}T00:00:00"`);
+
+  const conferenceDate = new Date(`2024-12-12T00:00:00`).getTime();
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
   useEffect(() => {
@@ -29,7 +37,7 @@ const Countdown = () => {
   return (
     <div className="flex flex-col items-center justify-center h-[300px] bg-gray-100">
       <h2 className="text-5xl text-[#b67a3d] font-black mb-10">
-        Conference Countdown
+        {ConferenceSect[0]?.title2}
       </h2>
       <div className="flex flex-row items-center justify-around w-full">
         <motion.div

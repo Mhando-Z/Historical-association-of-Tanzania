@@ -30,7 +30,7 @@ export default function ImageList({ data }) {
                   src={`http://127.0.0.1:8000/${product.image}`}
                   alt={product.name}
                   loading="lazy"
-                  className="h-[400px] w-full group-hover:grayscale transition-all duration-700 ease-in object-cover object-center"
+                  className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
                 />
               </div>
               <h3 className="mt-4 text-2xl font-bold text-center text-gray-700">
