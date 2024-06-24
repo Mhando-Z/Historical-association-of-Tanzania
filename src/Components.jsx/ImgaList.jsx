@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Dialogue from "./Dialog";
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function ImageList({ data }) {
   const [value, setValue] = useState("");
@@ -26,16 +25,14 @@ export default function ImageList({ data }) {
               key={product.id}
               className="group"
             >
-              <motion.div
-                // whileHover={{ opacity: 0.4 }}
-                className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
-              >
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
                   src={`http://127.0.0.1:8000/${product.image}`}
                   alt={product.name}
-                  className="h-[400px] w-full object-cover object-center"
+                  loading="lazy"
+                  className="h-[400px] w-full group-hover:grayscale transition-all duration-700 ease-in object-cover object-center"
                 />
-              </motion.div>
+              </div>
               <h3 className="mt-4 text-2xl font-bold text-center text-gray-700">
                 {product.name}
               </h3>

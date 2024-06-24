@@ -11,7 +11,7 @@ function ContactUs() {
   const { ContactSect } = useContext(HomePageContext);
 
   return (
-    <div className="mb-1 p-20 flex flex-col justify-center items-center  container mx-auto bg-[#b67a3d] bg-opacity-15 rounded-3xl min-h-screen">
+    <div className="mb-1 p-20 flex flex-col justify-center items-center  container mx-auto bg-[#b67a3d] bg-opacity-55 rounded-3xl min-h-screen">
       {/* Get intouch section */}
       <div className="flex flex-col justify-center items-center w-full ">
         <div className="flex flex-col justify-center items-center gap-y-6">

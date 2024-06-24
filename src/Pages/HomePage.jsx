@@ -6,6 +6,8 @@ import ContactUs from "./ContactUs";
 import Staffs from "./Staffs";
 import FAQSection from "./FAQ";
 import PromoSect from "../Components.jsx/PromoSection";
+import CallForAction from "../Components.jsx/CallForAction";
+import Countdown from "../Components.jsx/TimeRemainingStats";
 
 function HomePage() {
   return (
@@ -16,8 +18,13 @@ function HomePage() {
       <PresidentSpeech />
       {/* AboutUs Section */}
       <AboutUs />
-      <Staffs />
+      {/* Conference and Events Alerts */}
       <PromoSect />
+      <Countdown />
+      {/* Membership promotion */}
+      <CallForAction />
+      {/* Staffs section */}
+      <Staffs />
       <div className="mt-16"></div>
       <FAQSection />
       <ContactUs />

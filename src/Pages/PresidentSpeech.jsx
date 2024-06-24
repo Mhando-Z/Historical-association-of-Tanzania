@@ -26,7 +26,7 @@ function PresidentSpeech() {
                   alt="hat president"
                   className="max-w-screen xl:h-[500px] md:h-[400px] ring-2 ring-slate-400 p-2"
                 /> */}
-                <p className="w-[300px] mt-2 font-semibold justify-center text-center ">
+                <p className="w-[300px] mt-2 font-medium justify-center text-center ">
                   {dt.subtitle}
                 </p>
               </div>
@@ -37,11 +37,11 @@ function PresidentSpeech() {
                 <h1 className="lg:text-3xl text-black font-semibold">
                   {dt.subtitle}
                 </h1>
-                <p className="xl:text-2xl md:text-xl max-w-5xl line-clamp-6 xl:line-clamp-none text-justify tracking-tighter">
+                <p className="xl:text-xl md:text-xl max-w-5xl line-clamp-6  text-justify tracking-tighter">
                   {dt.description}
                 </p>
                 <div className="mt-2">
-                  <Link className="px-6 py-2 mt-2 xl:text-2xl md:text-xl hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-semibold rounded-3xl bg-[#b67a3d] text-white">
+                  <Link className="px-6 py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white">
                     ReadMore
                   </Link>
                 </div>

@@ -24,7 +24,7 @@ export default function Dialogue({ value, open, setOpen }) {
             transition
             className="relative transform max-w-6xl overflow-hidden rounded-3xl bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
-            <div className="bg-slate-100 h-[900px] overflow-y-auto md:p-20 px-2">
+            <div className="bg-slate-100 h-[800px] overflow-y-auto md:p-20 px-2">
               <div className="flex flex-col sm:flex sm:items-start gap-y-4">
                 <div className="aspect-h-1 flex w-full md:flex-row flex-col gap-x-14 aspect-w-1 overflow-hidden rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
@@ -35,7 +35,7 @@ export default function Dialogue({ value, open, setOpen }) {
                   <div className="flex flex-col md:gap-y-3 gap-y-1 mt-2 md:mt-0 md:justify-normal md:items-start  items-center justify-center">
                     <DialogTitle
                       as="h1"
-                      className="md:text-5xl text-3xl max-w-lg font-extrabold  text-gray-900"
+                      className="md:text-5xl text-3xl max-w-lg font-bold  text-gray-900"
                     >
                       {StaffsSect[value]?.name}
                     </DialogTitle>

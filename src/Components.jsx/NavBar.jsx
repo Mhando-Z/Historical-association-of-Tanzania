@@ -5,7 +5,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 
 function NavBar() {
   return (
-    <div className="mt-5  sticky top-0 bg-white py-3">
+    <div className="bg-white py-3 fixed top-0 left-0 w-full z-50">
       <div className="md:px-10 px-1">
         <div className="flex container mx-auto flex-row justify-between items-center gap-x-6 w-full ">
           {/* logo section */}

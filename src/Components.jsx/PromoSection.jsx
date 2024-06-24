@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import HomePageContext from "../Context/HomePageContext";
 
 export default function PromoSect() {
+  const { ConferenceSect } = useContext(HomePageContext);
   return (
-    <div className="relative overflow-hidden bg-white">
+    <div className="relative overflow-hidden mt-20 min-h-screen bg-white">
       <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
         <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
           <div className="sm:max-w-lg">
-            <h1 className="text-4xl font-black tracking-tight text-gray-900 sm:text-6xl">
-              Summer styles are finally here
+            <h1 className="text-4xl text-[#b67a3d] font-black tracking-tight sm:text-6xl">
+              {ConferenceSect[0]?.title}
             </h1>
             <p className="mt-4 text-xl text-gray-500">
-              This year, our new summer collection will shelter you from the
-              harsh elements of a world that doesn't care if you live or die.
+              {ConferenceSect[0]?.description}
             </p>
           </div>
           <div>
@@ -26,38 +28,17 @@ export default function PromoSect() {
                     <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
-                          alt=""
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image}`}
+                          alt="Hat conference pictures"
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
                       <div className="h-64 w-44 overflow-hidden rounded-lg">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                          alt=""
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                      <div className="h-64 w-44 overflow-hidden rounded-lg">
-                        <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
-                          alt=""
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </div>
-                      <div className="h-64 w-44 overflow-hidden rounded-lg">
-                        <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                          alt=""
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </div>
-                      <div className="h-64 w-44 overflow-hidden rounded-lg">
-                        <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
-                          alt=""
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image8}`}
+                          alt="hat conference pictures 1"
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
@@ -65,15 +46,43 @@ export default function PromoSect() {
                     <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div className="h-64 w-44 overflow-hidden rounded-lg">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
-                          alt=""
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image2}`}
+                          alt="Hat conference pictures 2"
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
                       <div className="h-64 w-44 overflow-hidden rounded-lg">
                         <img
-                          src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                          alt=""
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image3}`}
+                          alt="Hat conference pictures 3"
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                      <div className="h-64 w-44 overflow-hidden rounded-lg">
+                        <img
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image4}`}
+                          alt="Hat conference pictures 4"
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                      <div className="h-64 w-44 overflow-hidden rounded-lg">
+                        <img
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image5}`}
+                          alt="Hat conference pictures 5"
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                      <div className="h-64 w-44 overflow-hidden rounded-lg">
+                        <img
+                          loading="lazy"
+                          src={`http://127.0.0.1:8000/${ConferenceSect[0]?.image6}`}
+                          alt="Hat conference pictures 6"
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
@@ -84,9 +93,9 @@ export default function PromoSect() {
 
               <Link
                 href="#"
-                className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded-3xl hover:bg-opacity-0 hover:ring-2 hover:text-black hover:ring-black border border-transparent bg-[#b67a3d] px-8 py-3 text-center font-medium text-white"
               >
-                Shop Collection
+                Register Now
               </Link>
             </div>
           </div>

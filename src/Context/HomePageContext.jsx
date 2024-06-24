@@ -9,6 +9,7 @@ export function HomePageDataProvider({ children }) {
   const [AboutUSSect, setAboutUs] = useState([]);
   const [ContactSect, setContacts] = useState([]);
   const [StaffsSect, setStaffs] = useState([]);
+  const [ConferenceSect, setConference] = useState([]);
   async function getHerodata() {
     const { data } = await axios.get("http://127.0.0.1:8000/hat-api/heroSect");
     setHero(data);
@@ -31,7 +32,14 @@ export function HomePageDataProvider({ children }) {
     const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Staffs/");
     setStaffs(data);
   }
+  async function getConference() {
+    const { data } = await axios.get(
+      "http://127.0.0.1:8000/hat-api/Conference/"
+    );
+    setConference(data);
+  }
   useEffect(() => {
+    getConference();
     getStaffs();
     getContacts();
     getAboutUs();
@@ -40,7 +48,14 @@ export function HomePageDataProvider({ children }) {
   }, []);
   return (
     <HomePageContext.Provider
-      value={{ heroSect, PresidentSect, AboutUSSect, ContactSect, StaffsSect }}
+      value={{
+        heroSect,
+        PresidentSect,
+        AboutUSSect,
+        ContactSect,
+        StaffsSect,
+        ConferenceSect,
+      }}
     >
       {children}
     </HomePageContext.Provider>
