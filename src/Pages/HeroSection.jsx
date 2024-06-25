@@ -3,6 +3,7 @@ import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 function HeroSection() {
   const { heroSect } = useContext(HomePageContext);
@@ -56,18 +57,18 @@ function HeroSection() {
   return (
     <div className="flex container mx-auto mt-20">
       <div className="flex flex-col min-h-screen">
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-          <img
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
+        >
+          <motion.img
             src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
             alt={heroSect[value]?.title}
             className="h-[680px] w-screen object-cover object-center group-hover:opacity-75"
           />
-        </div>
-        {/* <img
-          src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
-          alt="Historical association images"
-          className="w-screen xl:h-[680px] md:h-[500px] max-w-screen h-auto rounded-3xl"
-        /> */}
+        </motion.div>
         <div className="flex flex-row mt-5 rounded-2xl">
           {/* herosection text */}
           <div className="flex flex-col justify-center gap-y-2 w-full">

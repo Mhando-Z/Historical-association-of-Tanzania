@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import mage from "../Assets/Images/8.jpg";
 
 export default function CallForAction() {
   return (
@@ -40,9 +41,9 @@ export default function CallForAction() {
             <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
               <Link
                 href="#"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-medium text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-medium text-black"
               >
-                Get started
+                Join Now
               </Link>
               <Link
                 href="#"
@@ -55,7 +56,8 @@ export default function CallForAction() {
           <div className="relative mt-16 h-80 lg:mt-8">
             <img
               className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-              src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+              // src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+              src={mage}
               alt="App screenshot"
               width={1824}
               height={1080}
