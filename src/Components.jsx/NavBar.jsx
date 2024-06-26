@@ -31,12 +31,6 @@ function NavBar() {
             <NavLink>
               <h1 className=" text-xl font-semibold text-black">Events</h1>
             </NavLink>
-            <NavLink>
-              <h1 className=" text-xl font-semibold text-black">Gallery</h1>
-            </NavLink>
-            <NavLink>
-              <h1 className=" text-xl font-semibold text-black">Membership</h1>
-            </NavLink>
           </div>
           {/* Humberger Menue icon */}
           <div className="md:hidden flex">

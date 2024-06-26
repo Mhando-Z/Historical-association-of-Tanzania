@@ -1,6 +1,16 @@
 import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
+import { useContext } from "react";
+import HomePageContext from "../Context/HomePageContext";
+import logo from "../Assets/Images/logo2.png";
+import { Link } from "react-router-dom";
+import { BsFacebook } from "react-icons/bs";
+import { FaInstagramSquare, FaLinkedin } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function NewsLetter() {
+  const { footerSect } = useContext(HomePageContext);
+  console.log(footerSect);
   return (
     <div className="relative isolate overflow-hidden bg-[#b67a3d] opacity-95 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -75,6 +85,128 @@ export default function NewsLetter() {
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
           }}
         />
+      </div>
+      {/* FOOTER SECTION*/}
+      <div className="flex flex-col container mx-auto border-b border-white mt-14"></div>
+      <div className="flex mt-12 flex-col container mx-auto">
+        <div className="flex flex-col gap-x-10 gap-y-4 md:flex-row w-full justify-between">
+          {/* Logo */}
+          <div>
+            <img
+              src={logo}
+              alt="hat-logo"
+              className="md:h-10 h-auto w-[100px]"
+            />
+          </div>
+          {/* TERMS CONDITION AND POLICIES SECTION */}
+          <div className="flex flex-col gap-y-4 flex-1 justify-center items-center">
+            <div className="flex flex-col">
+              <h1 className="text-xl text-white font-medium">Policies</h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.policies.policy1}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.policies.policy2}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.policies.policy3}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.policies.policy4}
+              </h1>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-xl text-white font-medium">
+                Terms of Service
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.termsofService.term1}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.termsofService.term2}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.termsofService.term3}
+              </h1>
+              <h1 className="text-white line-clamp-1 max-w-xl">
+                {footerSect[0]?.termsofService.term4}
+              </h1>
+            </div>
+          </div>
+          {/* Contacts section */}
+          <div className="flex flex-col gap-y-4">
+            {/* Emails section */}
+            <div className="flex flex-col gap-x-4 md:flex-row">
+              <h1 className="md:text-xl text-white font-medium">Emails</h1>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.email1}
+                </h1>
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.email2}
+                </h1>
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.email3}
+                </h1>
+              </div>
+            </div>
+            {/* Contacts section */}
+            <div className="flex flex-col gap-x-4 md:flex-row">
+              <h1 className="md:text-xl text-white font-medium">Phone</h1>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.phoneNumber1}
+                </h1>
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.phoneNumber2}
+                </h1>
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.phoneNumber3}
+                </h1>
+              </div>
+            </div>
+            <div className="flex flex-col gap-x-4 md:flex-row">
+              <h1 className="md:text-xl text-white font-medium">Location</h1>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-xl text-white">
+                  {footerSect[0]?.contacts.location}
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Socials */}
+        <div className="flex mt-5 flex-col justify-center items-center">
+          <div className="flex flex-row text-gray-300 text-2xl gap-x-10 mt-8">
+            <Link
+              className="ring-1 p-2 ring-white rounded-full"
+              to={`${footerSect[0]?.contacts.facebook}`}
+            >
+              <BsFacebook />
+            </Link>
+            <Link
+              className="ring-1 p-2 ring-white rounded-full"
+              to={`${footerSect[0]?.contacts.instagram}`}
+            >
+              <FaInstagramSquare />
+            </Link>
+            <Link
+              className="ring-1 p-2 ring-white rounded-full"
+              to={`${footerSect[0]?.contacts.linkedin}`}
+            >
+              <FaLinkedin />
+            </Link>
+            <Link className="ring-1 p-2 ring-white rounded-full">
+              <IoLogoWhatsapp />
+            </Link>
+            <Link
+              className="ring-1 p-2 ring-white rounded-full"
+              to={`${footerSect[0]?.contacts.twitter}`}
+            >
+              <FaSquareXTwitter />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function AboutUs() {
   const { AboutUSSect } = useContext(HomePageContext);
-  console.log(AboutUSSect);
 
   return (
     <div className="mt-16">

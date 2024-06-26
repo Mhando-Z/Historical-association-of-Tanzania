@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -24,7 +25,12 @@ function FAQSection() {
           </span>
         </div>
         {activeIndex === 1 && (
-          <div className="flex flex-col">
+          <motion.div
+            initial={{ y: -15, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col"
+          >
             <p className="mt-2 text-gray-700 text-xl">
               According to article 9 of the constitution;
             </p>
@@ -54,7 +60,7 @@ function FAQSection() {
               required fees and submit it to the EXCOM. (Membership form
               attached).
             </p>
-          </div>
+          </motion.div>
         )}
       </div>
       <div className="border-b p-5 mt-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
@@ -68,7 +74,12 @@ function FAQSection() {
           </span>
         </div>
         {activeIndex === 2 && (
-          <div className="flex flex-col">
+          <motion.div
+            initial={{ y: -15, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col"
+          >
             <p className="mt-2 text-gray-700 text-xl">
               We have several upcoming events, do not plan to miss:
             </p>
@@ -86,7 +97,7 @@ function FAQSection() {
                 confirmed later.
               </li>
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
       <div className="border-b p-5 mt-5 rounded-2xl  bg-gray-100 border-gray-200 pb-4">
@@ -102,11 +113,16 @@ function FAQSection() {
           </span>
         </div>
         {activeIndex === 3 && (
-          <div className="flex flex-col">
+          <motion.div
+            initial={{ y: -15, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col"
+          >
             <p className="mt-2 text-gray-700 text-xl">
               Find the attached programmes for past conferences.
             </p>
-          </div>
+          </motion.div>
         )}
       </div>
       <div className="border-b p-5 mt-5 rounded-2xl  bg-gray-100 border-gray-200 pb-4">
@@ -122,7 +138,12 @@ function FAQSection() {
           </span>
         </div>
         {activeIndex === 4 && (
-          <div className="flex flex-col">
+          <motion.div
+            initial={{ y: -15, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col"
+          >
             <p className="mt-2 text-gray-700 text-xl">
               According to article 11 (1) of HAT constitution, members of the
               Association shall enjoy the following privileges:
@@ -144,7 +165,7 @@ function FAQSection() {
                 Association.
               </li>
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
       <div className="border-b p-5 mt-5 rounded-2xl  bg-gray-100 border-gray-200 pb-4">
@@ -160,7 +181,12 @@ function FAQSection() {
           </span>
         </div>
         {activeIndex === 5 && (
-          <div className="flex flex-col">
+          <motion.div
+            initial={{ y: -15, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col"
+          >
             <p className="mt-2 text-gray-700 text-xl">
               HAT Short Contact Details, Note in our website we have a Contact
               us section, which holds all our contact setails
@@ -172,7 +198,7 @@ function FAQSection() {
               <li>P.O.Box 35050</li>
               <li>16103, Dar es Salaam – Tanzania.</li>
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

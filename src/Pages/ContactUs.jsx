@@ -15,8 +15,8 @@ function ContactUs() {
       {/* Get intouch section */}
       <div className="flex flex-col justify-center items-center w-full ">
         <div className="flex flex-col justify-center items-center gap-y-6">
-          <h1 className="text-5xl font-extrabold text-black mb-10">
-            Get In Touch{" "}
+          <h1 className="text-6xl font-extrabold text-gray-900 mb-10">
+            Get In Touch
           </h1>
           <div className="flex flex-row justify-between gap-x-10">
             <div className="flex flex-row gap-x-8">
@@ -52,7 +52,7 @@ function ContactUs() {
       </div>
       {/* Contact us Sections */}
       <div className="flex mb-10 w-full px-12 py-3 mt-5">
-        <h1 className="text-5xl font-black ">Contact Us</h1>
+        <h1 className="text-5xl font-black text-gray-900">Contact Us</h1>
       </div>
       <div className="flex gap-x-20 flex-col-reverse justify-between xl:flex-row w-full px-12">
         {/* contact details */}
@@ -61,16 +61,16 @@ function ContactUs() {
             <h1 className="text-3xl font-bold">Phone</h1>
             <div className="flex flex-col">
               <h2 className="text-xl font-semibold">
-                (+255) {ContactSect[0]?.phoneNumber1}
+                {ContactSect[0]?.phoneNumber1}
               </h2>
               <h2 className="text-xl font-semibold">
-                (+255){ContactSect[0]?.phoneNumber2}
+                {ContactSect[0]?.phoneNumber2}
               </h2>
               <h2 className="text-xl font-semibold">
-                (+255){ContactSect[0]?.phoneNumber3}
+                {ContactSect[0]?.phoneNumber3}
               </h2>
               <h2 className="text-xl font-semibold">
-                (+255){ContactSect[0]?.phoneNumber4}
+                {ContactSect[0]?.phoneNumber4}
               </h2>
             </div>
           </div>
