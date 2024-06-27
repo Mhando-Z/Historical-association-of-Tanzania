@@ -140,13 +140,13 @@ export default function NewsLetter() {
             <div className="flex flex-col gap-x-4 md:flex-row">
               <h1 className="md:text-xl text-white font-medium">Emails</h1>
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-xl text-white">
+                <h1 className=" text-white">
                   {footerSect[0]?.contacts.email1}
                 </h1>
-                <h1 className="text-xl text-white">
+                <h1 className=" text-white">
                   {footerSect[0]?.contacts.email2}
                 </h1>
-                <h1 className="text-xl text-white">
+                <h1 className=" text-white">
                   {footerSect[0]?.contacts.email3}
                 </h1>
               </div>
@@ -155,13 +155,13 @@ export default function NewsLetter() {
             <div className="flex flex-col gap-x-4 md:flex-row">
               <h1 className="md:text-xl text-white font-medium">Phone</h1>
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-xl text-white">
+                <h1 className="text-white">
                   {footerSect[0]?.contacts.phoneNumber1}
                 </h1>
-                <h1 className="text-xl text-white">
+                <h1 className=" text-white">
                   {footerSect[0]?.contacts.phoneNumber2}
                 </h1>
-                <h1 className="text-xl text-white">
+                <h1 className=" text-white">
                   {footerSect[0]?.contacts.phoneNumber3}
                 </h1>
               </div>
@@ -169,7 +169,7 @@ export default function NewsLetter() {
             <div className="flex flex-col gap-x-4 md:flex-row">
               <h1 className="md:text-xl text-white font-medium">Location</h1>
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-xl text-white">
+                <h1 className="text-white">
                   {footerSect[0]?.contacts.location}
                 </h1>
               </div>

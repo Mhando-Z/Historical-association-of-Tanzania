@@ -10,12 +10,17 @@ export function HomePageDataProvider({ children }) {
   const [ContactSect, setContacts] = useState([]);
   const [StaffsSect, setStaffs] = useState([]);
   const [footerSect, setFooter] = useState([]);
+  const [gallerySect, setGallery] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
 
   // API CALLS
   async function getHerodata() {
     const { data } = await axios.get("http://127.0.0.1:8000/hat-api/heroSect");
     setHero(data);
+  }
+  async function getGallery() {
+    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Gallery/");
+    setGallery(data);
   }
   async function getFooter() {
     const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Footer/");
@@ -46,6 +51,7 @@ export function HomePageDataProvider({ children }) {
     setConference(data);
   }
   useEffect(() => {
+    getGallery();
     getFooter();
     getConference();
     getStaffs();
@@ -64,6 +70,7 @@ export function HomePageDataProvider({ children }) {
         StaffsSect,
         ConferenceSect,
         footerSect,
+        gallerySect,
       }}
     >
       {children}
