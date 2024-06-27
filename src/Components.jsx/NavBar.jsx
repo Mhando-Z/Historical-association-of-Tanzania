@@ -1,7 +1,9 @@
 import React from "react";
 import logo from "../Assets/Images/for_docs.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 function NavBar() {
   return (
@@ -9,27 +11,33 @@ function NavBar() {
       <div className="md:px-10 px-1">
         <div className="flex container mx-auto flex-row justify-between items-center gap-x-6 w-full ">
           {/* logo section */}
-          <div>
+          <NavLink to={"/"}>
             <img
               src={logo}
               alt="Historical association of TTanzania Logo"
               title="HAT Logo"
               className="md:h-12 h-8"
             />
-          </div>
+          </NavLink>
           {/* Pages Links */}
           <div className="flex-row items-center justify-between hidden md:flex gap-x-10">
-            <NavLink>
-              <h1 className=" text-xl font-semibold text-black">Home</h1>
+            <NavLink
+              to={"/"}
+              className={({ isActive }) => (isActive ? "" : "")}
+            >
+              <h1 className=" text-xl text-black">Home</h1>
+            </NavLink>
+            <NavLink
+              to={"AboutUs/"}
+              className={({ isActive }) => (isActive ? "" : "")}
+            >
+              <h1 className=" text-xl  text-black">About-Us</h1>
             </NavLink>
             <NavLink>
-              <h1 className=" text-xl font-semibold text-black">About-Us</h1>
+              <h1 className=" text-xl  text-black">Research</h1>
             </NavLink>
             <NavLink>
-              <h1 className=" text-xl font-semibold text-black">Research</h1>
-            </NavLink>
-            <NavLink>
-              <h1 className=" text-xl font-semibold text-black">Events</h1>
+              <Events />
             </NavLink>
           </div>
           {/* Humberger Menue icon */}
@@ -44,3 +52,73 @@ function NavBar() {
 }
 
 export default NavBar;
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export function Events() {
+  return (
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-xl text-black hover:bg-gray-50">
+          Events
+          <ChevronDownIcon
+            className="-mr-1 h-5 w-5 text-gray-400"
+            aria-hidden="true"
+          />
+        </MenuButton>
+      </div>
+
+      <MenuItems
+        transition
+        className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+      >
+        <div className="py-1">
+          <MenuItem>
+            {({ focus }) => (
+              <Link
+                href="#"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-xl"
+                )}
+              >
+                Conference
+              </Link>
+            )}
+          </MenuItem>
+          <MenuItem>
+            {({ focus }) => (
+              <Link
+                href="#"
+                className={classNames(
+                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                  "block px-4 py-2 text-xl"
+                )}
+              >
+                Announcements
+              </Link>
+            )}
+          </MenuItem>
+        </div>
+        <div className="py-1">
+          <MenuItem>
+            <div className="px-2 hover:bg-gray-200">
+              <NavLink
+                to={"Gallery/"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#b67a3d]  text-white block px-4 py-2 text-xl"
+                    : "text-gray-700 block px-4 py-2 text-xl"
+                }
+              >
+                Gallery
+              </NavLink>
+            </div>
+          </MenuItem>
+        </div>
+      </MenuItems>
+    </Menu>
+  );
+}

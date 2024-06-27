@@ -98,6 +98,7 @@ export default function NewsLetter() {
               className="md:h-10 h-auto w-[100px]"
             />
           </div>
+
           {/* TERMS CONDITION AND POLICIES SECTION */}
           <div className="flex flex-col gap-y-4 flex-1 justify-center items-center">
             <div className="flex flex-col">
