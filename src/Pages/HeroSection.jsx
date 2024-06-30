@@ -66,7 +66,7 @@ function HeroSection() {
           <motion.img
             src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
             alt={heroSect[value]?.title}
-            className="h-[680px] w-screen object-cover object-center group-hover:opacity-75"
+            className="xl:h-[680px] h-[500px] w-screen object-cover object-center group-hover:opacity-75"
           />
         </motion.div>
         <div className="flex flex-row mt-5 rounded-2xl">

@@ -6,6 +6,12 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 function NavBar() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="bg-white py-3 fixed top-0 left-0 w-full z-50">
       <div className="md:px-10 px-1">
@@ -16,7 +22,7 @@ function NavBar() {
               src={logo}
               alt="Historical association of TTanzania Logo"
               title="HAT Logo"
-              className="md:h-12 h-8"
+              className="xl:h-12 md:h-10 h-8"
             />
           </NavLink>
           {/* Pages Links */}
@@ -25,16 +31,17 @@ function NavBar() {
               to={"/"}
               className={({ isActive }) => (isActive ? "" : "")}
             >
-              <h1 className=" text-xl text-black">Home</h1>
+              <h1 className=" xl:text-xl text-lg text-black">Home</h1>
             </NavLink>
             <NavLink
+              onClick={scrollToTop}
               to={"AboutUs/"}
               className={({ isActive }) => (isActive ? "" : "")}
             >
-              <h1 className=" text-xl  text-black">About-Us</h1>
+              <h1 className=" xl:text-xl text-lg  text-black">About-Us</h1>
             </NavLink>
             <NavLink>
-              <h1 className=" text-xl  text-black">Research</h1>
+              <h1 className=" xl:text-xl text-lg  text-black">Research</h1>
             </NavLink>
             <NavLink>
               <Events />
@@ -58,13 +65,19 @@ function classNames(...classes) {
 }
 
 export function Events() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-xl text-black hover:bg-gray-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 xl:text-xl text-lg text-black hover:bg-gray-50">
           Events
           <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-gray-400"
+            className="h-5 w-5 text-gray-400"
             aria-hidden="true"
           />
         </MenuButton>
@@ -77,45 +90,45 @@ export function Events() {
         <div className="py-1">
           <MenuItem>
             {({ focus }) => (
-              <Link
-                href="#"
-                className={classNames(
-                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                  "block px-4 py-2 text-xl"
-                )}
+              <NavLink
+              // className={({ isActive }) =>
+              //   isActive
+              //     ? "bg-[#b67a3d] text-white block px-4 py-2 text-xl"
+              //     : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
+              // }
               >
                 Conference
-              </Link>
+              </NavLink>
             )}
           </MenuItem>
           <MenuItem>
             {({ focus }) => (
-              <Link
-                href="#"
-                className={classNames(
-                  focus ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                  "block px-4 py-2 text-xl"
-                )}
+              <NavLink
+                to={"Announcements/"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg "
+                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
+                }
               >
                 Announcements
-              </Link>
+              </NavLink>
             )}
           </MenuItem>
-        </div>
-        <div className="py-1">
           <MenuItem>
-            <div className="px-2 hover:bg-gray-200">
+            {({ focus }) => (
               <NavLink
+                onClick={scrollToTop}
                 to={"Gallery/"}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#b67a3d]  text-white block px-4 py-2 text-xl"
-                    : "text-gray-700 block px-4 py-2 text-xl"
+                    ? "bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
+                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
                 }
               >
                 Gallery
               </NavLink>
-            </div>
+            )}
           </MenuItem>
         </div>
       </MenuItems>

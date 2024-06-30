@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
+import { RxCrossCircled } from "react-icons/rx";
 
 export default function ImageDisplay({ value, open, setOpen }) {
   const { gallerySect } = useContext(HomePageContext);
@@ -18,7 +19,7 @@ export default function ImageDisplay({ value, open, setOpen }) {
             transition
             className="relative transform max-w-6xl overflow-hidden rounded-3xl bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
-            <div className="bg-slate-100 md:h-[700px] py-2  px-2">
+            <div className="bg-slate-100 xl:h-[700px] h-[600px] py-2  px-2">
               <div className="flex sm:flex sm:items-start gap-y-4">
                 <div className="aspect-h-1 flex w-full md:flex-row flex-col gap-x-14 aspect-w-1 overflow-hidden rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
@@ -31,10 +32,10 @@ export default function ImageDisplay({ value, open, setOpen }) {
             </div>
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <Link
-                className="inline-flex w-full justify-center rounded-3xl bg-red-600 px-6 py-2  font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                className="inline-flex w-full justify-center rounded-full  bg-red-800  font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
                 onClick={() => setOpen(false)}
               >
-                Cancel
+                <RxCrossCircled className="text-4xl xl:text-4xl font-bold" />
               </Link>
             </div>
           </DialogPanel>

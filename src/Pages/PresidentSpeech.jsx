@@ -5,6 +5,12 @@ import { motion } from "framer-motion";
 
 function PresidentSpeech() {
   const { PresidentSect } = useContext(HomePageContext);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="bg-[#b67a3d] bg-opacity-15 py-20">
       <div className="flex container mx-auto flex-col md:flex-row">
@@ -53,7 +59,11 @@ function PresidentSpeech() {
                     {dt.description}
                   </p>
                   <div className="mt-2">
-                    <Link className="px-6 py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white">
+                    <Link
+                      onClick={scrollToTop}
+                      to={"President/"}
+                      className="px-6 py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
+                    >
                       ReadMore
                     </Link>
                   </div>

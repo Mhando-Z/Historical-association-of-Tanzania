@@ -8,7 +8,7 @@ function Gallery() {
   const { gallerySect } = useContext(HomePageContext);
   const [value, setValue] = useState(0);
   const [count, setCount] = useState(8);
-  const [valuez, setValuez] = useState("");
+  const [valuez, setValuez] = useState(null);
   const [open, setOpen] = useState(false);
 
   const handleCount = () => {
@@ -43,8 +43,10 @@ function Gallery() {
             className="h-[600px] xl:h-[800px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
           />
         </div>
-        <div className="flex flex-row justify-between">
-          <h1 className="text-6xl tracking-tighter font-semibold">Gallery</h1>
+        <div className="flex flex-row  mt-5 xl:mt-0 justify-between">
+          <h1 className="xl:text-6xl text-5xl tracking-tighter font-semibold">
+            Gallery
+          </h1>
           <div className="flex flex-row">
             <Link onClick={handlePrev} className=" p-5 text-4xl ">
               <FaAngleLeft />
@@ -58,7 +60,6 @@ function Gallery() {
       <div>
         <ImageDisplay value={valuez} open={open} setOpen={setOpen} />
       </div>
-
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {gallerySect?.slice(0, count).map((product, index) => (
           <Link

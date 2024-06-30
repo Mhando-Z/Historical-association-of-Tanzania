@@ -3,7 +3,7 @@ import Dialogue from "./Dialog";
 import { useState } from "react";
 
 export default function ImageList({ data }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(8);
 

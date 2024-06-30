@@ -8,6 +8,7 @@ import ScrollToTopButton from "./Components.jsx/FloatingButton";
 import Gallery from "./Screens/Gallery";
 import HATPresident from "./Screens/HATPresident";
 import AboutHAT from "./Screens/AboutHAT";
+import Announcements from "./Screens/Announcements";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="AboutUs/" element={<AboutHAT />} />
             <Route path="President/" element={<HATPresident />} />
             <Route path="Gallery/" element={<Gallery />} />
+            <Route path="Announcements/" element={<Announcements />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <ScrollToTopButton />

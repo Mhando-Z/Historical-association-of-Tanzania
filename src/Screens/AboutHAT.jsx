@@ -1,7 +1,11 @@
 import React from "react";
 
 function AboutHAT() {
-  return <div>AboutHAT</div>;
+  return (
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <div></div>
+    </div>
+  );
 }
 
 export default AboutHAT;
