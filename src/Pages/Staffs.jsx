@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ImageList from "../Components.jsx/ImgaList";
+import ImageList from "../Components/ImgaList";
 import HomePageContext from "../Context/HomePageContext";
 
 function Staffs() {

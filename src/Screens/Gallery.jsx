@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import ImageDisplay from "../Components.jsx/InageDisplay";
+import ImageDisplay from "../Components/InageDisplay";
 
 function Gallery() {
   const { gallerySect } = useContext(HomePageContext);

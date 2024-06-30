@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/Images/for_docs.png";
+import logo from "../Assets/Images/Logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -46,6 +46,12 @@ function NavBar() {
             <NavLink>
               <Events />
             </NavLink>
+            <Link
+              to={`Login/`}
+              className="px-5 py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
+            >
+              Login
+            </Link>
           </div>
           {/* Humberger Menue icon */}
           <div className="md:hidden flex">
@@ -74,7 +80,7 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 xl:text-xl text-lg text-black hover:bg-gray-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5` xl:text-xl text-lg text-black hover:bg-gray-50">
           Events
           <ChevronDownIcon
             className="h-5 w-5 text-gray-400"

@@ -5,10 +5,10 @@ import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import Staffs from "./Staffs";
 import FAQSection from "./FAQ";
-import PromoSect from "../Components.jsx/PromoSection";
-import CallForAction from "../Components.jsx/CallForAction";
-import Countdown from "../Components.jsx/TimeRemainingStats";
-import Partners from "../Components.jsx/Partners";
+import PromoSect from "../Components/PromoSection";
+import CallForAction from "../Components/CallForAction";
+import Countdown from "../Components/TimeRemainingStats";
+import Partners from "../Components/Partners";
 
 function HomePage() {
   return (
