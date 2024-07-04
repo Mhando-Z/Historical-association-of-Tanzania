@@ -10,8 +10,8 @@ function MainPage() {
         {/* Dashboard Navbar */}
         <DashNav />
       </div>
-      <div className="flex flex-row w-full justify-between gap-x-5">
-        <div className="flex felx-col  w-[300px]">
+      <div className="flex flex-row w-full justify-between ">
+        <div className="flex felx-col  xl:w-[300px] lg:w-[250px]">
           <SidePannel />
         </div>
         <div className="flex-1 ">

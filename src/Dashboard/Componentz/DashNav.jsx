@@ -8,7 +8,7 @@ function DashNav() {
   return (
     <div className="bg-slate-100 py-3 fixed top-0 left-0 w-full z-50">
       <div className="w-full px-4 flex flex-row items-center justify-between">
-        <div className="w-[300px]">
+        <div className="xl:w-[300px] md:w-[250px] w-[100px]">
           <Link to={"/Dashboard/"}>
             <img src={logo} alt="hat-logo" className="h-8" />
           </Link>
