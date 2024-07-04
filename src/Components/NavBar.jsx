@@ -1,23 +1,46 @@
 import React from "react";
 import logo from "../Assets/Images/Logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 function NavBar() {
+  const location = useLocation();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+
+  console.log(location);
+  /*
+  /Gallery/
+  "/AboutUs/"
+  "/Announcements/"
+  "/President/"
+  "/"
+  */
+
   return (
-    <div className="bg-white py-3 fixed top-0 left-0 w-full z-50">
+    <div
+      className={`${
+        location.pathname === "/" ||
+        location.pathname === "/Gallery/" ||
+        location.pathname === "/Announcements/" ||
+        location.pathname === "/President/" ||
+        location.pathname === "/AboutUs/" ||
+        location.pathname === "/President/" ||
+        location.pathname === "/Register/"
+          ? "bg-white py-3 fixed top-0 left-0 w-full z-50"
+          : "hidden"
+      }`}
+    >
       <div className="md:px-10 px-1">
         <div className="flex container mx-auto flex-row justify-between items-center gap-x-6 w-full ">
           {/* logo section */}
-          <NavLink to={"/"}>
+          <NavLink to={"Dashboard/"}>
             <img
               src={logo}
               alt="Historical association of TTanzania Logo"

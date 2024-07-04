@@ -11,6 +11,14 @@ import AboutHAT from "./Screens/AboutHAT";
 import Announcements from "./Screens/Announcements";
 import UserLogin from "./Dashboard/Screens/UserLogin";
 import RegisterUser from "./Dashboard/Screens/RegisterUser";
+import MainPage from "./Dashboard/Page/MainPage";
+import DashHome from "./Dashboard/Screens/DashHome";
+import HeroSect from "./Dashboard/Sections/HeroSect";
+import ContactUsSect from "./Dashboard/Sections/ContactUsSect";
+import GallerySect from "./Dashboard/Sections/GallerySect";
+import PresidentSect from "./Dashboard/Sections/PresidentSect";
+import AboutUsSect from "./Dashboard/Sections/AboutUsSect";
+import StaffsSect from "./Dashboard/Sections/StaffsSect";
 
 function App() {
   return (
@@ -27,6 +35,15 @@ function App() {
             <Route path="Register/" element={<RegisterUser />} />
             <Route path="Announcements/" element={<Announcements />} />
             <Route path="*" element={<PageNotFound />} />
+            <Route path="Dashboard/" element={<MainPage />}>
+              <Route index element={<DashHome />} />
+              <Route path="heroSect/" element={<HeroSect />} />
+              <Route path="AboutSect/" element={<AboutUsSect />} />
+              <Route path="PresoSect/" element={<PresidentSect />} />
+              <Route path="GallerySect/" element={<GallerySect />} />
+              <Route path="StaffsSect/" element={<StaffsSect />} />
+              <Route path="ContactUsSect/" element={<ContactUsSect />} />
+            </Route>
           </Routes>
           <ScrollToTopButton />
           <Footer />
