@@ -6,12 +6,25 @@ import { Link } from "react-router-dom";
 import { usePagination } from "@table-library/react-table-library/pagination";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
+import Drawer from "./Drawer";
+import Notification from "./Notification";
 
 const Table = ({ data }) => {
   const theme = useTheme(getTheme());
+  const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [dataId, setId] = React.useState("");
+
+  const handleDelete = (id) => {
+    setOpen1(!open1);
+  };
+
+  const handleClick = (index) => {
+    setOpen(!open);
+    setId(index);
+  };
 
   const [search, setSearch] = React.useState("");
-
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -30,9 +43,7 @@ const Table = ({ data }) => {
     onChange: onPaginationChange,
   });
 
-  function onPaginationChange(action, state) {
-    console.log(action, state);
-  }
+  function onPaginationChange(action, state) {}
 
   const COLUMNS = [
     {
@@ -65,12 +76,18 @@ const Table = ({ data }) => {
     },
     {
       label: "Actions",
-      renderCell: (item) => (
+      renderCell: (item, index) => (
         <div className="flex flex-row gap-x-3 items-center">
-          <Link className="px-3 py-2 rounded-md text-white bg-blue-600">
+          <Link
+            onClick={() => handleClick(item.id)}
+            className="px-3 py-2 rounded-md text-white bg-blue-600"
+          >
             <FaRegPenToSquare className="text-xl" />
           </Link>
-          <Link className="px-3 py-2 rounded-md bg-red-600 text-white">
+          <Link
+            onClick={() => handleDelete(item.id)}
+            className="px-3 py-2 rounded-md bg-red-600 text-white"
+          >
             <FaRegTrashCan className="text-xl" />
           </Link>
         </div>
@@ -119,6 +136,8 @@ const Table = ({ data }) => {
           ))}
         </span>
       </div>
+      <Drawer open={open} setOpen={setOpen} dataId={dataId} />
+      <Notification open={open1} setOpen={setOpen1} />
     </div>
   );
 };

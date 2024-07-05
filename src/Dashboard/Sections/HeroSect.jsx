@@ -2,10 +2,10 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
+import { Link } from "react-router-dom";
 
 function HeroSect() {
   const { heroSect } = useContext(HomePageContext);
-  console.log(heroSect);
 
   return (
     <div className="px-10 flex flex-col">
@@ -116,6 +116,11 @@ function HeroSect() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex flex-col justify-end items-end">
+            <Link className="px-5 py-2 bg-blue-600 text-white rounded-3xl">
+              Add
+            </Link>
           </div>
         </form>
       </div>
