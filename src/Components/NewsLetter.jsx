@@ -10,7 +10,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function NewsLetter() {
   const { footerSect } = useContext(HomePageContext);
-  console.log(footerSect);
+
   return (
     <div className="relative isolate overflow-hidden bg-[#b67a3d] opacity-95 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

@@ -36,13 +36,12 @@ export default function Notification({ open, setOpen }) {
                     as="h3"
                     className="text-base font-semibold leading-6 text-gray-900"
                   >
-                    Deactivate account
+                    Delete data
                   </DialogTitle>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Are you sure you want to deactivate your account? All of
-                      your data will be permanently removed. This action cannot
-                      be undone.
+                      Are you sure you want to delete? note your data will be
+                      permanently removed. This action cannot be undone.
                     </p>
                   </div>
                 </div>
@@ -54,7 +53,7 @@ export default function Notification({ open, setOpen }) {
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
               >
-                Deactivate
+                Delete
               </button>
               <button
                 type="button"

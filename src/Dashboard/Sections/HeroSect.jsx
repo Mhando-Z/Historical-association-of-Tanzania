@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function HeroSect() {
   const { heroSect } = useContext(HomePageContext);
@@ -12,7 +13,12 @@ function HeroSect() {
       <div className="mt-20">
         <Table data={heroSect} />
       </div>
-      <div className="bg-slate-100 p-10 rounded-3xl">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="bg-slate-100 p-10 rounded-3xl"
+      >
         <form>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
@@ -123,7 +129,7 @@ function HeroSect() {
             </Link>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

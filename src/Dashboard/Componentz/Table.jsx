@@ -8,6 +8,7 @@ import { FaRegPenToSquare } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
 import Drawer from "./Drawer";
 import Notification from "./Notification";
+import { motion } from "framer-motion";
 
 const Table = ({ data }) => {
   const theme = useTheme(getTheme());
@@ -30,8 +31,9 @@ const Table = ({ data }) => {
   };
 
   data = {
-    nodes: data?.filter((item) =>
-      item?.title.toLowerCase().includes(search.toLowerCase())
+    nodes: data?.filter(
+      (item) =>
+        item?.title || item?.name.toLowerCase().includes(search?.toLowerCase())
     ),
   };
 
@@ -52,7 +54,7 @@ const Table = ({ data }) => {
         <div className="rounded-xl">
           <img
             src={`http://127.0.0.1:8000/${item.image}`}
-            alt={item.title}
+            alt={item.title || item.name}
             className="size-24 object-cover rounded-xl w-full object-center"
           />
         </div>
@@ -62,7 +64,7 @@ const Table = ({ data }) => {
       label: "Title",
       renderCell: (item) => (
         <div className="flex flex-col">
-          <h1 className="xl:text-lg">{item.title}</h1>
+          <h1 className="xl:text-lg">{item.title || item.name}</h1>
         </div>
       ),
     },
@@ -72,7 +74,7 @@ const Table = ({ data }) => {
     },
     {
       label: "Subtitle",
-      renderCell: (item) => item?.subtitle,
+      renderCell: (item) => item?.subtitle || item.position,
     },
     {
       label: "Actions",
@@ -95,7 +97,12 @@ const Table = ({ data }) => {
     },
   ];
   return (
-    <div className="mb-10 mt-5 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="mb-10 mt-5 flex flex-col"
+    >
       <div className="px-3 xl:text-lg">
         <label htmlFor="search">
           Search:&nbsp;
@@ -136,9 +143,14 @@ const Table = ({ data }) => {
           ))}
         </span>
       </div>
-      <Drawer open={open} setOpen={setOpen} dataId={dataId} />
+      <Drawer
+        open={open}
+        setOpen={setOpen}
+        dataId={dataId}
+        datas={data?.nodes}
+      />
       <Notification open={open1} setOpen={setOpen1} />
-    </div>
+    </motion.div>
   );
 };
 

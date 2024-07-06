@@ -14,7 +14,6 @@ function NavBar() {
     });
   };
 
-  console.log(location);
   /*
   /Gallery/
   "/AboutUs/"

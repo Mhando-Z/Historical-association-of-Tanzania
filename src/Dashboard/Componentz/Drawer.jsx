@@ -1,6 +1,3 @@
-"use client";
-
-import { useContext, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -11,12 +8,9 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import HomePageContext from "../../Context/HomePageContext";
 
-export default function Drawer({ open, setOpen, dataId }) {
-  const { heroSect } = useContext(HomePageContext);
-
-  const data = heroSect?.filter((dt) => {
+export default function Drawer({ open, setOpen, dataId, datas }) {
+  const data = datas?.filter((dt) => {
     return dt.id === dataId;
   });
   const handleUpdate = () => {
