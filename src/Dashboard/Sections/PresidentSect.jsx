@@ -2,7 +2,6 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import HomePageContext from "../../Context/HomePageContext";
 
 function PresidentSect() {
@@ -86,12 +85,48 @@ function PresidentSect() {
                   </p>
                 </div>
 
+                {/* image1 */}
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"
                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Photo
+                    Photo1
+                  </label>
+                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                    <div className="text-center">
+                      <PhotoIcon
+                        className="mx-auto h-12 w-12 text-gray-300"
+                        aria-hidden="true"
+                      />
+                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            className="sr-only"
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* image2 */}
+                <div className="col-span-full">
+                  <label
+                    htmlFor="cover-photo"
+                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Photo2
                   </label>
                   <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
@@ -124,9 +159,14 @@ function PresidentSect() {
             </div>
           </div>
           <div className="flex flex-col justify-end items-end">
-            <Link className="px-5 py-2 bg-blue-600 text-white rounded-3xl">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{ type: "spring", ease: "easeOut" }}
+              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+            >
               Add
-            </Link>
+            </motion.button>
           </div>
         </form>
       </motion.div>

@@ -2,7 +2,6 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import HomePageContext from "../../Context/HomePageContext";
 
 function StaffsSect() {
@@ -175,9 +174,14 @@ function StaffsSect() {
             </div>
           </div>
           <div className="flex flex-col justify-end items-end">
-            <Link className="px-5 py-2 bg-blue-600 text-white rounded-3xl">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{ type: "spring", ease: "easeOut" }}
+              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+            >
               Add
-            </Link>
+            </motion.button>
           </div>
         </form>
       </motion.div>

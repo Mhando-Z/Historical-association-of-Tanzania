@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { usePagination } from "@table-library/react-table-library/pagination";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { motion } from "framer-motion";
 import Drawer from "./Drawer";
 import Notification from "./Notification";
-import { motion } from "framer-motion";
 
 const Table = ({ data }) => {
   const theme = useTheme(getTheme());
@@ -42,17 +42,17 @@ const Table = ({ data }) => {
       page: 0,
       size: 10,
     },
-    onChange: onPaginationChange,
   });
-
-  function onPaginationChange(action, state) {}
 
   const COLUMNS = [
     {
       label: "Image",
       renderCell: (item) => (
         <div className="rounded-xl">
-          <img
+          <motion.img
+            initial={{}}
+            whileHover={{ height: "300px" }}
+            transition={{ duration: 1, type: "spring", ease: "easeOut" }}
             src={`http://127.0.0.1:8000/${item.image}`}
             alt={item.title || item.name}
             className="size-24 object-cover rounded-xl w-full object-center"
@@ -61,7 +61,7 @@ const Table = ({ data }) => {
       ),
     },
     {
-      label: "Title",
+      label: <div>{data.nodes[0]?.title ? <h1>Title</h1> : <h1>Name</h1>}</div>,
       renderCell: (item) => (
         <div className="flex flex-col">
           <h1 className="xl:text-lg">{item.title || item.name}</h1>
@@ -73,16 +73,28 @@ const Table = ({ data }) => {
       renderCell: (item) => item.dateIssued,
     },
     {
-      label: "Subtitle",
-      renderCell: (item) => item?.subtitle || item.position,
+      label: (
+        <div>
+          {data.nodes[0]?.subtitle || data.nodes[0]?.subtitle === null ? (
+            <h1>Subtitle</h1>
+          ) : (
+            <h1>Position</h1>
+          )}
+        </div>
+      ),
+      renderCell: (item) => (
+        <div className="flex flex-col">
+          <div className="xl:text-lg">{item?.subtitle || item.position}</div>
+        </div>
+      ),
     },
     {
       label: "Actions",
-      renderCell: (item, index) => (
+      renderCell: (item) => (
         <div className="flex flex-row gap-x-3 items-center">
           <Link
             onClick={() => handleClick(item.id)}
-            className="px-3 py-2 rounded-md text-white bg-blue-600"
+            className="px-3 py-2 rounded-md text-white bg-[#b67a3d]"
           >
             <FaRegPenToSquare className="text-xl" />
           </Link>
@@ -96,6 +108,7 @@ const Table = ({ data }) => {
       ),
     },
   ];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -123,7 +136,6 @@ const Table = ({ data }) => {
         theme={theme}
         layout={{ fixedHeader: true }}
       />
-
       <div className="flex items-center justify-between mt-3">
         <span>Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
 

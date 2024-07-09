@@ -48,6 +48,7 @@ function GallerySect() {
                   </div>
                 </div>
 
+                {/* image1 */}
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"

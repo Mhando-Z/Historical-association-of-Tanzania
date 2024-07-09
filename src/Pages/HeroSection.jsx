@@ -58,9 +58,9 @@ function HeroSection() {
     <div className="flex container mx-auto mt-20">
       <div className="flex flex-col min-h-screen">
         <motion.div
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, type: "spring", ease: "easeOut" }}
           className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
         >
           <motion.img
