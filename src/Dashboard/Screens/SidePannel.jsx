@@ -52,6 +52,12 @@ const Sections = [
 ];
 
 function SidePannel() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="md:flex py-14 fixed mt-10 flex-col h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100">
       <div>
@@ -70,6 +76,7 @@ function SidePannel() {
                 className="flex w-full"
               >
                 <NavLink
+                  onClick={scrollToTop}
                   className={({ isActive }) =>
                     isActive
                       ? "bg-[#b67a3d] text-white w-full flex flex-row py-2 px-7 mt-2 rounded-3xl"

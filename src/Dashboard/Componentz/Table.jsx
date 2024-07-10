@@ -18,6 +18,7 @@ const Table = ({ data }) => {
 
   const handleDelete = (id) => {
     setOpen1(!open1);
+    setId(id);
   };
 
   const handleClick = (index) => {
@@ -161,7 +162,7 @@ const Table = ({ data }) => {
         dataId={dataId}
         datas={data?.nodes}
       />
-      <Notification open={open1} setOpen={setOpen1} />
+      <Notification open={open1} setOpen={setOpen1} dataId={dataId} />
     </motion.div>
   );
 };

@@ -1,14 +1,42 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 function HeroSect() {
   const { heroSect } = useContext(HomePageContext);
+  const { setHero } = useContext(HomePageContext);
+
+  const [heroData, setData] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    // image: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((data) => {
+      return { ...data, [name]: value };
+    });
+  };
+  // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  // Asynchronous Fuctions
+  async function postHerodata() {
+    const { data } = await axios.post(
+      "http://127.0.0.1:8000/hat-api/heroSect/",
+      heroData
+    );
+    const vibes = [data, ...heroSect];
+    setHero(vibes);
+  }
 
   return (
     <div className="px-10 flex flex-col">
@@ -18,7 +46,7 @@ function HeroSect() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="bg-slate-100 p-10 rounded-3xl"
       >
         <form onSubmit={handleSubmit}>
@@ -34,7 +62,7 @@ function HeroSect() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="title"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Title
@@ -42,16 +70,18 @@ function HeroSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      value={heroData.title}
+                      onChange={handleChange}
+                      name="title"
+                      id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="subtitle"
                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Subtitle
@@ -59,27 +89,31 @@ function HeroSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      value={heroData.subtitle}
+                      onChange={handleChange}
+                      name="subtitle"
+                      id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-full">
                   <label
-                    htmlFor="about"
-                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="description"
+                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </label>
                   <div className="mt-2">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="description"
+                      value={heroData.description}
+                      onChange={handleChange}
+                      name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
@@ -103,13 +137,15 @@ function HeroSect() {
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image"
+                            value={heroData.image}
+                            onChange={handleChange}
+                            name="image"
                             type="file"
                             className="sr-only"
                           />
@@ -127,6 +163,7 @@ function HeroSect() {
           </div>
           <div className="flex flex-col justify-end items-end">
             <motion.button
+              onClick={postHerodata}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

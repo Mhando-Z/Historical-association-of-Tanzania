@@ -22,42 +22,45 @@ import StaffsSect from "./Dashboard/Sections/StaffsSect";
 import AnnouncementsSect from "./Dashboard/Sections/AnnouncementsSect";
 import Researchpublications from "./Dashboard/Sections/Research&publications";
 import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
+import { DataEditProvider } from "./Context/DataEditContext";
 
 function App() {
   return (
     <div className="flex flex-col font-roboto justify-between min-h-screen overflow-x-hidden">
-      <HomePageDataProvider>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="AboutUs/" element={<AboutHAT />} />
-            <Route path="President/" element={<HATPresident />} />
-            <Route path="Gallery/" element={<Gallery />} />
-            <Route path="Login/" element={<UserLogin />} />
-            <Route path="Register/" element={<RegisterUser />} />
-            <Route path="Announcements/" element={<Announcements />} />
-            <Route path="*" element={<PageNotFound />} />
-            <Route path="Dashboard/" element={<MainPage />}>
-              <Route index element={<DashHome />} />
-              <Route path="heroSect/" element={<HeroSect />} />
-              <Route path="Announcement/" element={<AnnouncementsSect />} />
-              <Route path="AboutSect/" element={<AboutUsSect />} />
-              <Route path="PresoSect/" element={<PresidentSect />} />
-              <Route path="GallerySect/" element={<GallerySect />} />
-              <Route path="StaffsSect/" element={<StaffsSect />} />
-              <Route path="ContactUsSect/" element={<ContactUsSect />} />
-              <Route path="PoliciesTerms/" element={<PoliciesTerms />} />
-              <Route
-                path="Research&publications/"
-                element={<Researchpublications />}
-              />
-            </Route>
-          </Routes>
-          <ScrollToTopButton />
-          <Footer />
-        </BrowserRouter>
-      </HomePageDataProvider>
+      <DataEditProvider>
+        <HomePageDataProvider>
+          <BrowserRouter>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="AboutUs/" element={<AboutHAT />} />
+              <Route path="President/" element={<HATPresident />} />
+              <Route path="Gallery/" element={<Gallery />} />
+              <Route path="Login/" element={<UserLogin />} />
+              <Route path="Register/" element={<RegisterUser />} />
+              <Route path="Announcements/" element={<Announcements />} />
+              <Route path="*" element={<PageNotFound />} />
+              <Route path="Dashboard/" element={<MainPage />}>
+                <Route index element={<DashHome />} />
+                <Route path="heroSect/" element={<HeroSect />} />
+                <Route path="Announcement/" element={<AnnouncementsSect />} />
+                <Route path="AboutSect/" element={<AboutUsSect />} />
+                <Route path="PresoSect/" element={<PresidentSect />} />
+                <Route path="GallerySect/" element={<GallerySect />} />
+                <Route path="StaffsSect/" element={<StaffsSect />} />
+                <Route path="ContactUsSect/" element={<ContactUsSect />} />
+                <Route path="PoliciesTerms/" element={<PoliciesTerms />} />
+                <Route
+                  path="Research&publications/"
+                  element={<Researchpublications />}
+                />
+              </Route>
+            </Routes>
+            <ScrollToTopButton />
+            <Footer />
+          </BrowserRouter>
+        </HomePageDataProvider>
+      </DataEditProvider>
     </div>
   );
 }

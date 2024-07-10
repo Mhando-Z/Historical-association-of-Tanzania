@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/Images/Logo.png";
+import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -13,14 +13,6 @@ function NavBar() {
       behavior: "smooth",
     });
   };
-
-  /*
-  /Gallery/
-  "/AboutUs/"
-  "/Announcements/"
-  "/President/"
-  "/"
-  */
 
   return (
     <div
@@ -44,7 +36,7 @@ function NavBar() {
               src={logo}
               alt="Historical association of TTanzania Logo"
               title="HAT Logo"
-              className="xl:h-12 md:h-10 h-8"
+              className="xl:h-9 md:h-9 h-8"
             />
           </NavLink>
           {/* Pages Links */}

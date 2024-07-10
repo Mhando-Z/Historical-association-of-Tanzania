@@ -9,17 +9,53 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useContext, useState } from "react";
+import HomePageContext from "../../Context/HomePageContext";
 
 export default function Drawer({ open, setOpen, dataId, datas }) {
+  const { heroSect } = useContext(HomePageContext);
+  const { setHero } = useContext(HomePageContext);
+
   const locations = useLocation();
+  const [heroUpdate, setHeros] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    // image:""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (locations?.pathname === "/Dashboard/heroSect/") {
+      setHeros((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+  };
+
+  // Asynchronous Functions
+  async function updateHeroSect() {
+    await axios.put(
+      `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`,
+      heroUpdate
+    );
+    const heroData = [...heroSect];
+    const index = heroData.indexOf(heroUpdate);
+    heroData[index] = { ...heroUpdate };
+    setHero(heroData);
+  }
 
   const data = datas?.filter((dt) => {
     return dt.id === dataId;
   });
   const handleUpdate = () => {
+    if (locations?.pathname === "/Dashboard/heroSect/") {
+      updateHeroSect();
+    }
     setOpen(false);
   };
-  const changeValues = (e) => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,17 +112,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="title"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Title
                                   </label>
                                   <div className="mt-2">
                                     <input
+                                      onChange={handleChange}
                                       defaultValue={data[0]?.title}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="title"
+                                      id="title"
                                       autoComplete="given-name"
                                       className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
@@ -94,7 +131,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="subtitle"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Subtitle
@@ -102,9 +139,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <input
                                       defaultValue={data[0]?.subtitle}
+                                      onChange={handleChange}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="subtitle"
+                                      id="subtitle"
                                       autoComplete="given-name"
                                       className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
@@ -121,9 +159,9 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <textarea
                                       defaultValue={data[0]?.description}
-                                      onChange={(e) => changeValues(e)}
-                                      id="about"
-                                      name="about"
+                                      onChange={handleChange}
+                                      id="description"
+                                      name="description"
                                       rows={3}
                                       className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
@@ -256,7 +294,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <textarea
                                       defaultValue={data[0]?.description}
-                                      onChange={(e) => changeValues(e)}
+                                      onChange={handleChange}
                                       id="about"
                                       name="about"
                                       rows={3}
@@ -391,7 +429,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <textarea
                                       defaultValue={data[0]?.description}
-                                      onChange={(e) => changeValues(e)}
+                                      onChange={handleChange}
                                       id="about"
                                       name="about"
                                       rows={3}
@@ -566,7 +604,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <textarea
                                       defaultValue={data[0]?.description}
-                                      onChange={(e) => changeValues(e)}
+                                      onChange={handleChange}
                                       id="about"
                                       name="about"
                                       rows={3}
@@ -908,7 +946,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <textarea
                                       defaultValue={data[0]?.description}
-                                      onChange={(e) => changeValues(e)}
+                                      onChange={handleChange}
                                       id="about"
                                       name="about"
                                       rows={3}
