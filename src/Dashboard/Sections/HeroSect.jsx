@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 
 function HeroSect() {
   const { heroSect } = useContext(HomePageContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="px-10 flex flex-col">
@@ -18,7 +21,7 @@ function HeroSect() {
         transition={{ duration: 1 }}
         className="bg-slate-100 p-10 rounded-3xl"
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">

@@ -3,10 +3,13 @@ import React, { useContext } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
 function GallerySect() {
   const { gallerySect } = useContext(HomePageContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="px-10 flex flex-col">
@@ -19,7 +22,7 @@ function GallerySect() {
         transition={{ duration: 1 }}
         className="bg-slate-100 p-10 rounded-3xl"
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
@@ -87,9 +90,14 @@ function GallerySect() {
             </div>
           </div>
           <div className="flex flex-col justify-end items-end">
-            <Link className="px-5 py-2 bg-blue-600 text-white rounded-3xl">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{ type: "spring", ease: "easeOut" }}
+              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+            >
               Add
-            </Link>
+            </motion.button>
           </div>
         </form>
       </motion.div>

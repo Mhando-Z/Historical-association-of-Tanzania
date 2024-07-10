@@ -1,11 +1,11 @@
-import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useContext } from "react";
-import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
+import { PhotoIcon } from "@heroicons/react/24/outline";
+import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
 
-function StaffsSect() {
-  const { StaffsSect } = useContext(HomePageContext);
+function AnnouncementsSect() {
+  const { AnnounceSect } = useContext(HomePageContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ function StaffsSect() {
   return (
     <div className="px-10 flex flex-col">
       <div className="mt-20">
-        <Table data={StaffsSect} />
+        <Table data={AnnounceSect} />
       </div>
       <motion.div
         initial={{ opacity: 0 }}
@@ -26,7 +26,7 @@ function StaffsSect() {
           <div className="space-y-12 mt-5">
             <div className="pb-12">
               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
-                Staffs Section
+                Announcement Section
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Perfom CRUD to this section
@@ -36,7 +36,7 @@ function StaffsSect() {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="first-name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Title
                   </label>
@@ -46,16 +46,16 @@ function StaffsSect() {
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="first-name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Position
+                    Subtitle
                   </label>
                   <div className="mt-2">
                     <input
@@ -63,58 +63,7 @@ function StaffsSect() {
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Phone Number
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Social Media
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -140,12 +89,48 @@ function StaffsSect() {
                   </p>
                 </div>
 
+                {/* image1 */}
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"
                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Photo
+                    Photo1
+                  </label>
+                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                    <div className="text-center">
+                      <PhotoIcon
+                        className="mx-auto h-12 w-12 text-gray-300"
+                        aria-hidden="true"
+                      />
+                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            className="sr-only"
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* image2 */}
+                <div className="col-span-full">
+                  <label
+                    htmlFor="cover-photo"
+                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Photo2
                   </label>
                   <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
@@ -193,4 +178,4 @@ function StaffsSect() {
   );
 }
 
-export default StaffsSect;
+export default AnnouncementsSect;

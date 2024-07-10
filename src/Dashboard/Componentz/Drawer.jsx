@@ -6,7 +6,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 
@@ -20,6 +20,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     setOpen(false);
   };
   const changeValues = (e) => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative  z-10">
@@ -59,7 +63,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname === "/Dashboard/heroSect/" ? (
                     <div className="flex flex-col">
                       <div className="bg-slate-100 p-10 rounded-3xl">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
                               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
@@ -194,7 +198,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname === "/Dashboard/AboutSect/" ? (
                     <div className="flex flex-col">
                       <div className="bg-slate-100 p-10 rounded-3xl">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
                               <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
@@ -329,11 +333,186 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname === "/Dashboard/PresoSect/" ? (
                     <div className="flex flex-col">
                       <div className="bg-slate-100 p-10 rounded-3xl">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
                               <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
-                                About HAT Section
+                                President Section
+                              </h2>
+                              <p className="mt-1 text-sm leading-6 text-gray-600">
+                                Perfom CRUD to this section
+                              </p>
+
+                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="first-name"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Title
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.title}
+                                      type="text"
+                                      name="first-name"
+                                      id="first-name"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="first-name"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Subtitle
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.subtitle}
+                                      type="text"
+                                      name="first-name"
+                                      id="first-name"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="about"
+                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Description
+                                  </label>
+                                  <div className="mt-2">
+                                    <textarea
+                                      defaultValue={data[0]?.description}
+                                      onChange={(e) => changeValues(e)}
+                                      id="about"
+                                      name="about"
+                                      rows={3}
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                                    Write a Something
+                                  </p>
+                                </div>
+                                <div className="rounded-xl flex flex-row sm:w-[400px] gap-x-2 w-full h-[300px]">
+                                  <img
+                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    alt={data[0]?.title}
+                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                  />
+                                  <img
+                                    src={`http://127.0.0.1:8000/${data[0]?.image2}`}
+                                    alt={data[0]?.title}
+                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                  />
+                                </div>
+                                {/* image 1 */}
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="cover-photo"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Photo
+                                  </label>
+                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                                    <div className="text-center">
+                                      <PhotoIcon
+                                        className="mx-auto h-12 w-12 text-gray-300"
+                                        aria-hidden="true"
+                                      />
+                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                        <label
+                                          htmlFor="file-upload"
+                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        >
+                                          <span>Upload a file</span>
+                                          <input
+                                            id="file-upload"
+                                            name="file-upload"
+                                            type="file"
+                                            className="sr-only"
+                                          />
+                                        </label>
+                                        <p className="pl-1">or drag and drop</p>
+                                      </div>
+                                      <p className="text-xs leading-5 text-gray-600">
+                                        PNG, JPG, GIF up to 10MB
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                {/* image 2 */}
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="cover-photo"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                  >
+                                    Photo
+                                  </label>
+                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                                    <div className="text-center">
+                                      <PhotoIcon
+                                        className="mx-auto h-12 w-12 text-gray-300"
+                                        aria-hidden="true"
+                                      />
+                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                                        <label
+                                          htmlFor="file-upload"
+                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        >
+                                          <span>Upload a file</span>
+                                          <input
+                                            id="file-upload"
+                                            name="file-upload"
+                                            type="file"
+                                            className="sr-only"
+                                          />
+                                        </label>
+                                        <p className="pl-1">or drag and drop</p>
+                                      </div>
+                                      <p className="text-xs leading-5 text-gray-600">
+                                        PNG, JPG, GIF up to 10MB
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex flex-col justify-end items-end">
+                            <motion.button
+                              onClick={handleUpdate}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.8 }}
+                              transition={{ type: "spring", ease: "easeOut" }}
+                              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+                            >
+                              Update
+                            </motion.button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {/* Announcement section */}
+                  {locations?.pathname === "/Dashboard/Announcement/" ? (
+                    <div className="flex flex-col">
+                      <div className="bg-slate-100 p-10 rounded-3xl">
+                        <form onSubmit={handleSubmit}>
+                          <div className="space-y-12 mt-5">
+                            <div className="pb-12">
+                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                                Announcement Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
@@ -504,7 +683,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname === "/Dashboard/GallerySect/" ? (
                     <div className="flex flex-col">
                       <div className="bg-slate-100 p-10 rounded-3xl">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
                               <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
@@ -617,7 +796,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname === "/Dashboard/StaffsSect/" ? (
                     <div className="flex flex-col">
                       <div className="bg-slate-100 p-10 rounded-3xl">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
                               <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">

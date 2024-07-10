@@ -14,6 +14,10 @@ function ContactUsSect() {
     setEdit(!editContacts);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="px-10 flex flex-col">
       {editContacts ? (
@@ -92,7 +96,7 @@ function ContactUsSect() {
           transition={{ duration: 1 }}
           className="bg-slate-100 p-10 rounded-3xl"
         >
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="space-y-12 mt-16">
               <div className="pb-12">
                 <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">

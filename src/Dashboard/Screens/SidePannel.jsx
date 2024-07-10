@@ -34,12 +34,20 @@ const Sections = [
     links: "ContactUsSect/",
   },
   {
+    sections: "Policies&Terms",
+    links: "PoliciesTerms/",
+  },
+  {
     sections: "Gallery",
     links: "GallerySect/",
   },
   {
     sections: "Announcements",
-    links: "lklk/",
+    links: "Announcement/",
+  },
+  {
+    sections: "Reseach&publications",
+    links: "Research&publications/",
   },
 ];
 

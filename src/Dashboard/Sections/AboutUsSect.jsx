@@ -7,6 +7,10 @@ import HomePageContext from "../../Context/HomePageContext";
 export default function AboutUsSect() {
   const { AboutUSSect } = useContext(HomePageContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="px-10 flex flex-col">
       <div className="mt-20">
@@ -18,7 +22,7 @@ export default function AboutUsSect() {
         transition={{ duration: 1 }}
         className="bg-slate-100 p-10 rounded-3xl"
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">

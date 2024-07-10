@@ -4,11 +4,6 @@ import HomePageContext from "../Context/HomePageContext";
 
 const Countdown = () => {
   const { ConferenceSect } = useContext(HomePageContext);
-  // const days = ConferenceSect[0]?.Day;
-  // const year = ConferenceSect[0]?.year;
-  // const month = ConferenceSect[0]?.month;
-
-  // const all=(`"${year}-${month}-${days}T00:00:00"`);
 
   const conferenceDate = new Date(`2024-12-12T00:00:00`).getTime();
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());

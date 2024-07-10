@@ -19,6 +19,9 @@ import GallerySect from "./Dashboard/Sections/GallerySect";
 import PresidentSect from "./Dashboard/Sections/PresidentSect";
 import AboutUsSect from "./Dashboard/Sections/AboutUsSect";
 import StaffsSect from "./Dashboard/Sections/StaffsSect";
+import AnnouncementsSect from "./Dashboard/Sections/AnnouncementsSect";
+import Researchpublications from "./Dashboard/Sections/Research&publications";
+import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
 
 function App() {
   return (
@@ -38,11 +41,17 @@ function App() {
             <Route path="Dashboard/" element={<MainPage />}>
               <Route index element={<DashHome />} />
               <Route path="heroSect/" element={<HeroSect />} />
+              <Route path="Announcement/" element={<AnnouncementsSect />} />
               <Route path="AboutSect/" element={<AboutUsSect />} />
               <Route path="PresoSect/" element={<PresidentSect />} />
               <Route path="GallerySect/" element={<GallerySect />} />
               <Route path="StaffsSect/" element={<StaffsSect />} />
               <Route path="ContactUsSect/" element={<ContactUsSect />} />
+              <Route path="PoliciesTerms/" element={<PoliciesTerms />} />
+              <Route
+                path="Research&publications/"
+                element={<Researchpublications />}
+              />
             </Route>
           </Routes>
           <ScrollToTopButton />
