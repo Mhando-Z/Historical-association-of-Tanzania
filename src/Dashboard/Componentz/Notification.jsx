@@ -18,9 +18,15 @@ export default function Notification({ open, setOpen, dataId }) {
 
   // functions
   async function deleteHeroSect() {
-    await axios.delete(`http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`);
     const hero = heroSect?.filter((pt) => pt.id !== dataId);
     setHero(hero);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`
+      );
+    } catch (error) {
+      setHero(heroSect);
+    }
   }
 
   // delete Logic

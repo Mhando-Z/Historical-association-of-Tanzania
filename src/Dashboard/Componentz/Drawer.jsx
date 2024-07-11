@@ -10,13 +10,12 @@ import { useLocation } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 
 export default function Drawer({ open, setOpen, dataId, datas }) {
   const { heroSect } = useContext(HomePageContext);
   const { setHero } = useContext(HomePageContext);
-
   const locations = useLocation();
   const [heroUpdate, setHeros] = useState({
     title: "",
@@ -37,19 +36,25 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
 
   // Asynchronous Functions
   async function updateHeroSect() {
-    await axios.put(
-      `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`,
-      heroUpdate
-    );
     const heroData = [...heroSect];
     const index = heroData.indexOf(heroUpdate);
     heroData[index] = { ...heroUpdate };
     setHero(heroData);
+
+    try {
+      await axios.put(
+        `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`,
+        heroUpdate
+      );
+    } catch (error) {
+      setHero(heroData);
+    }
   }
 
   const data = datas?.filter((dt) => {
     return dt.id === dataId;
   });
+
   const handleUpdate = () => {
     if (locations?.pathname === "/Dashboard/heroSect/") {
       updateHeroSect();
