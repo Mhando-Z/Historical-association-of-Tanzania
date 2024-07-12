@@ -12,8 +12,14 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function Notification({ open, setOpen, dataId }) {
-  const { heroSect } = useContext(HomePageContext);
-  const { setHero } = useContext(HomePageContext);
+  // herosecttion
+  const { setHero, heroSect } = useContext(HomePageContext);
+  // president section
+  const { PresidentSect, setPresident } = useContext(HomePageContext);
+  // gallery section
+  const { gallerySect, setGallery } = useContext(HomePageContext);
+
+  // routing
   const locations = useLocation();
 
   // functions
@@ -29,10 +35,43 @@ export default function Notification({ open, setOpen, dataId }) {
     }
   }
 
+  // Gallery section
+  async function deletePicturesSect() {
+    const pictures = gallerySect?.filter((pt) => pt.id !== dataId);
+    setGallery(pictures);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/Gallery_Details/${dataId}/`
+      );
+    } catch (error) {
+      setGallery(pictures);
+    }
+  }
+
+  // preso function
+  async function deletePresoSect() {
+    const preso = PresidentSect?.filter((pt) => pt.id !== dataId);
+    setPresident(preso);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/President_Details/${dataId}/`
+      );
+    } catch (error) {
+      setPresident(preso);
+    }
+  }
+
+  console.log(locations);
   // delete Logic
   const handleDelete = () => {
     if (locations?.pathname === "/Dashboard/heroSect/") {
       deleteHeroSect();
+    }
+    if (locations?.pathname === "/Dashboard/PresoSect/") {
+      deletePresoSect();
+    }
+    if (locations?.pathname === "/Dashboard/GallerySect/") {
+      deletePicturesSect();
     }
     setOpen(false);
   };

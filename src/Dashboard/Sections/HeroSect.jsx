@@ -13,15 +13,21 @@ function HeroSect() {
     title: "",
     subtitle: "",
     description: "",
-    // image: "",
+    image: null,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setData((data) => {
-      return { ...data, [name]: value };
-    });
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setData((data) => {
+        console.log(files[0]);
+        return { ...data, [name]: files[0] };
+      });
+    } else {
+      setData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
   };
   // Form Submission
   const handleSubmit = (e) => {
@@ -30,9 +36,15 @@ function HeroSect() {
 
   // Asynchronous Fuctions
   async function postHerodata() {
+    const formData = new FormData();
+    formData.append("title", heroData.title);
+    formData.append("subtitle", heroData.subtitle);
+    formData.append("description", heroData.description);
+    formData.append("image", heroData.image);
+
     const { data } = await axios.post(
       "http://127.0.0.1:8000/hat-api/heroSect/",
-      heroData
+      formData
     );
     const vibes = [data, ...heroSect];
     setHero(vibes);
@@ -70,7 +82,6 @@ function HeroSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      value={heroData.title}
                       onChange={handleChange}
                       name="title"
                       id="title"
@@ -89,7 +100,6 @@ function HeroSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      value={heroData.subtitle}
                       onChange={handleChange}
                       name="subtitle"
                       id="subtitle"
@@ -109,16 +119,15 @@ function HeroSect() {
                   <div className="mt-2">
                     <textarea
                       id="description"
-                      value={heroData.description}
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
-                    Write a Something
+                    number of words {heroData?.description.length}
                   </p>
                 </div>
 
@@ -143,17 +152,21 @@ function HeroSect() {
                           <span>Upload a file</span>
                           <input
                             id="image"
-                            value={heroData.image}
                             onChange={handleChange}
                             name="image"
                             type="file"
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {heroData?.image?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {heroData?.image?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {heroData?.image?.type}
                       </p>
                     </div>
                   </div>

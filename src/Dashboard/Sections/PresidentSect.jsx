@@ -1,12 +1,51 @@
-import { PhotoIcon } from "@heroicons/react/24/solid";
-import React, { useContext } from "react";
-import Table from "../Componentz/Table";
-import { motion } from "framer-motion";
 import HomePageContext from "../../Context/HomePageContext";
+import { PhotoIcon } from "@heroicons/react/24/solid";
+import { motion } from "framer-motion";
+import React, { useContext, useState } from "react";
+import Table from "../Componentz/Table";
+import axios from "axios";
 
 function PresidentSect() {
   const { PresidentSect } = useContext(HomePageContext);
+  const { setPresident } = useContext(HomePageContext);
+  const [presoData, setData] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    image: null,
+    image2: null,
+  });
 
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image" || name === "image2") {
+      setData((data) => {
+        return { ...data, [name]: files[0] };
+      });
+    } else {
+      setData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+  };
+
+  // Asynchronous Fuctions
+  async function posPresotdata() {
+    const formData = new FormData();
+    formData.append("title", presoData.title);
+    formData.append("subtitle", presoData.subtitle);
+    formData.append("description", presoData.description);
+    formData.append("image", presoData.image);
+    formData.append("image2", presoData.image2);
+
+    const { data } = await axios.post(
+      "http://127.0.0.1:8000/hat-api/President/",
+      formData
+    );
+    const vibes = [data, ...PresidentSect];
+    setPresident(vibes);
+  }
+  // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -35,7 +74,7 @@ function PresidentSect() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="title"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Title
@@ -43,16 +82,17 @@ function PresidentSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      name="title"
+                      onChange={handleChange}
+                      id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="subtitle"
                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Subtitle
@@ -60,32 +100,34 @@ function PresidentSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      name="subtitle"
+                      onChange={handleChange}
+                      id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-full">
                   <label
-                    htmlFor="about"
+                    htmlFor="description"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </label>
                   <div className="mt-2">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="description"
+                      onChange={handleChange}
+                      name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
-                    Write a Something
+                    number of words {presoData?.description.length}
                   </p>
                 </div>
 
@@ -105,13 +147,14 @@ function PresidentSect() {
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image"
+                            name="image"
+                            onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
@@ -140,13 +183,14 @@ function PresidentSect() {
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image2"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image2"
+                            name="image2"
+                            onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
@@ -164,6 +208,7 @@ function PresidentSect() {
           </div>
           <div className="flex flex-col justify-end items-end">
             <motion.button
+              onClick={posPresotdata}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

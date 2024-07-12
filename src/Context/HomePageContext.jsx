@@ -87,6 +87,9 @@ export function HomePageDataProvider({ children }) {
         footerSect,
         gallerySect,
         setHero,
+        setPresident,
+        setContacts,
+        setGallery,
       }}
     >
       {children}

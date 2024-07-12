@@ -12,18 +12,53 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
+//
 
+// Fuction Component
 export default function Drawer({ open, setOpen, dataId, datas }) {
-  const { heroSect } = useContext(HomePageContext);
-  const { setHero } = useContext(HomePageContext);
+  const { heroSect, setHero } = useContext(HomePageContext);
+  const { PresidentSect, setPresident } = useContext(HomePageContext);
+  //
   const locations = useLocation();
   const [heroUpdate, setHeros] = useState({
     title: "",
     subtitle: "",
     description: "",
-    // image:""
+  });
+  const [presoData, setPresoData] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
   });
 
+  useEffect(() => {
+    if (locations?.pathname === "/Dashboard/heroSect/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setHeros({
+            title: data.title,
+            subtitle: data.subtitle,
+            description: data.description,
+          });
+        }
+      }
+    }
+    if (locations?.pathname === "/Dashboard/PresoSect/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setPresoData({
+            title: data.title,
+            subtitle: data.subtitle,
+            description: data.description,
+          });
+        }
+      }
+    }
+  }, [dataId, datas, locations]);
+
+  // handle input values assignment
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -32,35 +67,75 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         return { ...data, [name]: value };
       });
     }
+    if (locations?.pathname === "/Dashboard/PresoSect/") {
+      setPresoData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
   };
 
-  // Asynchronous Functions
+  // Asynchronous functions to update data
   async function updateHeroSect() {
-    const heroData = [...heroSect];
-    const index = heroData.indexOf(heroUpdate);
-    heroData[index] = { ...heroUpdate };
-    setHero(heroData);
+    const formData = new FormData();
+    formData.append("title", heroUpdate.title);
+    formData.append("subtitle", heroUpdate.subtitle);
+    formData.append("description", heroUpdate.description);
 
     try {
-      await axios.put(
+      const response = await axios.put(
         `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`,
-        heroUpdate
+        formData
       );
+      // Update local state immediately after a successful update
+      const updatedHeroSect = heroSect.map((hero) =>
+        hero.id === dataId ? response.data : hero
+      );
+      setHero(updatedHeroSect);
+      setOpen(false); // Close the drawer after update
     } catch (error) {
-      setHero(heroData);
+      console.error("Error updating the hero section:", error);
     }
   }
+
+  // async function fpr president
+  async function updatePresidentSect() {
+    const formData = new FormData();
+    formData.append("title", presoData.title);
+    formData.append("subtitle", presoData.subtitle);
+    formData.append("description", presoData.description);
+
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/President_Details/${dataId}/`,
+        formData
+      );
+      // Update local state immediately after a successful update
+      const updatedPresoSect = PresidentSect.map((preso) =>
+        preso.id === dataId ? response.data : preso
+      );
+      setPresident(updatedPresoSect);
+      console.log(updatedPresoSect);
+      // Close the drawer after update
+      setOpen(false);
+    } catch (error) {
+      console.error("Error updating the hero section:", error);
+    }
+  }
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    if (locations?.pathname === "/Dashboard/heroSect/") {
+      updateHeroSect();
+    }
+    if (locations?.pathname === "/Dashboard/PresoSect/") {
+      updatePresidentSect();
+    }
+  };
 
   const data = datas?.filter((dt) => {
     return dt.id === dataId;
   });
-
-  const handleUpdate = () => {
-    if (locations?.pathname === "/Dashboard/heroSect/") {
-      updateHeroSect();
-    }
-    setOpen(false);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -171,9 +246,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
-                                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                                    Write a Something
-                                  </p>
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
@@ -181,41 +253,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
-                                </div>
-
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -389,7 +426,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="title"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Title
@@ -398,8 +435,9 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.title}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="title"
+                                      onChange={handleChange}
+                                      id="title"
                                       autoComplete="given-name"
                                       className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
@@ -407,7 +445,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="subtitle"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Subtitle
@@ -416,18 +454,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.subtitle}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      onChange={handleChange}
+                                      name="subtitle"
+                                      id="subtitle"
                                       autoComplete="given-name"
                                       className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
-
                                 <div className="col-span-full">
                                   <label
-                                    htmlFor="about"
-                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    htmlFor="description"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Description
                                   </label>
@@ -435,15 +473,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <textarea
                                       defaultValue={data[0]?.description}
                                       onChange={handleChange}
-                                      id="about"
-                                      name="about"
+                                      id="description"
+                                      name="description"
                                       rows={3}
-                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
-                                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                                    Write a Something
-                                  </p>
                                 </div>
                                 <div className="rounded-xl flex flex-row sm:w-[400px] gap-x-2 w-full h-[300px]">
                                   <img
@@ -456,76 +491,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
-                                </div>
-                                {/* image 1 */}
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                {/* image 2 */}
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -739,7 +704,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="title"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Title
@@ -748,26 +713,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.title}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
-                                      autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="sm:col-span-3">
-                                  <label
-                                    htmlFor="first-name"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Subtitle
-                                  </label>
-                                  <div className="mt-2">
-                                    <input
-                                      defaultValue={data[0]?.subtitle}
-                                      type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="title"
+                                      id="title"
                                       autoComplete="given-name"
                                       className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
@@ -779,41 +726,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
-                                </div>
-
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>

@@ -1,15 +1,90 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import { motion } from "framer-motion";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdSocialDistance } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
 
 function ContactUsSect() {
-  const { ContactSect } = useContext(HomePageContext);
+  const { ContactSect, setContacts } = useContext(HomePageContext);
   const [editContacts, setEdit] = useState(true);
+  const dataId = ContactSect;
+  //
+  const [contactsData, setData] = useState({
+    location: "",
+    postcode: "",
+    physicalAdress: "",
+    facebook: "",
+    instagram: "",
+    linkedin: "",
+    twitter: "",
+    email1: "",
+    email2: "",
+    email3: "",
+    phoneNumber1: "",
+    phoneNumber2: "",
+    phoneNumber3: "",
+    phoneNumber4: "",
+  });
 
+  // page state update
+  useEffect(() => {
+    if (dataId) {
+      const data = dataId.find((dt) => dt.id === dataId);
+      if (data) {
+        setData({
+          location: data.location,
+          postcode: data.postcode,
+          physicalAdress: data.physicalAdress,
+          facebook: data.facebook,
+          instagram: data.instagram,
+          linkedin: data.twitter,
+          twitter: data.twitter,
+          email1: data.email1,
+          email2: data.email2,
+          email3: data.email3,
+          phoneNumber1: data.phoneNumber1,
+          phoneNumber2: data.phoneNumber2,
+          phoneNumber3: data.phoneNumber3,
+          phoneNumber4: data.phoneNumber4,
+        });
+      }
+    }
+  }, [dataId]);
+
+  // handle CHange
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((data) => {
+      return { ...data, [name]: value };
+    });
+  };
+
+  // Asynchronous function
+  async function updateContactSect() {
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/Contact_Details/${dataId[0]?.id}/`,
+        contactsData
+      );
+      // Update local state immediately after a successful update
+      const updatedContacts = ContactSect?.map((contacts) =>
+        contacts.id === dataId[0]?.id ? response.data : contacts
+      );
+      setContacts(updatedContacts);
+      setEdit(!editContacts);
+    } catch (error) {
+      console.error("Error updating the hero section:", error);
+    }
+  }
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    updateContactSect();
+  };
   const handleEdit = () => {
     setEdit(!editContacts);
   };
@@ -93,7 +168,7 @@ function ContactUsSect() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="bg-slate-100 p-10 rounded-3xl"
         >
           <form onSubmit={handleSubmit}>
@@ -114,25 +189,26 @@ function ContactUsSect() {
                   {/* Emails Section */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="email1"
                       className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Email1
                     </label>
                     <div className="mt-2">
                       <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
+                        type="email"
+                        name="email1"
+                        onChange={handleChange}
+                        id="email1"
                         defaultValue={ContactSect[0]?.email1}
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="email2"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Email2
@@ -140,29 +216,31 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         defaultValue={ContactSect[0]?.email2}
-                        type="text"
-                        name="first-name"
-                        id="first-name"
+                        type="email"
+                        onChange={handleChange}
+                        name="email2"
+                        id="email2"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="email3"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Email3
                     </label>
                     <div className="mt-2">
                       <input
-                        type="text"
-                        name="first-name"
+                        type="email"
+                        name="email3"
+                        onChange={handleChange}
                         defaultValue={ContactSect[0]?.email3}
-                        id="first-name"
+                        id="email3"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -178,7 +256,7 @@ function ContactUsSect() {
                   {/* Phone Numbers Section */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="phoneNumber1"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Phone Number1
@@ -186,35 +264,37 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        name="phoneNumber1"
+                        onChange={handleChange}
                         defaultValue={ContactSect[0]?.phoneNumber1}
-                        id="first-name"
+                        id="phoneNumber1"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="phoneNumber2"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Phone Number2
                     </label>
                     <div className="mt-2">
                       <input
+                        onChange={handleChange}
                         type="text"
                         defaultValue={ContactSect[0]?.phoneNumber2}
-                        name="first-name"
-                        id="first-name"
+                        name="phoneNumber2"
+                        id="phoneNumber2"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="phoneNumber3"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Phone Number3
@@ -222,17 +302,18 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
+                        onChange={handleChange}
                         defaultValue={ContactSect[0]?.phoneNumber3}
-                        name="first-name"
-                        id="first-name"
+                        name="phoneNumber3"
+                        id="phoneNumber3"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="phoneNumber4"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Phone Number4
@@ -240,11 +321,12 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        onChange={handleChange}
+                        name="phoneNumber4"
                         defaultValue={ContactSect[0]?.phoneNumber4}
-                        id="first-name"
+                        id="phoneNumber4"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -258,7 +340,7 @@ function ContactUsSect() {
                   {/* Social Media Section */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="instagram"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Instagram
@@ -266,17 +348,18 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        onChange={handleChange}
+                        name="instagram"
                         defaultValue={ContactSect[0]?.instagram}
-                        id="first-name"
+                        id="instagram"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="facebook"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Facebook
@@ -284,17 +367,18 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        name="facebook"
+                        onChange={handleChange}
                         defaultValue={ContactSect[0]?.facebook}
-                        id="first-name"
+                        id="facebook"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="linkedin"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Linkedin
@@ -302,17 +386,18 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        onChange={handleChange}
+                        name="linkedin"
+                        id="linkedin"
                         defaultValue={ContactSect[0]?.linkedin}
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="twitter"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Twitter
@@ -320,11 +405,12 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
+                        onChange={handleChange}
                         defaultValue={ContactSect[0]?.twitter}
-                        name="first-name"
-                        id="first-name"
+                        name="twitter"
+                        id="twitter"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -338,7 +424,7 @@ function ContactUsSect() {
                   {/* Address section */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="physicalAdress"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Pysical Address
@@ -346,17 +432,18 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        onChange={handleChange}
+                        name="physicalAdress"
                         defaultValue={ContactSect[0]?.physicalAdress}
-                        id="first-name"
+                        id="physicalAdress"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="location"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       Location
@@ -364,29 +451,31 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
-                        name="first-name"
+                        onChange={handleChange}
+                        name="location"
                         defaultValue={ContactSect[0]?.location}
-                        id="first-name"
+                        id="location"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="first-name"
+                      htmlFor="postcode"
                       className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                     >
                       PostalCode
                     </label>
                     <div className="mt-2">
                       <input
-                        type="text"
-                        name="first-name"
+                        type="number"
+                        onChange={handleChange}
+                        name="postcode"
                         defaultValue={ContactSect[0]?.postcode}
-                        id="first-name"
+                        id="postcode"
                         autoComplete="given-name"
-                        className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -404,12 +493,13 @@ function ContactUsSect() {
                 cancel
               </motion.button>
               <motion.button
+                onClick={handleUpdate}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
                 className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
               >
-                Add
+                Update
               </motion.button>
             </div>
           </form>
