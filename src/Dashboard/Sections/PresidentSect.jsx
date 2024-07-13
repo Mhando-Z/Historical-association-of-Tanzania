@@ -6,8 +6,7 @@ import Table from "../Componentz/Table";
 import axios from "axios";
 
 function PresidentSect() {
-  const { PresidentSect } = useContext(HomePageContext);
-  const { setPresident } = useContext(HomePageContext);
+  const { PresidentSect, setPresident } = useContext(HomePageContext);
   const [presoData, setData] = useState({
     title: "",
     subtitle: "",
@@ -38,12 +37,16 @@ function PresidentSect() {
     formData.append("image", presoData.image);
     formData.append("image2", presoData.image2);
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:8000/hat-api/President/",
-      formData
-    );
-    const vibes = [data, ...PresidentSect];
-    setPresident(vibes);
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/hat-api/President/",
+        formData
+      );
+      const vibes = [data, ...PresidentSect];
+      setPresident(vibes);
+    } catch (error) {
+      console.error(error);
+    }
   }
   // Form Submission
   const handleSubmit = (e) => {
@@ -83,6 +86,7 @@ function PresidentSect() {
                     <input
                       type="text"
                       name="title"
+                      required
                       onChange={handleChange}
                       id="title"
                       autoComplete="given-name"
@@ -130,7 +134,6 @@ function PresidentSect() {
                     number of words {presoData?.description.length}
                   </p>
                 </div>
-
                 {/* image1 */}
                 <div className="col-span-full">
                   <label
@@ -154,15 +157,24 @@ function PresidentSect() {
                           <input
                             id="image"
                             name="image"
+                            required
                             onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {presoData?.image?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {presoData?.image?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {presoData?.image?.type}
                       </p>
                     </div>
                   </div>
@@ -181,7 +193,7 @@ function PresidentSect() {
                         className="mx-auto h-12 w-12 text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="mt-4 flex flex-row items-center gap-x-4 text-sm leading-6 text-gray-600">
                         <label
                           htmlFor="image2"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
@@ -190,15 +202,24 @@ function PresidentSect() {
                           <input
                             id="image2"
                             name="image2"
+                            required
                             onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {presoData?.image2?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {presoData?.image2?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {presoData?.image2?.type}
                       </p>
                     </div>
                   </div>

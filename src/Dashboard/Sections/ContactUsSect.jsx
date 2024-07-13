@@ -10,8 +10,8 @@ import axios from "axios";
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
   const [editContacts, setEdit] = useState(true);
-  const dataId = ContactSect;
-  //
+  const dataId = ContactSect[0]?.id;
+
   const [contactsData, setData] = useState({
     location: "",
     postcode: "",
@@ -32,7 +32,7 @@ function ContactUsSect() {
   // page state update
   useEffect(() => {
     if (dataId) {
-      const data = dataId.find((dt) => dt.id === dataId);
+      const data = ContactSect.find((dt) => dt.id === dataId);
       if (data) {
         setData({
           location: data.location,
@@ -40,7 +40,7 @@ function ContactUsSect() {
           physicalAdress: data.physicalAdress,
           facebook: data.facebook,
           instagram: data.instagram,
-          linkedin: data.twitter,
+          linkedin: data.linkedin,
           twitter: data.twitter,
           email1: data.email1,
           email2: data.email2,
@@ -52,39 +52,40 @@ function ContactUsSect() {
         });
       }
     }
-  }, [dataId]);
+  }, [ContactSect, dataId]);
 
-  // handle CHange
+  // handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setData((data) => {
-      return { ...data, [name]: value };
-    });
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   // Asynchronous function
-  async function updateContactSect() {
+  const updateContactSect = async () => {
     try {
       const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Contact_Details/${dataId[0]?.id}/`,
+        `http://127.0.0.1:8000/hat-api/Contact_Details/${dataId}/`,
         contactsData
       );
       // Update local state immediately after a successful update
-      const updatedContacts = ContactSect?.map((contacts) =>
-        contacts.id === dataId[0]?.id ? response.data : contacts
+      const updatedContacts = ContactSect.map((contact) =>
+        contact.id === dataId ? response.data : contact
       );
       setContacts(updatedContacts);
       setEdit(!editContacts);
     } catch (error) {
-      console.error("Error updating the hero section:", error);
+      console.error("Error updating the contact section:", error);
     }
-  }
+  };
 
   const handleUpdate = (e) => {
     e.preventDefault();
     updateContactSect();
   };
+
   const handleEdit = () => {
     setEdit(!editContacts);
   };
@@ -451,6 +452,7 @@ function ContactUsSect() {
                     <div className="mt-2">
                       <input
                         type="text"
+                        required
                         onChange={handleChange}
                         name="location"
                         defaultValue={ContactSect[0]?.location}

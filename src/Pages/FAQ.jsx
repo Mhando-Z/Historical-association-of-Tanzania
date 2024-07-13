@@ -14,7 +14,7 @@ function FAQSection() {
       <h2 className="text-6xl text-[#b67a3d] font-extrabold text-center mb-10">
         Curious Minds Ask
       </h2>
-      <div className="border-b p-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b transition-all ease-out  p-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(1)}
@@ -28,7 +28,7 @@ function FAQSection() {
           <motion.div
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
             <p className="mt-2 text-gray-700 text-xl">
@@ -77,7 +77,7 @@ function FAQSection() {
           <motion.div
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
             <p className="mt-2 text-gray-700 text-xl">
@@ -116,7 +116,7 @@ function FAQSection() {
           <motion.div
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
             <p className="mt-2 text-gray-700 text-xl">
@@ -141,7 +141,7 @@ function FAQSection() {
           <motion.div
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
             <p className="mt-2 text-gray-700 text-xl">
@@ -184,7 +184,7 @@ function FAQSection() {
           <motion.div
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
             <p className="mt-2 text-gray-700 text-xl">

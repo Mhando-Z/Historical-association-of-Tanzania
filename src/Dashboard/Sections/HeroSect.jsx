@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 function HeroSect() {
-  const { heroSect } = useContext(HomePageContext);
-  const { setHero } = useContext(HomePageContext);
-
+  const { heroSect, setHero } = useContext(HomePageContext);
   const [heroData, setData] = useState({
     title: "",
     subtitle: "",
@@ -20,7 +18,6 @@ function HeroSect() {
     const { name, value, files } = e.target;
     if (name === "image") {
       setData((data) => {
-        console.log(files[0]);
         return { ...data, [name]: files[0] };
       });
     } else {
@@ -28,10 +25,6 @@ function HeroSect() {
         return { ...data, [name]: value };
       });
     }
-  };
-  // Form Submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
   };
 
   // Asynchronous Fuctions
@@ -42,13 +35,20 @@ function HeroSect() {
     formData.append("description", heroData.description);
     formData.append("image", heroData.image);
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:8000/hat-api/heroSect/",
-      formData
-    );
-    const vibes = [data, ...heroSect];
-    setHero(vibes);
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/hat-api/heroSect/",
+        formData
+      );
+      const vibes = [data, ...heroSect];
+      setHero(vibes);
+    } catch (error) {}
   }
+
+  // Form Submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="px-10 flex flex-col">
@@ -82,6 +82,7 @@ function HeroSect() {
                   <div className="mt-2">
                     <input
                       type="text"
+                      required
                       onChange={handleChange}
                       name="title"
                       id="title"
@@ -123,7 +124,6 @@ function HeroSect() {
                       name="description"
                       rows={3}
                       className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                      defaultValue={""}
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -144,7 +144,7 @@ function HeroSect() {
                         className="mx-auto h-12 w-12 text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="mt-4 flex flex-row text-sm items-center gap-x-4 leading-6 text-gray-600">
                         <label
                           htmlFor="image"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
@@ -155,9 +155,13 @@ function HeroSect() {
                             onChange={handleChange}
                             name="image"
                             type="file"
+                            required
                             className="sr-only"
                           />
                         </label>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
                         Name: {heroData?.image?.name}

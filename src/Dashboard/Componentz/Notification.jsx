@@ -18,11 +18,19 @@ export default function Notification({ open, setOpen, dataId }) {
   const { PresidentSect, setPresident } = useContext(HomePageContext);
   // gallery section
   const { gallerySect, setGallery } = useContext(HomePageContext);
+  // Staffs Section
+  const { StaffsSect, setStaffs } = useContext(HomePageContext);
+  // Announcement section
+  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
+  //AboutUs section
+  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
 
   // routing
   const locations = useLocation();
 
-  // functions
+  console.log(locations, dataId);
+
+  // Hero Section of landing page
   async function deleteHeroSect() {
     const hero = heroSect?.filter((pt) => pt.id !== dataId);
     setHero(hero);
@@ -32,6 +40,31 @@ export default function Notification({ open, setOpen, dataId }) {
       );
     } catch (error) {
       setHero(heroSect);
+    }
+  }
+  // Announcements Section
+  async function deleteAnnouncement() {
+    const Announce = AnnounceSect?.filter((pt) => pt.id !== dataId);
+    setAnnounce(Announce);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/Announce_Details/${dataId}/`
+      );
+    } catch (error) {
+      setAnnounce(Announce);
+    }
+  }
+
+  // Staffs Section
+  async function deleteStaff() {
+    const staff = StaffsSect?.filter((pt) => pt.id !== dataId);
+    setStaffs(staff);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/Staffs_Details/${dataId}/`
+      );
+    } catch (error) {
+      setStaffs(staff);
     }
   }
 
@@ -48,6 +81,19 @@ export default function Notification({ open, setOpen, dataId }) {
     }
   }
 
+  // AboutUs section
+  async function deleteAboutUsSect() {
+    const aboutUs = AboutUSSect?.filter((pt) => pt.id !== dataId);
+    setAboutUs(aboutUs);
+    try {
+      await axios.delete(
+        `http://127.0.0.1:8000/hat-api/About_Details/${dataId}/`
+      );
+    } catch (error) {
+      setAboutUs(aboutUs);
+    }
+  }
+
   // preso function
   async function deletePresoSect() {
     const preso = PresidentSect?.filter((pt) => pt.id !== dataId);
@@ -61,7 +107,6 @@ export default function Notification({ open, setOpen, dataId }) {
     }
   }
 
-  console.log(locations);
   // delete Logic
   const handleDelete = () => {
     if (locations?.pathname === "/Dashboard/heroSect/") {
@@ -72,6 +117,15 @@ export default function Notification({ open, setOpen, dataId }) {
     }
     if (locations?.pathname === "/Dashboard/GallerySect/") {
       deletePicturesSect();
+    }
+    if (locations?.pathname === "/Dashboard/StaffsSect/") {
+      deleteStaff();
+    }
+    if (locations?.pathname === "/Dashboard/Announcement/") {
+      deleteAnnouncement();
+    }
+    if (locations?.pathname === "/Dashboard/AboutSect/") {
+      deleteAboutUsSect();
     }
     setOpen(false);
   };

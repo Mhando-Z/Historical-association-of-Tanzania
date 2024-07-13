@@ -42,7 +42,7 @@ export default function ImageList({ data }) {
         <Dialogue value={value} open={open} setOpen={setOpen} />
       </div>
       <div
-        className={`${count <= 8 ? "hidden" : "flex justify-end items-end w-full "}`}
+        className={`${data?.length <= 8 ? "hidden" : "flex justify-end mt-20 items-end w-full "}`}
       >
         <Link
           onClick={handleCount}

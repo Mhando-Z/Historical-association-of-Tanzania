@@ -16,11 +16,21 @@ import HomePageContext from "../../Context/HomePageContext";
 
 // Fuction Component
 export default function Drawer({ open, setOpen, dataId, datas }) {
+  // sections imports
   const { heroSect, setHero } = useContext(HomePageContext);
   const { PresidentSect, setPresident } = useContext(HomePageContext);
+  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
+  const { StaffsSect, setStaffs } = useContext(HomePageContext);
+  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+
   //
   const locations = useLocation();
   const [heroUpdate, setHeros] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+  });
+  const [AboutUsdata, setAboutus] = useState({
     title: "",
     subtitle: "",
     description: "",
@@ -29,6 +39,23 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     title: "",
     subtitle: "",
     description: "",
+  });
+  const [AnnounceData, setAnnounceData] = useState({
+    title: "",
+    description: "",
+  });
+  const [staffs, setStaffData] = useState({
+    name: "",
+    position: "",
+    contact1: "",
+    contact2: "",
+    contact3: "",
+    description: "",
+  });
+
+  // data id allocaton
+  const data = datas?.filter((dt) => {
+    return dt.id === dataId;
   });
 
   useEffect(() => {
@@ -56,6 +83,44 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         }
       }
     }
+    if (locations?.pathname === "/Dashboard/Announcement/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setAnnounceData({
+            title: data.title,
+            description: data.description,
+          });
+        }
+      }
+    }
+    if (locations?.pathname === "/Dashboard/StaffsSect/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setStaffData({
+            name: data.name,
+            position: data.position,
+            description: data.description,
+            contact1: data.contact1,
+            contact2: data.contact2,
+            contact3: data.contact3,
+          });
+        }
+      }
+    }
+    if (locations?.pathname === "/Dashboard/AboutSect/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setAboutus({
+            title: data.title,
+            subtitle: data.subtitle,
+            description: data.description,
+          });
+        }
+      }
+    }
   }, [dataId, datas, locations]);
 
   // handle input values assignment
@@ -69,6 +134,21 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     }
     if (locations?.pathname === "/Dashboard/PresoSect/") {
       setPresoData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+    if (locations?.pathname === "/Dashboard/Announcement/") {
+      setAnnounceData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+    if (locations?.pathname === "/Dashboard/StaffsSect/") {
+      setStaffData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+    if (locations?.pathname === "/Dashboard/AboutSect/") {
+      setAboutus((data) => {
         return { ...data, [name]: value };
       });
     }
@@ -114,11 +194,81 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         preso.id === dataId ? response.data : preso
       );
       setPresident(updatedPresoSect);
-      console.log(updatedPresoSect);
       // Close the drawer after update
       setOpen(false);
     } catch (error) {
-      console.error("Error updating the hero section:", error);
+      console.error("Error updating the president section:", error);
+    }
+  }
+  // async function fpr Announcements
+  async function UpdateAnnounceSect() {
+    const formData = new FormData();
+    formData.append("title", AnnounceData.title);
+    formData.append("description", AnnounceData.description);
+
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/Announce_Details/${dataId}/`,
+        formData
+      );
+      // Update local state immediately after a successful update
+      const updatedAnnounce = AnnounceSect.map((Announce) =>
+        Announce.id === dataId ? response.data : Announce
+      );
+      setAnnounce(updatedAnnounce);
+      // Close the drawer after update
+      setOpen(false);
+    } catch (error) {
+      console.error("Error updating the Announcement section:", error);
+    }
+  }
+  // async function for AboutUs
+  async function UpdateAboutUs() {
+    const formData = new FormData();
+    formData.append("title", AboutUsdata.title);
+    formData.append("subtitle", AboutUsdata.subtitle);
+    formData.append("description", AboutUsdata.description);
+
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/About_Details/${dataId}/`,
+        formData
+      );
+      // Update local state immediately after a successful update
+      const updateAboutus = AboutUSSect.map((aboutus) =>
+        aboutus.id === dataId ? response.data : aboutus
+      );
+      setAboutUs(updateAboutus);
+      // Close the drawer after update
+      setOpen(false);
+    } catch (error) {
+      console.error("Error updating the AboutUs section:", error);
+    }
+  }
+  // async function fpr president
+  async function updateStaffSect() {
+    const formData = new FormData();
+    formData.append("name", staffs.name);
+    formData.append("position", staffs.position);
+    formData.append("contact1", staffs.contact1);
+    formData.append("contact2", staffs.contact2);
+    formData.append("contact3", staffs.contact3);
+    formData.append("description", staffs.description);
+
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/Staffs_Details/${dataId}/`,
+        formData
+      );
+      // Update local state immediately after a successful update
+      const updateStaffSect = StaffsSect.map((staff) =>
+        staff.id === dataId ? response.data : staff
+      );
+      setStaffs(updateStaffSect);
+      // Close the drawer after update
+      setOpen(false);
+    } catch (error) {
+      console.error("Error updating the Staff section:", error);
     }
   }
 
@@ -131,11 +281,16 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     if (locations?.pathname === "/Dashboard/PresoSect/") {
       updatePresidentSect();
     }
+    if (locations?.pathname === "/Dashboard/StaffsSect/") {
+      updateStaffSect();
+    }
+    if (locations?.pathname === "/Dashboard/Announcement/") {
+      UpdateAnnounceSect();
+    }
+    if (locations?.pathname === "/Dashboard/AboutSect/") {
+      UpdateAboutUs();
+    }
   };
-
-  const data = datas?.filter((dt) => {
-    return dt.id === dataId;
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -205,7 +360,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       name="title"
                                       id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -224,7 +379,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       name="subtitle"
                                       id="subtitle"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -243,7 +398,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       id="description"
                                       name="description"
                                       rows={3}
-                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -281,8 +436,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                         <form onSubmit={handleSubmit}>
                           <div className="space-y-12 mt-5">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
-                                About HAT Section
+                              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
+                                AboutUS Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
@@ -291,25 +446,26 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="title"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Title
                                   </label>
                                   <div className="mt-2">
                                     <input
+                                      onChange={handleChange}
                                       defaultValue={data[0]?.title}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="title"
+                                      id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="subtitle"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Subtitle
@@ -317,11 +473,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <input
                                       defaultValue={data[0]?.subtitle}
+                                      onChange={handleChange}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="subtitle"
+                                      id="subtitle"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -337,15 +494,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <textarea
                                       defaultValue={data[0]?.description}
                                       onChange={handleChange}
-                                      id="about"
-                                      name="about"
+                                      id="description"
+                                      name="description"
                                       rows={3}
-                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
-                                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                                    Write a Something
-                                  </p>
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
@@ -353,41 +507,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
-                                </div>
-
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -439,7 +558,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       onChange={handleChange}
                                       id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -458,7 +577,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       name="subtitle"
                                       id="subtitle"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -484,12 +603,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <img
                                     src={`http://127.0.0.1:8000/${data[0]?.image}`}
                                     alt={data[0]?.title}
-                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                    className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
                                   <img
                                     src={`http://127.0.0.1:8000/${data[0]?.image2}`}
                                     alt={data[0]?.title}
-                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                    className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
                                 </div>
                               </div>
@@ -529,7 +648,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="title"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Title
@@ -538,36 +657,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.title}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="title"
+                                      onChange={handleChange}
+                                      id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
-                                <div className="sm:col-span-3">
-                                  <label
-                                    htmlFor="first-name"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Subtitle
-                                  </label>
-                                  <div className="mt-2">
-                                    <input
-                                      defaultValue={data[0]?.subtitle}
-                                      type="text"
-                                      name="first-name"
-                                      id="first-name"
-                                      autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                                    />
-                                  </div>
-                                </div>
-
                                 <div className="col-span-full">
                                   <label
-                                    htmlFor="about"
-                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    htmlFor="description"
+                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Description
                                   </label>
@@ -575,97 +676,24 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <textarea
                                       defaultValue={data[0]?.description}
                                       onChange={handleChange}
-                                      id="about"
-                                      name="about"
+                                      id="description"
+                                      name="description"
                                       rows={3}
-                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
-                                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                                    Write a Something
-                                  </p>
                                 </div>
                                 <div className="rounded-xl flex flex-row sm:w-[400px] gap-x-2 w-full h-[300px]">
                                   <img
                                     src={`http://127.0.0.1:8000/${data[0]?.image}`}
                                     alt={data[0]?.title}
-                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                    className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
                                   <img
                                     src={`http://127.0.0.1:8000/${data[0]?.image2}`}
                                     alt={data[0]?.title}
-                                    className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
+                                    className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
-                                </div>
-                                {/* image 1 */}
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                {/* image 2 */}
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -700,8 +728,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
-
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
@@ -713,6 +740,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.title}
                                       type="text"
+                                      onChange={handleChange}
                                       name="title"
                                       id="title"
                                       autoComplete="given-name"
@@ -732,13 +760,13 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                           </div>
                           <div className="flex flex-col justify-end items-end">
                             <motion.button
-                              onClick={handleUpdate}
+                              onClick={() => setOpen(false)}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.8 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
                             >
-                              Update
+                              Back
                             </motion.button>
                           </div>
                         </form>
@@ -764,7 +792,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="name"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Name
@@ -773,16 +801,17 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.name}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="name"
+                                      onChange={handleChange}
+                                      id="name"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="position"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Position
@@ -791,16 +820,17 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.position}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      name="position"
+                                      onChange={handleChange}
+                                      id="position"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="contact1"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Email
@@ -808,17 +838,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                   <div className="mt-2">
                                     <input
                                       defaultValue={data[0]?.contact1}
-                                      type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      type="email"
+                                      onChange={handleChange}
+                                      name="contact1"
+                                      id="contact1"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="contact2"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Phone Number
@@ -827,16 +858,17 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.contact2}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      onChange={handleChange}
+                                      name="contact2"
+                                      id="contact2"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="first-name"
+                                    htmlFor="contact3"
                                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Social Media
@@ -845,17 +877,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <input
                                       defaultValue={data[0]?.contact3}
                                       type="text"
-                                      name="first-name"
-                                      id="first-name"
+                                      onChange={handleChange}
+                                      name="contact3"
+                                      id="contact3"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
 
                                 <div className="col-span-full">
                                   <label
-                                    htmlFor="about"
+                                    htmlFor="description"
                                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                                   >
                                     Description
@@ -864,15 +897,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     <textarea
                                       defaultValue={data[0]?.description}
                                       onChange={handleChange}
-                                      id="about"
-                                      name="about"
+                                      id="description"
+                                      name="description"
                                       rows={3}
-                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
-                                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                                    Write a Something
-                                  </p>
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
@@ -880,41 +910,6 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
-                                </div>
-
-                                <div className="col-span-full">
-                                  <label
-                                    htmlFor="cover-photo"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                                  >
-                                    Photo
-                                  </label>
-                                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
-                                    <div className="text-center">
-                                      <PhotoIcon
-                                        className="mx-auto h-12 w-12 text-gray-300"
-                                        aria-hidden="true"
-                                      />
-                                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                          htmlFor="file-upload"
-                                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                          <span>Upload a file</span>
-                                          <input
-                                            id="file-upload"
-                                            name="file-upload"
-                                            type="file"
-                                            className="sr-only"
-                                          />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
-                                      </div>
-                                      <p className="text-xs leading-5 text-gray-600">
-                                        PNG, JPG, GIF up to 10MB
-                                      </p>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>

@@ -1,12 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
+import axios from "axios";
 
 function AnnouncementsSect() {
-  const { AnnounceSect } = useContext(HomePageContext);
+  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
+  const [AnnounceData, setData] = useState({
+    title: "",
+    description: "",
+    image: null,
+    image2: null,
+  });
 
+  // handle custom inputs
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image" || name === "image2") {
+      setData((data) => {
+        return { ...data, [name]: files[0] };
+      });
+    } else {
+      setData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+  };
+  // Asynchronous Fuctions posting/ Adding data
+  async function postdata() {
+    const formData = new FormData();
+    formData.append("title", AnnounceData.title);
+    formData.append("description", AnnounceData.description);
+    formData.append("image", AnnounceData.image);
+    formData.append("image2", AnnounceData.image2);
+
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/hat-api/Announce/",
+        formData
+      );
+      const vibes = [data, ...AnnounceSect];
+      setAnnounce(vibes);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // prevent form refresh after submit button is pressed
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -35,7 +76,7 @@ function AnnouncementsSect() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="title"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Title
@@ -43,52 +84,37 @@ function AnnouncementsSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      name="title"
+                      required
+                      onChange={handleChange}
+                      id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="first-name"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Subtitle
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-full">
                   <label
-                    htmlFor="about"
+                    htmlFor="description"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </label>
                   <div className="mt-2">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="description"
+                      onChange={handleChange}
+                      name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
-                    Write a Something
+                    number of words {AnnounceData?.description.length}
                   </p>
                 </div>
-
                 {/* image1 */}
                 <div className="col-span-full">
                   <label
@@ -105,21 +131,31 @@ function AnnouncementsSect() {
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image"
+                            name="image"
+                            required
+                            onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {AnnounceData?.image?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {AnnounceData?.image?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {AnnounceData?.image?.type}
                       </p>
                     </div>
                   </div>
@@ -138,23 +174,33 @@ function AnnouncementsSect() {
                         className="mx-auto h-12 w-12 text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="mt-4 flex flex-row items-center gap-x-4 text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image2"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image2"
+                            name="image2"
+                            required
+                            onChange={handleChange}
                             type="file"
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {AnnounceData?.image2?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {AnnounceData?.image2?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {AnnounceData?.image2?.type}
                       </p>
                     </div>
                   </div>
@@ -164,6 +210,7 @@ function AnnouncementsSect() {
           </div>
           <div className="flex flex-col justify-end items-end">
             <motion.button
+              onClick={postdata}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

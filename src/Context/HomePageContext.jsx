@@ -90,6 +90,9 @@ export function HomePageDataProvider({ children }) {
         setPresident,
         setContacts,
         setGallery,
+        setStaffs,
+        setAnnounce,
+        setAboutUs,
       }}
     >
       {children}

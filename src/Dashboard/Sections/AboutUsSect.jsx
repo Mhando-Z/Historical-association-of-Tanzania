@@ -1,11 +1,49 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Table from "../Componentz/Table";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
+import axios from "axios";
 
 export default function AboutUsSect() {
-  const { AboutUSSect } = useContext(HomePageContext);
+  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+  const [AboutData, setData] = useState({
+    title: "",
+    subtitle: "",
+    description: "",
+    image: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setData((data) => {
+        return { ...data, [name]: files[0] };
+      });
+    } else {
+      setData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
+  };
+
+  // Asynchronous Fuctions
+  async function postData() {
+    const formData = new FormData();
+    formData.append("title", AboutData.title);
+    formData.append("subtitle", AboutData.subtitle);
+    formData.append("description", AboutData.description);
+    formData.append("image", AboutData.image);
+
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/hat-api/AboutUs/",
+        formData
+      );
+      const vibes = [data, ...AboutUSSect];
+      setAboutUs(vibes);
+    } catch (error) {}
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,14 +57,14 @@ export default function AboutUsSect() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="bg-slate-100 p-10 rounded-3xl"
       >
         <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
               <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
-                HeroSection Section
+                AboutUs Section
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
                 Perfom CRUD to this section
@@ -35,7 +73,7 @@ export default function AboutUsSect() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="title"
                     className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Title
@@ -43,16 +81,18 @@ export default function AboutUsSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      required
+                      onChange={handleChange}
+                      name="title"
+                      id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="subtitle"
                     className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Subtitle
@@ -60,32 +100,33 @@ export default function AboutUsSect() {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
+                      onChange={handleChange}
+                      name="subtitle"
+                      id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div className="col-span-full">
                   <label
-                    htmlFor="about"
-                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    htmlFor="description"
+                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
                     Description
                   </label>
                   <div className="mt-2">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="description"
+                      onChange={handleChange}
+                      name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 py-2 px-2 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                      defaultValue={""}
+                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
-                    Write a Something
+                    number of words {AboutData?.description.length}
                   </p>
                 </div>
 
@@ -102,23 +143,33 @@ export default function AboutUsSect() {
                         className="mx-auto h-12 w-12 text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="mt-4 flex flex-row text-sm items-center gap-x-4 leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="image"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            id="file-upload"
-                            name="file-upload"
+                            id="image"
+                            onChange={handleChange}
+                            name="image"
                             type="file"
+                            required
                             className="sr-only"
                           />
                         </label>
-                        <p className="pl-1">or drag and drop</p>
+                        <p className="text-xs leading-5 text-gray-600">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        PNG, JPG, GIF up to 10MB
+                        Name: {AboutData?.image?.name}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Size: {AboutData?.image?.size}
+                      </p>
+                      <p className="text-xs leading-5 text-gray-600">
+                        Type: {AboutData?.image?.type}
                       </p>
                     </div>
                   </div>
@@ -128,6 +179,7 @@ export default function AboutUsSect() {
           </div>
           <div className="flex flex-col justify-end items-end">
             <motion.button
+              onClick={postData}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

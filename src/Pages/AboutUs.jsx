@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 
 function AboutUs() {
   const { AboutUSSect } = useContext(HomePageContext);
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className="mt-16">
       <div className="flex flex-col md:flex-row container mx-auto">
@@ -16,7 +21,11 @@ function AboutUs() {
             {AboutUSSect[0]?.description}
           </p>
           <div className="flex flex-row w-full justify-end items-end">
-            <Link className="px-5 py-2 hover:ring-2 hover:ring-black hover:text-black hover:bg-white rounded-3xl  mt-2  font-semibold bg-[#b67a3d] text-white">
+            <Link
+              onClick={scrollToTop}
+              to={"AboutUs/"}
+              className="px-5 py-2 hover:ring-2 hover:ring-black hover:text-black hover:bg-white rounded-3xl  mt-2  font-semibold bg-[#b67a3d] text-white"
+            >
               ReadMore
             </Link>
           </div>
