@@ -9,8 +9,14 @@ import axios from "axios";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
-  const [editContacts, setEdit] = useState(true);
+  const { PolicieSect, setPolicy } = useContext(HomePageContext);
+  const { TermsSect, setTermsService } = useContext(HomePageContext);
+
   const dataId = ContactSect[0]?.id;
+  const dataId1 = PolicieSect[0]?.id;
+  const dataId2 = TermsSect[0]?.id;
+
+  const [editContacts, setEdit] = useState(true);
 
   const [contactsData, setData] = useState({
     location: "",
@@ -29,7 +35,20 @@ function ContactUsSect() {
     phoneNumber4: "",
   });
 
-  // page state update
+  const [terms, setTerms] = useState({
+    term1: "",
+    term2: "",
+    term3: "",
+    term4: "",
+  });
+
+  const [policies, setPolicies] = useState({
+    policy1: "",
+    policy2: "",
+    policy3: "",
+    policy4: "",
+  });
+
   useEffect(() => {
     if (dataId) {
       const data = ContactSect.find((dt) => dt.id === dataId);
@@ -52,9 +71,30 @@ function ContactUsSect() {
         });
       }
     }
-  }, [ContactSect, dataId]);
+    if (dataId1) {
+      const data = PolicieSect.find((dt) => dt.id === dataId1);
+      if (data) {
+        setPolicies({
+          policy1: data.policy1,
+          policy2: data.policy2,
+          policy3: data.policy3,
+          policy4: data.policy4,
+        });
+      }
+    }
+    if (dataId2) {
+      const data = TermsSect.find((dt) => dt.id === dataId2);
+      if (data) {
+        setTerms({
+          term1: data.term1,
+          term2: data.term2,
+          term3: data.term3,
+          term4: data.term4,
+        });
+      }
+    }
+  }, [ContactSect, dataId, dataId1, dataId2, PolicieSect, TermsSect]);
 
-  // handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -63,14 +103,28 @@ function ContactUsSect() {
     }));
   };
 
-  // Asynchronous function
+  const handleChange1 = (e) => {
+    const { name, value } = e.target;
+    setPolicies((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setTerms((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const updateContactSect = async () => {
     try {
       const response = await axios.put(
         `http://127.0.0.1:8000/hat-api/Contact_Details/${dataId}/`,
         contactsData
       );
-      // Update local state immediately after a successful update
       const updatedContacts = ContactSect.map((contact) =>
         contact.id === dataId ? response.data : contact
       );
@@ -81,9 +135,42 @@ function ContactUsSect() {
     }
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+  const updatePoliciesSect = async () => {
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/Policies_Details/${dataId1}/`,
+        policies
+      );
+      const updatedPolicies = PolicieSect.map((policy) =>
+        policy.id === dataId1 ? response.data : policy
+      );
+      setPolicy(updatedPolicies);
+      setEdit(!editContacts);
+    } catch (error) {
+      console.error("Error updating the Policy section:", error);
+    }
+  };
+
+  const updateTerms = async () => {
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/hat-api/Terms_Details/${dataId2}/`,
+        terms
+      );
+      const updatedTerms = TermsSect.map((terms) =>
+        terms.id === dataId2 ? response.data : terms
+      );
+      setTermsService(updatedTerms);
+      setEdit(!editContacts);
+    } catch (error) {
+      console.error("Error updating the Terms section:", error);
+    }
+  };
+
+  const handleUpdate = () => {
     updateContactSect();
+    updatePoliciesSect();
+    updateTerms();
   };
 
   const handleEdit = () => {
@@ -101,7 +188,7 @@ function ContactUsSect() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="flex flex-col mt-24 bg-slate-200 rounded-3xl"
+          className="flex flex-col mt-24 mb-10 bg-slate-200 rounded-3xl"
         >
           <div className="p-10">
             <h1 className="xl:text-2xl font-bold text-gray-900">
@@ -150,7 +237,36 @@ function ContactUsSect() {
               <h1>{ContactSect[0]?.physicalAdress}</h1>
               <h1>{ContactSect[0]?.postcode}</h1>
             </div>
-            <div className="flex flex-col w-full">
+
+            <div className="flex flex-col gap-y-10 mt-10">
+              <div>
+                <h1 className="font-bold  xl:text-xl">Policies</h1>
+                {PolicieSect?.map((dt) => {
+                  return (
+                    <div className="flex flex-col gap-y-4" key={dt.id}>
+                      <p className="xl:max-w-4xl">1.{dt.policy5}</p>
+                      <p className="xl:max-w-4xl">2.{dt.policy2}</p>
+                      <p className="xl:max-w-4xl">3.{dt.policy3}</p>
+                      <p className="xl:max-w-4xl">4.{dt.policy4}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                <h1 className="font-bold xl:text-xl">Terms of Service</h1>
+                {TermsSect?.map((dt) => {
+                  return (
+                    <div className="flex flex-col gap-y-4" key={dt.id}>
+                      <p className="xl:max-w-4xl">1.{dt.term1}</p>
+                      <p className="xl:max-w-4xl">2.{dt.term2}</p>
+                      <p className="xl:max-w-4xl">3.{dt.term3}</p>
+                      <p className="xl:max-w-4xl">4.{dt.term4}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex items-end justify-end w-full">
               <div className="flex mt-10 flex-col justify-end items-end">
                 <motion.button
                   onClick={handleEdit}
@@ -482,6 +598,177 @@ function ContactUsSect() {
                     </div>
                   </div>
                 </div>
+
+                <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
+                <div className="flex mt-10 items-center gap-x-5 flex-row">
+                  <h1 className="xl:text-xl font-bold">Policies Section</h1>
+                </div>
+                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  {/* Policy Section */}
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="Policy5"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Policy1
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange1}
+                        name="Policy1"
+                        defaultValue={PolicieSect[0]?.policy1}
+                        id="Policy1"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="policy2"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      policy2
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        name="policy2"
+                        onChange={handleChange1}
+                        defaultValue={PolicieSect[0]?.policy2}
+                        id="policy2"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="policy3"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      policy3
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange1}
+                        name="policy3"
+                        id="policy3"
+                        defaultValue={PolicieSect[0]?.policy3}
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="policy4"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      policy4
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange1}
+                        defaultValue={PolicieSect[0]?.policy4}
+                        name="policy4"
+                        id="policy4"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* terms section */}
+                <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
+                <div className="flex mt-10 items-center gap-x-5 flex-row">
+                  <h1 className="xl:text-xl font-bold">
+                    Terms of Service Section
+                  </h1>
+                </div>
+                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  {/* Policy Section */}
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="term1"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      term1
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange2}
+                        name="term1"
+                        defaultValue={TermsSect[0]?.term1}
+                        id="term1"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="term2"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      term2
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        name="term2"
+                        onChange={handleChange2}
+                        defaultValue={TermsSect[0]?.term2}
+                        id="term2"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="term3"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      term3
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange2}
+                        name="term3"
+                        id="term3"
+                        defaultValue={TermsSect[0]?.term3}
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="term4"
+                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    >
+                      term4
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange2}
+                        defaultValue={TermsSect[0]?.term4}
+                        name="term4"
+                        id="term4"
+                        autoComplete="given-name"
+                        className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
               </div>
             </div>
             <div className="flex mt-10 flex-row gap-x-5 justify-end items-end">

@@ -104,16 +104,16 @@ export default function NewsLetter() {
             <div className="flex flex-col">
               <h1 className="text-xl text-white font-medium">Policies</h1>
               <h1 className="text-white line-clamp-1 max-w-xl">
-                {footerSect[0]?.policies.policy1}
+                {footerSect[0]?.policies?.policy1}
               </h1>
               <h1 className="text-white line-clamp-1 max-w-xl">
-                {footerSect[0]?.policies.policy2}
+                {footerSect[0]?.policies?.policy2}
               </h1>
               <h1 className="text-white line-clamp-1 max-w-xl">
-                {footerSect[0]?.policies.policy3}
+                {footerSect[0]?.policies?.policy3}
               </h1>
               <h1 className="text-white line-clamp-1 max-w-xl">
-                {footerSect[0]?.policies.policy4}
+                {footerSect[0]?.policies?.policy4}
               </h1>
             </div>
             <div className="flex flex-col">
