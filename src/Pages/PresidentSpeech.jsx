@@ -14,7 +14,7 @@ function PresidentSpeech() {
   return (
     <div className="bg-[#b67a3d] bg-opacity-15 py-20">
       <div className="flex container mx-auto flex-col md:flex-row">
-        {PresidentSect?.map((dt) => {
+        {PresidentSect?.slice(0, 1).map((dt) => {
           return (
             <div
               key={dt.id}
@@ -33,11 +33,6 @@ function PresidentSpeech() {
                     className="h-[400px] w-full object-cover object-center group-hover:opacity-75"
                   />
                 </div>
-                {/* <img
-                  src={`http://127.0.0.1:8000/${dt.image}`}
-                  alt="hat president"
-                  className="max-w-screen xl:h-[500px] md:h-[400px] ring-2 ring-slate-400 p-2"
-                /> */}
                 <p className="w-[300px] mt-2 font-medium justify-center text-center ">
                   {dt.subtitle}
                 </p>

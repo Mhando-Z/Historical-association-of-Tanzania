@@ -13,6 +13,7 @@ export function HomePageDataProvider({ children }) {
   const [gallerySect, setGallery] = useState([]);
   const [AnnounceSect, setAnnounce] = useState([]);
   const [PolicieSect, setPolicy] = useState([]);
+  const [companies, setCompany] = useState([]);
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
 
@@ -21,6 +22,12 @@ export function HomePageDataProvider({ children }) {
     const { data } = await axios.get("http://127.0.0.1:8000/hat-api/heroSect");
     setHero(data);
   }
+
+  async function getCompanydata() {
+    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Companies");
+    setCompany(data);
+  }
+
   async function getTerms() {
     const { data } = await axios.get(
       "http://127.0.0.1:8000/hat-api/TermsofServices"
@@ -76,6 +83,7 @@ export function HomePageDataProvider({ children }) {
     setConference(data);
   }
   useEffect(() => {
+    getCompanydata();
     getTerms();
     getPoliciesdata();
     getAnnounce();
@@ -102,6 +110,7 @@ export function HomePageDataProvider({ children }) {
         gallerySect,
         PolicieSect,
         TermsSect,
+        companies,
         setTermsService,
         setPolicy,
         setHero,

@@ -28,8 +28,6 @@ export default function Notification({ open, setOpen, dataId }) {
   // routing
   const locations = useLocation();
 
-  console.log(locations, dataId);
-
   // Hero Section of landing page
   async function deleteHeroSect() {
     const hero = heroSect?.filter((pt) => pt.id !== dataId);

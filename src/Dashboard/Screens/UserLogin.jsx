@@ -1,10 +1,85 @@
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Images/Logo3.png";
+import HomePageContext from "../../Context/HomePageContext";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export default function UserLogin() {
+  const { gallerySect } = useContext(HomePageContext);
+  const [value, setValue] = useState(2);
+  const [direction, setDirection] = useState(1);
+  const [Login, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  async function getUser() {
+    try {
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/hat-users/users/login/",
+        Login
+      );
+      localStorage.setItem("token", data.token);
+      console.log(data);
+      // window.location("/Dashboard/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleLogin = () => {
+    getUser();
+    console.log(Login);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValue((prevValue) => {
+        if (direction === 1) {
+          if (prevValue >= gallerySect?.length - 1) {
+            setDirection(-1);
+            return prevValue - 1;
+          } else {
+            return prevValue + 1;
+          }
+        } else {
+          if (prevValue <= 0) {
+            setDirection(1);
+            return prevValue + 1;
+          } else {
+            return prevValue - 1;
+          }
+        }
+      });
+    }, 10000);
+    // Interval duration 10000 means 10 seconds timer will execute code
+
+    return () => clearInterval(interval);
+    // Cleanup the interval on unmount
+  }, [direction, gallerySect.length]);
+
   return (
-    <>
-      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex flex-row">
+      <div className="h-screen relative xl:w-[900px] lg:w-[600px] hidden lg:flex bg-black">
+        <img
+          src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
+          alt={gallerySect[1]?.title}
+          className="h-screen w-full object-cover object-center"
+        />
+      </div>
+      <div className="flex min-h-screen flex-1 flex-col relative justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img className="mx-auto h-10 w-auto" src={logo} alt="Hat logo" />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -13,7 +88,7 @@ export default function UserLogin() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -24,6 +99,7 @@ export default function UserLogin() {
               <div className="mt-2">
                 <input
                   id="email"
+                  onChange={handleChange}
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -54,6 +130,7 @@ export default function UserLogin() {
                 <input
                   id="password"
                   name="password"
+                  onChange={handleChange}
                   type="password"
                   autoComplete="current-password"
                   required
@@ -64,7 +141,7 @@ export default function UserLogin() {
 
             <div>
               <button
-                type="submit"
+                onClick={handleLogin}
                 className="flex w-full justify-center rounded-md bg-[#b67a3d] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
@@ -82,7 +159,12 @@ export default function UserLogin() {
             </Link>
           </p>
         </div>
+        <Link to={"/"}>
+          <div className="absolute top-5 text-white font-bold cursor-pointer bg-[#b67a3d] rounded-3xl px-7 py-2 ring-inset ring-2 ring-white">
+            Back
+          </div>
+        </Link>
       </div>
-    </>
+    </div>
   );
 }

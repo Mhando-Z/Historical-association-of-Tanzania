@@ -22,13 +22,13 @@ import StaffsSect from "./Dashboard/Sections/StaffsSect";
 import AnnouncementsSect from "./Dashboard/Sections/AnnouncementsSect";
 import Researchpublications from "./Dashboard/Sections/Research&publications";
 import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
-import { DataEditProvider } from "./Context/DataEditContext";
+import { UserProvider } from "./Context/UserContext";
 
 function App() {
   return (
     <div className="flex flex-col font-roboto justify-between min-h-screen overflow-x-hidden">
-      <DataEditProvider>
-        <HomePageDataProvider>
+      <HomePageDataProvider>
+        <UserProvider>
           <BrowserRouter>
             <NavBar />
             <Routes>
@@ -59,8 +59,8 @@ function App() {
             <ScrollToTopButton />
             <Footer />
           </BrowserRouter>
-        </HomePageDataProvider>
-      </DataEditProvider>
+        </UserProvider>
+      </HomePageDataProvider>
     </div>
   );
 }

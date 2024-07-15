@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 
 function HeroSection() {
   const { heroSect } = useContext(HomePageContext);
-  const [Poster, setPoster] = useState([]);
   const [value, setValue] = useState(0);
   const [direction, setDirection] = useState(1);
 
@@ -16,7 +15,7 @@ function HeroSection() {
     const interval = setInterval(() => {
       setValue((prevValue) => {
         if (direction === 1) {
-          if (prevValue >= heroSect.length - 1) {
+          if (prevValue >= heroSect?.length - 1) {
             setDirection(-1);
             return prevValue - 1;
           } else {
@@ -47,12 +46,6 @@ function HeroSection() {
       setValue(value - 1);
     }
   };
-  useEffect(() => {
-    const Data = heroSect.map((data, index) => {
-      return data.image;
-    });
-    setPoster(Data);
-  }, [value, heroSect]);
 
   return (
     <div className="flex container mx-auto mt-20">
