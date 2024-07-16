@@ -3,11 +3,16 @@ import logo from "../../Assets/Images/Logo3.png";
 import HomePageContext from "../../Context/HomePageContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import UserContext from "../../Context/UserContext";
 
 export default function UserLogin() {
   const { gallerySect } = useContext(HomePageContext);
+  const { setUser } = useContext(UserContext);
   const [value, setValue] = useState(2);
   const [direction, setDirection] = useState(1);
+  const [error, setError] = useState(null);
+  const [present, setPresent] = useState(false);
   const [Login, setData] = useState({
     email: "",
     password: "",
@@ -20,16 +25,20 @@ export default function UserLogin() {
         Login
       );
       localStorage.setItem("token", data.token);
-      console.log(data);
-      // window.location("/Dashboard/");
-    } catch (error) {
-      console.error(error);
+      setUser(data);
+      window.location = "/Dashboard/";
+      setPresent(false);
+    } catch (ex) {
+      setError(ex.response.data?.detail);
+      setPresent(true);
     }
   }
 
   const handleLogin = () => {
-    getUser();
-    console.log(Login);
+    if (Login.email.length !== 0 && Login.password.length !== 0) {
+      getUser();
+      setPresent(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -86,7 +95,25 @@ export default function UserLogin() {
             Sign in to your account
           </h2>
         </div>
-
+        {present ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 130,
+              ease: "easeOut",
+              duration: 1.5,
+            }}
+            className={`mt-5 h-20 items-center justify-center flex `}
+          >
+            <div className="bg-red-50 py-7 rounded-md lg:px-3 px-5 ring-2 ring-red-700">
+              <p className="text-red-600 font-bold">{error}</p>
+            </div>
+          </motion.div>
+        ) : (
+          ""
+        )}
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -152,7 +179,7 @@ export default function UserLogin() {
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member
             <Link
-              to={`/Register/`}
+              to={`/UserRegister/`}
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
               Register

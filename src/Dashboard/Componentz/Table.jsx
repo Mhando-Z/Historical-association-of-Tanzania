@@ -52,8 +52,8 @@ const Table = ({ data }) => {
         <div className="rounded-xl">
           <motion.img
             initial={{}}
-            whileHover={{ height: "300px" }}
-            transition={{ duration: 1, type: "spring", ease: "easeOut" }}
+            whileHover={{ height: "150px" }}
+            transition={{ duration: 1.5, type: "spring", ease: "easeOut" }}
             src={`http://127.0.0.1:8000/${item.image}`}
             alt={item.title || item.name}
             className="size-24 object-cover rounded-xl w-full object-center"

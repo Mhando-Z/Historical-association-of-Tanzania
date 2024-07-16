@@ -14,7 +14,7 @@ function FAQSection() {
       <h2 className="text-6xl text-[#b67a3d] font-extrabold text-center mb-10">
         Curious Minds Ask
       </h2>
-      <div className="border-b transition-all ease-out shadow-lg  p-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b transition-all ease-out shadow-md  p-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(1)}
@@ -63,7 +63,7 @@ function FAQSection() {
           </motion.div>
         )}
       </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-lg bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b p-5 mt-5 rounded-2xl shadow-md bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(2)}
@@ -100,7 +100,7 @@ function FAQSection() {
           </motion.div>
         )}
       </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-lg  bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(3)}
@@ -125,7 +125,7 @@ function FAQSection() {
           </motion.div>
         )}
       </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-lg  bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(4)}
@@ -168,7 +168,7 @@ function FAQSection() {
           </motion.div>
         )}
       </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-lg  bg-gray-100 border-gray-200 pb-4">
+      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={() => toggleFAQ(5)}
