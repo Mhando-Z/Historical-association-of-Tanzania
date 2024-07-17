@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Table from "../Componentz/Table";
 import { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 export default function AboutUsSect() {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
@@ -36,10 +36,7 @@ export default function AboutUsSect() {
     formData.append("image", AboutData.image);
 
     try {
-      const { data } = await axios.post(
-        "http://127.0.0.1:8000/hat-api/AboutUs/",
-        formData
-      );
+      const { data } = await axiosInstance.post("/hat-api/About_Details/", formData);
       const vibes = [data, ...AboutUSSect];
       setAboutUs(vibes);
     } catch (error) {}

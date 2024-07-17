@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
+import { Dots } from "react-activity";
 
 export default function Partners() {
   const { companies } = useContext(HomePageContext);
@@ -9,7 +10,7 @@ export default function Partners() {
         <h2 className="xl:text-6xl md:text-5xl text-4xl mb-12 font-bold leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
-        <div className="mt-10 grid  grid-cols-4 items-center justify-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <div className="mt-10 grid relative  grid-cols-4 items-center justify-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
           {companies?.map((dt) => {
             return (
               <div
@@ -28,6 +29,13 @@ export default function Partners() {
               </div>
             );
           })}
+          {companies?.length === 0 ? (
+            <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center ">
+              <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

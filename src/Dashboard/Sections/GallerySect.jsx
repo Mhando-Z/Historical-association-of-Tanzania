@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function GallerySect() {
   const { gallerySect, setGallery } = useContext(HomePageContext);
@@ -32,8 +32,8 @@ function GallerySect() {
     formData.append("title", picture.title);
     formData.append("image", picture.image);
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:8000/hat-api/Gallery/",
+    const { data } = await axiosInstance.post(
+      "/hat-api/Gallery_Details/",
       formData
     );
     const vibes = [data, ...gallerySect];

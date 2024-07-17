@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import HomePageContext from "../Context/HomePageContext";
+import { Dots } from "react-activity";
 
 export default function Announcements() {
   const { AnnounceSect } = useContext(HomePageContext);
   return (
     <div className="mt-28 mb-20">
-      <div className="mx-auto container">
+      <div className="mx-auto container relative">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Announcements
@@ -15,6 +16,13 @@ export default function Announcements() {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
+        {AnnounceSect?.length === 0 ? (
+          <div className="absolute top-28 right-0 left-0 bottom-0 flex items-center justify-center ">
+            <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="mt-10 gap-y-16 border-t  border-gray-200">
           {AnnounceSect?.map((post) => (
             <article

@@ -5,7 +5,7 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { MdSocialDistance } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
@@ -121,8 +121,8 @@ function ContactUsSect() {
 
   const updateContactSect = async () => {
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Contact_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Contact_Details/${dataId}/`,
         contactsData
       );
       const updatedContacts = ContactSect.map((contact) =>
@@ -137,8 +137,8 @@ function ContactUsSect() {
 
   const updatePoliciesSect = async () => {
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Policies_Details/${dataId1}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Policies_Details/${dataId1}/`,
         policies
       );
       const updatedPolicies = PolicieSect.map((policy) =>
@@ -153,8 +153,8 @@ function ContactUsSect() {
 
   const updateTerms = async () => {
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Terms_Details/${dataId2}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Terms_Details/${dataId2}/`,
         terms
       );
       const updatedTerms = TermsSect.map((terms) =>

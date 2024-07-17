@@ -24,6 +24,8 @@ import Researchpublications from "./Dashboard/Sections/Research&publications";
 import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
 import { UserProvider } from "./Context/UserContext";
 import RegistrationForm from "./Dashboard/Componentz/UserRegister";
+import "react-activity/dist/library.css";
+import ResourcePublication from "./Screens/ResourcePublication";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
               <Route path="President/" element={<HATPresident />} />
               <Route path="Gallery/" element={<Gallery />} />
               <Route path="Login/" element={<UserLogin />} />
+              <Route path="Research/" element={<ResourcePublication />} />
               <Route path="Register/" element={<RegisterUser />} />
               <Route path="UserRegister/" element={<RegistrationForm />} />
               <Route path="Announcements/" element={<Announcements />} />

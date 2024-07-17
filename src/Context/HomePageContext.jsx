@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 const HomePageContext = createContext();
 
@@ -17,70 +17,93 @@ export function HomePageDataProvider({ children }) {
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
 
+  console.log(heroSect);
+
   // API CALLS
+  // axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
   async function getHerodata() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/heroSect");
-    setHero(data);
+    try {
+      const { data } = await axiosInstance.get("hat-api/heroSect");
+      setHero(data);
+    } catch (exp) {
+      console.log("hero sect error", exp);
+    }
   }
 
   async function getCompanydata() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Companies");
-    setCompany(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Companies");
+      setCompany(data);
+    } catch (exp) {}
   }
 
   async function getTerms() {
-    const { data } = await axios.get(
-      "http://127.0.0.1:8000/hat-api/TermsofServices"
-    );
-    setTermsService(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/TermsofServices");
+      setTermsService(data);
+    } catch (exp) {}
   }
   async function getPoliciesdata() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Policies");
-    setPolicy(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Policies");
+      setPolicy(data);
+    } catch (exp) {}
   }
 
   async function getAnnounce() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Announce/");
-    setAnnounce(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Announce/");
+      setAnnounce(data);
+    } catch (exp) {}
   }
 
   async function getGallery() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Gallery/");
-    setGallery(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Gallery/");
+      setGallery(data);
+    } catch (exp) {}
   }
 
   async function getFooter() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Footer/");
-    setFooter(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Footer/");
+      setFooter(data);
+    } catch (exp) {}
   }
 
   async function getPresident() {
-    const { data } = await axios.get(
-      "http://127.0.0.1:8000/hat-api/President/"
-    );
-    setPresident(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/President/");
+      setPresident(data);
+    } catch (exp) {}
   }
 
   async function getAboutUs() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/AboutUs/");
-    setAboutUs(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/AboutUs/");
+      setAboutUs(data);
+    } catch (exp) {}
   }
 
   async function getContacts() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Contact/");
-    setContacts(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Contact/");
+      setContacts(data);
+    } catch (exp) {}
   }
 
   async function getStaffs() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-api/Staffs/");
-    setStaffs(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Staffs/");
+      setStaffs(data);
+    } catch (exp) {}
   }
 
   async function getConference() {
-    const { data } = await axios.get(
-      "http://127.0.0.1:8000/hat-api/Conference/"
-    );
-    setConference(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-api/Conference/");
+      setConference(data);
+    } catch (error) {}
   }
   useEffect(() => {
     getCompanydata();

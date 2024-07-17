@@ -3,7 +3,7 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function PresidentSect() {
   const { PresidentSect, setPresident } = useContext(HomePageContext);
@@ -38,8 +38,8 @@ function PresidentSect() {
     formData.append("image2", presoData.image2);
 
     try {
-      const { data } = await axios.post(
-        "http://127.0.0.1:8000/hat-api/President/",
+      const { data } = await axiosInstance.post(
+        "/hat-api/President_Details/",
         formData
       );
       const vibes = [data, ...PresidentSect];

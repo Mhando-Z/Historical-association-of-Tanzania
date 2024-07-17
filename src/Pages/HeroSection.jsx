@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
+import { Dots } from "react-activity";
 import { FaAngleRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
@@ -54,13 +55,20 @@ function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, type: "spring", ease: "easeOut" }}
-          className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
+          className="aspect-h-1 aspect-w-1 relative w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7"
         >
           <motion.img
             src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
             alt={heroSect[value]?.title}
-            className="xl:h-[680px] h-[500px] w-screen object-cover object-center group-hover:opacity-75"
+            className="xl:h-[680px] h-[500px] max-w-screen object-cover object-center group-hover:opacity-75"
           />
+          {heroSect?.length === 0 ? (
+            <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center ">
+              <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+            </div>
+          ) : (
+            ""
+          )}
         </motion.div>
         <div className="flex flex-row mt-5 rounded-2xl">
           {/* herosection text */}

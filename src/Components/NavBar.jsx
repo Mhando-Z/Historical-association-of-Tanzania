@@ -23,7 +23,9 @@ function NavBar() {
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
         location.pathname === "/President/" ||
-        location.pathname === "/Register/"
+        location.pathname === "/Register/" ||
+        location.pathname === "/President/" ||
+        location.pathname === "/Research/"
           ? "bg-white py-3 fixed top-0 left-0 w-full z-50"
           : "hidden"
       }`}
@@ -54,7 +56,7 @@ function NavBar() {
             >
               <h1 className=" xl:text-xl text-lg  text-black">About-Us</h1>
             </NavLink>
-            <NavLink>
+            <NavLink to={"Research/"}>
               <h1 className=" xl:text-xl text-lg  text-black">Research</h1>
             </NavLink>
             <NavLink>

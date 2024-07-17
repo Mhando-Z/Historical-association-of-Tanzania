@@ -3,6 +3,7 @@ import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import ImageDisplay from "../Components/InageDisplay";
+import { Dots } from "react-activity";
 
 function Gallery() {
   const { gallerySect } = useContext(HomePageContext);
@@ -33,15 +34,22 @@ function Gallery() {
     }
   };
   return (
-    <div className="mt-20 mb-10 flex container mx-auto items-center justify-center flex-col min-h-screen">
+    <div className="mt-20 mb-10  flex container mx-auto items-center justify-center flex-col min-h-screen">
       <div className="mb-12 gap-y-3 w-full flex flex-col">
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+        <div className="aspect-h-1 relative aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
           <img
             src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
             alt={gallerySect[0]?.title}
             loading="lazy"
             className="h-[600px] xl:h-[800px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
           />
+          {gallerySect?.length === 0 ? (
+            <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center ">
+              <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="flex flex-row  mt-5 xl:mt-0 justify-between">
           <h1 className="xl:text-6xl text-5xl tracking-tighter font-semibold">

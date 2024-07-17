@@ -9,7 +9,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 export default function Notification({ open, setOpen, dataId }) {
   // herosecttion
@@ -33,9 +33,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const hero = heroSect?.filter((pt) => pt.id !== dataId);
     setHero(hero);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/Hero_Details/${dataId}/`);
     } catch (error) {
       setHero(heroSect);
     }
@@ -45,9 +43,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const Announce = AnnounceSect?.filter((pt) => pt.id !== dataId);
     setAnnounce(Announce);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/Announce_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/Announce_Details/${dataId}/`);
     } catch (error) {
       setAnnounce(Announce);
     }
@@ -58,9 +54,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const staff = StaffsSect?.filter((pt) => pt.id !== dataId);
     setStaffs(staff);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/Staffs_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/Staffs_Details/${dataId}/`);
     } catch (error) {
       setStaffs(staff);
     }
@@ -71,9 +65,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const pictures = gallerySect?.filter((pt) => pt.id !== dataId);
     setGallery(pictures);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/Gallery_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/Gallery_Details/${dataId}/`);
     } catch (error) {
       setGallery(pictures);
     }
@@ -84,9 +76,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const aboutUs = AboutUSSect?.filter((pt) => pt.id !== dataId);
     setAboutUs(aboutUs);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/About_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/About_Details/${dataId}/`);
     } catch (error) {
       setAboutUs(aboutUs);
     }
@@ -97,9 +87,7 @@ export default function Notification({ open, setOpen, dataId }) {
     const preso = PresidentSect?.filter((pt) => pt.id !== dataId);
     setPresident(preso);
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/hat-api/President_Details/${dataId}/`
-      );
+      await axiosInstance.delete(`/hat-api/President_Details/${dataId}/`);
     } catch (error) {
       setPresident(preso);
     }

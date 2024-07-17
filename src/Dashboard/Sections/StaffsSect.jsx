@@ -3,7 +3,7 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function StaffsSect() {
   const { StaffsSect, setStaffs } = useContext(HomePageContext);
@@ -48,8 +48,8 @@ function StaffsSect() {
     formData.append("contact3", staffs.contact3);
     formData.append("description", staffs.description);
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:8000/hat-api/Staffs/",
+    const { data } = await axiosInstance.post(
+      "/hat-api/Staffs_Details/",
       formData
     );
     const vibes = [data, ...StaffsSect];

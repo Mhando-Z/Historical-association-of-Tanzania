@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
 import { motion } from "framer-motion";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function HeroSect() {
   const { heroSect, setHero } = useContext(HomePageContext);
@@ -36,8 +36,8 @@ function HeroSect() {
     formData.append("image", heroData.image);
 
     try {
-      const { data } = await axios.post(
-        "http://127.0.0.1:8000/hat-api/heroSect/",
+      const { data } = await axiosInstance.post(
+        "/hat-api/Hero_Details/",
         formData
       );
       const vibes = [data, ...heroSect];

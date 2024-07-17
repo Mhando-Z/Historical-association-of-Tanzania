@@ -1,26 +1,25 @@
-import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import axiosInstance from "./axiosInstance";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState([]);
-
-  console.log(user);
 
   async function getUsers() {
-    const { data } = await axios.get("http://127.0.0.1:8000/hat-users/users/");
-    setUsers(data);
+    try {
+      const { data } = await axiosInstance.get("/hat-users/users/");
+      setUsers(data);
+    } catch (error) {}
   }
+
+  // synchronous Action
   useEffect(() => {
     getUsers();
   }, []);
-  console.log(users);
+
   return (
-    <UserContext.Provider value={{ setUser, user }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ users }}>{children}</UserContext.Provider>
   );
 }
 

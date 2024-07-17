@@ -4,11 +4,10 @@ import HomePageContext from "../../Context/HomePageContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import UserContext from "../../Context/UserContext";
+import { Dots } from "react-activity";
 
 export default function UserLogin() {
   const { gallerySect } = useContext(HomePageContext);
-  const { setUser } = useContext(UserContext);
   const [value, setValue] = useState(2);
   const [direction, setDirection] = useState(1);
   const [error, setError] = useState(null);
@@ -20,16 +19,23 @@ export default function UserLogin() {
 
   async function getUser() {
     try {
-      const { data } = await axios.post(
+      const { data } = await axios?.post(
         "http://127.0.0.1:8000/hat-users/users/login/",
         Login
       );
-      localStorage.setItem("token", data.token);
-      setUser(data);
-      window.location = "/Dashboard/";
-      setPresent(false);
+      const { access, refresh } = data;
+      try {
+        // savetoken to local storage
+        localStorage.setItem("token", access);
+        localStorage.setItem("refreshToken", refresh);
+        window.location = "/Dashboard/";
+        setPresent(false);
+      } catch (error) {}
     } catch (ex) {
-      setError(ex.response.data?.detail);
+      setError(
+        ex.response.data?.detail ||
+          "Server Error please contact our administrator for support"
+      );
       setPresent(true);
     }
   }
@@ -81,12 +87,18 @@ export default function UserLogin() {
 
   return (
     <div className="flex flex-row">
-      <div className="h-screen relative xl:w-[900px] lg:w-[600px] hidden lg:flex bg-black">
-        <img
-          src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
-          alt={gallerySect[1]?.title}
-          className="h-screen w-full object-cover object-center"
-        />
+      <div className="h-screen relative xl:w-[900px] lg:w-[600px] lg:flex bg-gradient-to-r from-[#b67a3d] to-transparent">
+        {gallerySect?.length === 0 ? (
+          <div className="absolute hidden lg:flex top-0 right-0 left-0 bottom-0  items-center justify-center ">
+            <Dots color="black" size={40} speed={0.7} animating={true} />
+          </div>
+        ) : (
+          <img
+            src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
+            alt={gallerySect[1]?.title}
+            className="h-screen w-full object-cover object-center"
+          />
+        )}
       </div>
       <div className="flex min-h-screen flex-1 flex-col relative justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">

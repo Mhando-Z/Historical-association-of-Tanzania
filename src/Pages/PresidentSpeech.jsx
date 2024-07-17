@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Dots } from "react-activity";
 
 function PresidentSpeech() {
   const { PresidentSect } = useContext(HomePageContext);
@@ -12,7 +13,7 @@ function PresidentSpeech() {
     });
   };
   return (
-    <div className="bg-[#b67a3d] bg-opacity-15 py-20">
+    <div className="bg-[#b67a3d] relative bg-opacity-15 py-20">
       <div className="flex container mx-auto flex-col md:flex-row">
         {PresidentSect?.slice(0, 1).map((dt) => {
           return (
@@ -68,6 +69,13 @@ function PresidentSpeech() {
           );
         })}
       </div>
+      {PresidentSect?.length === 0 ? (
+        <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center ">
+          <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

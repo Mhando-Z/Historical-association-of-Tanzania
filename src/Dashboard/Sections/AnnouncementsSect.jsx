@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import Table from "../Componentz/Table";
 import HomePageContext from "../../Context/HomePageContext";
-import axios from "axios";
+import axiosInstance from "../../Context/axiosInstance";
 
 function AnnouncementsSect() {
   const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
@@ -36,8 +36,8 @@ function AnnouncementsSect() {
     formData.append("image2", AnnounceData.image2);
 
     try {
-      const { data } = await axios.post(
-        "http://127.0.0.1:8000/hat-api/Announce/",
+      const { data } = await axiosInstance.post(
+        "/hat-api/Announce_Details/",
         formData
       );
       const vibes = [data, ...AnnounceSect];

@@ -9,9 +9,9 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
+import axiosInstance from "../../Context/axiosInstance";
 //
 
 // Fuction Component
@@ -162,8 +162,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("description", heroUpdate.description);
 
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Hero_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Hero_Details/${dataId}/`,
         formData
       );
       // Update local state immediately after a successful update
@@ -185,8 +185,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("description", presoData.description);
 
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/President_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/President_Details/${dataId}/`,
         formData
       );
       // Update local state immediately after a successful update
@@ -207,8 +207,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("description", AnnounceData.description);
 
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Announce_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Announce_Details/${dataId}/`,
         formData
       );
       // Update local state immediately after a successful update
@@ -230,8 +230,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("description", AboutUsdata.description);
 
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/About_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/About_Details/${dataId}/`,
         formData
       );
       // Update local state immediately after a successful update
@@ -256,8 +256,8 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("description", staffs.description);
 
     try {
-      const response = await axios.put(
-        `http://127.0.0.1:8000/hat-api/Staffs_Details/${dataId}/`,
+      const response = await axiosInstance.put(
+        `hat-api/Staffs_Details/${dataId}/`,
         formData
       );
       // Update local state immediately after a successful update
