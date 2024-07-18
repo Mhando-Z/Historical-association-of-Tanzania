@@ -23,11 +23,23 @@ import AnnouncementsSect from "./Dashboard/Sections/AnnouncementsSect";
 import Researchpublications from "./Dashboard/Sections/Research&publications";
 import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
 import { UserProvider } from "./Context/UserContext";
-import RegistrationForm from "./Dashboard/Componentz/UserRegister";
-import "react-activity/dist/library.css";
 import ResourcePublication from "./Screens/ResourcePublication";
+import ProtectedRoute from "./Dashboard/Routes/ProtectedRoutes";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import AuthRoute from "./Dashboard/Routes/AuthRoute";
+import Logout from "./Dashboard/Routes/Logout";
+import "react-activity/dist/library.css";
 
 function App() {
+  const [users, setUser] = useState("");
+  useEffect(() => {
+    try {
+      const usertoken = localStorage.getItem("token");
+      const users = jwtDecode(usertoken);
+      setUser(users);
+    } catch (error) {}
+  }, []);
   return (
     <div className="flex flex-col font-roboto justify-between min-h-screen overflow-x-hidden">
       <HomePageDataProvider>
@@ -39,13 +51,31 @@ function App() {
               <Route path="AboutUs/" element={<AboutHAT />} />
               <Route path="President/" element={<HATPresident />} />
               <Route path="Gallery/" element={<Gallery />} />
-              <Route path="Login/" element={<UserLogin />} />
               <Route path="Research/" element={<ResourcePublication />} />
               <Route path="Register/" element={<RegisterUser />} />
-              <Route path="UserRegister/" element={<RegistrationForm />} />
               <Route path="Announcements/" element={<Announcements />} />
               <Route path="*" element={<PageNotFound />} />
-              <Route path="Dashboard/" element={<MainPage />}>
+              {/* Logout Route */}
+              <Route path="Logout/" element={<Logout />} />
+
+              {/* PreventLoginRoute to restrict access to login for authenticated users */}
+              <Route
+                path="Login/"
+                element={
+                  <AuthRoute>
+                    <UserLogin />
+                  </AuthRoute>
+                }
+              />
+              {/* Protected Dashboard Routes */}
+              <Route
+                path="Dashboard/*"
+                element={
+                  <ProtectedRoute user={users}>
+                    <MainPage />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<DashHome />} />
                 <Route path="heroSect/" element={<HeroSect />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />

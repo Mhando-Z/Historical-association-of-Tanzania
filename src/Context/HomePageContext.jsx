@@ -17,17 +17,13 @@ export function HomePageDataProvider({ children }) {
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
 
-  console.log(heroSect);
-
   // API CALLS
   // axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
   async function getHerodata() {
     try {
       const { data } = await axiosInstance.get("hat-api/heroSect");
       setHero(data);
-    } catch (exp) {
-      console.log("hero sect error", exp);
-    }
+    } catch (exp) {}
   }
 
   async function getCompanydata() {

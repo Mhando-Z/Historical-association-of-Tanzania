@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(true);
 
   async function getUsers() {
     try {
@@ -19,7 +20,9 @@ export function UserProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ users }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ users, open, setOpen }}>
+      {children}
+    </UserContext.Provider>
   );
 }
 
