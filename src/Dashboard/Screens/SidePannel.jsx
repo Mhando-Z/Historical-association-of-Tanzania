@@ -72,7 +72,7 @@ function SidePannel() {
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 1, type: "spring", ease: "easeOut" }}
-      className="md:flex py-14 ring-1 ring-[#b67a3d] fixed mt-10 flex-col h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
+      className="xl:flex py-14 ring-1 ring-[#b67a3d] fixed mt-10 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
     >
       {user?.is_staff === true ? (
         <>

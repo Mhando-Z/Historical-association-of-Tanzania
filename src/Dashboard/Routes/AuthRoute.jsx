@@ -13,7 +13,7 @@ const AuthRoute = ({ children }) => {
   }
 
   if (user) {
-    return <Navigate to="/Dashboard" replace />;
+    return <Navigate to="/Dashboard/" replace />;
   }
   return children;
 };

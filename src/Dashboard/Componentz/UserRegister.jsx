@@ -3,9 +3,41 @@ import axiosInstance from "../../Context/axiosInstance";
 import logo from "../../Assets/Images/Logo3.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+
+export const Notifier = ({ data, handleRegistration }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut", type: "spring" }}
+      className="flex flex-col max-h-xl max-w-xl items-center bg-black bg-opacity-30 justify-center absolute top-0 right-0 left-0 bottom-0"
+    >
+      <div className=" bg-slate-100  items-center justify-center size-72 rounded-2xl flex flex-col ">
+        <IoMdCheckmarkCircleOutline className="text-8xl text-green-600" />
+        <h1 className="text-lg text-green-900">Success</h1>
+        <div className="flex flex-row items-center gap-x-2">
+          <p>User:</p>
+          <p>{data?.username}</p>
+        </div>
+        <div className="flex items-center flex-row gap-x-2">
+          <p>Email:</p>
+          <p>{data?.email}</p>
+        </div>
+        <p className="text-center text-green-600 font-medium">
+          Use Email to log-in and proceed with membership Registration
+        </p>
+        <Link onClick={handleRegistration}>
+          <p className="text-blue-600 font-medium">Log-in</p>
+        </Link>
+      </div>
+    </motion.div>
+  );
+};
 
 const UserRegister = ({ handleRegistration }) => {
   const [error, setError] = useState([]);
+  const [view, setView] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -25,7 +57,7 @@ const UserRegister = ({ handleRegistration }) => {
         "hat-users/register/",
         formData
       );
-
+      setView(!view);
       console.log("User registered:", response.data);
       // Optionally, redirect or show a success message
     } catch (error) {
@@ -34,8 +66,8 @@ const UserRegister = ({ handleRegistration }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  ">
-      <div className="flex flex-col xl:p-20 p-10 w-full xl:max-w-xl rounded-2xl shadow-2xl bg-slate-100">
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col xl:p-20 p-10 w-full xl:max-w-xl relative rounded-2xl shadow-2xl bg-slate-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img className="mx-auto h-10 w-auto" src={logo} alt="Hat logo" />
           <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -130,6 +162,11 @@ const UserRegister = ({ handleRegistration }) => {
             </motion.div>
           </div>
         </form>
+        {view ? (
+          <Notifier data={formData} handleRegistration={handleRegistration} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

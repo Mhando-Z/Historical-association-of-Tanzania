@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import logo from "../../Assets/Images/Logo3.png";
+import axiosInstance from "../../Context/axiosInstance";
 import HomePageContext from "../../Context/HomePageContext";
+import UserRegister from "../Componentz/UserRegister";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Dots } from "react-activity";
-import axiosInstance from "../../Context/axiosInstance";
-import UserRegister from "../Componentz/UserRegister";
 
 export default function UserLogin() {
   const { gallerySect } = useContext(HomePageContext);

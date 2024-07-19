@@ -4,15 +4,13 @@ import { RiAlignJustify } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { GrNotification } from "react-icons/gr";
-import { FaRegCaretSquareDown } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { CiSquareChevDown } from "react-icons/ci";
-import { CiSquareChevUp } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa6";
 import { FaPowerOff } from "react-icons/fa6";
 import { IoKeySharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import UserContext from "../../Context/UserContext";
+import { LuLaptop2 } from "react-icons/lu";
 
 function DashNav() {
   const [user, setUser] = useState([]);
@@ -27,9 +25,17 @@ function DashNav() {
   };
 
   const handleShow = () => {
+    if (show1 === true) {
+      setshow1(!show1);
+      setshow(!show);
+    }
     setshow(!show);
   };
   const handleShow1 = () => {
+    if (show === true) {
+      setshow(!show);
+      setshow1(!show1);
+    }
     setshow1(!show1);
   };
 
@@ -53,9 +59,12 @@ function DashNav() {
             <img src={logo} alt="hat-logo" className="h-8" />
           </Link>
         </div>
-        <div className="flex flex-1 items-start justify-start ">
+        <div className="flex flex-1 items-start justify-start gap-x-3 ">
           <Link>
             <RiAlignJustify onClick={handleSideview} className="text-3xl" />
+          </Link>
+          <Link to={"/"}>
+            <LuLaptop2 className="text-3xl" />
           </Link>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-7 ">
