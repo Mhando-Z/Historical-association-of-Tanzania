@@ -28,11 +28,11 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: black;
+  background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color:;
   border-radius: 0px;
   border: 0px;
 }

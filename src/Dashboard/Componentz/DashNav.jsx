@@ -8,9 +8,9 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { FaRegUser } from "react-icons/fa6";
 import { FaPowerOff } from "react-icons/fa6";
 import { IoKeySharp } from "react-icons/io5";
+import { LuLaptop2 } from "react-icons/lu";
 import { motion } from "framer-motion";
 import UserContext from "../../Context/UserContext";
-import { LuLaptop2 } from "react-icons/lu";
 
 function DashNav() {
   const [user, setUser] = useState([]);
@@ -31,6 +31,7 @@ function DashNav() {
     }
     setshow(!show);
   };
+
   const handleShow1 = () => {
     if (show === true) {
       setshow(!show);
@@ -51,7 +52,7 @@ function DashNav() {
     } catch (error) {}
   }, []);
   return (
-    <div className="bg-slate-100 ring-1 ring-[#b67a3d] py-3 fixed top-0 left-0 w-full z-50">
+    <div className="bg-slate-100 ring-1 shadow-lg ring-[#b67a3d] py-3 fixed top-0 left-0 w-full z-50">
       <div className="w-full px-4 flex flex-row items-center justify-between">
         {/* HAT logo */}
         <div className="xl:w-[300px] md:w-[250px] w-[100px]">
@@ -71,7 +72,7 @@ function DashNav() {
           <div className="flex cursor-pointer flex-col items-center gap-x-2 relative">
             <GrNotification
               onClick={handleShow1}
-              className="xl:text-3xl text-[#b67a3d] text-3xl"
+              className="xl:text-3xl text-3xl"
             />
             {show1 ? (
               <motion.div
@@ -92,7 +93,7 @@ function DashNav() {
           <div className="flex flex-col items-center gap-x-2 relative ">
             <FaRegCircleUser
               onClick={handleShow}
-              className="xl:text-4xl text-[#b67a3d] text-3xl"
+              className="xl:text-4xl text-3xl"
             />
             {show ? (
               <motion.div
@@ -104,7 +105,7 @@ function DashNav() {
                   ease: "easeOut",
                   type: "spring",
                 }}
-                className="absolute top-14  ring-1 ring-[#b67a3d] right-0 h-64 w-[270px] rounded-2xl bg-slate-100 "
+                className="absolute top-14 ring-1 ring-[#b67a3d] right-0 h-64 w-[270px] rounded-2xl bg-slate-100 "
               >
                 <div className="flex flex-col gap-y-4 justify-center px-7 py-10">
                   <div className="flex flex-row items-center gap-x-4 ">

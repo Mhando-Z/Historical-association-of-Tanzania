@@ -29,6 +29,7 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import AuthRoute from "./Dashboard/Routes/AuthRoute";
 import Logout from "./Dashboard/Routes/Logout";
+import MembersMgt from "./Dashboard/Sections/MembersMgt";
 import "react-activity/dist/library.css";
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
               >
                 <Route index element={<DashHome />} />
                 <Route path="heroSect/" element={<HeroSect />} />
+                <Route path="MembersMgt/" element={<MembersMgt />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />
                 <Route path="AboutSect/" element={<AboutUsSect />} />
                 <Route path="PresoSect/" element={<PresidentSect />} />

@@ -1,5 +1,5 @@
-import { jwtDecode } from "jwt-decode";
 import React, { useContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import UserContext from "../../Context/UserContext";
 import { FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
@@ -36,7 +36,6 @@ function DashHome() {
         <div className="flex mt-32 xl:mt-24 flex-wrap gap-x-10 xl:grid-cols-4 gap-y-10 grid-cols-3 gap-2 items-center justify-center">
           <div className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl">
             <FaUser className="text-4xl" />
-
             <h1 className="text-2xl mt-2 font-bold uppercase">Users</h1>
             <h1 className="text-7xl mt-2 text-center font-bold uppercase">
               {users?.length}
@@ -65,7 +64,7 @@ function DashHome() {
           </div>
         </div>
         {/* users table */}
-        <div className="flex flex-col">
+        <div className="shadow-xl">
           <UserTable data={users} />
         </div>
         {/* Chatis */}
