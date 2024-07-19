@@ -1,4 +1,3 @@
-// UserTable.jsx
 import React, { useContext, useState } from "react";
 import moment from "moment";
 import { FaXmark } from "react-icons/fa6";
@@ -16,6 +15,7 @@ const formatDate = (dateString) => {
 const UserTable = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const { setId } = useContext(UserContext);
+  const { setShow, show } = useContext(UserContext);
   const location = useLocation();
 
   const handleSearch = (event) => {
@@ -31,11 +31,12 @@ const UserTable = ({ data }) => {
   );
   const handleUserId = (id) => {
     setId(id);
+    setShow(!show);
   };
 
   return (
     <div className="mt-14">
-      <h1 className="md:text-xl border-l-black border-l-8 mb-5 font-bold uppercase">
+      <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">User table</span>
       </h1>
       <div className="mb-4">

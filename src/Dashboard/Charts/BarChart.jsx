@@ -28,7 +28,7 @@ export default function BarsChart({ data }) {
           ],
         },
       ]}
-      width={500}
+      width={600}
       height={400}
     />
   );

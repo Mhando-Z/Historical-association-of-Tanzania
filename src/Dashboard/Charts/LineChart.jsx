@@ -38,7 +38,8 @@ export default function RegistrationStats({ registrations }) {
       xAxis={[
         {
           data: xAxisData,
-          tickFormatter: xAxisTickFormatter, // Apply custom formatter
+          tickFormatter: xAxisTickFormatter, //formats the tik values
+          scaleType: "time", // Set scale type to time
         },
       ]}
       series={[
@@ -47,8 +48,8 @@ export default function RegistrationStats({ registrations }) {
           area: true,
         },
       ]}
-      width={500}
-      height={300}
+      width={600}
+      height={400}
     />
   );
 }

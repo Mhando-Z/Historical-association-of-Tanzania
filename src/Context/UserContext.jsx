@@ -7,6 +7,7 @@ export function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(true);
   const [userId, setId] = useState("");
+  const [show, setShow] = useState(false);
 
   async function getUsers() {
     try {
@@ -21,7 +22,9 @@ export function UserProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ users, open, setOpen, setId, userId }}>
+    <UserContext.Provider
+      value={{ users, open, show, setOpen, setId, setShow, userId }}
+    >
       {children}
     </UserContext.Provider>
   );

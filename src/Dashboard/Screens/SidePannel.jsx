@@ -12,6 +12,7 @@ import { FaHome } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
 import { FaUserGroup } from "react-icons/fa6";
+import logo from "../../Assets/Images/3dlogo.png";
 
 const Other = [
   {
@@ -92,12 +93,12 @@ function SidePannel() {
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 1, type: "spring", ease: "easeOut" }}
-      className="xl:flex py-14 ring-1 shadow-2xl ring-[#b67a3d] fixed mt-10 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
+      className="xl:flex py-14 ring-1  shadow-2xl ring-[#b67a3d] fixed mt-10 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
     >
       {user?.is_staff === true ? (
         <>
           <div className="">
-            <h1 className="xl:text-xl border-l-black border-l-4 text-lg font-medium text-slate-900 px-4">
+            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-8 text-lg font-medium text-slate-900 px-4">
               WEB-SECTIONS
             </h1>
           </div>
@@ -129,7 +130,7 @@ function SidePannel() {
             })}
           </div>
           <div className="mt-10">
-            <h1 className="xl:text-xl border-l-black border-l-4 text-lg font-medium text-slate-900 px-4">
+            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-8 text-lg font-medium text-slate-900 px-4">
               OTHER
             </h1>
           </div>
@@ -164,6 +165,9 @@ function SidePannel() {
       ) : (
         ""
       )}
+      <div className="absolute bottom-10 left-4 ">
+        <img src={logo} alt="hatlogo" className="h-20 opacity-45" />
+      </div>
     </motion.div>
   );
 }
