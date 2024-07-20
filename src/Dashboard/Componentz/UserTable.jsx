@@ -36,7 +36,7 @@ const UserTable = ({ data }) => {
 
   return (
     <div className="mt-14">
-      <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">User table</span>
       </h1>
       <div className="mb-4">

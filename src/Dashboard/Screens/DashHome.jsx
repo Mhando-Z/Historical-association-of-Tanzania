@@ -120,9 +120,10 @@ function DashHome() {
           animate={{ opacity: 1 }}
           className="flex flex-col mt-16 bg-slate-100 shadow-xl mb-14"
         >
-          <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
+          <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
             <span className="ml-2">User Registration statistics</span>
           </h1>
+
           <div className="flex flex-col gap-x-5 gap-y-8 md:flex-row items-center">
             {/* Barchart */}
             <motion.div
