@@ -105,7 +105,7 @@ function DashNav() {
                   ease: "easeOut",
                   type: "spring",
                 }}
-                className="absolute top-14 ring-1 ring-[#b67a3d] right-0 h-64 w-[270px] rounded-2xl bg-slate-100 "
+                className="absolute top-14 ring-1 ring-[#b67a3d] right-0 h-72 w-[270px] rounded-2xl bg-slate-100 "
               >
                 <div className="flex flex-col gap-y-4 justify-center px-7 py-10">
                   <div className="flex flex-row items-center gap-x-4 ">

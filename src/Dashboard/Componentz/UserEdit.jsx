@@ -1,9 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axiosInstance from "../../Context/axiosInstance";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import UserDetailsTable from "./UserDetailsTable";
+import UserTable from "./UserTable";
+import { IoPerson } from "react-icons/io5";
+import { RxCrossCircled } from "react-icons/rx";
+import moment from "moment";
+import UserContext from "../../Context/UserContext";
+import logo from "../../Assets/Images/3dlogo.png";
+
+const formatDate = (dateString) => {
+  return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
+};
 
 const AdminUserManagement = () => {
+  const { userId } = useContext(UserContext);
+  const { setShow, show } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const user = users?.filter((dt) => {
+    return dt.id === userId;
+  });
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -27,6 +46,7 @@ const AdminUserManagement = () => {
       college: "",
     },
   });
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     fetchUsers();
@@ -71,295 +91,441 @@ const AdminUserManagement = () => {
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
     if (type === "checkbox") {
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: checked,
-      }));
-    } else if (name.includes("profile.")) {
-      const profileField = name.split("profile.")[1];
-      setFormData((prevState) => ({
-        ...prevState,
-        profile: {
-          ...prevState.profile,
-          [profileField]: value,
-        },
-      }));
+      if (name.includes("profile.")) {
+        const profileField = name.split("profile.")[1];
+        setFormData((prevState) => ({
+          ...prevState,
+          profile: {
+            ...prevState.profile,
+            [profileField]: checked,
+          },
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: checked,
+        }));
+      }
     } else {
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+      if (name.includes("profile.")) {
+        const profileField = name.split("profile.")[1];
+        setFormData((prevState) => ({
+          ...prevState,
+          profile: {
+            ...prevState.profile,
+            [profileField]: value,
+          },
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const updatedData = { ...formData };
+    if (password) {
+      updatedData.password = password;
+    }
     try {
       await axiosInstance.put(
         `/hat-users/admin/users/${selectedUser.id}/`,
-        formData
+        updatedData
       );
-      fetchUsers();
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === selectedUser.id ? { ...user, ...updatedData } : user
+        )
+      );
       setSelectedUser(null);
-      alert("User updated successfully");
+      toast.success("User updated successfully");
     } catch (error) {
       console.error("Error updating user:", error);
-      alert("Error updating user");
+      toast.error("Error updating user");
     }
   };
 
   const handleDelete = async (userId) => {
     try {
       await axiosInstance.delete(`/hat-users/admin/users/${userId}/`);
-      fetchUsers();
-      alert("User deleted successfully");
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+      toast.success("User deleted successfully");
     } catch (error) {
       console.error("Error deleting user:", error);
-      alert("Error deleting user");
+      toast.error("Error deleting user");
     }
   };
 
   return (
-    <div className="mt-14 py-2 bg-slate-100">
-      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">Admin User Management</span>
-      </h1>
-      <div className="flex flex-wrap">
-        <div className="w-full lg:w-1/2 p-2">
-          <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
-            <span className="ml-2">Users List</span>
-          </h1>
-          <ul className="bg-white shadow-md rounded-lg p-4">
-            {users?.map((user) => (
-              <li
-                key={user.id}
-                className="flex justify-between items-center p-2 border-b"
+    <div>
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 1, opacity: 1 }}
+        transition={{
+          duration: 0.5,
+          type: "spring",
+          ease: "easeOut",
+          stiffness: 140,
+        }}
+        className="shadow-xl relative"
+      >
+        <UserTable data={users} />
+        {show ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0, y: -100 }}
+            animate={{ opacity: 1, scale: 1, y: 1 }}
+            transition={{ duration: 1, ease: "easeOut", type: "spring" }}
+            exit={{ x: -100, opacity: 0 }}
+            className="flex flex-col absolute top-0 right-0 left-0 bottom-0 ring-1 ring-[#b67a3d] bg-slate-100 shadow-xl rounded-3xl mt-10"
+          >
+            <div
+              name="UserDetails"
+              className="flex gap-x-14 flex-col gap-y-6 lg:flex-row p-10"
+            >
+              <div className="size-20  flex-col bg-slate-50 shadow-xl ring-[#b67a3d] rounded-xl justify-center ring-2 items-center flex">
+                <IoPerson className="text-7xl " />
+              </div>
+              <div className="flex flex-col h-[140px] bg-slate-50 shadow-lg">
+                <table className="w-lg bg-slate-50">
+                  <tbody>
+                    <tr className="hover:bg-gray-200 cursor-pointer">
+                      <td className="py-2 px-4 border-b">Username</td>
+                      <td className="py-2 px-4 border-b">
+                        {user[0]?.username}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-200 cursor-pointer">
+                      <td className="py-2 px-4 border-b">Email</td>
+                      <td className="py-2 px-4 border-b">{user[0]?.email}</td>
+                    </tr>
+                    <tr className="hover:bg-gray-200 cursor-pointer">
+                      <td className="py-2 px-4 border-b">Date Registerd</td>
+                      <td className="py-2 px-4 border-b">
+                        {formatDate(user[0]?.profile?.date_registered)}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="shadow-xl bg-slate-50">
+                <UserDetailsTable user={user} />
+              </div>
+              <div
+                onClick={() => setShow(!show)}
+                className="absolute top-2 items-center flex justify-center bg-red-600 shadow-md ring-1 ring-[#b67a3d] size-10 right-2 rounded-full"
               >
-                <span>{user.username}</span>
-                <div className="flex space-x-2">
-                  <button
-                    className="bg-blue-500 text-white px-2 py-1 rounded"
-                    onClick={() => handleSelectUser(user)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="bg-red-500 text-white px-2 py-1 rounded"
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {selectedUser && (
+                <RxCrossCircled className="text-4xl text-center text-white" />
+              </div>
+              <div className="absolute bottom-2 left-5 opacity-30">
+                <img src={logo} alt="3dHATLogo" className="h-28" />
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          ""
+        )}
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 90, scale: 0 }}
+        animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut", type: "spring" }}
+        className="mt-14 py-2 bg-slate-100"
+      >
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+          <span className="ml-2">Admin User Management</span>
+        </h1>
+        <div className="flex flex-wrap">
           <div className="w-full lg:w-1/2 p-2">
             <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
-              <span className="ml-2">Edit Users</span>
+              <span className="ml-2">Users List</span>
             </h1>
-            <form
-              className="bg-white shadow-md rounded-lg p-4"
-              onSubmit={handleSubmit}
-            >
-              <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                  required
-                />
-              </div>
-              <div className="mb-4 flex items-center">
-                <input
-                  type="checkbox"
-                  name="is_active"
-                  checked={formData.is_active}
-                  onChange={handleChange}
-                  className="mr-2"
-                />
-                <label className="text-gray-700">Active</label>
-              </div>
-              <div className="mb-4 flex items-center">
-                <input
-                  type="checkbox"
-                  name="is_staff"
-                  checked={formData.is_staff}
-                  onChange={handleChange}
-                  className="mr-2"
-                />
-                <label className="text-gray-700">Staff</label>
-              </div>
-              <h4 className="text-lg font-semibold mb-2">
-                Profile Information
-              </h4>
-              <div className="mb-4">
-                <label className="block text-gray-700">Full Name</label>
-                <input
-                  type="text"
-                  name="profile.full_name"
-                  value={formData.profile.full_name}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Reviews</label>
-                <textarea
-                  name="profile.reviews"
-                  value={formData.profile.reviews}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Student ID</label>
-                <input
-                  type="text"
-                  name="profile.student_id"
-                  value={formData.profile.student_id}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Course of Study</label>
-                <input
-                  type="text"
-                  name="profile.course_of_study"
-                  value={formData.profile.course_of_study}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Institution</label>
-                <input
-                  type="text"
-                  name="profile.institution"
-                  value={formData.profile.institution}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Branch</label>
-                <input
-                  type="text"
-                  name="profile.branch"
-                  value={formData.profile.branch}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Title</label>
-                <input
-                  type="text"
-                  name="profile.title"
-                  value={formData.profile.title}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Phone Number</label>
-                <input
-                  type="text"
-                  name="profile.phone_number"
-                  value={formData.profile.phone_number}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Nationality</label>
-                <input
-                  type="text"
-                  name="profile.nationality"
-                  value={formData.profile.nationality}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Address</label>
-                <textarea
-                  name="profile.address"
-                  value={formData.profile.address}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <div className="mb-4 flex items-center">
-                <input
-                  type="checkbox"
-                  name="profile.is_paid_membership"
-                  checked={formData.profile.is_paid_membership}
-                  onChange={handleChange}
-                  className="mr-2"
-                />
-                <label className="text-gray-700">Paid Membership</label>
-              </div>
-              <div className="mb-4 flex items-center">
-                <input
-                  type="checkbox"
-                  name="profile.is_paid_conference"
-                  checked={formData.profile.is_paid_conference}
-                  onChange={handleChange}
-                  className="mr-2"
-                />
-                <label className="text-gray-700">Paid Conference</label>
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Gender</label>
-                <select
-                  name="profile.gender"
-                  value={formData.profile.gender}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
+            <ul className="bg-white shadow-lg rounded-lg p-4">
+              {users?.map((user) => (
+                <li
+                  key={user.id}
+                  className="flex justify-between hover:bg-slate-100 items-center p-2 border-b"
                 >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">College</label>
-                <input
-                  type="text"
-                  name="profile.college"
-                  value={formData.profile.college}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Update User
-              </button>
-            </form>
+                  <span>{user.username}</span>
+                  <div className="flex space-x-2">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.8 }}
+                      transition={{
+                        type: "spring",
+                        ease: "easeOut",
+                        stiffness: 140,
+                      }}
+                      className="bg-blue-600 rounded-3xl shadow-md text-white px-4 py-1"
+                      onClick={() => handleSelectUser(user)}
+                    >
+                      Edit
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.8 }}
+                      transition={{
+                        type: "spring",
+                        ease: "easeOut",
+                        stiffness: 140,
+                      }}
+                      className="bg-red-600 text-white shadow-md px-3 py-1 rounded-3xl"
+                      onClick={() => handleDelete(user.id)}
+                    >
+                      Delete
+                    </motion.button>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
-      </div>
+          {selectedUser && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0, x: -100 }}
+              animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+                stiffness: 140,
+                type: "spring",
+              }}
+              className="w-full lg:w-1/2 p-2"
+            >
+              <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
+                <span className="ml-2">Edit Users</span>
+              </h1>
+              <form
+                className="bg-white shadow-xl rounded-lg p-4"
+                onSubmit={handleSubmit}
+              >
+                <div className="mb-4">
+                  <label className="block text-gray-700">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    required
+                  />
+                </div>
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    name="is_active"
+                    checked={formData.is_active}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <label className="text-gray-700">Active</label>
+                </div>
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    name="is_staff"
+                    checked={formData.is_staff}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <label className="text-gray-700">Staff</label>
+                </div>
+                <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+                  <span className="ml-2"> Profile Information</span>
+                </h1>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Full Name</label>
+                  <input
+                    type="text"
+                    name="profile.full_name"
+                    value={formData.profile.full_name}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Reviews</label>
+                  <input
+                    type="text"
+                    name="profile.reviews"
+                    value={formData.profile.reviews}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Student ID</label>
+                  <input
+                    type="text"
+                    name="profile.student_id"
+                    value={formData.profile.student_id}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Course of Study</label>
+                  <input
+                    type="text"
+                    name="profile.course_of_study"
+                    value={formData.profile.course_of_study}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Institution</label>
+                  <input
+                    type="text"
+                    name="profile.institution"
+                    value={formData.profile.institution}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Branch</label>
+                  <input
+                    type="text"
+                    name="profile.branch"
+                    value={formData.profile.branch}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Title</label>
+                  <input
+                    type="text"
+                    name="profile.title"
+                    value={formData.profile.title}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Phone Number</label>
+                  <input
+                    type="text"
+                    name="profile.phone_number"
+                    value={formData.profile.phone_number}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Nationality</label>
+                  <input
+                    type="text"
+                    name="profile.nationality"
+                    value={formData.profile.nationality}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Address</label>
+                  <input
+                    type="text"
+                    name="profile.address"
+                    value={formData.profile.address}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Gender</label>
+                  <input
+                    type="text"
+                    name="profile.gender"
+                    value={formData.profile.gender}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">College</label>
+                  <input
+                    type="text"
+                    name="profile.college"
+                    value={formData.profile.college}
+                    onChange={handleChange}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                  />
+                </div>
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    name="profile.is_paid_membership"
+                    checked={formData.profile.is_paid_membership}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <label className="text-gray-700">Paid Membership</label>
+                </div>
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    name="profile.is_paid_conference"
+                    checked={formData.profile.is_paid_conference}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <label className="text-gray-700">Paid Conference</label>
+                </div>
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    name="profile.is_student"
+                    checked={formData.profile.is_student}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <label className="text-gray-700">Student</label>
+                </div>
+                <div className="w-full flex bg-slate-100 shadow-xl py-3 justify-end">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.8 }}
+                    transition={{
+                      type: "spring",
+                      ease: "easeOut",
+                      stiffness: 140,
+                    }}
+                    type="submit"
+                    className="bg-[#b67a3d] px-6 text-white shadow-lg py-2 rounded-3xl"
+                  >
+                    Update User
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 };

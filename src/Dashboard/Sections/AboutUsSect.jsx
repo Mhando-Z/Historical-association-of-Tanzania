@@ -4,6 +4,7 @@ import Table from "../Componentz/Table";
 import { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 
 export default function AboutUsSect() {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
@@ -27,6 +28,8 @@ export default function AboutUsSect() {
     }
   };
 
+  console.log(AboutData);
+
   // Asynchronous Fuctions
   async function postData() {
     const formData = new FormData();
@@ -34,48 +37,72 @@ export default function AboutUsSect() {
     formData.append("subtitle", AboutData.subtitle);
     formData.append("description", AboutData.description);
     formData.append("image", AboutData.image);
+    console.log(formData);
 
     try {
-      const { data } = await axiosInstance.post("/hat-api/About_Details/", formData);
+      const { data } = await axiosInstance.post(
+        "/hat-api/About_Details/",
+        formData
+      );
       const vibes = [data, ...AboutUSSect];
       setAboutUs(vibes);
-    } catch (error) {}
+      toast.success("Image Posted Successfully");
+    } catch (error) {
+      toast.error("Image upload failed");
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  const handlePost = () => {
+    if (AboutData.title !== "" && AboutData.image !== null) {
+      postData();
+    } else {
+      toast.error("Fill all seactions");
+    }
+  };
+
   return (
-    <div className="px-10 flex flex-col">
-      <div className="mt-20">
+    <div className="px-10 flex flex-col mb-20 mt-24">
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">AboutUs Section</span>
+      </h1>
+      <div className="mt-10 bg-slate-100 shadow-xl mb-10 ">
         <Table data={AboutUSSect} />
       </div>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="bg-slate-100 p-10 rounded-3xl"
+        initial={{ opacity: 0, scale: 0, x: -100 }}
+        animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+        transition={{
+          duration: 0.5,
+          ease: "easeOut",
+          stiffness: 140,
+          type: "spring",
+        }}
+        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        <form onSubmit={handleSubmit}>
+        {/* title and secriptions */}
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+          <span className="ml-2">Add/create more AboutUs Sections</span>
+          <br />
+          <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
+            To this section you can add more data to aboutus section
+          </span>
+        </h1>
+        <form onSubmit={handleSubmit} className=" ">
           <div className="space-y-12 mt-5">
             <div className="pb-12">
-              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
-                AboutUs Section
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Perfom CRUD to this section
-              </p>
-
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="title"
-                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Title
+                    <span className="ml-2">title</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <input
                       type="text"
                       required
@@ -83,25 +110,25 @@ export default function AboutUsSect() {
                       name="title"
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="subtitle"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Subtitle
+                    <span className="ml-2">Subtitle</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <input
                       type="text"
                       onChange={handleChange}
                       name="subtitle"
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -109,20 +136,20 @@ export default function AboutUsSect() {
                 <div className="col-span-full">
                   <label
                     htmlFor="description"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Description
+                    <span className="ml-2">Description</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <textarea
                       id="description"
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
                     number of words {AboutData?.description.length}
                   </p>
                 </div>
@@ -130,11 +157,11 @@ export default function AboutUsSect() {
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Photo
+                    <span className="ml-2">photo</span>
                   </label>
-                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -174,9 +201,9 @@ export default function AboutUsSect() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-end items-end">
+          <div className="flex flex-col mb-3 px-4 justify-end items-end">
             <motion.button
-              onClick={postData}
+              onClick={handlePost}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

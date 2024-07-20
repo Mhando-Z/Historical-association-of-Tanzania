@@ -54,35 +54,44 @@ function PresidentSect() {
   };
 
   return (
-    <div className="px-10 flex flex-col">
-      <div className="mt-20">
+    <div className="px-10 flex flex-col mb-20 mt-24">
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">president Section</span>
+      </h1>
+      <div className="mt-10 bg-slate-100 shadow-xl mb-10 ">
         <Table data={PresidentSect} />
       </div>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="bg-slate-100 p-10 rounded-3xl"
+        initial={{ opacity: 0, scale: 0, x: -100 }}
+        animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+        transition={{
+          duration: 0.5,
+          ease: "easeOut",
+          stiffness: 140,
+          type: "spring",
+        }}
+        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
+        {/* title and secriptions */}
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+          <span className="ml-2">Add data to president Sections</span>
+          <br />
+          <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
+            To this section you can add more data to president section
+          </span>
+        </h1>
         <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
-              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
-                President Section
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Perfom CRUD to this section
-              </p>
-
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="title"
-                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Title
+                    <span className="ml-2">title</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <input
                       type="text"
                       name="title"
@@ -90,25 +99,25 @@ function PresidentSect() {
                       onChange={handleChange}
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="subtitle"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Subtitle
+                    <span className="ml-2">Subtitle</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <input
                       type="text"
                       name="subtitle"
                       onChange={handleChange}
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -116,21 +125,21 @@ function PresidentSect() {
                 <div className="col-span-full">
                   <label
                     htmlFor="description"
-                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Description
+                    <span className="ml-2">Description</span>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-4 px-4">
                     <textarea
                       id="description"
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
                     number of words {presoData?.description.length}
                   </p>
                 </div>
@@ -138,11 +147,11 @@ function PresidentSect() {
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Photo1
+                    <span className="ml-2">photo1</span>
                   </label>
-                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -183,11 +192,11 @@ function PresidentSect() {
                 <div className="col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    Photo2
+                    <span className="ml-2">photo2</span>
                   </label>
-                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -227,7 +236,7 @@ function PresidentSect() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-end items-end">
+          <div className="flex flex-col mb-3 px-4 justify-end items-end">
             <motion.button
               onClick={posPresotdata}
               whileHover={{ scale: 1.05 }}

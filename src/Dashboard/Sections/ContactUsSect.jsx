@@ -182,18 +182,24 @@ function ContactUsSect() {
   };
 
   return (
-    <div className="px-10 flex flex-col">
+    <div className="px-10 mt-16 flex flex-col">
       {editContacts ? (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="flex flex-col mt-24 mb-10 bg-slate-200 rounded-3xl"
+          initial={{ opacity: 0, scale: 0, x: -100 }}
+          animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+          transition={{
+            duration: 0.5,
+            ease: "easeOut",
+            stiffness: 140,
+            type: "spring",
+          }}
+          className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
         >
           <div className="p-10">
-            <h1 className="xl:text-2xl font-bold text-gray-900">
-              CONTACT DETAILS
+            <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+              <span className="ml-2">contact Section</span>
             </h1>
+
             <div className="border-b-2 border-gray-300 mt-5 mb-5"></div>
             <div className="flex flex-col space-x-10">
               {/* Emails Section */}
@@ -283,9 +289,14 @@ function ContactUsSect() {
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, scale: 0, x: 100 }}
+          animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+          transition={{
+            duration: 0.5,
+            ease: "easeOut",
+            stiffness: 140,
+            type: "spring",
+          }}
           className="bg-slate-100 p-10 rounded-3xl"
         >
           <form onSubmit={handleSubmit}>
@@ -598,7 +609,6 @@ function ContactUsSect() {
                     </div>
                   </div>
                 </div>
-
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
                 <div className="flex mt-10 items-center gap-x-5 flex-row">
                   <h1 className="xl:text-xl font-bold">Policies Section</h1>
@@ -777,7 +787,7 @@ function ContactUsSect() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+                className="px-4 py-2 bg-[#e43127] text-white rounded-3xl"
               >
                 cancel
               </motion.button>
@@ -786,7 +796,7 @@ function ContactUsSect() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+                className="px-4 py-2 bg-[#b67a3d] text-white rounded-3xl"
               >
                 Update
               </motion.button>

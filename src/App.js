@@ -31,6 +31,8 @@ import AuthRoute from "./Dashboard/Routes/AuthRoute";
 import Logout from "./Dashboard/Routes/Logout";
 import MembersMgt from "./Dashboard/Sections/MembersMgt";
 import "react-activity/dist/library.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [users, setUser] = useState("");
@@ -43,6 +45,18 @@ function App() {
   }, []);
   return (
     <div className="flex flex-col font-roboto justify-between min-h-screen overflow-x-hidden">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <HomePageDataProvider>
         <UserProvider>
           <BrowserRouter>

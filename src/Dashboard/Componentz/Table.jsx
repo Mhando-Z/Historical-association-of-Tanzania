@@ -95,7 +95,7 @@ const Table = ({ data }) => {
         <div className="flex flex-row gap-x-3 items-center">
           <Link
             onClick={() => handleClick(item.id)}
-            className="px-3 py-2 rounded-md text-white bg-[#b67a3d]"
+            className="px-3 py-2 rounded-md text-white bg-blue-600"
           >
             <FaRegPenToSquare className="text-xl" />
           </Link>
@@ -112,17 +112,25 @@ const Table = ({ data }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="mb-10 mt-5 flex flex-col"
+      initial={{ opacity: 0, scale: 0, x: 100 }}
+      animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+      transition={{
+        duration: 0.5,
+        ease: "easeOut",
+        stiffness: 140,
+        type: "spring",
+      }}
+      className="mb-10 flex flex-col"
     >
-      <div className="px-3 xl:text-lg">
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">Posted data</span>
+      </h1>
+      <div className="px-3 xl:text-lg w-full flex justify-end ">
         <label htmlFor="search">
           Search:&nbsp;
           <input
             id="search"
-            className="ring-1 px-3 outline-none rounded-2xl w-[400px] ring-gray-600"
+            className="ring-1 py-2 px-5 outline-none rounded-2xl w-[400px] ring-gray-600"
             type="text"
             value={search}
             onChange={handleSearch}
@@ -138,7 +146,9 @@ const Table = ({ data }) => {
         layout={{ fixedHeader: true }}
       />
       <div className="flex items-center justify-between mt-3">
-        <span>Total Pages: {pagination.state.getTotalPages(data.nodes)}</span>
+        <span className="px-4">
+          Total Pages: {pagination.state.getTotalPages(data.nodes)}
+        </span>
 
         <span>
           Page:

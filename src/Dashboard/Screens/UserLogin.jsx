@@ -14,6 +14,7 @@ export default function UserLogin() {
   const [error, setError] = useState(null);
   const [present, setPresent] = useState(false);
   const [Register, setRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleRegistration = () => {
     setRegister(!Register);
@@ -49,6 +50,7 @@ export default function UserLogin() {
     if (Login.email.length !== 0 && Login.password.length !== 0) {
       getUser();
       setPresent(false);
+      setLoading(true);
     }
   };
 
@@ -131,10 +133,12 @@ export default function UserLogin() {
                 <p className="text-red-600 font-bold">{error}</p>
               </div>
             </motion.div>
-          ) : (
+          ) : loading ? (
             <div className={`mt-5 h-20 items-center justify-center flex `}>
               <Dots color="#b67a3d" size={35} speed={0.7} animating={true} />
             </div>
+          ) : (
+            ""
           )}
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
