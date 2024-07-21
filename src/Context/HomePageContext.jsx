@@ -16,6 +16,7 @@ export function HomePageDataProvider({ children }) {
   const [companies, setCompany] = useState([]);
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
+  const [ResourcesSect, setResources] = useState([]);
 
   // API CALLS
   // axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
@@ -23,6 +24,13 @@ export function HomePageDataProvider({ children }) {
     try {
       const { data } = await axiosInstance.get("hat-api/heroSect");
       setHero(data);
+    } catch (exp) {}
+  }
+
+  async function getResourcedata() {
+    try {
+      const { data } = await axiosInstance.get("hat-api/Resources");
+      setResources(data);
     } catch (exp) {}
   }
 
@@ -102,6 +110,7 @@ export function HomePageDataProvider({ children }) {
     } catch (error) {}
   }
   useEffect(() => {
+    getResourcedata();
     getCompanydata();
     getTerms();
     getPoliciesdata();
@@ -130,6 +139,9 @@ export function HomePageDataProvider({ children }) {
         PolicieSect,
         TermsSect,
         companies,
+        ResourcesSect,
+        setCompany,
+        setResources,
         setTermsService,
         setPolicy,
         setHero,

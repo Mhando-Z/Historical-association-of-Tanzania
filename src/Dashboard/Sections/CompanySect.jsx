@@ -7,48 +7,50 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 
-function GallerySect() {
-  const { gallerySect, setGallery } = useContext(HomePageContext);
+function CompanySect() {
+  const { companies, setCompany } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
-  const [picture, setData] = useState({
-    title: "",
+  const [company, setData] = useState({
+    name: "",
     image: null,
   });
 
-  const handleDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setData((data) => ({ ...data, image: file }));
-      setPreviewURL(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
+  // handle inputs
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData((data) => ({ ...data, image: file }));
+        setPreviewURL(reader.result);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    } else {
+      setData((data) => ({ ...data, [name]: value }));
     }
   };
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop: handleDrop,
-    accept: "image/*",
-    maxSize: 10 * 1024 * 1024, // 10MB
-  });
-
-  async function postGallerydata() {
+  // handle synchronous functions
+  async function postCompanyData() {
     const formData = new FormData();
-    formData.append("title", picture.title);
-    formData.append("image", picture.image);
+    formData.append("name", company.name);
+    formData.append("image", company.image);
 
     try {
-      const { data } = await axiosInstance.post("hat-api/Gallery/", formData);
-      const vibes = [data, ...gallerySect];
-      setGallery(vibes);
+      const { data } = await axiosInstance.post("hat-api/Companies/", formData);
+      const updatedCompanies = [data, ...companies];
+      console.log(updatedCompanies);
+      setCompany(updatedCompanies);
       setPreviewURL(null);
-      toast.success("Image upload was a success");
+      toast.success("Company data upload was a success");
     } catch (error) {
-      console.log(error.response.data);
-      toast.error("Image upload failed");
+      console.log(companies);
+      console.log(error);
+      console.log("error bug");
+      toast.error("Company data upload failed");
     }
   }
 
@@ -56,21 +58,40 @@ function GallerySect() {
     e.preventDefault();
   };
 
+  // handlePost
   const handlePost = () => {
-    if (picture.title !== "" && picture.image !== null) {
-      postGallerydata();
+    if (company.name !== "" && company.image !== null) {
+      postCompanyData();
     } else {
       toast.error("Fill all sections");
     }
   };
 
+  // Drag and drop feature
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setData((data) => ({ ...data, image: file }));
+      setPreviewURL(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
+
   return (
     <div className="px-10 flex flex-col mb-20 mt-24">
-      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">Gallery</span>
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">Companies</span>
       </h1>
       <div className="mt-10 bg-slate-100 mb-10 shadow-xl">
-        <Table data={gallerySect} />
+        <Table data={companies} />
       </div>
       <motion.div
         initial={{ opacity: 0, scale: 0, x: -100 }}
@@ -81,38 +102,35 @@ function GallerySect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow-2xl"
+        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
         <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
-              <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+              <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
                 <span className="ml-2">
-                  Add/post more pictures to gallery Section
+                  Add/post more company data to Company Section
                 </span>
                 <br />
                 <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
-                  To this section you can add more pictures which will appear on
-                  the gallery section
+                  Add more company details to this section
                 </span>
               </h1>
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="title"
+                    htmlFor="name"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">Title</span>
+                    <span className="ml-2">Name</span>
                   </label>
                   <div className="mt-4 px-4">
                     <input
                       type="text"
-                      onChange={(e) =>
-                        setData((data) => ({ ...data, title: e.target.value }))
-                      }
-                      name="title"
-                      id="title"
+                      onChange={handleChange}
+                      name="name"
+                      id="name"
                       required
                       autoComplete="given-name"
                       className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
@@ -120,7 +138,7 @@ function GallerySect() {
                   </div>
                 </div>
 
-                {/* image */}
+                {/* Drag and drop feature */}
                 <div className="col-span-full shadow-lg">
                   <label
                     htmlFor="image"
@@ -129,10 +147,8 @@ function GallerySect() {
                     <span className="ml-2">Photo</span>
                   </label>
                   <div
-                    {...getRootProps({
-                      className:
-                        "mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10",
-                    })}
+                    {...getRootProps()}
+                    className="mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10"
                   >
                     <input {...getInputProps()} />
                     <div className="text-center">
@@ -141,19 +157,24 @@ function GallerySect() {
                         aria-hidden="true"
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                        <p className="text-xs leading-5 text-gray-600">
-                          Drag & drop or click to upload
+                        <p className="text-gray-600">
+                          Drag 'n' drop some files here, or click to select
+                          files
                         </p>
                       </div>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Name: {picture?.image?.name}
-                      </p>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Size: {picture?.image?.size}
-                      </p>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Type: {picture?.image?.type}
-                      </p>
+                      {company.image && (
+                        <div>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Name: {company.image.name}
+                          </p>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Size: {company.image.size}
+                          </p>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Type: {company.image.type}
+                          </p>
+                        </div>
+                      )}
                     </div>
                     {previewURL && (
                       <motion.div
@@ -195,4 +216,4 @@ function GallerySect() {
   );
 }
 
-export default GallerySect;
+export default CompanySect;

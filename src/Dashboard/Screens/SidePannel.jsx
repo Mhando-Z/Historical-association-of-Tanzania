@@ -52,8 +52,8 @@ const Sections = [
     icon: <MdContactPage />,
   },
   {
-    sections: "Policies&Terms",
-    links: "PoliciesTerms/",
+    sections: "Companies",
+    links: "Partners/",
     icon: <MdLocalPolice />,
   },
   {

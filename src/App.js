@@ -33,6 +33,7 @@ import MembersMgt from "./Dashboard/Sections/MembersMgt";
 import "react-activity/dist/library.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CompanySect from "./Dashboard/Sections/CompanySect";
 
 function App() {
   const [users, setUser] = useState("");
@@ -93,6 +94,7 @@ function App() {
               >
                 <Route index element={<DashHome />} />
                 <Route path="heroSect/" element={<HeroSect />} />
+                <Route path="Partners/" element={<CompanySect />} />
                 <Route path="MembersMgt/" element={<MembersMgt />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />
                 <Route path="AboutSect/" element={<AboutUsSect />} />

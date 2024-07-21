@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 export default function AboutUsSect() {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+  const [previewURL, setPreviewURL] = useState(null);
   const [AboutData, setData] = useState({
     title: "",
     subtitle: "",
@@ -15,40 +16,69 @@ export default function AboutUsSect() {
     image: null,
   });
 
+  // handles Input values
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
-      setData((data) => {
-        return { ...data, [name]: files[0] };
-      });
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData((data) => ({ ...data, image: file }));
+        // Set the image preview URL
+        setPreviewURL(reader.result);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     } else {
-      setData((data) => {
-        return { ...data, [name]: value };
-      });
+      setData((data) => ({ ...data, [name]: value }));
     }
   };
 
-  console.log(AboutData);
+  // handle file drop
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFile(files[0]);
+    }
+  };
 
-  // Asynchronous Fuctions
+  // handle file select
+  const handleFile = (file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setData((data) => ({ ...data, image: file }));
+      setPreviewURL(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // handle drag over
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  // Asynchronous Functions
   async function postData() {
     const formData = new FormData();
     formData.append("title", AboutData.title);
     formData.append("subtitle", AboutData.subtitle);
     formData.append("description", AboutData.description);
     formData.append("image", AboutData.image);
-    console.log(formData);
 
     try {
-      const { data } = await axiosInstance.post(
-        "/hat-api/About_Details/",
-        formData
-      );
+      const { data } = await axiosInstance.post("hat-api/AboutUs/", formData);
       const vibes = [data, ...AboutUSSect];
       setAboutUs(vibes);
-      toast.success("Image Posted Successfully");
+      setPreviewURL(null);
+      toast.success("Data upload was a success");
     } catch (error) {
-      toast.error("Image upload failed");
+      toast.error("Data upload was a failure");
     }
   }
 
@@ -60,7 +90,7 @@ export default function AboutUsSect() {
     if (AboutData.title !== "" && AboutData.image !== null) {
       postData();
     } else {
-      toast.error("Fill all seactions");
+      toast.error("Fill all sections");
     }
   };
 
@@ -83,12 +113,12 @@ export default function AboutUsSect() {
         }}
         className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        {/* title and secriptions */}
+        {/* title and descriptions */}
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Add/create more AboutUs Sections</span>
           <br />
           <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
-            To this section you can add more data to aboutus section
+            To this section you can add more data to AboutUs section
           </span>
         </h1>
         <form onSubmit={handleSubmit} className=" ">
@@ -100,7 +130,7 @@ export default function AboutUsSect() {
                     htmlFor="title"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">title</span>
+                    <span className="ml-2">Title</span>
                   </label>
                   <div className="mt-4 px-4">
                     <input
@@ -150,18 +180,22 @@ export default function AboutUsSect() {
                     />
                   </div>
                   <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
-                    number of words {AboutData?.description.length}
+                    Number of words: {AboutData?.description.length}
                   </p>
                 </div>
 
-                <div className="col-span-full">
+                <div
+                  className="col-span-full shadow-lg relative"
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                >
                   <label
                     htmlFor="cover-photo"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">photo</span>
+                    <span className="ml-2">Photo</span>
                   </label>
-                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 flex relative justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -196,6 +230,24 @@ export default function AboutUsSect() {
                         Type: {AboutData?.image?.type}
                       </p>
                     </div>
+                    {previewURL && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 100 }}
+                        animate={{ opacity: 1, scale: 1, x: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        className="absolute right-0 top-0 bottom-0 h-full rounded-2xl w-[400px] size-20"
+                      >
+                        <img
+                          src={previewURL}
+                          alt="Preview"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video  aspect-square object-cover rounded-xl"
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </div>

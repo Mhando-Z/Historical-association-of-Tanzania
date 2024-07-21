@@ -7,7 +7,7 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 
-function Researchpublications() {
+function ResourcesSect() {
   const { ResourcesSect, setResources } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
@@ -347,4 +347,4 @@ function Researchpublications() {
   );
 }
 
-export default Researchpublications;
+export default ResourcesSect;

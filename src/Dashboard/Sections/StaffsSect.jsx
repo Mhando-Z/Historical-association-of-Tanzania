@@ -1,68 +1,92 @@
-import HomePageContext from "../../Context/HomePageContext";
-import { PhotoIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon } from "@heroicons/react/20/solid";
 import React, { useContext, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import HomePageContext from "../../Context/HomePageContext";
 import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 
-function StaffsSect() {
-  const { StaffsSect, setStaffs } = useContext(HomePageContext);
-  const [staffs, setData] = useState({
-    name: "",
-    description: "",
-    image: "",
-    position: "",
-    contact1: "",
-    contact2: "",
-    contact3: "",
+function GallerySect() {
+  const { gallerySect, setGallery } = useContext(HomePageContext);
+  const [previewURL, setPreviewURL] = useState(null);
+  const [picture, setData] = useState({
+    title: "",
+    image: null,
   });
 
-  // handle user inputs
+  // handle inputs
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
-      setData((data) => {
-        return { ...data, [name]: files[0] };
-      });
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData((data) => ({ ...data, image: file }));
+        setPreviewURL(reader.result);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     } else {
-      setData((data) => {
-        return { ...data, [name]: value };
-      });
+      setData((data) => ({ ...data, [name]: value }));
     }
   };
 
-  // prevent default form submission which refreshes the page
+  // handle synchronous functions
+  async function postGalleryData() {
+    const formData = new FormData();
+    formData.append("title", picture.title);
+    formData.append("image", picture.image);
+
+    try {
+      const { data } = await axiosInstance.post("hat-api/Gallery/", formData);
+      const updatedGallery = [data, ...gallerySect];
+      setGallery(updatedGallery);
+      setPreviewURL(null);
+      toast.success("Image upload was a success");
+    } catch (error) {
+      console.log(error.response.data);
+      toast.error("Image upload failed");
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  // Async function to create document
-  // Asynchronous Fuctions
-  async function postStaffsdata() {
-    const formData = new FormData();
-    formData.append("name", staffs.name);
-    formData.append("image", staffs.image);
-    formData.append("position", staffs.position);
-    formData.append("contact1", staffs.contact1);
-    formData.append("contact2", staffs.contact2);
-    formData.append("contact3", staffs.contact3);
-    formData.append("description", staffs.description);
+  const handlePost = () => {
+    if (picture.title !== "" && picture.image !== null) {
+      postGalleryData();
+    } else {
+      toast.error("Fill all sections");
+    }
+  };
 
-    const { data } = await axiosInstance.post(
-      "/hat-api/Staffs_Details/",
-      formData
-    );
-    const vibes = [data, ...StaffsSect];
-    setStaffs(vibes);
-  }
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setData((data) => ({ ...data, image: file }));
+      setPreviewURL(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
 
   return (
     <div className="px-10 flex flex-col mb-20 mt-24">
-      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">Staff Section</span>
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">Gallery</span>
       </h1>
-      <div className="mt-10 bg-slate-100 shadow-xl mb-10 ">
-        <Table data={StaffsSect} />
+      <div className="mt-10 bg-slate-100 mb-10 shadow-xl">
+        <Table data={gallerySect} />
       </div>
       <motion.div
         initial={{ opacity: 0, scale: 0, x: -100 }}
@@ -73,183 +97,107 @@ function StaffsSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
+        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        {/* title and secriptions */}
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add more staff members</span>
-          <br />
-          <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
-            To this section you can add new staff members
-          </span>
-        </h1>
         <form onSubmit={handleSubmit}>
           <div className="space-y-12 mt-5">
             <div className="pb-12">
+              <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+                <span className="ml-2">
+                  Add/post more pictures to gallery Section
+                </span>
+                <br />
+                <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
+                  To this section you can add more pictures which will appear in
+                  the gallery section
+                </span>
+              </h1>
+
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="title"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">name</span>
+                    <span className="ml-2">Title</span>
                   </label>
                   <div className="mt-4 px-4">
                     <input
                       type="text"
+                      onChange={handleChange}
+                      name="title"
+                      id="title"
                       required
-                      onChange={handleChange}
-                      name="name"
-                      id="name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="position"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2"> Position</span>
-                  </label>
-                  <div className="mt-4 px-4">
-                    <input
-                      type="text"
-                      onChange={handleChange}
-                      name="position"
-                      id="position"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="contact1"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2"> Email</span>
-                  </label>
-                  <div className="mt-4 px-4">
-                    <input
-                      type="email"
-                      onChange={handleChange}
-                      name="contact1"
-                      id="contact1"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="contact2"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2"> Phone Number</span>
-                  </label>
-                  <div className="mt-4 px-4">
-                    <input
-                      type="text"
-                      onChange={handleChange}
-                      name="contact2"
-                      id="contact2"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="contact3"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2"> Social Media</span>
-                  </label>
-                  <div className="mt-4 px-4">
-                    <input
-                      type="text"
-                      onChange={handleChange}
-                      name="contact3"
-                      id="contact3"
                       autoComplete="given-name"
                       className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-full">
-                  <label
-                    htmlFor="description"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2">Description</span>
-                  </label>
-                  <div className="mt-4 px-4">
-                    <textarea
-                      id="description"
-                      onChange={handleChange}
-                      name="description"
-                      rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                      defaultValue={""}
-                    />
-                  </div>
-                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
-                    number of words {staffs?.description.length}
-                  </p>
-                </div>
-
-                <div className="col-span-full">
+                {/* Drag and drop feature */}
+                <div className="col-span-full shadow-lg">
                   <label
                     htmlFor="image"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">name</span>
+                    <span className="ml-2">Photo</span>
                   </label>
-                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div
+                    {...getRootProps()}
+                    className="mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10"
+                  >
+                    <input {...getInputProps()} />
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex flex-row gap-x-4 items-center text-sm leading-6 text-gray-600">
-                        <label
-                          htmlFor="image"
-                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id="image"
-                            onChange={handleChange}
-                            name="image"
-                            type="file"
-                            className="sr-only"
-                          />
-                        </label>
-                        <p className="text-xs leading-5 text-gray-600">
-                          PNG, JPG, GIF up to 10MB
+                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                        <p className="text-gray-600">
+                          Drag 'n' drop some files here, or click to select
+                          files
                         </p>
                       </div>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Name: {staffs?.image?.name}
-                      </p>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Size: {staffs?.image?.size}
-                      </p>
-                      <p className="text-xs leading-5 text-gray-600">
-                        Type: {staffs?.image?.type}
-                      </p>
+                      {picture.image && (
+                        <div>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Name: {picture.image.name}
+                          </p>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Size: {picture.image.size}
+                          </p>
+                          <p className="text-xs leading-5 text-gray-600">
+                            Type: {picture.image.type}
+                          </p>
+                        </div>
+                      )}
                     </div>
+                    {previewURL && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 100 }}
+                        animate={{ opacity: 1, scale: 1, x: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        className="absolute right-0 top-0 bottom-0 h-full rounded-2xl w-[400px] size-20"
+                      >
+                        <img
+                          src={previewURL}
+                          alt="Preview"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video aspect-square object-cover rounded-xl"
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex mb-3 px-4 flex-col justify-end items-end">
+          <div className="flex flex-col mb-4 px-4 justify-end items-end">
             <motion.button
-              onClick={postStaffsdata}
+              onClick={handlePost}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
@@ -264,4 +212,4 @@ function StaffsSect() {
   );
 }
 
-export default StaffsSect;
+export default GallerySect;

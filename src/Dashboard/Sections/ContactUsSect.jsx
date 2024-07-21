@@ -6,6 +6,7 @@ import { MdSocialDistance } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
@@ -130,7 +131,9 @@ function ContactUsSect() {
       );
       setContacts(updatedContacts);
       setEdit(!editContacts);
+      toast.success("Contacts Update Successfull");
     } catch (error) {
+      toast.error("Error updating the contact section");
       console.error("Error updating the contact section:", error);
     }
   };
@@ -146,7 +149,9 @@ function ContactUsSect() {
       );
       setPolicy(updatedPolicies);
       setEdit(!editContacts);
+      toast.success("Policy Update Successfull");
     } catch (error) {
+      toast.error("Error updating the Policy section");
       console.error("Error updating the Policy section:", error);
     }
   };
@@ -162,8 +167,10 @@ function ContactUsSect() {
       );
       setTermsService(updatedTerms);
       setEdit(!editContacts);
+      toast.success("Terms Update Successfull");
     } catch (error) {
       console.error("Error updating the Terms section:", error);
+      toast.error("Failed to Update Terms");
     }
   };
 

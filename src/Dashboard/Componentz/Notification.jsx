@@ -1,4 +1,3 @@
-"use client";
 import {
   Dialog,
   DialogBackdrop,
@@ -10,6 +9,7 @@ import { useContext } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import { useLocation } from "react-router-dom";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 
 export default function Notification({ open, setOpen, dataId }) {
   // herosecttion
@@ -34,7 +34,9 @@ export default function Notification({ open, setOpen, dataId }) {
     setHero(hero);
     try {
       await axiosInstance.delete(`/hat-api/Hero_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
+      toast.error("Action Delete Failed");
       setHero(heroSect);
     }
   }
@@ -44,7 +46,9 @@ export default function Notification({ open, setOpen, dataId }) {
     setAnnounce(Announce);
     try {
       await axiosInstance.delete(`/hat-api/Announce_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
+      toast.error("Action Delete Failed");
       setAnnounce(Announce);
     }
   }
@@ -55,7 +59,9 @@ export default function Notification({ open, setOpen, dataId }) {
     setStaffs(staff);
     try {
       await axiosInstance.delete(`/hat-api/Staffs_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
+      toast.error("Action Delete Failed");
       setStaffs(staff);
     }
   }
@@ -66,7 +72,9 @@ export default function Notification({ open, setOpen, dataId }) {
     setGallery(pictures);
     try {
       await axiosInstance.delete(`/hat-api/Gallery_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
+      toast.error("Action Delete Failed");
       setGallery(pictures);
     }
   }
@@ -77,8 +85,10 @@ export default function Notification({ open, setOpen, dataId }) {
     setAboutUs(aboutUs);
     try {
       await axiosInstance.delete(`/hat-api/About_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
       setAboutUs(aboutUs);
+      toast.error("Action Delete Failed");
     }
   }
 
@@ -88,8 +98,10 @@ export default function Notification({ open, setOpen, dataId }) {
     setPresident(preso);
     try {
       await axiosInstance.delete(`/hat-api/President_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
     } catch (error) {
       setPresident(preso);
+      toast.error("Action Delete Failed");
     }
   }
 

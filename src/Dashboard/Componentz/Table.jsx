@@ -4,17 +4,23 @@ import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
 import { Link } from "react-router-dom";
 import { usePagination } from "@table-library/react-table-library/pagination";
-import { FaRegPenToSquare } from "react-icons/fa6";
-import { FaRegTrashCan } from "react-icons/fa6";
+import { FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Drawer from "./Drawer";
 import Notification from "./Notification";
+import moment from "moment";
+
+// Date formatter component
+const formatDate = (dateString) => {
+  return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
+};
 
 const Table = ({ data }) => {
   const theme = useTheme(getTheme());
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [dataId, setId] = React.useState("");
+  const [search, setSearch] = React.useState("");
 
   const handleDelete = (id) => {
     setOpen1(!open1);
@@ -26,24 +32,25 @@ const Table = ({ data }) => {
     setId(index);
   };
 
-  const [search, setSearch] = React.useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
 
-  data = {
-    nodes: data?.filter(
-      (item) =>
-        item?.title || item?.name.toLowerCase().includes(search?.toLowerCase())
-    ),
-  };
+  const filteredData = data.filter(
+    (item) =>
+      item?.title?.toLowerCase().includes(search.toLowerCase()) ||
+      item?.name?.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const pagination = usePagination(data, {
-    state: {
-      page: 0,
-      size: 10,
-    },
-  });
+  const pagination = usePagination(
+    { nodes: filteredData },
+    {
+      state: {
+        page: 0,
+        size: 10,
+      },
+    }
+  );
 
   const COLUMNS = [
     {
@@ -62,30 +69,22 @@ const Table = ({ data }) => {
       ),
     },
     {
-      label: <div>{data.nodes[0]?.title ? <h1>Title</h1> : <h1>Name</h1>}</div>,
+      label: data[0]?.title ? "Title" : "Name",
       renderCell: (item) => (
-        <div className="flex flex-col">
-          <h1 className="xl:text-lg">{item.title || item.name}</h1>
-        </div>
+        <div className="flex flex-col h-full">{item.title || item.name}</div>
       ),
     },
     {
       label: "Datetime",
-      renderCell: (item) => item.dateIssued,
+      renderCell: (item) => formatDate(item.dateIssued),
     },
     {
-      label: (
-        <div>
-          {data.nodes[0]?.subtitle || data.nodes[0]?.subtitle === null ? (
-            <h1>Subtitle</h1>
-          ) : (
-            <h1>Position</h1>
-          )}
-        </div>
-      ),
+      label: data[0]?.subtitle !== undefined ? "Subtitle" : "Position",
       renderCell: (item) => (
         <div className="flex flex-col">
-          <div className="xl:text-lg">{item?.subtitle || item.position}</div>
+          <div className="xl:text-lg w-[250px]">
+            {item?.subtitle || item.position}
+          </div>
         </div>
       ),
     },
@@ -125,7 +124,7 @@ const Table = ({ data }) => {
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">Posted data</span>
       </h1>
-      <div className="px-3 xl:text-lg w-full flex justify-end ">
+      <div className="px-3 xl:text-lg w-full flex justify-end">
         <label htmlFor="search">
           Search:&nbsp;
           <input
@@ -140,19 +139,18 @@ const Table = ({ data }) => {
       <br />
       <CompactTable
         columns={COLUMNS}
-        data={data}
+        data={{ nodes: filteredData }}
         pagination={pagination}
         theme={theme}
         layout={{ fixedHeader: true }}
       />
       <div className="flex items-center justify-between mt-3">
         <span className="px-4">
-          Total Pages: {pagination.state.getTotalPages(data.nodes)}
+          Total Pages: {pagination.state.getTotalPages(filteredData)}
         </span>
-
         <span>
           Page:
-          {pagination.state.getPages(data.nodes).map((_, index) => (
+          {pagination.state.getPages(filteredData).map((_, index) => (
             <Link
               key={index}
               className="px-2 rounded-sm bg-slate-200 ring-1 ring-slate-800"
@@ -170,7 +168,7 @@ const Table = ({ data }) => {
         open={open}
         setOpen={setOpen}
         dataId={dataId}
-        datas={data?.nodes}
+        datas={filteredData}
       />
       <Notification open={open1} setOpen={setOpen1} dataId={dataId} />
     </motion.div>

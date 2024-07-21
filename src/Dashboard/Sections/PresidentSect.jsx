@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 
 function PresidentSect() {
   const { PresidentSect, setPresident } = useContext(HomePageContext);
+  const [previewURL1, setPreviewURL1] = useState(null);
+  const [previewURL2, setPreviewURL2] = useState(null);
   const [presoData, setData] = useState({
     title: "",
     subtitle: "",
@@ -17,18 +20,52 @@ function PresidentSect() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
     if (name === "image" || name === "image2") {
-      setData((data) => {
-        return { ...data, [name]: files[0] };
-      });
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setData((data) => ({ ...data, [name]: file }));
+
+        if (name === "image") {
+          setPreviewURL1(reader.result); // Set preview for first image
+        } else if (name === "image2") {
+          setPreviewURL2(reader.result); // Set preview for second image
+        }
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     } else {
-      setData((data) => {
-        return { ...data, [name]: value };
-      });
+      setData((data) => ({ ...data, [name]: value }));
     }
   };
 
-  // Asynchronous Fuctions
+  const handleDrop = (e, name) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setData((data) => ({ ...data, [name]: file }));
+
+      if (name === "image") {
+        setPreviewURL1(reader.result); // Set preview for first image
+      } else if (name === "image2") {
+        setPreviewURL2(reader.result); // Set preview for second image
+      }
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  // Asynchronous Function
   async function posPresotdata() {
     const formData = new FormData();
     formData.append("title", presoData.title);
@@ -38,25 +75,35 @@ function PresidentSect() {
     formData.append("image2", presoData.image2);
 
     try {
-      const { data } = await axiosInstance.post(
-        "/hat-api/President_Details/",
-        formData
-      );
+      const { data } = await axiosInstance.post("hat-api/President/", formData);
       const vibes = [data, ...PresidentSect];
       setPresident(vibes);
+      setPreviewURL1(null);
+      setPreviewURL2(null);
+      toast.success("data upload was a success");
     } catch (error) {
+      toast.error("data upload was a failure");
       console.error(error);
     }
   }
+
   // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  const handlePost = () => {
+    if (presoData.title !== "" && presoData.image !== null) {
+      posPresotdata();
+    } else {
+      toast.error("Fill all sections");
+    }
+  };
+
   return (
     <div className="px-10 flex flex-col mb-20 mt-24">
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">president Section</span>
+        <span className="ml-2">President Section</span>
       </h1>
       <div className="mt-10 bg-slate-100 shadow-xl mb-10 ">
         <Table data={PresidentSect} />
@@ -72,7 +119,7 @@ function PresidentSect() {
         }}
         className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        {/* title and secriptions */}
+        {/* title and descriptions */}
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Add data to president Sections</span>
           <br />
@@ -89,7 +136,7 @@ function PresidentSect() {
                     htmlFor="title"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">title</span>
+                    <span className="ml-2">Title</span>
                   </label>
                   <div className="mt-4 px-4">
                     <input
@@ -140,18 +187,22 @@ function PresidentSect() {
                     />
                   </div>
                   <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
-                    number of words {presoData?.description.length}
+                    Number of words {presoData?.description.length}
                   </p>
                 </div>
                 {/* image1 */}
-                <div className="col-span-full">
+                <div
+                  className="col-span-full shadow-lg border-dashed border-2 border-gray-300"
+                  onDrop={(e) => handleDrop(e, "image")}
+                  onDragOver={handleDragOver}
+                >
                   <label
                     htmlFor="cover-photo"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">photo1</span>
+                    <span className="ml-2">Photo1</span>
                   </label>
-                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 relative flex justify-center rounded-lg px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -186,17 +237,40 @@ function PresidentSect() {
                         Type: {presoData?.image?.type}
                       </p>
                     </div>
+                    {/* image */}
+                    {previewURL1 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 100 }}
+                        animate={{ opacity: 1, scale: 1, x: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        className="absolute right-0 top-0 bottom-0 h-full rounded-2xl w-[400px] size-20"
+                      >
+                        <img
+                          src={previewURL1}
+                          alt="Preview"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video  aspect-square object-cover rounded-xl"
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
                 {/* image2 */}
-                <div className="col-span-full">
+                <div
+                  className="col-span-full shadow-lg border-dashed border-2 border-gray-300"
+                  onDrop={(e) => handleDrop(e, "image2")}
+                  onDragOver={handleDragOver}
+                >
                   <label
                     htmlFor="cover-photo"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">photo2</span>
+                    <span className="ml-2">Photo2</span>
                   </label>
-                  <div className="mt-4 flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="mt-4 relative flex justify-center rounded-lg px-6 py-10">
                     <div className="text-center">
                       <PhotoIcon
                         className="mx-auto h-12 w-12 text-gray-300"
@@ -231,6 +305,25 @@ function PresidentSect() {
                         Type: {presoData?.image2?.type}
                       </p>
                     </div>
+                    {/* image */}
+                    {previewURL2 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0, x: 100 }}
+                        animate={{ opacity: 1, scale: 1, x: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        className="absolute right-0 top-0 bottom-0 h-full rounded-2xl w-[400px] size-20"
+                      >
+                        <img
+                          src={previewURL2}
+                          alt="Preview"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video  aspect-square object-cover rounded-xl"
+                        />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -238,7 +331,7 @@ function PresidentSect() {
           </div>
           <div className="flex flex-col mb-3 px-4 justify-end items-end">
             <motion.button
-              onClick={posPresotdata}
+              onClick={handlePost}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}

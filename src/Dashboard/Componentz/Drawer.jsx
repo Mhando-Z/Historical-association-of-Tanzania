@@ -7,11 +7,11 @@ import {
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
-import { PhotoIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
+import { toast } from "react-toastify";
 //
 
 // Fuction Component
@@ -170,9 +170,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       const updatedHeroSect = heroSect.map((hero) =>
         hero.id === dataId ? response.data : hero
       );
+      toast.success("Updates Applied");
       setHero(updatedHeroSect);
       setOpen(false); // Close the drawer after update
     } catch (error) {
+      toast.success("Updates Failed");
+
       console.error("Error updating the hero section:", error);
     }
   }
@@ -193,10 +196,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       const updatedPresoSect = PresidentSect.map((preso) =>
         preso.id === dataId ? response.data : preso
       );
+      toast.success("Updates Applied");
       setPresident(updatedPresoSect);
       // Close the drawer after update
       setOpen(false);
     } catch (error) {
+      toast.success("Updates Failed");
       console.error("Error updating the president section:", error);
     }
   }
@@ -218,7 +223,9 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       setAnnounce(updatedAnnounce);
       // Close the drawer after update
       setOpen(false);
+      toast.success("Updates Applied");
     } catch (error) {
+      toast.error("Updates Failed");
       console.error("Error updating the Announcement section:", error);
     }
   }
@@ -241,8 +248,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       setAboutUs(updateAboutus);
       // Close the drawer after update
       setOpen(false);
+      toast.success("Updates Applied");
     } catch (error) {
       console.error("Error updating the AboutUs section:", error);
+      toast.success("Updates Failed");
     }
   }
   // async function fpr president
@@ -267,8 +276,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       setStaffs(updateStaffSect);
       // Close the drawer after update
       setOpen(false);
+      toast.success("Updates Applied");
     } catch (error) {
       console.error("Error updating the Staff section:", error);
+      toast.error("Updates failed");
     }
   }
 
@@ -303,7 +314,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
       />
 
-      <div className="fixed inset-0  overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut", type: "spring" }}
+        className="fixed inset-0  overflow-hidden"
+      >
         <div className="absolute inset-0 overflow-hidden">
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel
@@ -936,7 +952,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
             </DialogPanel>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Dialog>
   );
 }
