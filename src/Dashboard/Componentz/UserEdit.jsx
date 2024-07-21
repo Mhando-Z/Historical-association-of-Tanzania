@@ -9,6 +9,8 @@ import { RxCrossCircled } from "react-icons/rx";
 import moment from "moment";
 import UserContext from "../../Context/UserContext";
 import logo from "../../Assets/Images/3dlogo.png";
+import { HiMiniCheckBadge } from "react-icons/hi2";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 const formatDate = (dateString) => {
   return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
@@ -19,6 +21,8 @@ const AdminUserManagement = () => {
   const { setShow, show } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [notification, setNotification] = useState(false);
+  const [Id, setUserId] = useState("");
 
   const user = users?.filter((dt) => {
     return dt.id === userId;
@@ -149,12 +153,22 @@ const AdminUserManagement = () => {
     }
   };
 
-  const handleDelete = async (userId) => {
+  const deleteFunction = (userId) => {
+    setNotification(!notification);
+    setUserId(userId);
+    if (notification === true) {
+      handleDelete();
+    }
+  };
+
+  const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/hat-users/admin/users/${userId}/`);
-      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+      await axiosInstance.delete(`/hat-users/admin/users/${Id}/`);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== Id));
       toast.success("User deleted successfully");
+      setNotification(!notification);
     } catch (error) {
+      setNotification(!notification);
       console.error("Error deleting user:", error);
       toast.error("Error deleting user");
     }
@@ -180,17 +194,17 @@ const AdminUserManagement = () => {
             animate={{ opacity: 1, scale: 1, y: 1 }}
             transition={{ duration: 1, ease: "easeOut", type: "spring" }}
             exit={{ x: -100, opacity: 0 }}
-            className="flex flex-col absolute top-0 right-0 left-0 bottom-0 ring-1 ring-[#b67a3d] bg-slate-100 shadow-xl rounded-3xl mt-10"
+            className="flex flex-col xl:h-[780px] lg:h-[900px]  absolute top-20 right-0 left-0 bottom-50 ring-1 ring-[#b67a3d] bg-slate-900 bg-opacity-25 shadow-xl rounded-xl mt-10"
           >
             <div
               name="UserDetails"
               className="flex gap-x-14 flex-col gap-y-6 lg:flex-row p-10"
             >
-              <div className="size-20  flex-col bg-slate-50 shadow-xl ring-[#b67a3d] rounded-xl justify-center ring-2 items-center flex">
+              <div className="size-20 flex-col bg-slate-50 shadow-xl ring-[#b67a3d] rounded-xl justify-center ring-2 items-center flex">
                 <IoPerson className="text-7xl " />
               </div>
               <div className="flex flex-col h-[140px] bg-slate-50 shadow-lg">
-                <table className="w-lg bg-slate-50">
+                <table className="w-lg bg-slate-50 shadow-lg shadow-black">
                   <tbody>
                     <tr className="hover:bg-gray-200 cursor-pointer">
                       <td className="py-2 px-4 border-b">Username</td>
@@ -206,6 +220,12 @@ const AdminUserManagement = () => {
                       <td className="py-2 px-4 border-b">Date Registerd</td>
                       <td className="py-2 px-4 border-b">
                         {formatDate(user[0]?.profile?.date_registered)}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-200 cursor-pointer">
+                      <td className="py-2 px-4 border-b">Last Login</td>
+                      <td className="py-2 px-4 border-b">
+                        {formatDate(user[0]?.profile?.last_login)}
                       </td>
                     </tr>
                   </tbody>
@@ -243,7 +263,7 @@ const AdminUserManagement = () => {
             <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
               <span className="ml-2">Users List</span>
             </h1>
-            <ul className="bg-white shadow-lg rounded-lg p-4">
+            <ul className="bg-white relative shadow-lg rounded-lg p-4">
               {users?.map((user) => (
                 <li
                   key={user.id}
@@ -251,6 +271,13 @@ const AdminUserManagement = () => {
                 >
                   <span>{user.username}</span>
                   <div className="flex space-x-2">
+                    <span className="mr-14">
+                      {user.is_staff === true ? (
+                        <HiMiniCheckBadge className="text-blue-700 text-xl gap-x-10" />
+                      ) : (
+                        ""
+                      )}
+                    </span>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.8 }}
@@ -273,13 +300,62 @@ const AdminUserManagement = () => {
                         stiffness: 140,
                       }}
                       className="bg-red-600 text-white shadow-md px-3 py-1 rounded-3xl"
-                      onClick={() => handleDelete(user.id)}
+                      onClick={() => deleteFunction(user.id)}
                     >
                       Delete
                     </motion.button>
                   </div>
                 </li>
               ))}
+              {notification ? (
+                <div className="absolute items-center p-20 justify-center bottom-0 top-0 right-0 left-0  w-full bg-black bg-opacity-15">
+                  <div className="bg-white p-10 h-[220px] shadow-2xl rounded-xl">
+                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                      <ExclamationTriangleIcon
+                        aria-hidden="true"
+                        className="h-6 w-6 text-red-600"
+                      />
+                    </div>
+                    <p className="text-lg">
+                      Are you sure you want to delete this User? note all data
+                      will be permanently removed. This action cannot be undone.
+                    </p>
+                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                      <motion.button
+                        initial={{ opacity: 0, y: 90, scale: 0 }}
+                        animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        onClick={deleteFunction}
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                      >
+                        Delete
+                      </motion.button>
+                      <motion.button
+                        initial={{ opacity: 0, y: 90, scale: 0 }}
+                        animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
+                        transition={{
+                          duration: 0.5,
+                          ease: "easeOut",
+                          type: "spring",
+                        }}
+                        type="button"
+                        onClick={() => setNotification(false)}
+                        data-autofocus
+                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                      >
+                        Cancel
+                      </motion.button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
           {selectedUser && (

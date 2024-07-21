@@ -171,7 +171,7 @@ export default function UserLogin() {
                   </label>
                   <div className="text-sm">
                     <Link
-                      href="#"
+                      to={"/Password-reset/"}
                       className="font-semibold text-indigo-600 hover:text-indigo-500"
                     >
                       Forgot password?

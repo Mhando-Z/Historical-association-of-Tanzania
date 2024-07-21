@@ -21,7 +21,6 @@ import AboutUsSect from "./Dashboard/Sections/AboutUsSect";
 import StaffsSect from "./Dashboard/Sections/StaffsSect";
 import AnnouncementsSect from "./Dashboard/Sections/AnnouncementsSect";
 import Researchpublications from "./Dashboard/Sections/Research&publications";
-import PoliciesTerms from "./Dashboard/Sections/PoliciesTerms";
 import { UserProvider } from "./Context/UserContext";
 import ResourcePublication from "./Screens/ResourcePublication";
 import ProtectedRoute from "./Dashboard/Routes/ProtectedRoutes";
@@ -30,10 +29,15 @@ import { jwtDecode } from "jwt-decode";
 import AuthRoute from "./Dashboard/Routes/AuthRoute";
 import Logout from "./Dashboard/Routes/Logout";
 import MembersMgt from "./Dashboard/Sections/MembersMgt";
-import "react-activity/dist/library.css";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import CompanySect from "./Dashboard/Sections/CompanySect";
+import UserProfile from "./Dashboard/Componentz/UserProfile";
+import {
+  PasswordResetConfirm,
+  PasswordResetRequest,
+} from "./Dashboard/Componentz/PasswordReset";
+import "react-toastify/dist/ReactToastify.css";
+import "react-activity/dist/library.css";
 
 function App() {
   const [users, setUser] = useState("");
@@ -71,6 +75,14 @@ function App() {
               <Route path="Register/" element={<RegisterUser />} />
               <Route path="Announcements/" element={<Announcements />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route
+                path="Password-reset/"
+                element={<PasswordResetRequest />}
+              />
+              <Route
+                path="Password-Reset/confirm/:uid/:token/"
+                element={<PasswordResetConfirm />}
+              />
               {/* Logout Route */}
               <Route path="Logout/" element={<Logout />} />
 
@@ -98,11 +110,11 @@ function App() {
                 <Route path="MembersMgt/" element={<MembersMgt />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />
                 <Route path="AboutSect/" element={<AboutUsSect />} />
+                <Route path="UserProfile/" element={<UserProfile />} />
                 <Route path="PresoSect/" element={<PresidentSect />} />
                 <Route path="GallerySect/" element={<GallerySect />} />
                 <Route path="StaffsSect/" element={<StaffsSect />} />
                 <Route path="ContactUsSect/" element={<ContactUsSect />} />
-                <Route path="PoliciesTerms/" element={<PoliciesTerms />} />
                 <Route
                   path="Research&publications/"
                   element={<Researchpublications />}

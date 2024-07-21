@@ -14,9 +14,12 @@ function Researchpublications() {
   const [resourceData, setData] = useState({
     title: "",
     subtitle: "",
+    author: "",
     description: "",
+    references: "",
     image: null,
     image2: null,
+    video_url: "",
   });
 
   const handleChange = (e) => {
@@ -77,9 +80,12 @@ function Researchpublications() {
     const formData = new FormData();
     formData.append("title", resourceData.title);
     formData.append("subtitle", resourceData.subtitle);
+    formData.append("author", resourceData.author);
     formData.append("description", resourceData.description);
+    formData.append("references", resourceData.references);
     formData.append("image", resourceData.image);
     formData.append("image2", resourceData.image2);
+    formData.append("video_url", resourceData.video_url);
 
     try {
       const { data } = await axiosInstance.post("hat-api/Resources/", formData);
@@ -173,6 +179,42 @@ function Researchpublications() {
                     />
                   </div>
                 </div>
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="author"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                  >
+                    <span className="ml-2">author</span>
+                  </label>
+                  <div className="mt-4 px-4">
+                    <input
+                      type="text"
+                      name="author"
+                      onChange={handleChange}
+                      id="author"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="video_url"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                  >
+                    <span className="ml-2">video_url</span>
+                  </label>
+                  <div className="mt-4 px-4">
+                    <input
+                      type="text"
+                      name="video_url"
+                      onChange={handleChange}
+                      id="video_url"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
 
                 <div className="col-span-full">
                   <label
@@ -188,6 +230,27 @@ function Researchpublications() {
                       name="description"
                       rows={3}
                       className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      defaultValue={""}
+                    />
+                  </div>
+                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
+                    Number of words {resourceData?.description.length}
+                  </p>
+                </div>
+                <div className="col-span-full">
+                  <label
+                    htmlFor="references"
+                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                  >
+                    <span className="ml-2">references</span>
+                  </label>
+                  <div className="mt-4 px-4">
+                    <textarea
+                      id="references"
+                      onChange={handleChange}
+                      name="references"
+                      rows={3}
+                      className="block p-7 w-full h-[200px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>

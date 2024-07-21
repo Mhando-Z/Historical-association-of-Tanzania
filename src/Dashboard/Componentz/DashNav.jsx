@@ -109,18 +109,20 @@ function DashNav() {
               >
                 <div className="flex flex-col gap-y-4 justify-center px-7 py-10">
                   <div className="flex flex-row items-center gap-x-4 ">
-                    <FaRegUser className="text-xl ring-1 ring-black rounded-full" />
-                    <h1 className="text-xl text-[#121037] font-medium">
+                    <FaRegUser className="text-3xl ring-1 ring-black rounded-full" />
+                    <h1 className="text-xl ml-2 flex flex-row items-center text-[#121037] font-medium">
                       {user?.username}
                     </h1>
                   </div>
-                  <div className="border-2 border-slate-300 mt-2"></div>
-                  <div className="flex flex-row cursor-pointer items-center gap-x-4 ">
-                    <FaRegUser className="text-xl" />
-                    <h1 className="text-xl text-[#121037] font-medium">
-                      View Profile
-                    </h1>
-                  </div>
+                  <div className="border-2 mt-5 border-slate-300"></div>
+                  <Link onClick={() => setshow(!show)} to={"UserProfile/"}>
+                    <div className="flex flex-row cursor-pointer items-center gap-x-4 ">
+                      <FaRegUser className="text-xl" />
+                      <h1 className="text-xl text-[#121037] font-medium">
+                        View Profile
+                      </h1>
+                    </div>
+                  </Link>
                   <div className="flex flex-row cursor-pointer items-center gap-x-4 ">
                     <IoKeySharp className="text-xl" />
                     <h1 className="text-xl text-[#121037] font-medium">

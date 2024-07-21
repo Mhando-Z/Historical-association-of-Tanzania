@@ -7,7 +7,7 @@ const formatDate = (dateString) => {
 };
 
 const UserDetailsTable = ({ user }) => (
-  <table className="w-xl">
+  <table className="w-xl shadow-lg shadow-black">
     <tbody>
       <tr className="hover:bg-gray-200 cursor-pointer">
         <td className="py-2 px-7 border-b">Username</td>

@@ -47,7 +47,7 @@ function GallerySect() {
       setPreviewURL(null);
       toast.success("Image upload was a success");
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error.response.data);
       toast.error("Image upload failed");
     }
   }

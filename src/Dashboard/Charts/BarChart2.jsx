@@ -23,26 +23,10 @@ const processData = (registrations) => {
   return data;
 };
 
-// Generate a random color
-const getRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  console.log(color);
-  return color;
-};
-
 export default function RegistrationStatsBar({ registrations }) {
   const data = processData(registrations);
   const xAxisData = data.map((item) => item.date);
   const seriesData = data.map((item) => item.count);
-
-  // Generate colors for each bar dynamically
-  const colors = seriesData.map(() => getRandomColor());
-  console.log((index, i) => colors[index]);
-  //   const seriesData = data.map((item) => item.count);
 
   return (
     <BarChart

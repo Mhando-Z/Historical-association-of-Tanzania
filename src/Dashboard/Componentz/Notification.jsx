@@ -24,10 +24,38 @@ export default function Notification({ open, setOpen, dataId }) {
   const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
   //AboutUs section
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+  //Resources section
+  const { ResourcesSect, setResources } = useContext(HomePageContext);
+  //Companies section
+  const { companies, setCompany } = useContext(HomePageContext);
 
   // routing
   const locations = useLocation();
 
+  //  Companies section
+  async function deleteCompany() {
+    const del = companies?.filter((pt) => pt.id !== dataId);
+    setCompany(del);
+    try {
+      await axiosInstance.delete(`/hat-api/Companies_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
+    } catch (error) {
+      toast.error("Action Delete Failed");
+      setCompany(companies);
+    }
+  }
+  // Resources and publications
+  async function deleteResource() {
+    const Reso = ResourcesSect?.filter((pt) => pt.id !== dataId);
+    setResources(Reso);
+    try {
+      await axiosInstance.delete(`/hat-api/Resources_Details/${dataId}/`);
+      toast.success("Deleted Successfully");
+    } catch (error) {
+      toast.error("Action Delete Failed");
+      setResources(ResourcesSect);
+    }
+  }
   // Hero Section of landing page
   async function deleteHeroSect() {
     const hero = heroSect?.filter((pt) => pt.id !== dataId);
@@ -107,6 +135,12 @@ export default function Notification({ open, setOpen, dataId }) {
 
   // delete Logic
   const handleDelete = () => {
+    if (locations?.pathname === "/Dashboard/Partners/") {
+      deleteCompany();
+    }
+    if (locations?.pathname === "/Dashboard/Research&publications/") {
+      deleteResource();
+    }
     if (locations?.pathname === "/Dashboard/heroSect/") {
       deleteHeroSect();
     }

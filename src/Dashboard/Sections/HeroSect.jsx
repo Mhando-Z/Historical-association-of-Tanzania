@@ -69,7 +69,7 @@ function HeroSect() {
       toast.success("Data upload was a success");
     } catch (error) {
       toast.error("Data upload was a failure");
-      console.log(error.response);
+      console.error(error.response);
     }
   }
 

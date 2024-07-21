@@ -53,12 +53,8 @@ const UserRegister = ({ handleRegistration }) => {
     e.preventDefault();
     setError([]);
     try {
-      const response = await axiosInstance.post(
-        "hat-users/register/",
-        formData
-      );
+      await axiosInstance.post("hat-users/register/", formData);
       setView(!view);
-      console.log("User registered:", response.data);
       // Optionally, redirect or show a success message
     } catch (error) {
       setError(error.response.data);

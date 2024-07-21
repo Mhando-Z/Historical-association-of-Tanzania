@@ -11,12 +11,18 @@ import { BsFillPrinterFill } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
-import { FaUserGroup } from "react-icons/fa6";
+import { FaRegCircleUser, FaUserGroup } from "react-icons/fa6";
 import logo from "../../Assets/Images/3dlogo.png";
+import stdprofile from "../../Assets/profiles/man.png";
+import stdprofile2 from "../../Assets/profiles/woman2.png";
+import manprofile from "../../Assets/profiles/man1.png";
+import womanProfile from "../../Assets/profiles/woman.png";
+// verification badge
+import { HiMiniCheckBadge } from "react-icons/hi2";
 
 const Other = [
   {
-    sections: "Members",
+    sections: "User Management",
     links: "MembersMgt/",
     icon: <FaUserGroup />,
   },
@@ -116,8 +122,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-3xl"
-                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-3xl bg-slate-300"
+                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-2xl"
+                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-2xl bg-slate-300"
                       }
                       to={dt.links}
                     >
@@ -148,8 +154,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-3xl"
-                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-3xl bg-slate-300"
+                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-2xl"
+                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-2xl bg-slate-300"
                       }
                       to={dt.links}
                     >
@@ -165,8 +171,90 @@ function SidePannel() {
       ) : (
         ""
       )}
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.8 }}
+        transition={{ type: "spring", ease: "easeOut" }}
+        className="absolute bottom-14 flex items-center justify-center ring-[#b67a3d] ring-1  bg-slate-300  shadow-xl left-4 size-28 w-[260px]  rounded-xl "
+      >
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "bg-[#b67a3d] items-center text-white w-full rounded-xl"
+              : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-[#ca935c] hover:text-white hover:font-medium"
+          }
+          to={"UserProfile/"}
+        >
+          <div className="flex flex-row p-5 gap-x-5 w-full items-center  justify-between">
+            <div>
+              {/* profile images */}
+              {user?.is_student === true && user?.gender === "male" ? (
+                <div>
+                  <img
+                    src={stdprofile}
+                    alt="user profile"
+                    className="h-20 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
+                  />
+                </div>
+              ) : user?.gender === "male" ? (
+                <img
+                  src={manprofile}
+                  alt="user profile"
+                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                />
+              ) : user?.is_student === true && user?.gender === "female" ? (
+                <div>
+                  <img
+                    src={stdprofile2}
+                    alt="user profile"
+                    className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                  />
+                </div>
+              ) : user?.gender === "female" ? (
+                <img
+                  src={womanProfile}
+                  alt="user profile"
+                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                />
+              ) : (
+                <div>
+                  <FaRegCircleUser className="text-7xl" />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-grow flex-col">
+              {/* user details and status */}
+              <h1 className="font-bold text-lg">{user?.username}</h1>
+              {user?.is_staff ? (
+                <div className="flex flex-row  gap-x-1 w-full items-center">
+                  <>
+                    <h1 className="font-medium">Admin</h1>
+                  </>
+                  <HiMiniCheckBadge className="text-blue-700 text-xl gap-x-10" />
+                </div>
+              ) : (
+                <div className="flex flex-row  gap-x-1 w-full items-center">
+                  <>
+                    <h1 className="font-medium">User</h1>
+                  </>
+                  {user?.is_paid_membership === true &&
+                  user?.is_paid_conference ? (
+                    <HiMiniCheckBadge className="text-green-700 text-xl gap-x-10" />
+                  ) : user?.is_paid_membership === true ? (
+                    <HiMiniCheckBadge className="text-yellow-700 text-xl gap-x-10" />
+                  ) : user?.is_paid_conference === true ? (
+                    <HiMiniCheckBadge className="text-purple-700 text-xl gap-x-10" />
+                  ) : (
+                    <HiMiniCheckBadge className="text-black text-xl gap-x-10" />
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </NavLink>
+      </motion.div>
       <div className="absolute bottom-10 left-4 ">
-        <img src={logo} alt="hatlogo" className="h-20 opacity-45" />
+        <img src={logo} alt="hatlogo" className="h-14 hidden opacity-25" />
       </div>
     </motion.div>
   );

@@ -42,14 +42,10 @@ function CompanySect() {
     try {
       const { data } = await axiosInstance.post("hat-api/Companies/", formData);
       const updatedCompanies = [data, ...companies];
-      console.log(updatedCompanies);
       setCompany(updatedCompanies);
       setPreviewURL(null);
       toast.success("Company data upload was a success");
     } catch (error) {
-      console.log(companies);
-      console.log(error);
-      console.log("error bug");
       toast.error("Company data upload failed");
     }
   }
