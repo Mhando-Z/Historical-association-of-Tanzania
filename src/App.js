@@ -38,6 +38,7 @@ import {
 } from "./Dashboard/Componentz/PasswordReset";
 import "react-toastify/dist/ReactToastify.css";
 import "react-activity/dist/library.css";
+import ConferenceSect from "./Dashboard/Sections/ConferenceSect";
 
 function App() {
   const [users, setUser] = useState("");
@@ -107,6 +108,7 @@ function App() {
                 <Route index element={<DashHome />} />
                 <Route path="heroSect/" element={<HeroSect />} />
                 <Route path="Partners/" element={<CompanySect />} />
+                <Route path="Conference/" element={<ConferenceSect />} />
                 <Route path="MembersMgt/" element={<MembersMgt />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />
                 <Route path="AboutSect/" element={<AboutUsSect />} />

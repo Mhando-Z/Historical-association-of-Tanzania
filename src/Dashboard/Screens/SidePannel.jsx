@@ -28,7 +28,7 @@ const Other = [
   },
   {
     sections: "Report Submission",
-    links: "heroSect/",
+    links: "Conference/",
   },
 ];
 const Sections = [
