@@ -189,7 +189,7 @@ function ContactUsSect() {
   };
 
   return (
-    <div className="px-10 mt-16 flex flex-col">
+    <div className="container flex flex-col mx-auto mt-16">
       {editContacts ? (
         <motion.div
           initial={{ opacity: 0, scale: 0, x: -100 }}
@@ -207,12 +207,12 @@ function ContactUsSect() {
               <span className="ml-2">contact Section</span>
             </h1>
 
-            <div className="border-b-2 border-gray-300 mt-5 mb-5"></div>
+            <div className="mt-5 mb-5 border-b-2 border-gray-300"></div>
             <div className="flex flex-col space-x-10">
               {/* Emails Section */}
-              <div className="flex mt-5 flex-row items-center gap-x-2">
+              <div className="flex flex-row items-center mt-5 gap-x-2">
                 <MdEmail className="text-3xl" />
-                <h1 className="xl:text-xl font-bold"> Emails</h1>
+                <h1 className="font-bold xl:text-xl"> Emails</h1>
               </div>
               <h1>{ContactSect[0]?.email1}</h1>
               <h1>{ContactSect[0]?.email2}</h1>
@@ -220,9 +220,9 @@ function ContactUsSect() {
             </div>
             <div className="flex flex-col space-x-10">
               {/* Phone Numbers Section */}
-              <div className="flex mt-10 flex-row items-center gap-x-4">
+              <div className="flex flex-row items-center mt-10 gap-x-4">
                 <FaPhoneVolume className="text-xl" />
-                <h1 className="xl:text-xl font-bold"> Phone Numbers</h1>
+                <h1 className="font-bold xl:text-xl"> Phone Numbers</h1>
               </div>
               <h1>{ContactSect[0]?.phoneNumber1}</h1>
               <h1>{ContactSect[0]?.phoneNumber2}</h1>
@@ -231,9 +231,9 @@ function ContactUsSect() {
             </div>
             <div className="flex flex-col space-x-10">
               {/* Social media Section */}
-              <div className="flex mt-10 flex-row items-center gap-x-2">
+              <div className="flex flex-row items-center mt-10 gap-x-2">
                 <MdSocialDistance className="text-3xl" />
-                <h1 className="xl:text-xl font-bold">Social Media </h1>
+                <h1 className="font-bold xl:text-xl">Social Media </h1>
               </div>
               <h1>{ContactSect[0]?.facebook}</h1>
               <h1>{ContactSect[0]?.instagram}</h1>
@@ -242,18 +242,18 @@ function ContactUsSect() {
             </div>
             <div className="flex flex-col space-x-10">
               {/* Address Section */}
-              <div className="flex mt-10 flex-row items-center gap-x-2">
+              <div className="flex flex-row items-center mt-10 gap-x-2">
                 <FaAddressCard className="text-3xl" />
-                <h1 className="xl:text-xl font-bold">Address Section</h1>
+                <h1 className="font-bold xl:text-xl">Address Section</h1>
               </div>
               <h1>{ContactSect[0]?.location}</h1>
               <h1>{ContactSect[0]?.physicalAdress}</h1>
               <h1>{ContactSect[0]?.postcode}</h1>
             </div>
 
-            <div className="flex flex-col gap-y-10 mt-10">
+            <div className="flex flex-col mt-10 gap-y-10">
               <div>
-                <h1 className="font-bold  xl:text-xl">Policies</h1>
+                <h1 className="font-bold xl:text-xl">Policies</h1>
                 {PolicieSect?.map((dt) => {
                   return (
                     <div className="flex flex-col gap-y-4" key={dt.id}>
@@ -280,7 +280,7 @@ function ContactUsSect() {
               </div>
             </div>
             <div className="flex items-end justify-end w-full">
-              <div className="flex mt-10 flex-col justify-end items-end">
+              <div className="flex flex-col items-end justify-end mt-10">
                 <motion.button
                   onClick={handleEdit}
                   whileHover={{ scale: 1.05 }}
@@ -304,28 +304,28 @@ function ContactUsSect() {
             stiffness: 140,
             type: "spring",
           }}
-          className="bg-slate-100 p-10 rounded-3xl"
+          className="p-10 bg-slate-100 rounded-3xl"
         >
           <form onSubmit={handleSubmit}>
-            <div className="space-y-12 mt-16">
+            <div className="mt-16 space-y-12">
               <div className="pb-12">
-                <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                   Contacts Section
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-gray-600">
                   Perfom CRUD to this section
                 </p>
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 flex-row items-center gap-x-5">
+                <div className="flex flex-row items-center mt-10 gap-x-5">
                   <MdEmail className="text-3xl" />
-                  <h1 className="xl:text-xl font-bold"> Emails Section</h1>
+                  <h1 className="font-bold xl:text-xl"> Emails Section</h1>
                 </div>
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Emails Section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="email1"
-                      className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Email1
                     </label>
@@ -344,7 +344,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="email2"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Email2
                     </label>
@@ -363,7 +363,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="email3"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Email3
                     </label>
@@ -381,18 +381,18 @@ function ContactUsSect() {
                   </div>
                 </div>
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 flex-row items-center gap-x-5">
+                <div className="flex flex-row items-center mt-10 gap-x-5">
                   <FaPhoneVolume className="text-xl" />
-                  <h1 className="xl:text-xl font-bold">
+                  <h1 className="font-bold xl:text-xl">
                     Phone Numbers Section
                   </h1>
                 </div>
-                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-5 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Phone Numbers Section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="phoneNumber1"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Phone Number1
                     </label>
@@ -411,7 +411,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="phoneNumber2"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Phone Number2
                     </label>
@@ -430,7 +430,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="phoneNumber3"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Phone Number3
                     </label>
@@ -449,7 +449,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="phoneNumber4"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Phone Number4
                     </label>
@@ -467,16 +467,16 @@ function ContactUsSect() {
                   </div>
                 </div>
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 items-center gap-x-5 flex-row">
+                <div className="flex flex-row items-center mt-10 gap-x-5">
                   <MdSocialDistance className="text-3xl" />
-                  <h1 className="xl:text-xl font-bold">Social Media Section</h1>
+                  <h1 className="font-bold xl:text-xl">Social Media Section</h1>
                 </div>
-                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-5 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Social Media Section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="instagram"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Instagram
                     </label>
@@ -495,7 +495,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="facebook"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Facebook
                     </label>
@@ -514,7 +514,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="linkedin"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Linkedin
                     </label>
@@ -533,7 +533,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="twitter"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Twitter
                     </label>
@@ -551,16 +551,16 @@ function ContactUsSect() {
                   </div>
                 </div>
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 flex-row items-center gap-x-5">
+                <div className="flex flex-row items-center mt-10 gap-x-5">
                   <FaAddressCard className="text-3xl" />
-                  <h1 className="xl:text-xl font-bold">Address Section</h1>
+                  <h1 className="font-bold xl:text-xl">Address Section</h1>
                 </div>
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Address section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="physicalAdress"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Pysical Address
                     </label>
@@ -579,7 +579,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="location"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Location
                     </label>
@@ -599,7 +599,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="postcode"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       PostalCode
                     </label>
@@ -617,15 +617,15 @@ function ContactUsSect() {
                   </div>
                 </div>
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 items-center gap-x-5 flex-row">
-                  <h1 className="xl:text-xl font-bold">Policies Section</h1>
+                <div className="flex flex-row items-center mt-10 gap-x-5">
+                  <h1 className="font-bold xl:text-xl">Policies Section</h1>
                 </div>
-                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-5 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Policy Section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="Policy5"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Policy1
                     </label>
@@ -644,7 +644,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="policy2"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       policy2
                     </label>
@@ -663,7 +663,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="policy3"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       policy3
                     </label>
@@ -682,7 +682,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="policy4"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       policy4
                     </label>
@@ -701,17 +701,17 @@ function ContactUsSect() {
                 </div>
                 {/* terms section */}
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
-                <div className="flex mt-10 items-center gap-x-5 flex-row">
-                  <h1 className="xl:text-xl font-bold">
+                <div className="flex flex-row items-center mt-10 gap-x-5">
+                  <h1 className="font-bold xl:text-xl">
                     Terms of Service Section
                   </h1>
                 </div>
-                <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 mt-5 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* Policy Section */}
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="term1"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       term1
                     </label>
@@ -730,7 +730,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="term2"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       term2
                     </label>
@@ -749,7 +749,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="term3"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       term3
                     </label>
@@ -768,7 +768,7 @@ function ContactUsSect() {
                   <div className="sm:col-span-3">
                     <label
                       htmlFor="term4"
-                      className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       term4
                     </label>
@@ -788,7 +788,7 @@ function ContactUsSect() {
                 <div className="mt-10 mb-5 border-b-2 border-slate-300"></div>
               </div>
             </div>
-            <div className="flex mt-10 flex-row gap-x-5 justify-end items-end">
+            <div className="flex flex-row items-end justify-end mt-10 gap-x-5">
               <motion.button
                 onClick={handleEdit}
                 whileHover={{ scale: 1.05 }}

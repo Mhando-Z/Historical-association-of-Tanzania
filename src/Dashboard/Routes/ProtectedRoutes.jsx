@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+// import { toast } from "react-toastify";
 
 const ProtectedRoute = ({ children }) => {
   const location = useLocation();
@@ -10,7 +11,6 @@ const ProtectedRoute = ({ children }) => {
     "MembersMgt",
     "Announcement",
     "AboutSect",
-    // "UserProfile",
     "PresoSect",
     "GallerySect",
     "StaffsSect",
@@ -25,7 +25,9 @@ const ProtectedRoute = ({ children }) => {
       user = jwtDecode(token);
     }
   } catch (error) {
+    // toast.error("No user token was found");
     console.error("Failed to decode token:", error);
+    // return <Navigate to="/Login/" replace />;
   }
 
   const isProtectedAdminRoute = protectedAdminRoutes.some((route) =>

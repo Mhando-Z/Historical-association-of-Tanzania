@@ -63,7 +63,7 @@ const Table = ({ data }) => {
             transition={{ duration: 1.5, type: "spring", ease: "easeOut" }}
             src={`http://127.0.0.1:8000/${item.image}`}
             alt={item.title || item.name}
-            className="size-24 object-cover rounded-xl w-full object-center"
+            className="object-cover object-center w-full size-24 rounded-xl"
           />
         </div>
       ),
@@ -79,11 +79,18 @@ const Table = ({ data }) => {
       renderCell: (item) => formatDate(item.dateIssued),
     },
     {
-      label: data[0]?.subtitle !== undefined ? "Subtitle" : "Position",
+      label:
+        data[0]?.subtitle !== undefined
+          ? "Subtitle"
+          : data[0]?.position !== undefined
+            ? "position"
+            : data[0]?.author !== undefined
+              ? "Author"
+              : "",
       renderCell: (item) => (
         <div className="flex flex-col">
           <div className="xl:text-lg w-[250px]">
-            {item?.subtitle || item.position}
+            {item?.subtitle || item.position || item.author}
           </div>
         </div>
       ),
@@ -91,16 +98,16 @@ const Table = ({ data }) => {
     {
       label: "Actions",
       renderCell: (item) => (
-        <div className="flex flex-row gap-x-3 items-center">
+        <div className="flex flex-row items-center gap-x-3">
           <Link
             onClick={() => handleClick(item.id)}
-            className="px-3 py-2 rounded-md text-white bg-blue-600"
+            className="px-3 py-2 text-white bg-blue-600 rounded-md"
           >
             <FaRegPenToSquare className="text-xl" />
           </Link>
           <Link
             onClick={() => handleDelete(item.id)}
-            className="px-3 py-2 rounded-md bg-red-600 text-white"
+            className="px-3 py-2 text-white bg-red-600 rounded-md"
           >
             <FaRegTrashCan className="text-xl" />
           </Link>
@@ -119,12 +126,12 @@ const Table = ({ data }) => {
         stiffness: 140,
         type: "spring",
       }}
-      className="mb-10 flex flex-col"
+      className="flex flex-col mb-10"
     >
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">Posted data</span>
       </h1>
-      <div className="px-3 xl:text-lg w-full flex justify-end">
+      <div className="flex justify-end w-full px-3 xl:text-lg">
         <label htmlFor="search">
           Search:&nbsp;
           <input

@@ -27,8 +27,8 @@ const PasswordResetRequest = () => {
 
   return (
     <div className="flex flex-col items-center relative justify-center min-h-screen bg-gradient-to-t from-[#b67a3d] via-transparent via-90% to-transparent">
-      <div className="bg-white relative p-8 rounded-3xl shadow-2xl w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-gray-900 text-center">
+      <div className="relative w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl">
+        <h2 className="text-2xl font-semibold text-center text-gray-900">
           Reset Password
         </h2>
         <form onSubmit={handleRequest} className="mt-6 space-y-6">
@@ -64,7 +64,7 @@ const PasswordResetRequest = () => {
           </div>
         </form>
         {loading ? (
-          <div className="flex absolute items-center justify-center top-0 rounded-3xl bg-opacity-25 right-0 left-0 bottom-0 bg-gray-800">
+          <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-gray-800 bg-opacity-25 rounded-3xl">
             <div className={`mt-5 h-20 items-center justify-center flex `}>
               <Dots color="green" size={35} speed={0.7} animating={true} />
             </div>
@@ -103,11 +103,12 @@ const PasswordResetConfirm = () => {
       return;
     }
     try {
-      await axiosInstance.post("hat-users/password_reset/confirm/", {
+      const { data } = await axiosInstance.post("hat-users/password_reset/", {
         uid,
         token,
         new_password: newPassword,
       });
+      console.log(data);
       toast.success("Password reset successfully.");
       navigate("/login/");
     } catch (error) {
@@ -117,8 +118,8 @@ const PasswordResetConfirm = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-gray-900 text-center">
+      <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-3xl">
+        <h2 className="text-2xl font-semibold text-center text-gray-900">
           Set New Password
         </h2>
         <form onSubmit={handleReset} className="mt-6 space-y-6">

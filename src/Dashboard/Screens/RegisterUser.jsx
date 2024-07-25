@@ -1,11 +1,11 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+// import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 export default function RegisterUser() {
   return (
     <form>
-      <div className="flex container mx-auto min-h-screen mt-10">
+      <div className="container flex min-h-screen mx-auto mt-10">
         <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
+          <div className="pb-12 border-b border-gray-900/10">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
               Personal Information
             </h2>
@@ -13,7 +13,7 @@ export default function RegisterUser() {
               Use a permanent address where you can receive mail.
             </p>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-3">
                 <label
                   htmlFor="first-name"
@@ -164,7 +164,7 @@ export default function RegisterUser() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-end gap-x-6">
+        <div className="flex items-center justify-end mt-6 gap-x-6">
           <button
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -173,7 +173,7 @@ export default function RegisterUser() {
           </button>
           <button
             type="submit"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Save
           </button>

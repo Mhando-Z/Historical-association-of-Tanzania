@@ -3,9 +3,6 @@ module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    // colors: {
-    //   brown: "#a97c50",
-    // },
     screens: {
       xs: "360px",
       sm: "480px",

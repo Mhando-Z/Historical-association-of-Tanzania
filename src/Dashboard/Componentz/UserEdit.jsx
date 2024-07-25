@@ -1,32 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "../../Context/axiosInstance";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import UserDetailsTable from "./UserDetailsTable";
 import UserTable from "./UserTable";
-import { IoPerson } from "react-icons/io5";
-import { RxCrossCircled } from "react-icons/rx";
-import moment from "moment";
-import UserContext from "../../Context/UserContext";
-import logo from "../../Assets/Images/3dlogo.png";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
-const formatDate = (dateString) => {
-  return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
-};
-
 const AdminUserManagement = () => {
-  const { userId } = useContext(UserContext);
-  const { setShow, show } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [notification, setNotification] = useState(false);
   const [Id, setUserId] = useState("");
 
-  const user = users?.filter((dt) => {
-    return dt.id === userId;
-  });
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -61,6 +46,7 @@ const AdminUserManagement = () => {
       const response = await axiosInstance.get("/hat-users/admin/users/");
       setUsers(response.data);
     } catch (error) {
+      console.log(error);
       console.error("Error fetching users:", error);
     }
   };
@@ -185,95 +171,35 @@ const AdminUserManagement = () => {
           ease: "easeOut",
           stiffness: 140,
         }}
-        className="shadow-xl relative"
+        className="shadow-2xl "
       >
         <UserTable data={users} />
-        {show ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0, y: -100 }}
-            animate={{ opacity: 1, scale: 1, y: 1 }}
-            transition={{ duration: 1, ease: "easeOut", type: "spring" }}
-            exit={{ x: -100, opacity: 0 }}
-            className="flex flex-col xl:h-[780px] lg:h-[900px]  absolute top-20 right-0 left-0 bottom-50 ring-1 ring-[#b67a3d] bg-slate-900 bg-opacity-25 shadow-xl rounded-xl mt-10"
-          >
-            <div
-              name="UserDetails"
-              className="flex gap-x-14 flex-col gap-y-6 lg:flex-row p-10"
-            >
-              <div className="size-20 flex-col bg-slate-50 shadow-xl ring-[#b67a3d] rounded-xl justify-center ring-2 items-center flex">
-                <IoPerson className="text-7xl " />
-              </div>
-              <div className="flex flex-col h-[140px] bg-slate-50 shadow-lg">
-                <table className="w-lg bg-slate-50 shadow-lg shadow-black">
-                  <tbody>
-                    <tr className="hover:bg-gray-200 cursor-pointer">
-                      <td className="py-2 px-4 border-b">Username</td>
-                      <td className="py-2 px-4 border-b">
-                        {user[0]?.username}
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-200 cursor-pointer">
-                      <td className="py-2 px-4 border-b">Email</td>
-                      <td className="py-2 px-4 border-b">{user[0]?.email}</td>
-                    </tr>
-                    <tr className="hover:bg-gray-200 cursor-pointer">
-                      <td className="py-2 px-4 border-b">Date Registerd</td>
-                      <td className="py-2 px-4 border-b">
-                        {formatDate(user[0]?.profile?.date_registered)}
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-200 cursor-pointer">
-                      <td className="py-2 px-4 border-b">Last Login</td>
-                      <td className="py-2 px-4 border-b">
-                        {formatDate(user[0]?.profile?.last_login)}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="shadow-xl bg-slate-50">
-                <UserDetailsTable user={user} />
-              </div>
-              <div
-                onClick={() => setShow(!show)}
-                className="absolute top-2 items-center flex justify-center bg-red-600 shadow-md ring-1 ring-[#b67a3d] size-10 right-2 rounded-full"
-              >
-                <RxCrossCircled className="text-4xl text-center text-white" />
-              </div>
-              <div className="absolute bottom-2 left-5 opacity-30">
-                <img src={logo} alt="3dHATLogo" className="h-28" />
-              </div>
-            </div>
-          </motion.div>
-        ) : (
-          ""
-        )}
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 90, scale: 0 }}
         animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
         transition={{ duration: 0.5, ease: "easeOut", type: "spring" }}
-        className="mt-14 py-2 bg-slate-100"
+        className="py-2 mt-14 bg-slate-100"
       >
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Admin User Management</span>
         </h1>
         <div className="flex flex-wrap">
-          <div className="w-full lg:w-1/2 p-2">
+          <div className="w-full p-2 lg:w-1/2">
             <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
               <span className="ml-2">Users List</span>
             </h1>
-            <ul className="bg-white relative shadow-lg rounded-lg p-4">
+            <ul className="relative p-4 bg-white rounded-lg shadow-lg">
               {users?.map((user) => (
                 <li
                   key={user.id}
-                  className="flex justify-between hover:bg-slate-100 items-center p-2 border-b"
+                  className="flex items-center justify-between p-2 border-b hover:bg-slate-100"
                 >
                   <span>{user.username}</span>
                   <div className="flex space-x-2">
                     <span className="mr-14">
                       {user.is_staff === true ? (
-                        <HiMiniCheckBadge className="text-blue-700 text-xl gap-x-10" />
+                        <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
                       ) : (
                         ""
                       )}
@@ -286,7 +212,7 @@ const AdminUserManagement = () => {
                         ease: "easeOut",
                         stiffness: 140,
                       }}
-                      className="bg-blue-600 rounded-3xl shadow-md text-white px-4 py-1"
+                      className="px-4 py-1 text-white bg-blue-600 shadow-md rounded-3xl"
                       onClick={() => handleSelectUser(user)}
                     >
                       Edit
@@ -299,7 +225,7 @@ const AdminUserManagement = () => {
                         ease: "easeOut",
                         stiffness: 140,
                       }}
-                      className="bg-red-600 text-white shadow-md px-3 py-1 rounded-3xl"
+                      className="px-3 py-1 text-white bg-red-600 shadow-md rounded-3xl"
                       onClick={() => deleteFunction(user.id)}
                     >
                       Delete
@@ -308,19 +234,29 @@ const AdminUserManagement = () => {
                 </li>
               ))}
               {notification ? (
-                <div className="absolute items-center p-20 justify-center bottom-0 top-0 right-0 left-0  w-full bg-black bg-opacity-15">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 1,
+                    ease: "easeInOut",
+                    type: "spring",
+                  }}
+                  className="absolute top-0 bottom-0 left-0 right-0 items-center justify-center w-full p-20 bg-black bg-opacity-15"
+                >
                   <div className="bg-white p-10 h-[220px] shadow-2xl rounded-xl">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
                       <ExclamationTriangleIcon
                         aria-hidden="true"
-                        className="h-6 w-6 text-red-600"
+                        className="w-6 h-6 text-red-600"
                       />
                     </div>
                     <p className="text-lg">
                       Are you sure you want to delete this User? note all data
                       will be permanently removed. This action cannot be undone.
                     </p>
-                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
                       <motion.button
                         initial={{ opacity: 0, y: 90, scale: 0 }}
                         animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
@@ -331,7 +267,7 @@ const AdminUserManagement = () => {
                         }}
                         onClick={deleteFunction}
                         type="button"
-                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                        className="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                       >
                         Delete
                       </motion.button>
@@ -346,13 +282,13 @@ const AdminUserManagement = () => {
                         type="button"
                         onClick={() => setNotification(false)}
                         data-autofocus
-                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                        className="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
                       >
                         Cancel
                       </motion.button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ) : (
                 ""
               )}
@@ -368,13 +304,13 @@ const AdminUserManagement = () => {
                 stiffness: 140,
                 type: "spring",
               }}
-              className="w-full lg:w-1/2 p-2"
+              className="w-full p-2 lg:w-1/2"
             >
               <h1 className="md:text-xl border-l-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
                 <span className="ml-2">Edit Users</span>
               </h1>
               <form
-                className="bg-white shadow-xl rounded-lg p-4"
+                className="p-4 bg-white rounded-lg shadow-xl"
                 onSubmit={handleSubmit}
               >
                 <div className="mb-4">
@@ -399,7 +335,7 @@ const AdminUserManagement = () => {
                     required
                   />
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     name="is_active"
@@ -409,7 +345,7 @@ const AdminUserManagement = () => {
                   />
                   <label className="text-gray-700">Active</label>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     name="is_staff"
@@ -552,7 +488,7 @@ const AdminUserManagement = () => {
                     className="w-full px-3 outline-none ring-1 shadow-md ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     name="profile.is_paid_membership"
@@ -562,7 +498,7 @@ const AdminUserManagement = () => {
                   />
                   <label className="text-gray-700">Paid Membership</label>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     name="profile.is_paid_conference"
@@ -572,7 +508,7 @@ const AdminUserManagement = () => {
                   />
                   <label className="text-gray-700">Paid Conference</label>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     type="checkbox"
                     name="profile.is_student"
@@ -582,7 +518,7 @@ const AdminUserManagement = () => {
                   />
                   <label className="text-gray-700">Student</label>
                 </div>
-                <div className="w-full flex bg-slate-100 shadow-xl py-3 justify-end">
+                <div className="flex justify-end w-full py-3 shadow-xl bg-slate-100">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.8 }}

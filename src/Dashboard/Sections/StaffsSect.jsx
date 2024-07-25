@@ -85,11 +85,11 @@ function StaffsSect() {
   };
 
   return (
-    <div className="px-10 flex flex-col mb-20 mt-24">
+    <div className="container flex flex-col mx-auto mt-24 mb-20">
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">Staff Section</span>
       </h1>
-      <div className="mt-10 bg-slate-100 shadow-xl mb-10">
+      <div className="mt-10 mb-10 shadow-xl bg-slate-100">
         <Table data={StaffsSect} />
       </div>
       <motion.div
@@ -106,14 +106,14 @@ function StaffsSect() {
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Add more staff members</span>
           <br />
-          <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
+          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
             To this section you can add new staff members
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
-          <div className="space-y-12 mt-5">
+          <div className="mt-5 space-y-12">
             <div className="pb-12">
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="name"
@@ -121,7 +121,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Name</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="text"
                       required
@@ -140,7 +140,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Position</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="text"
                       onChange={handleChange}
@@ -158,7 +158,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Email</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="email"
                       onChange={handleChange}
@@ -176,7 +176,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Phone Number</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="text"
                       onChange={handleChange}
@@ -194,7 +194,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Social Media</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="text"
                       onChange={handleChange}
@@ -213,7 +213,7 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Description</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <textarea
                       id="description"
                       onChange={handleChange}
@@ -223,12 +223,12 @@ function StaffsSect() {
                       defaultValue={""}
                     />
                   </div>
-                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
+                  <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
                     Number of words: {staffs?.description.length}
                   </p>
                 </div>
                 <div
-                  className="col-span-full shadow-lg border-dashed border-2 border-gray-300 relative"
+                  className="relative border-2 border-gray-300 border-dashed shadow-lg col-span-full"
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                 >
@@ -238,16 +238,16 @@ function StaffsSect() {
                   >
                     <span className="ml-2">Image</span>
                   </label>
-                  <div className="mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10">
+                  <div className="relative flex justify-center px-6 py-10 mt-4 border border-gray-900 border-dashed rounded-lg">
                     <div className="text-center">
                       <PhotoIcon
-                        className="mx-auto h-12 w-12 text-gray-300"
+                        className="w-12 h-12 mx-auto text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex flex-row gap-x-4 items-center text-sm leading-6 text-gray-600">
+                      <div className="flex flex-row items-center mt-4 text-sm leading-6 text-gray-600 gap-x-4">
                         <label
                           htmlFor="image"
-                          className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                          className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
@@ -295,7 +295,7 @@ function StaffsSect() {
               </div>
             </div>
           </div>
-          <div className="flex mb-3 px-4 flex-col justify-end items-end">
+          <div className="flex flex-col items-end justify-end px-4 mb-3">
             <motion.button
               onClick={handlePost}
               whileHover={{ scale: 1.05 }}

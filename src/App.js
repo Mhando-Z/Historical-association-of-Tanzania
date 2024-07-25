@@ -32,14 +32,19 @@ import MembersMgt from "./Dashboard/Sections/MembersMgt";
 import { ToastContainer } from "react-toastify";
 import CompanySect from "./Dashboard/Sections/CompanySect";
 import UserProfile from "./Dashboard/Componentz/UserProfile";
+import ConferenceSect from "./Dashboard/Sections/ConferenceSect";
 import {
   PasswordResetConfirm,
   PasswordResetRequest,
 } from "./Dashboard/Componentz/PasswordReset";
 import "react-toastify/dist/ReactToastify.css";
 import "react-activity/dist/library.css";
-import ConferenceSect from "./Dashboard/Sections/ConferenceSect";
+import UserHome from "./Dashboard/Users/Screens/UserHome";
+import Membership from "./Dashboard/Users/Screens/Membership";
+import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
+import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 
+// functional component Basic routing logic lies here
 function App() {
   const [users, setUser] = useState("");
   useEffect(() => {
@@ -50,7 +55,7 @@ function App() {
     } catch (error) {}
   }, []);
   return (
-    <div className="flex flex-col font-roboto justify-between min-h-screen overflow-x-hidden">
+    <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-roboto">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -81,12 +86,12 @@ function App() {
                 element={<PasswordResetRequest />}
               />
               <Route
-                path="Password-Reset/confirm/:uid/:token/"
+                // path="Password-Reset/confirm/:uid/:token/"
+                path="Password-Reset/confirm/"
                 element={<PasswordResetConfirm />}
               />
               {/* Logout Route */}
               <Route path="Logout/" element={<Logout />} />
-
               {/* PreventLoginRoute to restrict access to login for authenticated users */}
               <Route
                 path="Login/"
@@ -105,6 +110,7 @@ function App() {
                   </ProtectedRoute>
                 }
               >
+                {/* Administrators Routes */}
                 <Route index element={<DashHome />} />
                 <Route path="heroSect/" element={<HeroSect />} />
                 <Route path="Partners/" element={<CompanySect />} />
@@ -121,6 +127,11 @@ function App() {
                   path="Research&publications/"
                   element={<Researchpublications />}
                 />
+                {/* Normal Users Routes */}
+                <Route path="UserHome/" element={<UserHome />} />
+                <Route path="Membership/" element={<Membership />} />
+                <Route path="UserConference/" element={<UserConfernce />} />
+                <Route path="MyPayments/" element={<MyPayments />} />
               </Route>
             </Routes>
             <ScrollToTopButton />

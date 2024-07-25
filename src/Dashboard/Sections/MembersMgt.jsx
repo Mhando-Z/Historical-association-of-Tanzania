@@ -10,13 +10,13 @@ function MembersMgt() {
   const { users } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen mt-16 mb-20 flex flex-col px-6 py-9 overflow-x-hidden relative">
+    <div className="container relative flex flex-col min-h-screen mx-auto mt-16 mb-20 overflow-x-hidden py-9">
       <div className="flex flex-col w-full">
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3   border-r-8  border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">User Management</span>
         </h1>
 
-        <div className="w-full flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col items-center justify-between w-full md:flex-row">
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 1, opacity: 1 }}

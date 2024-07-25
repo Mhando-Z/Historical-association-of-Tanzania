@@ -84,11 +84,11 @@ function AnnouncementsSect() {
   };
 
   return (
-    <div className="px-10 flex flex-col mb-20 mt-24">
+    <div className="container flex flex-col mx-auto mt-24 mb-20">
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">AboutUs Section</span>
       </h1>
-      <div className="mt-10 bg-slate-100 shadow-xl mb-10">
+      <div className="mt-10 mb-10 shadow-xl bg-slate-100">
         <Table data={AnnounceSect} />
       </div>
       <motion.div
@@ -105,14 +105,14 @@ function AnnouncementsSect() {
         <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Add/Post New Announcements</span>
           <br />
-          <span className="ml-2 mt-1 text-sm leading-6 text-gray-600">
+          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
             To this section you can post new announcements
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
-          <div className="space-y-12 mt-5">
+          <div className="mt-5 space-y-12">
             <div className="pb-12">
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="title"
@@ -120,7 +120,7 @@ function AnnouncementsSect() {
                   >
                     <span className="ml-2">Title</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <input
                       type="text"
                       name="title"
@@ -145,7 +145,7 @@ function AnnouncementsSect() {
                   >
                     <span className="ml-2">Description</span>
                   </label>
-                  <div className="mt-4 px-4">
+                  <div className="px-4 mt-4">
                     <textarea
                       id="description"
                       onChange={(e) =>
@@ -160,12 +160,12 @@ function AnnouncementsSect() {
                       defaultValue={""}
                     />
                   </div>
-                  <p className="mt-3 px-4 text-sm leading-6 text-gray-600">
+                  <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
                     Number of words {AnnounceData?.description.length}
                   </p>
                 </div>
                 {/* image1 */}
-                <div className="col-span-full shadow-lg">
+                <div className="shadow-lg col-span-full">
                   <label
                     htmlFor="cover-photo1"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
@@ -181,10 +181,10 @@ function AnnouncementsSect() {
                     <input {...getInputProps1()} />
                     <div className="text-center">
                       <PhotoIcon
-                        className="mx-auto h-12 w-12 text-gray-300"
+                        className="w-12 h-12 mx-auto text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <div className="flex mt-4 text-sm leading-6 text-gray-600">
                         <p className="text-xs leading-5 text-gray-600">
                           Drag & drop or click to upload
                         </p>
@@ -220,7 +220,7 @@ function AnnouncementsSect() {
                   </div>
                 </div>
                 {/* image2 */}
-                <div className="col-span-full shadow-lg">
+                <div className="shadow-lg col-span-full">
                   <label
                     htmlFor="cover-photo2"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
@@ -236,10 +236,10 @@ function AnnouncementsSect() {
                     <input {...getInputProps2()} />
                     <div className="text-center">
                       <PhotoIcon
-                        className="mx-auto h-12 w-12 text-gray-300"
+                        className="w-12 h-12 mx-auto text-gray-300"
                         aria-hidden="true"
                       />
-                      <div className="mt-4 flex flex-row items-center gap-x-4 text-sm leading-6 text-gray-600">
+                      <div className="flex flex-row items-center mt-4 text-sm leading-6 text-gray-600 gap-x-4">
                         <p className="text-xs leading-5 text-gray-600">
                           Drag & drop or click to upload
                         </p>
@@ -277,7 +277,7 @@ function AnnouncementsSect() {
               </div>
             </div>
           </div>
-          <div className="flex mb-3 px-4 flex-col justify-end items-end">
+          <div className="flex flex-col items-end justify-end px-4 mb-3">
             <motion.button
               onClick={handlePost}
               whileHover={{ scale: 1.05 }}

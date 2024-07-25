@@ -140,6 +140,7 @@ export function HomePageDataProvider({ children }) {
         TermsSect,
         companies,
         ResourcesSect,
+        setConference,
         setCompany,
         setResources,
         setTermsService,

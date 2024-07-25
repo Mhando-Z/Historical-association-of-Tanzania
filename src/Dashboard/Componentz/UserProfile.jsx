@@ -1,232 +1,152 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
-import { FaEdit, FaSave, FaCamera, FaUser } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Dots } from "react-activity";
 import axiosInstance from "../../Context/axiosInstance";
+import ProfilePictures from "./ProfilePicture";
+import ProfileOverview from "./ProfileOverview";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import UserContext from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
+import UserEditDrawer from "../Users/Components/UserEditDrawer";
 
 const UserProfile = () => {
-  const [userData, setUserData] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
+  const { userData } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  const [notification, setNotification] = useState(false);
+  // custom functions hooks
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axiosInstance.get("hat-users/user/profile/");
-        setUserData(response.data);
-      } catch (error) {
-        console.error("Error fetching user data", error);
-      }
-    };
-    fetchUserData();
-  }, []);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+  const handleDeleteUserAccount = () => {
+    setNotification(true);
   };
 
-  const handleProfileInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      profile: { ...userData.profile, [name]: value },
-    });
+  const handleDelete = () => {
+    handleDeleteAccount();
+  };
+  // handle profileEdit
+  const handleEdit = () => {
+    setOpen(!open);
   };
 
-  const handleProfilePictureChange = (e) => {
-    setProfilePicture(e.target.files[0]);
-  };
-
-  const handleSave = async () => {
-    const formData = new FormData();
-    for (const key in userData) {
-      if (key === "profile") {
-        for (const profileKey in userData.profile) {
-          formData.append(
-            `profile.${profileKey}`,
-            userData.profile[profileKey]
-          );
-        }
-      } else {
-        formData.append(key, userData[key]);
-      }
-    }
-    if (profilePicture) {
-      formData.append("profile_picture", profilePicture);
-    }
-
+  const handleDeleteAccount = async () => {
     try {
-      const response = await axiosInstance.put(
-        "/user/profile/update/",
-        formData
-      );
-      setUserData(response.data);
-      setIsEditing(false);
-      toast.success("Profile saved successfully");
-    } catch (error) {
-      console.error("Error saving user data", error);
-      toast.error("Failed to save profile");
-    }
-  };
-
-  const handlePasswordChange = async () => {
-    try {
-      await axios.post("/user/profile/change-password/", {
-        new_password: newPassword,
+      await axiosInstance.delete("hat-users/delete-account/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
-      toast.success("Password changed successfully");
+      // remove the invalid token then relocate user to login page
+      localStorage.removeItem("token");
+      navigate("/Login/", { replace: true });
+      // notification
+      toast.success("Account deleted successfully");
     } catch (error) {
-      console.error("Error changing password", error);
-      toast.error("Failed to change password");
+      toast.error("Error deleting account");
     }
   };
 
-  if (!userData) return <div>Loading...</div>;
-
+  if (!userData)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen ">
+        <Dots color="#b67a3d" size={35} speed={0.7} animating={true} />
+      </div>
+    );
   return (
-    <div className="max-w-5xl mt-10 mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold">User Profile</h2>
-          {isEditing ? (
-            <button
-              onClick={handleSave}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 flex items-center"
+    <div className="flex flex-col min-h-screen p-10 mt-10">
+      <div className="flex flex-col justify-between w-full gap-y-10 md:flex-row gap-x-10">
+        <div>
+          <ProfilePictures data={userData} />
+        </div>
+        <div className="relative flex flex-grow">
+          <ProfileOverview data={userData} />
+          {notification ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
+              className="absolute top-0 bottom-0 left-0 right-0 items-center justify-center w-full p-20 bg-black bg-opacity-15"
             >
-              <FaSave className="mr-2" /> Save
-            </button>
+              <div className="bg-white p-10 h-[220px] shadow-2xl rounded-xl">
+                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                  <ExclamationTriangleIcon
+                    aria-hidden="true"
+                    className="w-6 h-6 text-red-600"
+                  />
+                </div>
+                <p className="text-lg">
+                  Are you sure you want to delete this Account? note all data
+                  will be permanently removed. This action cannot be undone.
+                </p>
+                <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
+                  <motion.button
+                    initial={{ opacity: 0, y: 90, scale: 0 }}
+                    animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: "easeOut",
+                      type: "spring",
+                    }}
+                    type="button"
+                    onClick={handleDelete}
+                    className="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                  >
+                    Delete
+                  </motion.button>
+                  <motion.button
+                    initial={{ opacity: 0, y: 90, scale: 0 }}
+                    animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: "easeOut",
+                      type: "spring",
+                    }}
+                    type="button"
+                    onClick={() => setNotification(false)}
+                    data-autofocus
+                    className="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                  >
+                    Cancel
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
           ) : (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 flex items-center"
-            >
-              <FaEdit className="mr-2" /> Edit
-            </button>
+            ""
           )}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="flex items-center">
-            <div className="mr-4">
-              {userData.profile.profile_picture ? (
-                <img
-                  src={userData.profile.profile_picture}
-                  alt="Profile"
-                  className="w-24 h-24 rounded-full"
-                />
-              ) : (
-                <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
-                  <FaUser className="text-4xl text-gray-500" />
-                </div>
-              )}
-              {isEditing && (
-                <div className="flex items-center mt-2">
-                  <input type="file" onChange={handleProfilePictureChange} />
-                  <FaCamera className="ml-2 text-xl text-gray-500" />
-                </div>
-              )}
-            </div>
-            <div>
-              <div className="mb-2">
-                <label className="block text-sm font-medium">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={userData.username}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={userData.email}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4">User Details Overview</h3>
-            {[
-              { label: "Full Name", name: "full_name", type: "text" },
-              { label: "Reviews", name: "reviews", type: "text" },
-              { label: "Is Student", name: "is_student", type: "checkbox" },
-              { label: "Student ID", name: "student_id", type: "text" },
-              {
-                label: "Course of Study",
-                name: "course_of_study",
-                type: "text",
-              },
-              { label: "Institution", name: "institution", type: "text" },
-              { label: "Branch", name: "branch", type: "text" },
-              { label: "Title", name: "title", type: "text" },
-              { label: "Phone Number", name: "phone_number", type: "text" },
-              { label: "Nationality", name: "nationality", type: "text" },
-              {
-                label: "Last Login",
-                name: "last_login",
-                type: "text",
-                readOnly: true,
-              },
-              { label: "Address", name: "address", type: "text" },
-              { label: "Gender", name: "gender", type: "text" },
-              { label: "College", name: "college", type: "text" },
-              {
-                label: "Date Registered",
-                name: "date_registered",
-                type: "text",
-                readOnly: true,
-              },
-            ].map((field, index) => (
-              <div key={index} className="mb-2">
-                <label className="block text-sm font-medium">
-                  {field.label}
-                </label>
-                <input
-                  type={field.type}
-                  name={field.name}
-                  value={userData.profile[field.name]}
-                  onChange={handleProfileInputChange}
-                  disabled={!isEditing || field.readOnly}
-                  className="w-full px-4 py-2 border rounded-md"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-col gap-y-3">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{ type: "spring", ease: "easeOut" }}
+            onClick={handleEdit}
+            className="py-2 border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
+          >
+            <FaEdit className="mr-2" /> Edit Acc
+          </motion.button>
+          <motion.button
+            onClick={handleDeleteUserAccount}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{ type: "spring", ease: "easeOut" }}
+            className="flex flex-row items-center justify-center px-5 py-2 text-white bg-red-600 border-none rounded-3xl"
+          >
+            <FaTrash className="mr-2" /> Account
+          </motion.button>
         </div>
-        {isEditing && (
-          <div className="mt-6">
-            <h3 className="text-xl font-bold">Change Password</h3>
-            <input
-              type="password"
-              name="new_password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md mt-2"
-              placeholder="New Password"
-            />
-            <button
-              onClick={handlePasswordChange}
-              className="px-4 py-2 mt-4 bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-              Change Password
-            </button>
-          </div>
-        )}
-      </motion.div>
+      </div>
+      <div className="max-w-6xl p-6 mx-auto mt-20 bg-white rounded-lg shadow-lg ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <UserEditDrawer open={open} setOpen={setOpen} />
+        </motion.div>
+      </div>
     </div>
   );
 };

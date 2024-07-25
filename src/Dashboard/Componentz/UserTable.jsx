@@ -5,6 +5,7 @@ import { GiCheckMark } from "react-icons/gi";
 import UserContext from "../../Context/UserContext";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import UserDetailsPreview from "./UserDetailsPreview";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -15,7 +16,8 @@ const formatDate = (dateString) => {
 const UserTable = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const { setId } = useContext(UserContext);
-  const { setShow, show } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+
   const location = useLocation();
 
   const handleSearch = (event) => {
@@ -29,9 +31,10 @@ const UserTable = ({ data }) => {
         value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-  const handleUserId = (id) => {
-    setId(id);
-    setShow(!show);
+
+  const handleProfieView = (UserId) => {
+    setOpen(!open);
+    setId(UserId);
   };
 
   return (
@@ -49,29 +52,28 @@ const UserTable = ({ data }) => {
         />
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full shadow-2xl bg-slate-100 border border-gray-300">
+        <table className="min-w-full overflow-y-auto border border-gray-300 shadow-2xl bg-slate-100">
           <thead>
             <tr className="bg-slate-200">
-              <th className="py-2 px-4 text-left border-b">ID</th>
-              <th className="py-2 px-4 text-left border-b">Name</th>
-              <th className="py-2 px-4 text-left border-b">Email</th>
-              <th className="py-2 px-4 text-left border-b">isStudent</th>
-              <th className="py-2 px-4 text-left border-b">isMember</th>
-              <th className="py-2 px-4 text-left border-b">PaidConference</th>
-              <th className="py-2 px-4 text-left border-b">date Registerd</th>
+              <th className="px-4 py-2 text-left border-b">ID</th>
+              <th className="px-4 py-2 text-left border-b">Name</th>
+              <th className="px-4 py-2 text-left border-b">Email</th>
+              <th className="px-4 py-2 text-left border-b">isStudent</th>
+              <th className="px-4 py-2 text-left border-b">isMember</th>
+              <th className="px-4 py-2 text-left border-b">PaidConference</th>
+              <th className="px-4 py-2 text-left border-b">date Registerd</th>
             </tr>
           </thead>
           <tbody>
             {filteredData?.map((item) => (
               <motion.tr
-                onClick={() => handleUserId(item.id)}
                 key={item.id}
-                className="hover:bg-gray-200 cursor-pointer"
+                className="cursor-pointer hover:bg-gray-200"
               >
-                <td className="py-2 px-4 border-b">{item.id}</td>
-                <td className="py-2 px-4 border-b">{item.username}</td>
-                <td className="py-2 px-4 border-b">{item.email}</td>
-                <td className="py-2  px-4 border-b">
+                <td className="px-4 py-2 border-b">{item.id}</td>
+                <td className="px-4 py-2 border-b">{item.username}</td>
+                <td className="px-4 py-2 border-b">{item.email}</td>
+                <td className="px-4 py-2 border-b">
                   {item.profile.is_student ? (
                     <>
                       <GiCheckMark className="text-green-600" />
@@ -82,7 +84,7 @@ const UserTable = ({ data }) => {
                     </>
                   )}
                 </td>
-                <td className="py-2  px-4 border-b">
+                <td className="px-4 py-2 border-b">
                   {item.profile.is_paid_membership ? (
                     <>
                       <GiCheckMark className="text-green-600" />
@@ -93,7 +95,7 @@ const UserTable = ({ data }) => {
                     </>
                   )}
                 </td>
-                <td className="py-2 px-4 border-b">
+                <td className="px-4 py-2 border-b">
                   {item.profile.is_paid_conference ? (
                     <>
                       <GiCheckMark className="text-green-600" />
@@ -104,13 +106,14 @@ const UserTable = ({ data }) => {
                     </>
                   )}
                 </td>
-                <td className="py-2 px-4 border-b">
+                <td className="px-4 py-2 border-b">
                   {formatDate(item.profile.date_registered)}
                 </td>
-                <td className="py-2 px-4 border-b">
+                <td className="px-4 py-2 border-b">
                   {location.pathname === "/Dashboard/MembersMgt/" ? (
                     <>
                       <motion.button
+                        onClick={() => handleProfieView(item.id)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.8 }}
                         transition={{ type: "spring", ease: "easeOut" }}
@@ -128,6 +131,7 @@ const UserTable = ({ data }) => {
           </tbody>
         </table>
       </div>
+      <UserDetailsPreview open={open} setOpen={setOpen} />
     </div>
   );
 };
