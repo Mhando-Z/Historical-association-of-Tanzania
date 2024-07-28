@@ -160,19 +160,6 @@ export function Events() {
           <MenuItem>
             {({ focus }) => (
               <NavLink
-              // className={({ isActive }) =>
-              //   isActive
-              //     ? "bg-[#b67a3d] text-white block px-4 py-2 text-xl"
-              //     : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
-              // }
-              >
-                Conference
-              </NavLink>
-            )}
-          </MenuItem>
-          <MenuItem>
-            {({ focus }) => (
-              <NavLink
                 to={"Announcements/"}
                 className={({ isActive }) =>
                   isActive
