@@ -15,11 +15,13 @@ function DashNav() {
   const [show, setshow] = useState(false);
   const [show1, setshow1] = useState(false);
   const { open, setOpen } = useContext(UserContext);
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setUserData(null);
     navigate("/Login/", { replace: true });
   };
 

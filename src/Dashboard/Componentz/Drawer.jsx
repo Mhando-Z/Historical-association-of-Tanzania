@@ -415,7 +415,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
   };
 
   return (
-    <Dialog open={open} onClose={setOpen} className="relative  z-10">
+    <Dialog open={open} onClose={setOpen} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
@@ -425,10 +425,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", type: "spring" }}
-        className="fixed inset-0  overflow-hidden"
+        className="fixed inset-0 overflow-hidden"
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+          <div className="fixed inset-y-0 right-0 flex max-w-full pl-10 pointer-events-none">
             <DialogPanel
               transition
               className="pointer-events-auto relative w-screen max-w-3xl transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
@@ -438,40 +438,40 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
-                    className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                    className="relative text-gray-300 rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                   >
                     <span className="absolute -inset-2.5" />
                     <span className="sr-only">Close panel</span>
-                    <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                    <XMarkIcon aria-hidden="true" className="w-6 h-6" />
                   </button>
                 </div>
               </TransitionChild>
-              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+              <div className="flex flex-col h-full py-6 overflow-y-scroll bg-white shadow-xl">
                 <div className="px-4 sm:px-6">
                   <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
                     Panel title
                   </DialogTitle>
                 </div>
-                <div className="relative mt-6 flex-1 px-2">
+                <div className="relative flex-1 px-2 mt-6">
                   {/* "/Dashboard/heroSect/" */}
                   {locations?.pathname === "/Dashboard/heroSect/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
+                              <h2 className="text-base font-semibold leading-7 text-gray-900 xl:text-xl">
                                 HeroSection Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -490,7 +490,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="subtitle"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Subtitle
                                   </label>
@@ -510,7 +510,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="about"
-                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -535,7 +535,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}
@@ -556,22 +556,22 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {locations?.pathname ===
                   "/Dashboard/Research&publications/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
+                              <h2 className="text-base font-semibold leading-7 text-gray-900 xl:text-xl">
                                 Resources Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perform CRUD operations in this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -590,7 +590,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="subtitle"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Subtitle
                                   </label>
@@ -609,7 +609,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="author"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Author
                                   </label>
@@ -628,7 +628,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="video_url"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Video URL
                                   </label>
@@ -647,7 +647,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-6">
                                   <label
                                     htmlFor="references"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     References
                                   </label>
@@ -665,7 +665,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="about"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -690,7 +690,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={() => updateResource(data[0]?.id)}
                               whileHover={{ scale: 1.05 }}
@@ -710,22 +710,22 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* About HAT section */}
                   {locations?.pathname === "/Dashboard/AboutSect/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-xl font-semibold leading-7 text-gray-900">
+                              <h2 className="text-base font-semibold leading-7 text-gray-900 xl:text-xl">
                                 AboutUS Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -744,7 +744,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="subtitle"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Subtitle
                                   </label>
@@ -764,7 +764,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="about"
-                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -789,7 +789,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}
@@ -809,22 +809,22 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* President section */}
                   {locations?.pathname === "/Dashboard/PresoSect/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                              <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                                 President Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -843,7 +843,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="subtitle"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Subtitle
                                   </label>
@@ -862,7 +862,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="description"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -892,7 +892,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}
@@ -912,22 +912,22 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* Announcement section */}
                   {locations?.pathname === "/Dashboard/Announcement/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                              <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                                 Announcement Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -946,7 +946,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="description"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -976,7 +976,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}
@@ -996,21 +996,21 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* Company section */}
                   {locations?.pathname === "/Dashboard/Partners/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                              <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                                 Company Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -1022,7 +1022,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       name="title"
                                       id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -1036,7 +1036,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}
@@ -1056,21 +1056,21 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* Gallery section */}
                   {locations?.pathname === "/Dashboard/GallerySect/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                              <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                                 Gallery Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="title"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Title
                                   </label>
@@ -1082,7 +1082,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       name="title"
                                       id="title"
                                       autoComplete="given-name"
-                                      className="block w-full rounded-2xl border-0 py-2 px-2 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
@@ -1096,7 +1096,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={() => setOpen(false)}
                               whileHover={{ scale: 1.05 }}
@@ -1116,22 +1116,22 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   {/* Staffs section */}
                   {locations?.pathname === "/Dashboard/StaffsSect/" ? (
                     <div className="flex flex-col">
-                      <div className="bg-slate-100 p-10 rounded-3xl">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
                         <form onSubmit={handleSubmit}>
-                          <div className="space-y-12 mt-5">
+                          <div className="mt-5 space-y-12">
                             <div className="pb-12">
-                              <h2 className="text-base xl:text-2xl font-bold leading-7 text-gray-900">
+                              <h2 className="text-base font-bold leading-7 text-gray-900 xl:text-2xl">
                                 Staffs Section
                               </h2>
                               <p className="mt-1 text-sm leading-6 text-gray-600">
                                 Perfom CRUD to this section
                               </p>
 
-                              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="name"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Name
                                   </label>
@@ -1150,7 +1150,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="position"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Position
                                   </label>
@@ -1169,7 +1169,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="contact1"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Email
                                   </label>
@@ -1188,7 +1188,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="contact2"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Phone Number
                                   </label>
@@ -1207,7 +1207,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="sm:col-span-3">
                                   <label
                                     htmlFor="contact3"
-                                    className="block xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Social Media
                                   </label>
@@ -1227,7 +1227,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="description"
-                                    className="block  xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
                                     Description
                                   </label>
@@ -1252,7 +1252,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                               </div>
                             </div>
                           </div>
-                          <div className="flex flex-col justify-end items-end">
+                          <div className="flex flex-col items-end justify-end">
                             <motion.button
                               onClick={handleUpdate}
                               whileHover={{ scale: 1.05 }}

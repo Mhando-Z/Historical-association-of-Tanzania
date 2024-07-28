@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Dialogue from "./Dialog";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function ImageList({ data }) {
   const [value, setValue] = useState(null);
@@ -16,7 +17,7 @@ export default function ImageList({ data }) {
     setOpen(!open);
   };
   return (
-    <div className="bg-white relative">
+    <div className="relative bg-white">
       <div className="">
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {data?.slice(0, count).map((product, index) => (
@@ -25,17 +26,42 @@ export default function ImageList({ data }) {
               key={product.id}
               className="group"
             >
-              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-3xl bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src={`http://127.0.0.1:8000/${product.image}`}
-                  alt={product.name}
-                  loading="lazy"
-                  className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
-                />
-              </div>
-              <h3 className="mt-4 text-2xl font-bold text-center text-gray-700">
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 1,
+                  type: "spring",
+                  ease: "easeOut",
+                  delay: 0.1 * index,
+                }}
+                className="w-full overflow-hidden bg-gray-200 aspect-h-1 aspect-w-1 rounded-3xl xl:aspect-h-8 xl:aspect-w-7"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    exit={{ opacity: 0, x: "-200vw" }}
+                    src={`http://127.0.0.1:8000/${product.image}`}
+                    alt={product.name}
+                    loading="lazy"
+                    className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
+                  />
+                </AnimatePresence>
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 1.1,
+                  type: "spring",
+                  ease: "easeOut",
+                  delay: 0.1 * index,
+                }}
+                className="mt-4 text-xl font-bold text-center text-gray-700"
+              >
                 {product.name}
-              </h3>
+              </motion.h3>
             </Link>
           ))}
         </div>

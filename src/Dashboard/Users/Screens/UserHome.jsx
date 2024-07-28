@@ -21,7 +21,7 @@ function UserHome() {
     );
 
   return (
-    <div className="container flex flex-col min-h-screen mx-auto mt-10 bg-gray-200">
+    <div className="container flex flex-col min-h-screen mx-auto mt-10">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: [-400, 400, 0] }}

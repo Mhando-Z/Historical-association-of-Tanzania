@@ -1,24 +1,28 @@
 import { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
+import { motion } from "framer-motion";
 
 export default function Partners() {
   const { companies } = useContext(HomePageContext);
   return (
     <div className="mt-20 mb-20">
-      <div className="flex container mx-auto flex-col">
-        <h2 className="xl:text-6xl md:text-5xl text-4xl mb-12 font-bold leading-8 text-[#b67a3d]">
+      <div className="container flex flex-col mx-auto">
+        <h2 className="xl:text-6xl   text-4xl mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
-        <div className="mt-10 grid relative  grid-cols-4 items-center justify-center gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <div className="relative grid items-center justify-center grid-cols-4 mt-10 gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
           {companies?.map((dt) => {
             return (
-              <div
+              <motion.div
+                initial={{ opacity: 0, scale: 0, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1.5, type: "spring" }}
                 key={dt.id}
-                className="flex flex-col rounded-lg shadow-xl group xl:p-10 lg:p-5 bg-slate-100 relative items-center justify-center"
+                className="relative flex flex-col items-center justify-center rounded-lg shadow-xl group xl:p-10 lg:p-5 bg-slate-100"
               >
                 <img
-                  className="max-w-screen lg:h-36 h-auto object-contain group-hover:scale-75 transition-all duration-500 ease-in"
+                  className="object-contain h-auto transition-all duration-500 ease-in max-w-screen lg:h-36 group-hover:scale-75"
                   src={`http://127.0.0.1:8000/${dt?.image}`}
                   alt={dt.title}
                 />
@@ -26,11 +30,11 @@ export default function Partners() {
                 <h1 className="font-black uppercase text-white transition-all ease-out xl:text-xl group text-center hidden max-w-[200px] group-hover:flex absolute bottom-4 mt-2">
                   {dt?.title}
                 </h1>
-              </div>
+              </motion.div>
             );
           })}
           {companies?.length === 0 ? (
-            <div className="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center ">
+            <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center ">
               <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
             </div>
           ) : (

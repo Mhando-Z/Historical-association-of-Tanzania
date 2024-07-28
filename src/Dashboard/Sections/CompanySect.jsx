@@ -11,7 +11,7 @@ function CompanySect() {
   const { companies, setCompany } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [company, setData] = useState({
-    name: "",
+    title: "",
     image: null,
   });
 
@@ -36,7 +36,7 @@ function CompanySect() {
   // handle synchronous functions
   async function postCompanyData() {
     const formData = new FormData();
-    formData.append("name", company.name);
+    formData.append("title", company.title);
     formData.append("image", company.image);
 
     try {
@@ -56,7 +56,7 @@ function CompanySect() {
 
   // handlePost
   const handlePost = () => {
-    if (company.name !== "" && company.image !== null) {
+    if (company.title !== "" && company.image !== null) {
       postCompanyData();
     } else {
       toast.error("Fill all sections");
@@ -119,13 +119,13 @@ function CompanySect() {
                     htmlFor="name"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">Name</span>
+                    <span className="ml-2">Title</span>
                   </label>
                   <div className="px-4 mt-4">
                     <input
                       type="text"
                       onChange={handleChange}
-                      name="name"
+                      name="title"
                       id="name"
                       required
                       autoComplete="given-name"

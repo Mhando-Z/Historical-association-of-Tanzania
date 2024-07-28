@@ -6,7 +6,6 @@ import UserContext from "../../../Context/UserContext";
 import { Dots } from "react-activity";
 // import Joi from "joi";
 import { motion } from "framer-motion";
-
 import {
   PDFDownloadLink,
   Document,
@@ -17,6 +16,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { useNavigate } from "react-router-dom";
+// import Payment from "../Components/Payments";
 
 const Membership = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -113,7 +113,6 @@ const Membership = () => {
       navigate("/Dashboard/UserProfile/");
       toast.success("Profile updated successfully");
     } catch (error) {
-      console.log(error.response);
       toast.error("Error updating profile");
     }
   };
@@ -423,6 +422,14 @@ const Membership = () => {
                     onChange={handleChange}
                     className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                   />
+                  <input
+                    type="text"
+                    name="college"
+                    placeholder="college"
+                    value={formData.profile.college}
+                    onChange={handleChange}
+                    className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  />
                 </>
               )}
             </div>
@@ -449,6 +456,41 @@ const Membership = () => {
           </div>
         );
       case 6:
+        return (
+          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+            {/* <Payment /> */}
+            <div>
+              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
+                Payments Section
+              </h2>
+              <p className="text-sm text-center md:text-start sm:text-lg">
+                Please complete your registration by contributing a small fee.
+              </p>
+            </div>
+
+            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
+                onClick={handleBack}
+              >
+                Back
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
+                onClick={handleNext}
+              >
+                Next
+              </motion.button>
+            </div>
+          </div>
+        );
+      case 7:
         return (
           <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
             <div>

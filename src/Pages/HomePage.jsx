@@ -9,10 +9,11 @@ import PromoSect from "../Components/PromoSection";
 import CallForAction from "../Components/CallForAction";
 import Countdown from "../Components/TimeRemainingStats";
 import Partners from "../Components/Partners";
+import Swipper from "./Swipper/Swipper";
 
 function HomePage() {
   return (
-    <div className="flex flex-col justify-between font-roboto overflow-x-hidden">
+    <div className="flex flex-col justify-between overflow-x-hidden font-roboto">
       {/* herosection */}
       <HeroSection />
       {/* president Speech */}
@@ -28,6 +29,9 @@ function HomePage() {
       <Staffs />
       <div className="mt-16"></div>
       <FAQSection />
+      <div className="mt-32 "></div>
+      <Swipper />
+      <div className="mt-32"></div>
       <ContactUs />
       <Partners />
     </div>

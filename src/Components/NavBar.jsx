@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import UserContext from "../Context/UserContext";
+import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
+import { motion } from "framer-motion";
 
 function NavBar() {
   const location = useLocation();
+  const { userData } = useContext(UserContext);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -26,65 +30,108 @@ function NavBar() {
         location.pathname === "/Register/" ||
         location.pathname === "/President/" ||
         location.pathname === "/Research/"
-          ? "bg-white py-3 fixed top-0 left-0 w-full z-50"
+          ? " py-3 fixed top-0 left-0 w-full z-50"
           : "hidden"
       }`}
     >
-      <div className="md:px-10 px-1">
-        <div className="flex container mx-auto flex-row justify-between items-center gap-x-6 w-full ">
+      <div className="px-1 md:px-10">
+        <div className="container flex flex-row items-center justify-between w-full mx-auto gap-x-6 ">
           {/* logo section */}
-          <NavLink to={"Dashboard/"}>
+
+          <NavLink to={"/"}>
             <img
               src={logo}
               alt="Historical association of TTanzania Logo"
               title="HAT Logo"
-              className="xl:h-9 md:h-9 h-8"
+              className="h-5 xl:h-9 md:h-7"
             />
           </NavLink>
           {/* Pages Links */}
-          <div className="flex-row items-center justify-between hidden md:flex gap-x-10">
+          <div className="flex-row items-center justify-center flex-grow hidden py-2 bg-white rounded-3xl md:flex gap-x-10">
             <NavLink
               to={"/"}
-              className={({ isActive }) => (isActive ? "" : "")}
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+              }
             >
-              <h1 className=" xl:text-xl text-lg text-black">Home</h1>
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="text-base xl:text-lg"
+              >
+                Home
+              </motion.h1>
             </NavLink>
+
             <NavLink
               onClick={scrollToTop}
               to={"AboutUs/"}
-              className={({ isActive }) => (isActive ? "" : "")}
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+              }
             >
-              <h1 className=" xl:text-xl text-lg  text-black">About-Us</h1>
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="text-base xl:text-lg"
+              >
+                About-Us
+              </motion.h1>
             </NavLink>
-            <NavLink to={"Research/"}>
-              <h1 className=" xl:text-xl text-lg  text-black">Research</h1>
+            <NavLink
+              to={"Research/"}
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+              }
+            >
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="text-base xl:text-lg"
+              >
+                Research
+              </motion.h1>
             </NavLink>
             <NavLink>
               <Events />
             </NavLink>
-            <Link
-              to={`Login/`}
-              className="px-5 py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
-            >
-              Login
-            </Link>
+          </div>
+          <div className="hidden md:flex">
+            {userData ? (
+              <Link
+                to={userData?.is_staff ? "Dashboard/" : "Dashboard/UserHome"}
+              >
+                <ProfileIcon data={userData} />
+              </Link>
+            ) : (
+              <Link
+                to={`Login/`}
+                className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
+              >
+                Login
+              </Link>
+            )}
           </div>
           {/* Humberger Menue icon */}
-          <div className="md:hidden flex">
+          <div className="flex md:hidden">
             <TfiMenuAlt className="text-3xl" />
           </div>
         </div>
-        {/* <div className="border-b-4 mt-3 flex container mx-auto"></div> */}
       </div>
     </div>
   );
 }
 
 export default NavBar;
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export function Events() {
   const scrollToTop = () => {
@@ -96,10 +143,10 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5` xl:text-xl text-lg text-black hover:bg-gray-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5` xl:text-xl text-md text-black hover:bg-gray-50">
           Events
           <ChevronDownIcon
-            className="h-5 w-5 text-gray-400"
+            className="w-5 h-5 text-gray-400"
             aria-hidden="true"
           />
         </MenuButton>

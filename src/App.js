@@ -43,6 +43,9 @@ import UserHome from "./Dashboard/Users/Screens/UserHome";
 import Membership from "./Dashboard/Users/Screens/Membership";
 import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
 import MyPayments from "./Dashboard/Users/Screens/MyPayments";
+// stripe
+// import { Elements } from "@stripe/react-stripe-js";
+// import { stripePromise } from "./Context/Stripe";
 
 // functional component Basic routing logic lies here
 function App() {
@@ -54,6 +57,7 @@ function App() {
       setUser(users);
     } catch (error) {}
   }, []);
+
   return (
     <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-roboto">
       <ToastContainer
@@ -68,6 +72,7 @@ function App() {
         pauseOnHover
         theme="colored"
       />
+
       <HomePageDataProvider>
         <UserProvider>
           <BrowserRouter>

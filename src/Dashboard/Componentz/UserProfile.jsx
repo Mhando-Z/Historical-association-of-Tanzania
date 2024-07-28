@@ -59,6 +59,7 @@ const UserProfile = () => {
         <div>
           <ProfilePictures data={userData} />
         </div>
+
         <div className="relative flex flex-grow">
           <ProfileOverview data={userData} />
           {notification ? (

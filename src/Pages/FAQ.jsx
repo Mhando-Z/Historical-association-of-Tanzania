@@ -10,16 +10,24 @@ function FAQSection() {
   };
 
   return (
-    <div className="flex flex-col mt-8 container mb-20 mx-auto">
-      <h2 className="text-6xl text-[#b67a3d] font-extrabold text-center mb-10">
-        Curious Minds Ask
+    <div className="container flex flex-col mx-auto mt-8 mb-20">
+      <h2 className="xl:text-6xl ml-5 xl:ml-0 lg:text-5xl md:text-4xl text-3xl text-[#b67a3d] font-bold mb-10">
+        Curious minds Ask
       </h2>
-      <div className="border-b transition-all ease-out shadow-md  p-5 rounded-2xl bg-gray-100 border-gray-200 pb-4">
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        // viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="p-5 pb-4 transition-all ease-out bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+      >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(1)}
         >
-          <h3 className="text-3xl font-semibold">How can I join HAT?</h3>
+          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+            How can I join HAT?
+          </h3>
           <span className="text-xl text-[#b67a3d]">
             {activeIndex === 1 ? <FaAngleUp /> : <FaAngleDown />}
           </span>
@@ -29,12 +37,12 @@ function FAQSection() {
             initial={{ y: -15, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex flex-col"
+            className="flex flex-col text-base xl:text-lg "
           >
-            <p className="mt-2 text-gray-700 text-xl">
+            <p className="mt-2 text-gray-700">
               According to article 9 of the constitution;
             </p>
-            <ul className="text-xl" type="1">
+            <ul className="" type="1">
               <li>
                 Membership to the association is open to interested parties and
                 shall comprise of ordinary, associate, corporate and honorary
@@ -50,7 +58,7 @@ function FAQSection() {
                 the National Executive Council.
               </li>
             </ul>
-            <p className="mt-4 text-gray-700 text-xl">
+            <p className="mt-4 text-gray-700">
               You can join HAT by completing the membership application form and
               paying the annual subscription fee. Currently the annual
               subscription is Tshs. 20,000/= for academics, practitioners and
@@ -62,13 +70,21 @@ function FAQSection() {
             </p>
           </motion.div>
         )}
-      </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-md bg-gray-100 border-gray-200 pb-4">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        // viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+      >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(2)}
         >
-          <h3 className="text-3xl font-semibold">What events are coming up?</h3>
+          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+            What events are coming up?
+          </h3>
           <span className="text-xl text-[#b67a3d]">
             {activeIndex === 2 ? <FaAngleUp /> : <FaAngleDown />}
           </span>
@@ -80,10 +96,10 @@ function FAQSection() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
-            <p className="mt-2 text-gray-700 text-xl">
+            <p className="mt-2 text-base text-gray-700 xl:text-lg">
               We have several upcoming events, do not plan to miss:
             </p>
-            <ul className="text-xl" type="1">
+            <ul className="text-base xl:text-lg" type="1">
               <li>
                 Methods workshop, October 2024. Actual date and location to be
                 confirmed later
@@ -99,13 +115,19 @@ function FAQSection() {
             </ul>
           </motion.div>
         )}
-      </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        // viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+      >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(3)}
         >
-          <h3 className="text-3xl font-semibold">
+          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
             Where can I find past conference resources?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -119,18 +141,24 @@ function FAQSection() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
-            <p className="mt-2 text-gray-700 text-xl">
+            <p className="mt-2 text-base text-gray-700 xl:text-lg">
               Find the attached programmes for past conferences.
             </p>
           </motion.div>
         )}
-      </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        // viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+      >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(4)}
         >
-          <h3 className="text-3xl font-semibold">
+          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
             What are the benefits of HAT membership?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -144,11 +172,11 @@ function FAQSection() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
-            <p className="mt-2 text-gray-700 text-xl">
+            <p className="mt-2 text-base text-gray-700 xl:text-lg">
               According to article 11 (1) of HAT constitution, members of the
               Association shall enjoy the following privileges:
             </p>
-            <ul className="text-xl" type="1">
+            <ul className="text-base xl:text-lg" type="1">
               <li>
                 To participate in seminars and conference prepared by the
                 Association.
@@ -167,13 +195,19 @@ function FAQSection() {
             </ul>
           </motion.div>
         )}
-      </div>
-      <div className="border-b p-5 mt-5 rounded-2xl shadow-md  bg-gray-100 border-gray-200 pb-4">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        // viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+      >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(5)}
         >
-          <h3 className="text-3xl font-semibold">
+          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
             How do I contact HAT for Inquiries?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -187,11 +221,11 @@ function FAQSection() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col"
           >
-            <p className="mt-2 text-gray-700 text-xl">
+            <p className="mt-2 text-base text-gray-700 xl:text-lg">
               HAT Short Contact Details, Note in our website we have a Contact
               us section, which holds all our contact setails
             </p>
-            <ul className="text-xl" type="1">
+            <ul className="text-base xl:text-lg" type="1">
               <li> Historical Association of Tanzania</li>
               <li>History Department</li>
               <li>University of Dar es Salaam</li>
@@ -200,7 +234,7 @@ function FAQSection() {
             </ul>
           </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }
