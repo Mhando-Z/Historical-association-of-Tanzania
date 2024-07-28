@@ -113,7 +113,7 @@ function Researchpublications() {
   };
 
   return (
-    <div className="flex flex-col px-10 mt-24 mb-20">
+    <div className="container flex flex-col mx-auto mt-24 mb-20">
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
         <span className="ml-2">Resources Section</span>
       </h1>

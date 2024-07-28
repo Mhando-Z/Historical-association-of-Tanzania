@@ -41,6 +41,7 @@ const Membership = () => {
       gender: userData?.profile?.gender || "",
       college: userData?.profile?.college || "",
       is_paid_membership: userData?.profile?.is_paid_membership || false,
+      profile_picture: userData?.profile?.profile_picture || null,
     },
   });
 
@@ -76,12 +77,13 @@ const Membership = () => {
     }));
   };
 
-  //   const handleFileChange = (e) => {
-  //     setFormData((prevFormData) => ({
-  //       ...prevFormData,
-  //       profile_picture: e.target.files[0],
-  //     }));
-  //   };
+  const handleFileChange = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      profile_picture: e.target.files[0],
+    }));
+    console.log(e);
+  };
 
   const handleSave = async () => {
     // const { error } = schema.validate(formData, { abortEarly: false });
@@ -113,6 +115,7 @@ const Membership = () => {
       navigate("/Dashboard/UserProfile/");
       toast.success("Profile updated successfully");
     } catch (error) {
+      console.log(error.response);
       toast.error("Error updating profile");
     }
   };
@@ -159,6 +162,13 @@ const Membership = () => {
                 name="last_name"
                 placeholder="Last Name"
                 onChange={handleChange}
+                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              />
+              <input
+                type="file"
+                name="profile_picture"
+                placeholder="profile picture"
+                onChange={handleFileChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
