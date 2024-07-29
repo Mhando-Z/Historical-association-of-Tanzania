@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import UserContext from "../Context/UserContext";
 import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
 import { motion } from "framer-motion";
+import SideNavBar from "./SideNavBar";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 function NavBar() {
+  const [open, setOpen] = useState(false);
   const location = useLocation();
   const { userData } = useContext(UserContext);
   const scrollToTop = () => {
@@ -16,6 +18,10 @@ function NavBar() {
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   return (
@@ -26,9 +32,7 @@ function NavBar() {
         location.pathname === "/Announcements/" ||
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
-        location.pathname === "/President/" ||
         location.pathname === "/Register/" ||
-        location.pathname === "/President/" ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
           ? " py-3 fixed top-0 left-0 w-full z-50"
@@ -36,13 +40,12 @@ function NavBar() {
       }`}
     >
       <div className="px-1 md:px-10">
-        <div className="container flex flex-row items-center justify-between w-full mx-auto gap-x-6 ">
+        <div className="container flex flex-row items-center justify-between w-full mx-auto gap-x-6">
           {/* logo section */}
-
           <NavLink to={"/"}>
             <img
               src={logo}
-              alt="Historical association of TTanzania Logo"
+              alt="Historical association of Tanzania Logo"
               title="HAT Logo"
               className="h-5 xl:h-9 md:h-7"
             />
@@ -53,8 +56,8 @@ function NavBar() {
               to={"/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -72,8 +75,8 @@ function NavBar() {
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -89,8 +92,8 @@ function NavBar() {
               to={"Research/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl  font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958]  text-white ring-2 bg-[#b67a3d] hover:bg-white"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl "
+                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -122,12 +125,16 @@ function NavBar() {
               </Link>
             )}
           </div>
-          {/* Humberger Menue icon */}
+          {/* Hamburger Menu icon */}
           <div className="flex md:hidden">
-            <TfiMenuAlt className="text-3xl" />
+            <TfiMenuAlt
+              onClick={handleClick}
+              className="text-3xl text-[#d99958]"
+            />
           </div>
         </div>
       </div>
+      <SideNavBar open={open} setOpen={setOpen} />
     </div>
   );
 }
@@ -144,7 +151,7 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5` xl:text-xl text-md text-black hover:bg-gray-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black hover:bg-gray-50">
           Events
           <ChevronDownIcon
             className="w-5 h-5 text-gray-400"
@@ -164,7 +171,7 @@ export function Events() {
                 to={"Announcements/"}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg "
+                    ? "bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
                     : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
                 }
               >

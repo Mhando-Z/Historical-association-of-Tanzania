@@ -47,6 +47,13 @@ function ResourcePublication() {
   const handleSelect = (id) => {
     setUpPId(id);
     navigate("/Publications/");
+    scrollToTop();
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

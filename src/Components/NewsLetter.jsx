@@ -12,18 +12,18 @@ export default function NewsLetter() {
   const { footerSect } = useContext(HomePageContext);
 
   return (
-    <div className="relative isolate overflow-hidden bg-[#b67a3d] opacity-95 py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+    <div className="relative isolate overflow-hidden bg-[#b67a3d] opacity-95  py-16 sm:py-24 lg:py-32">
+      <div className="px-6 mx-auto max-w-7xl lg:px-8">
+        <div className="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Subscribe to our newsletter.
             </h2>
-            <p className="mt-4 text-lg leading-8 text-white font-semibold">
+            <p className="mt-4 text-lg font-semibold leading-8 text-white">
               Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing
               velit quis. Duis tempor incididunt dolore.
             </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
+            <div className="flex max-w-md mt-6 gap-x-4">
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -46,9 +46,9 @@ export default function NewsLetter() {
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white">
+              <div className="p-2 rounded-md bg-white/5 ring-1 ring-white">
                 <CalendarDaysIcon
-                  className="h-6 w-6 text-white"
+                  className="w-6 h-6 text-white"
                   aria-hidden="true"
                 />
               </div>
@@ -59,9 +59,9 @@ export default function NewsLetter() {
               </dd>
             </div>
             <div className="flex flex-col items-start">
-              <div className="rounded-md bg-white/5 p-2 ring-1 ring-white">
+              <div className="p-2 rounded-md bg-white/5 ring-1 ring-white">
                 <HandRaisedIcon
-                  className="h-6 w-6 text-white"
+                  className="w-6 h-6 text-white"
                   aria-hidden="true"
                 />
               </div>
@@ -75,7 +75,7 @@ export default function NewsLetter() {
         </div>
       </div>
       <div
-        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
+        className="absolute top-0 -translate-x-1/2 left-1/2 -z-10 blur-3xl xl:-top-6"
         aria-hidden="true"
       >
         <div
@@ -87,9 +87,9 @@ export default function NewsLetter() {
         />
       </div>
       {/* FOOTER SECTION*/}
-      <div className="flex flex-col container mx-auto border-b border-white mt-14"></div>
-      <div className="flex mt-12 flex-col container mx-auto">
-        <div className="flex flex-col gap-x-10 gap-y-4 md:flex-row w-full justify-between">
+      <div className="container flex flex-col mx-auto border-b border-white mt-14"></div>
+      <div className="container flex flex-col mx-auto mt-12">
+        <div className="flex flex-col justify-between w-full px-5 gap-x-10 gap-y-4 md:flex-row">
           {/* Logo */}
           <div>
             <img
@@ -100,36 +100,36 @@ export default function NewsLetter() {
           </div>
 
           {/* TERMS CONDITION AND POLICIES SECTION */}
-          <div className="flex flex-col gap-y-4 flex-1 justify-center items-center">
+          <div className="flex flex-col items-center justify-center flex-1 gap-y-4">
             <div className="flex flex-col">
-              <h1 className="text-xl text-white font-medium">Policies</h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="text-xl font-medium text-white">Policies</h1>
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.policies?.policy1}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.policies?.policy2}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.policies?.policy3}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.policies?.policy4}
               </h1>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-xl text-white font-medium">
+              <h1 className="text-xl font-medium text-white">
                 Terms of Service
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.termsofService.term1}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.termsofService.term2}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.termsofService.term3}
               </h1>
-              <h1 className="text-white line-clamp-1 max-w-xl">
+              <h1 className="max-w-xl text-white line-clamp-1">
                 {footerSect[0]?.termsofService.term4}
               </h1>
             </div>
@@ -138,36 +138,36 @@ export default function NewsLetter() {
           <div className="flex flex-col gap-y-4">
             {/* Emails section */}
             <div className="flex flex-col gap-x-4 md:flex-row">
-              <h1 className="md:text-xl text-white font-medium">Emails</h1>
+              <h1 className="font-medium text-white md:text-xl">Emails</h1>
               <div className="flex flex-col gap-y-2">
-                <h1 className=" text-white">
+                <h1 className="text-white ">
                   {footerSect[0]?.contacts.email1}
                 </h1>
-                <h1 className=" text-white">
+                <h1 className="text-white ">
                   {footerSect[0]?.contacts.email2}
                 </h1>
-                <h1 className=" text-white">
+                <h1 className="text-white ">
                   {footerSect[0]?.contacts.email3}
                 </h1>
               </div>
             </div>
             {/* Contacts section */}
             <div className="flex flex-col gap-x-4 md:flex-row">
-              <h1 className="md:text-xl text-white font-medium">Phone</h1>
+              <h1 className="font-medium text-white md:text-xl">Phone</h1>
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-white">
                   {footerSect[0]?.contacts.phoneNumber1}
                 </h1>
-                <h1 className=" text-white">
+                <h1 className="text-white ">
                   {footerSect[0]?.contacts.phoneNumber2}
                 </h1>
-                <h1 className=" text-white">
+                <h1 className="text-white ">
                   {footerSect[0]?.contacts.phoneNumber3}
                 </h1>
               </div>
             </div>
             <div className="flex flex-col gap-x-4 md:flex-row">
-              <h1 className="md:text-xl text-white font-medium">Location</h1>
+              <h1 className="font-medium text-white md:text-xl">Location</h1>
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-white">
                   {footerSect[0]?.contacts.location}
@@ -177,31 +177,31 @@ export default function NewsLetter() {
           </div>
         </div>
         {/* Socials */}
-        <div className="flex mt-5 flex-col justify-center items-center">
-          <div className="flex flex-row text-gray-300 text-2xl gap-x-10 mt-8">
+        <div className="flex flex-col items-center justify-center mt-5">
+          <div className="flex flex-row mt-8 text-2xl text-gray-300 gap-x-10">
             <Link
-              className="ring-1 p-2 ring-white rounded-full"
+              className="p-2 rounded-full ring-1 ring-white"
               to={`${footerSect[0]?.contacts.facebook}`}
             >
               <BsFacebook />
             </Link>
             <Link
-              className="ring-1 p-2 ring-white rounded-full"
+              className="p-2 rounded-full ring-1 ring-white"
               to={`${footerSect[0]?.contacts.instagram}`}
             >
               <FaInstagramSquare />
             </Link>
             <Link
-              className="ring-1 p-2 ring-white rounded-full"
+              className="p-2 rounded-full ring-1 ring-white"
               to={`${footerSect[0]?.contacts.linkedin}`}
             >
               <FaLinkedin />
             </Link>
-            <Link className="ring-1 p-2 ring-white rounded-full">
+            <Link className="p-2 rounded-full ring-1 ring-white">
               <IoLogoWhatsapp />
             </Link>
             <Link
-              className="ring-1 p-2 ring-white rounded-full"
+              className="p-2 rounded-full ring-1 ring-white"
               to={`${footerSect[0]?.contacts.twitter}`}
             >
               <FaSquareXTwitter />

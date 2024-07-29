@@ -8,7 +8,7 @@ export default function Partners() {
   return (
     <div className="mt-20 mb-20">
       <div className="container flex flex-col mx-auto">
-        <h2 className="xl:text-6xl   text-4xl mb-12 font-black leading-8 text-[#b67a3d]">
+        <h2 className="xl:text-6xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
         <div className="relative grid items-center justify-center grid-cols-4 mt-10 gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">

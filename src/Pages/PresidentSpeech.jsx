@@ -13,7 +13,7 @@ function PresidentSpeech() {
     });
   };
   return (
-    <div className="relative py-20 mt-64 shadow-xl md:mt-20 bg-opacity-15">
+    <div className="relative px-6 py-20 mt-64 shadow-xl md:mt-20 bg-opacity-15">
       <div className="container flex flex-col mx-auto md:flex-row">
         {PresidentSect?.slice(0, 1).map((dt) => {
           return (
@@ -22,9 +22,8 @@ function PresidentSpeech() {
               className="flex flex-col justify-between w-full md:flex-row gap-x-10"
             >
               <motion.div
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 1,
                 }}
@@ -49,8 +48,8 @@ function PresidentSpeech() {
                   {dt.subtitle}
                 </h1>
                 <motion.div
-                  initial={{ opacity: 0, x: 200 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: -30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1 }}
                   className="flex flex-col gap-y-2"
                 >

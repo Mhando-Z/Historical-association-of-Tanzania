@@ -1,57 +1,101 @@
-import { useState } from "react";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-} from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { TfiClose } from "react-icons/tfi";
+import logo from "../Assets/Images/Logo3.png";
 
-export default function SideNavBar() {
-  const [open, setOpen] = useState(true);
+const SideNavBar = ({ open, setOpen }) => {
+  const closeMenu = () => {
+    setOpen(false);
+  };
 
   return (
-    <Dialog className="relative z-10" open={open} onClose={setOpen}>
-      <DialogBackdrop
-        transition
-        className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
-      />
-
-      <div className="fixed inset-0 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-            <DialogPanel
-              transition
-              className="pointer-events-auto relative w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
-            >
-              <TransitionChild>
-                <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 duration-500 ease-in-out data-[closed]:opacity-0 sm:-ml-10 sm:pr-4">
-                  <button
-                    type="button"
-                    className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                    onClick={() => setOpen(false)}
-                  >
-                    <span className="absolute -inset-2.5" />
-                    <span className="sr-only">Close panel</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-              </TransitionChild>
-              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                <div className="px-4 sm:px-6">
-                  <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
-                    Panel title
-                  </DialogTitle>
-                </div>
-                <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                  {/* Your content */}
-                </div>
-              </div>
-            </DialogPanel>
+    <div
+      className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${
+        open
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <div
+        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transition-transform duration-300 ${
+          open ? "transform translate-x-0" : "transform -translate-x-full"
+        }`}
+      >
+        <div className="flex flex-row justify-between p-4">
+          <div>
+            <img
+              src={logo}
+              alt="Historical association of Tanzania Logo"
+              title="HAT Logo"
+              className="h-7 xl:h-9 md:h-7"
+            />
           </div>
+          <TfiClose
+            onClick={closeMenu}
+            className="text-2xl ring-2 rounded-full ring-[#a56322] cursor-pointer text-[#a56322]"
+          />
         </div>
+        <nav className="flex flex-col p-4 space-y-2">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
+                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/AboutUs/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
+                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/Research/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
+                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            Research
+          </NavLink>
+          <NavLink
+            to="/Announcements/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
+                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            Announcements
+          </NavLink>
+          <NavLink
+            to="/Gallery/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
+                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            Gallery
+          </NavLink>
+        </nav>
+        <div className="grow"></div>
       </div>
-    </Dialog>
+    </div>
   );
-}
+};
+
+export default SideNavBar;

@@ -82,7 +82,7 @@ function ContactUs() {
                 Contact Us
               </h1>
             </div>
-            <div className="flex flex-row items-center justify-between md:items-start xl:flex-col md: gap-y-5">
+            <div className="flex flex-row items-center justify-between px-6 md:px-0 md:items-start xl:flex-col md: gap-y-5">
               <div className="flex flex-col justify-center xl:justify-between gap-x-10">
                 <h1 className="text-2xl font-bold text-purple-900">Phone</h1>
                 <div className="flex flex-col mt-2 text-sm md:text-base xl:text-lg">
@@ -100,7 +100,7 @@ function ContactUs() {
                   </h5>
                 </div>
               </div>
-              <div className="flex flex-col justify-center xl:justify-between gap-x-10">
+              <div className="flex flex-col justify-center px-6 md:px-0 xl:justify-between gap-x-10">
                 <h1 className="text-2xl font-bold text-purple-900">Emails</h1>
                 <div className="flex flex-col mt-1 md:text-base xl:text-lg">
                   <Link className="font-semibold ">
@@ -115,7 +115,7 @@ function ContactUs() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center xl:justify-between gap-x-10">
+            <div className="flex flex-col justify-center px-6 md:px-0 xl:justify-between gap-x-10">
               <h1 className="text-2xl font-bold text-purple-900">Socials</h1>
               <div className="flex flex-row mt-8 text-3xl gap-x-10">
                 <Link to={`${ContactSect[0]?.facebook}`}>
