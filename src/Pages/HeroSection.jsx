@@ -302,7 +302,7 @@ function HeroSection() {
           }
         }
       });
-    }, 10000); // Interval duration 30000 means 30 seconds timer will execute code
+    }, 30000); // Interval duration 30000 means 30 seconds timer will execute code
 
     return () => clearInterval(interval); // Cleanup the interval on unmount
   }, [direction, heroSect.length]);

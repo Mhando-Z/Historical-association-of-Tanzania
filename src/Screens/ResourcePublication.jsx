@@ -131,10 +131,10 @@ function ResourcePublication() {
           <div className="flex justify-end w-full mt-6">
             <motion.button
               onClick={handleCount}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: [0, 1] }}
-              transition={{ duration: 0.6, ease: "easeInOut", type: "spring" }}
-              className="px-5 py-2 text-white bg-purple-950 "
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{ type: "spring", ease: "easeOut" }}
+              className="px-5 py-2 text-white bg-[#b67a3d] "
             >
               More
             </motion.button>
