@@ -43,6 +43,7 @@ import UserHome from "./Dashboard/Users/Screens/UserHome";
 import Membership from "./Dashboard/Users/Screens/Membership";
 import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
 import MyPayments from "./Dashboard/Users/Screens/MyPayments";
+import Publications from "./Screens/Publications";
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
 // import { stripePromise } from "./Context/Stripe";
@@ -81,6 +82,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="AboutUs/" element={<AboutHAT />} />
               <Route path="President/" element={<HATPresident />} />
+              <Route path="Publications/" element={<Publications />} />
               <Route path="Gallery/" element={<Gallery />} />
               <Route path="Research/" element={<ResourcePublication />} />
               <Route path="Register/" element={<RegisterUser />} />

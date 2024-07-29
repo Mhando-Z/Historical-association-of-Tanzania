@@ -12,6 +12,8 @@ function Footer() {
         location.pathname === "/Announcements/" ||
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
+        location.pathname === "/Register/" ||
+        location.pathname === "/Publications/" ||
         location.pathname === "/Register/"
           ? "block"
           : "hidden"

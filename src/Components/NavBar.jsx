@@ -29,6 +29,7 @@ function NavBar() {
         location.pathname === "/President/" ||
         location.pathname === "/Register/" ||
         location.pathname === "/President/" ||
+        location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
           ? " py-3 fixed top-0 left-0 w-full z-50"
           : "hidden"
@@ -47,7 +48,7 @@ function NavBar() {
             />
           </NavLink>
           {/* Pages Links */}
-          <div className="flex-row items-center justify-center flex-grow hidden py-2 bg-white rounded-3xl md:flex gap-x-10">
+          <div className="flex-row items-center justify-center hidden px-10 py-2 bg-white rounded-3xl md:flex gap-x-10">
             <NavLink
               to={"/"}
               className={({ isActive }) =>

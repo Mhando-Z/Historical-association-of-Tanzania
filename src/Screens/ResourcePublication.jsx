@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../Context/UserContext";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -11,8 +13,11 @@ const formatDate = (dateString) => {
 
 function ResourcePublication() {
   const { ResourcesSect } = useContext(HomePageContext);
+  const { setUpPId } = useContext(UserContext);
   const [value, setValue] = useState(0);
   const [count, setcount] = useState(10);
+  // functions imports
+  const navigate = useNavigate();
 
   // Update the value every 5 seconds
   useEffect(() => {
@@ -37,6 +42,11 @@ function ResourcePublication() {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     transition: { duration: 1 },
+  };
+
+  const handleSelect = (id) => {
+    setUpPId(id);
+    navigate("/Publications/");
   };
 
   return (
@@ -95,15 +105,21 @@ function ResourcePublication() {
                   animate="animate"
                   transition={{ delay: index * 0.1 }} // Staggered animation
                 >
-                  <div className="w-full p-1">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.8 }}
+                    transition={{ type: "spring", ease: "easeOut" }}
+                    onClick={() => handleSelect(dt.id)}
+                    className="w-full p-1"
+                  >
                     <img
                       src={`http://127.0.0.1:8000/${dt?.image}`}
                       alt={ResourcesSect[value]?.title}
                       loading="lazy"
-                      className="sm:h-[300px] h-[200px] bg-cover max-w-screen aspect-video"
+                      className="sm:h-[300px] h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
                     />
-                    <div className="flex flex-col mt-2 bg-white">
-                      <h1 className="flex flex-col w-full text-xl font-black lg:text-2xl">
+                    <div className="flex flex-col px-2 mt-2 bg-white">
+                      <h1 className="flex flex-col w-full text-xl font-black text-gray-900 lg:text-2xl">
                         {dt?.title}
                         <span className="max-w-xl text-base font-bold">
                           {dt?.subtitle}
@@ -123,7 +139,7 @@ function ResourcePublication() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}

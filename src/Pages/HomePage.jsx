@@ -31,7 +31,7 @@ function HomePage() {
       <FAQSection />
       <div className="mt-32 "></div>
       <Swipper />
-      <div className="mt-32"></div>
+      <div className="mt-48"></div>
       <ContactUs />
       <Partners />
     </div>
