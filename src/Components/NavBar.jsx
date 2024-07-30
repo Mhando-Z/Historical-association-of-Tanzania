@@ -134,7 +134,9 @@ function NavBar() {
           </div>
         </div>
       </div>
-      <SideNavBar open={open} setOpen={setOpen} />
+      <div className="md:hidden">
+        <SideNavBar open={open} setOpen={setOpen} />
+      </div>
     </div>
   );
 }

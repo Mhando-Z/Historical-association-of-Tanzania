@@ -2,6 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { TfiClose } from "react-icons/tfi";
 import logo from "../Assets/Images/Logo3.png";
+// icons
+import { ImHome } from "react-icons/im";
+import { FaImages } from "react-icons/fa6";
+import { FaNewspaper } from "react-icons/fa6";
+import { HiSpeakerphone } from "react-icons/hi";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 const SideNavBar = ({ open, setOpen }) => {
   const closeMenu = () => {
@@ -40,55 +46,60 @@ const SideNavBar = ({ open, setOpen }) => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
-                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}
           >
+            <ImHome className="" />
             Home
           </NavLink>
           <NavLink
             to="/AboutUs/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
-                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}
           >
+            <BsFillInfoCircleFill />
             About Us
           </NavLink>
           <NavLink
             to="/Research/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
-                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}
           >
+            <FaNewspaper />
             Research
           </NavLink>
           <NavLink
             to="/Announcements/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
-                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}
           >
+            <HiSpeakerphone />
             Announcements
           </NavLink>
           <NavLink
             to="/Gallery/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] font-medium text-white px-7 py-2 "
-                : "text-gray-700 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}
           >
+            <FaImages />
             Gallery
           </NavLink>
         </nav>
