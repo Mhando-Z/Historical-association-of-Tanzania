@@ -51,7 +51,7 @@ function NavBar() {
             />
           </NavLink>
           {/* Pages Links */}
-          <div className="flex-row items-center justify-center hidden px-10 py-2 bg-white rounded-3xl md:flex gap-x-10">
+          <div className="flex-row items-center justify-center hidden px-5 py-2 bg-white rounded-3xl md:flex gap-x-10">
             <NavLink
               to={"/"}
               className={({ isActive }) =>
