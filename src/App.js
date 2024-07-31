@@ -75,28 +75,26 @@ function App() {
   if (showIntro) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <div>
-          <img
-            src={logo}
-            alt="HAT Logo"
-            className="md:h-auto w-[200px] md:w-[500px] transition-all animate-pulse duration-[30000ms] ease-in-out"
-          />
-          <TypeAnimation
-            style={{
-              whiteSpace: "pre-line",
-              height: "100px",
-              display: "block",
-            }}
-            className="text-xl font-bold w-[200px] md:w-full opacity-50 capitalize md:text-3xl"
-            sequence={[
-              `Historical Association of Tanzania`,
-              // actual line-break inside string literal also gets animated in new line, but ensure there are no leading spaces
-              1000,
-              "",
-            ]}
-            repeat={Infinity}
-          />
-        </div>
+        <img
+          src={logo}
+          alt="HAT Logo"
+          className="md:h-auto w-[200px] md:w-[500px] transition-all animate-pulse duration-[30000ms] ease-in-out"
+        />
+        <TypeAnimation
+          style={{
+            whiteSpace: "pre-line",
+            height: "100px",
+            display: "block",
+          }}
+          className="text-xl text-center font-bold w-[200px] md:w-full opacity-50 capitalize md:text-3xl"
+          sequence={[
+            `Historical Association of Tanzania`,
+            // actual line-break inside string literal also gets animated in new line, but ensure there are no leading spaces
+            1000,
+            "",
+          ]}
+          repeat={Infinity}
+        />
       </div>
     );
   }
