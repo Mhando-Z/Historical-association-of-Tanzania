@@ -69,7 +69,7 @@ function MembersMgt() {
               color: "red",
             },
             [`& .${gaugeClasses.valueArc}`]: {
-              fill: "purple",
+              fill: "#00b2af",
             },
             [`& .${gaugeClasses.referenceArc}`]: {
               fill: theme.palette.text.disabled,

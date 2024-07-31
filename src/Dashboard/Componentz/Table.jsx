@@ -136,7 +136,7 @@ const Table = ({ data }) => {
           Search:&nbsp;
           <input
             id="search"
-            className="ring-1 py-2 px-5 outline-none rounded-2xl w-[400px] ring-gray-600"
+            className="ring-1 shadow-md focus:bg-blue-50 py-1 px-5 outline-none rounded w-[400px]"
             type="text"
             value={search}
             onChange={handleSearch}

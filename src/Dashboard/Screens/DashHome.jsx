@@ -24,22 +24,21 @@ function DashHome() {
   );
 
   return (
-    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mt-10 mb-40 bg-slate-50">
+    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mt-10 mb-40">
       {userData?.is_staff === true ? (
         <div className="container flex flex-col mx-auto">
           {/* Figures */}
           <div className="flex flex-wrap items-center justify-center grid-cols-3 gap-2 mt-32 xl:mt-24 gap-x-10 xl:grid-cols-4 gap-y-10">
             <motion.div
-              initial={{ opacity: 0, scale: 0, x: "-100%" }}
-              animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+              initial={{ opacity: 0, scale: 0, y: 30 }}
+              animate={{ opacity: 1, scale: [1, 0, 1], y: 0 }}
               transition={{
                 duration: 0.5,
                 type: "spring",
                 stiffness: 140,
                 ease: "easeOut",
-                delay: 0,
               }}
-              whileHover={{ y: -30 }}
+              whileHover={{ y: 30 }}
               className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
@@ -49,16 +48,15 @@ function DashHome() {
               </h1>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0, x: "-100%" }}
-              animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+              initial={{ opacity: 0, scale: 0, y: 30 }}
+              animate={{ opacity: 1, scale: [1, 0, 1], y: 0 }}
               transition={{
                 duration: 0.5,
                 type: "spring",
                 stiffness: 140,
                 ease: "easeOut",
-                delay: 0.5,
               }}
-              whileHover={{ y: -30 }}
+              whileHover={{ y: 30 }}
               className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
@@ -68,16 +66,15 @@ function DashHome() {
               </h1>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0, x: "-100%" }}
-              animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+              initial={{ opacity: 0, scale: 0, y: 30 }}
+              animate={{ opacity: 1, scale: [1, 0, 1], y: 0 }}
               transition={{
                 duration: 0.5,
                 type: "spring",
                 stiffness: 140,
                 ease: "easeOut",
-                delay: 1,
               }}
-              whileHover={{ y: -30 }}
+              whileHover={{ y: 30 }}
               className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
@@ -87,16 +84,15 @@ function DashHome() {
               </h1>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0, x: "-100%" }}
-              animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+              initial={{ opacity: 0, scale: 0, y: 30 }}
+              animate={{ opacity: 1, scale: [1, 0, 1], y: 0 }}
               transition={{
                 duration: 0.5,
                 type: "spring",
                 stiffness: 140,
                 ease: "easeOut",
-                delay: 1.5,
               }}
-              whileHover={{ y: -30 }}
+              whileHover={{ y: 30 }}
               className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <BsPeopleFill className="text-4xl" />

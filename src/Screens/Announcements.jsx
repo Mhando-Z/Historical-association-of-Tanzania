@@ -145,7 +145,7 @@ export default function Announcements() {
                 src={`http://127.0.0.1:8000/${post.image}`}
                 alt={post.title}
                 loading="lazy"
-                className="h-[200px] w-full aspect-video rounded-3xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"
+                className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"
                 variants={itemVariants}
               />
 

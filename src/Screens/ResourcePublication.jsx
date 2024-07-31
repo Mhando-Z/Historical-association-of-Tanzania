@@ -49,6 +49,7 @@ function ResourcePublication() {
     navigate("/Publications/");
     scrollToTop();
   };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -113,7 +114,7 @@ function ResourcePublication() {
                   transition={{ delay: index * 0.1 }} // Staggered animation
                 >
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     onClick={() => handleSelect(dt.id)}
@@ -123,7 +124,7 @@ function ResourcePublication() {
                       src={`http://127.0.0.1:8000/${dt?.image}`}
                       alt={ResourcesSect[value]?.title}
                       loading="lazy"
-                      className="sm:h-[300px] h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
+                      className="sm:h-[300px] rounded-lg h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
                     />
                     <div className="flex flex-col px-2 mt-2 bg-white">
                       <h1 className="flex flex-col w-full text-xl font-black text-gray-900 lg:text-2xl">
