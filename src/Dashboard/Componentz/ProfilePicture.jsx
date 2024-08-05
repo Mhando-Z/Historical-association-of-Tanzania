@@ -21,7 +21,7 @@ function ProfilePictures({ data }) {
                 transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
                 src={data?.profile.profile_picture}
                 alt="Profile"
-                className="object-cover object-top shadow-lg ring-1 size-60 md:size-80 ring-[#b67a3d] rounded max-w-screen"
+                className="object-cover object-top shadow-lg ring-1 size-60 md:size-60 ring-[#b67a3d] rounded max-w-screen"
               />
             </>
           ) : (

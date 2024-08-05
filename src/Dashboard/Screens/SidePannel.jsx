@@ -118,7 +118,7 @@ function SidePannel() {
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 1, type: "spring", ease: "easeOut" }}
-      className="lg:flex py-14 ring-1 overflow-y-auto shadow-2xl ring-[#b67a3d] fixed mt-5 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
+      className="lg:flex py-14 ring-1  overflow-y-auto shadow-2xl ring-[#b67a3d] fixed mt-5 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
     >
       {userData?.is_staff === true ? (
         <>
@@ -225,108 +225,110 @@ function SidePannel() {
       ) : (
         ""
       )}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.8 }}
-        transition={{ type: "spring", ease: "easeOut" }}
-        className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] ring-1  bg-slate-300  shadow-xl left-4 size-28 w-full  rounded-xl "
-      >
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "bg-[#b67a3d] items-center text-white w-full rounded-xl"
-              : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-[#ca935c] hover:text-white hover:font-medium"
-          }
-          to={"UserProfile/"}
+      <div className="flex flex-col px-4">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.8 }}
+          transition={{ type: "spring", ease: "easeOut" }}
+          className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] ring-1 rounded-xl  bg-slate-300  shadow-xl left-4 size-28 w-full"
         >
-          <div className="flex flex-row items-center justify-between w-full p-5 gap-x-5">
-            <div>
-              {/* profile images */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] items-center text-white w-full rounded-xl"
+                : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-[#ca935c] hover:text-white hover:font-medium"
+            }
+            to={"UserProfile/"}
+          >
+            <div className="flex flex-row items-center justify-between w-full p-5 gap-x-5">
+              <div>
+                {/* profile images */}
 
-              {userData?.profile?.profile_picture !== null ? (
-                <>
-                  <motion.img
-                    initial={{ initial: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 1,
-                      ease: "easeInOut",
-                      type: "spring",
-                    }}
-                    src={userData?.profile.profile_picture}
-                    alt="Profile"
-                    className="object-cover object-top shadow-lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
-                  />
-                </>
-              ) : userData?.profile.is_student === true &&
-                userData?.profile.gender === "male" ? (
-                <div>
+                {userData?.profile?.profile_picture !== null ? (
+                  <>
+                    <motion.img
+                      initial={{ initial: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 1,
+                        ease: "easeInOut",
+                        type: "spring",
+                      }}
+                      src={userData?.profile.profile_picture}
+                      alt="Profile"
+                      className="object-cover object-top shadow-lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
+                    />
+                  </>
+                ) : userData?.profile.is_student === true &&
+                  userData?.profile.gender === "male" ? (
+                  <div>
+                    <img
+                      src={stdprofile}
+                      alt="userData pprofile.rofile"
+                      className="h-20 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
+                    />
+                  </div>
+                ) : userData?.profile.gender === "male" ? (
                   <img
-                    src={stdprofile}
-                    alt="userData pprofile.rofile"
-                    className="h-20 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
-                  />
-                </div>
-              ) : userData?.profile.gender === "male" ? (
-                <img
-                  src={manprofile}
-                  alt="userData pprofile.rofile"
-                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
-                />
-              ) : userData?.profile.is_student === true &&
-                userData?.profile.gender === "female" ? (
-                <div>
-                  <img
-                    src={stdprofile2}
+                    src={manprofile}
                     alt="userData pprofile.rofile"
                     className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
                   />
-                </div>
-              ) : userData?.profile.gender === "female" ? (
-                <img
-                  src={womanProfile}
-                  alt="userData pprofile.rofile"
-                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
-                />
-              ) : (
-                <div>
-                  <FaRegCircleUser className="text-7xl" />
-                </div>
-              )}
+                ) : userData?.profile.is_student === true &&
+                  userData?.profile.gender === "female" ? (
+                  <div>
+                    <img
+                      src={stdprofile2}
+                      alt="userData pprofile.rofile"
+                      className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                    />
+                  </div>
+                ) : userData?.profile.gender === "female" ? (
+                  <img
+                    src={womanProfile}
+                    alt="userData pprofile.rofile"
+                    className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                  />
+                ) : (
+                  <div>
+                    <FaRegCircleUser className="text-7xl" />
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col flex-grow">
+                {/* user details and status */}
+                <h1 className="text-lg font-bold line-clamp-2">
+                  {userData?.username}
+                </h1>
+                {userData?.is_staff ? (
+                  <div className="flex flex-row items-center w-full gap-x-1">
+                    <>
+                      <h1 className="font-medium">Admin</h1>
+                    </>
+                    <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
+                  </div>
+                ) : (
+                  <div className="flex flex-row items-center w-full gap-x-1">
+                    <>
+                      <h1 className="font-medium">User</h1>
+                    </>
+                    {userData?.profile.is_paid_membership === true &&
+                    userData?.profile.is_paid_conference === true ? (
+                      <HiMiniCheckBadge className="text-xl text-green-700 gap-x-10" />
+                    ) : userData?.profile.is_paid_membership === true ? (
+                      <HiMiniCheckBadge className="text-xl text-yellow-700 gap-x-10" />
+                    ) : userData?.profile.is_paid_conference === true ? (
+                      <HiMiniCheckBadge className="text-xl text-purple-700 gap-x-10" />
+                    ) : (
+                      <HiMiniCheckBadge className="text-xl text-black gap-x-10" />
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="flex flex-col flex-grow">
-              {/* user details and status */}
-              <h1 className="text-lg font-bold line-clamp-2">
-                {userData?.username}
-              </h1>
-              {userData?.is_staff ? (
-                <div className="flex flex-row items-center w-full gap-x-1">
-                  <>
-                    <h1 className="font-medium">Admin</h1>
-                  </>
-                  <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
-                </div>
-              ) : (
-                <div className="flex flex-row items-center w-full gap-x-1">
-                  <>
-                    <h1 className="font-medium">User</h1>
-                  </>
-                  {userData?.profile.is_paid_membership === true &&
-                  userData?.profile.is_paid_conference === true ? (
-                    <HiMiniCheckBadge className="text-xl text-green-700 gap-x-10" />
-                  ) : userData?.profile.is_paid_membership === true ? (
-                    <HiMiniCheckBadge className="text-xl text-yellow-700 gap-x-10" />
-                  ) : userData?.profile.is_paid_conference === true ? (
-                    <HiMiniCheckBadge className="text-xl text-purple-700 gap-x-10" />
-                  ) : (
-                    <HiMiniCheckBadge className="text-xl text-black gap-x-10" />
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </NavLink>
-      </motion.div>
+          </NavLink>
+        </motion.div>
+      </div>
 
       <div className="absolute bottom-10 left-4 ">
         <img src={logo} alt="hatlogo" className="hidden opacity-25 h-14" />

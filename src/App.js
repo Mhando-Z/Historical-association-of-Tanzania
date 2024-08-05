@@ -46,7 +46,6 @@ import Publications from "./Screens/Publications";
 import logo from "../src/Assets/Images/3dlogo.png";
 import { TypeAnimation } from "react-type-animation";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
-import Dashboard from "./Dashboard/Users/Screens/Dashboard";
 
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
@@ -122,7 +121,6 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="AboutUs/" element={<AboutHAT />} />
-              <Route path="MainDashboard/" element={<Dashboard />} />
               <Route path="President/" element={<HATPresident />} />
               <Route path="Publications/" element={<Publications />} />
               <Route path="Gallery/" element={<Gallery />} />
