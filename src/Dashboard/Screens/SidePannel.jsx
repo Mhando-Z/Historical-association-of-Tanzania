@@ -118,7 +118,7 @@ function SidePannel() {
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 1, type: "spring", ease: "easeOut" }}
-      className="xl:flex py-14 ring-1  shadow-2xl ring-[#b67a3d] fixed mt-10 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
+      className="lg:flex py-14 ring-1 overflow-y-auto shadow-2xl ring-[#b67a3d] fixed mt-5 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
     >
       {userData?.is_staff === true ? (
         <>
@@ -229,7 +229,7 @@ function SidePannel() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.8 }}
         transition={{ type: "spring", ease: "easeOut" }}
-        className="absolute bottom-14 flex items-center justify-center ring-[#b67a3d] ring-1  bg-slate-300  shadow-xl left-4 size-28 w-[260px]  rounded-xl "
+        className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] ring-1  bg-slate-300  shadow-xl left-4 size-28 w-full  rounded-xl "
       >
         <NavLink
           className={({ isActive }) =>

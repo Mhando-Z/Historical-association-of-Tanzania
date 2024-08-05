@@ -14,13 +14,13 @@ function MainPage() {
         {/* Dashboard Navbar */}
         <DashNav />
       </div>
-      <div className="flex flex-row  flex-grow">
+      <div className="flex flex-row flex-grow">
         {open && (
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, type: "spring", ease: "easeOut" }}
-            className="xl:flex hidden flex-col xl:w-[300px] lg:w-[250px] h-full"
+            className="lg:flex hidden flex-col xl:w-[300px] lg:w-[250px] h-full"
           >
             <SidePannel />
           </motion.div>
