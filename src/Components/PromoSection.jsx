@@ -2,6 +2,7 @@ import { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,6 +28,19 @@ const itemVariants = {
 export default function PromoSect() {
   const { ConferenceSect } = useContext(HomePageContext);
   const { gallerySect } = useContext(HomePageContext);
+  const navigate = useNavigate();
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleRegister = () => {
+    scrollToTop();
+    navigate("/Register/");
+  };
 
   return (
     <div className="relative min-h-screen mt-20 overflow-hidden bg-white">
@@ -38,6 +52,7 @@ export default function PromoSect() {
         <motion.div
           className="pt-16 pb-80 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40"
           initial="hidden"
+          viewport={{ once: true }}
           whileInView="visible"
           variants={containerVariants}
         >
@@ -141,6 +156,7 @@ export default function PromoSect() {
                 </div>
 
                 <motion.button
+                  onClick={handleRegister}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.8 }}
                   transition={{ type: "spring", ease: "easeOut" }}

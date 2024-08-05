@@ -73,7 +73,7 @@ const UserRegister = ({ handleRegistration }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center text-sm lg:text-md">
+    <div className="flex flex-col items-center justify-center min-h-screen text-sm lg:text-md">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

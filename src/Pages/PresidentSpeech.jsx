@@ -13,7 +13,7 @@ function PresidentSpeech() {
     });
   };
   return (
-    <div className="relative px-6 py-20 mt-64 shadow-xl md:mt-20 bg-opacity-15">
+    <div className="relative px-6 mt-40 shadow-xl sm:mt-32 p-14 md:py-20 md:mt-20 bg-opacity-15">
       <div className="container flex flex-col mx-auto md:flex-row">
         {PresidentSect?.slice(0, 1).map((dt) => {
           return (
@@ -29,11 +29,11 @@ function PresidentSpeech() {
                 }}
                 className="flex flex-col items-center justify-center gap-y-3"
               >
-                <div className="w-full overflow-hidden bg-gray-200 aspect-h-1 aspect-w-1 rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
+                <div className="w-full overflow-hidden bg-gray-200 rounded-lg aspect-h-1 aspect-w-1 md:rounded-xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
                     src={`http://127.0.0.1:8000/${dt.image}`}
                     alt={dt?.subtitle}
-                    className="h-[400px] w-full shadow-lg object-cover object-center group-hover:opacity-75"
+                    className="h-[400px] w-full shadow-lg object-cover object-top md:object-center group-hover:opacity-75"
                   />
                 </div>
                 <p className="w-[300px] mt-2 text-sm font-medium justify-center text-center ">
@@ -60,7 +60,7 @@ function PresidentSpeech() {
                     <Link
                       onClick={scrollToTop}
                       to={"President/"}
-                      className="px-6 py-1 xl:py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
+                      className="px-6 py-2 xl:py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}

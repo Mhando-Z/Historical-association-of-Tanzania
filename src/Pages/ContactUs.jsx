@@ -13,12 +13,12 @@ function ContactUs() {
 
   return (
     <div className="flex flex-col">
-      <div className="container flex flex-col items-center justify-center p-20 mx-auto mb-1 bg-gray-200 shadow-2xl sm:rounded-xl">
+      <div className="container flex flex-col items-center justify-center px-6 py-10 mx-auto mb-1 bg-gray-200 shadow-2xl md:p-20 sm:rounded-xl">
         {/* Get intouch section */}
         <div className="flex flex-col items-center justify-center w-full ">
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.3 }}
             className="flex flex-col items-center justify-center gap-y-6"

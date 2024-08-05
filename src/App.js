@@ -10,7 +10,6 @@ import HATPresident from "./Screens/HATPresident";
 import AboutHAT from "./Screens/AboutHAT";
 import Announcements from "./Screens/Announcements";
 import UserLogin from "./Dashboard/Screens/UserLogin";
-import RegisterUser from "./Dashboard/Screens/RegisterUser";
 import MainPage from "./Dashboard/Page/MainPage";
 import DashHome from "./Dashboard/Screens/DashHome";
 import HeroSect from "./Dashboard/Sections/HeroSect";
@@ -46,6 +45,7 @@ import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 import Publications from "./Screens/Publications";
 import logo from "../src/Assets/Images/3dlogo.png";
 import { TypeAnimation } from "react-type-animation";
+import UserRegister from "./Dashboard/Componentz/UserRegister";
 
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
@@ -125,7 +125,6 @@ function App() {
               <Route path="Publications/" element={<Publications />} />
               <Route path="Gallery/" element={<Gallery />} />
               <Route path="Research/" element={<ResourcePublication />} />
-              <Route path="Register/" element={<RegisterUser />} />
               <Route path="Announcements/" element={<Announcements />} />
               <Route path="*" element={<PageNotFound />} />
               <Route
@@ -145,6 +144,14 @@ function App() {
                 element={
                   <AuthRoute>
                     <UserLogin />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="Register/"
+                element={
+                  <AuthRoute>
+                    <UserRegister />
                   </AuthRoute>
                 }
               />

@@ -47,16 +47,16 @@ function NavBar() {
               src={logo}
               alt="Historical association of Tanzania Logo"
               title="HAT Logo"
-              className="h-5 xl:h-9 md:h-7"
+              className="h-6 xl:h-9 md:h-7"
             />
           </NavLink>
           {/* Pages Links */}
-          <div className="flex-row items-center justify-center hidden px-5 py-2 bg-white rounded-3xl md:flex gap-x-10">
+          <div className="flex-row items-center justify-center hidden px-5 py-2 bg-white bg-opacity-60 hover:bg-opacity-85 rounded-3xl md:flex gap-x-10">
             <NavLink
               to={"/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -75,7 +75,7 @@ function NavBar() {
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  ? "px-4 rounded-3xl font-medium   hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -92,7 +92,7 @@ function NavBar() {
               to={"Research/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium hover:text-black hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d] hover:bg-white"
+                  ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -109,7 +109,7 @@ function NavBar() {
               <Events />
             </NavLink>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden md:flex flex-row gap-x-3">
             {userData ? (
               <Link
                 to={userData?.is_staff ? "Dashboard/" : "Dashboard/UserHome"}
@@ -121,7 +121,7 @@ function NavBar() {
                 to={`Login/`}
                 className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
               >
-                Login
+                Sign In
               </Link>
             )}
           </div>
@@ -153,18 +153,15 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black hover:bg-gray-50">
+        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black">
           Events
-          <ChevronDownIcon
-            className="w-5 h-5 text-gray-400"
-            aria-hidden="true"
-          />
+          <ChevronDownIcon className="w-5 h-5 text-black" aria-hidden="true" />
         </MenuButton>
       </div>
 
       <MenuItems
         transition
-        className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+        className="absolute right-0 z-10 mt-4 w-56 origin-top-right divide-y bg-opacity-60 hover:bg-opacity-85 divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
       >
         <div className="py-1">
           <MenuItem>
@@ -173,8 +170,8 @@ export function Events() {
                 to={"Announcements/"}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
-                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
+                    ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
+                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
                 }
               >
                 Announcements
@@ -188,8 +185,8 @@ export function Events() {
                 to={"Gallery/"}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
-                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg"
+                    ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
+                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
                 }
               >
                 Gallery

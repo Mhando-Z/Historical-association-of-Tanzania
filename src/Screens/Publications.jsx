@@ -76,7 +76,7 @@ function Publications() {
 
   return (
     <motion.div
-      className="container flex flex-col mx-auto mb-48 gap-y-5"
+      className="container flex flex-col mx-auto mt-16 mb-48 gap-y-5"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -134,7 +134,7 @@ function Publications() {
               src={`http://127.0.0.1:8000/${publication.image2}`}
               alt={publication.title}
               loading="lazy"
-              className="xl:h-[600px] lg:h-[450px] h-[400px] bg-cover w-full aspect-video"
+              className="xl:h-[600px] lg:h-[450px] h-[350px] bg-cover w-full aspect-video"
               variants={imageVariants}
             />
             <motion.div
@@ -173,9 +173,9 @@ function Publications() {
         </motion.div>
       </div>
       <div className="mt-16">
-        <div className="py-3 mb-10 shadow-xl">
-          <h1 className="text-2xl font-bold border-l-8 xl:text-4xl md:text-4xl border-l-black ">
-            <span className="ml-2">Other Publications</span>
+        <div className="flex flex-col justify-center py-3 mb-10 shadow-xl">
+          <h1 className="text-2xl font-bold xl:text-4xl md:text-4xl ">
+            Other Publications
           </h1>
         </div>
         <div className="mt-10 border-t border-gray-200 gap-y-16">
@@ -186,6 +186,7 @@ function Publications() {
               variants={itemVariants}
             >
               <motion.img
+                onClick={() => handleSelection(post.id)}
                 src={`http://127.0.0.1:8000/${post.image}`}
                 alt={post.title}
                 loading="lazy"

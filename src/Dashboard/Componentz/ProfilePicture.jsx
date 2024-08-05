@@ -21,7 +21,7 @@ function ProfilePictures({ data }) {
                 transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
                 src={data?.profile.profile_picture}
                 alt="Profile"
-                className="object-cover object-top shadow-lg ring-1 size-80 ring-[#b67a3d] rounded-xl max-w-screen"
+                className="object-cover object-top shadow-lg ring-1 size-60 md:size-80 ring-[#b67a3d] rounded max-w-screen"
               />
             </>
           ) : (
@@ -66,8 +66,10 @@ function ProfilePictures({ data }) {
         </div>
         <div className="flex flex-col flex-grow">
           {/* data details and status */}
-          <h1 className="text-2xl font-bold text-center">{data?.username}</h1>
-          <h1 className="text-lg font-medium text-center text-gray-700">
+          <h1 className="text-lg font-bold text-center md:text-2xl">
+            {data?.username}
+          </h1>
+          <h1 className="text-base font-medium text-center text-gray-700 md:text-lg">
             {data?.email}
           </h1>
           {data?.is_staff ? (
@@ -75,7 +77,7 @@ function ProfilePictures({ data }) {
               <>
                 <h1 className="font-medium ">Admin</h1>
               </>
-              <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
+              <HiMiniCheckBadge className="text-blue-700 md:text-xl gap-x-10" />
             </div>
           ) : (
             <div className="flex flex-row items-center justify-center w-full gap-x-1">

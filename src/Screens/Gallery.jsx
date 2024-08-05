@@ -61,13 +61,13 @@ function Gallery() {
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent via-30% to-transparent"></div>
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent via-20% to-transparent"></div>
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent via-5% to-transparent"></div>
-          <div className="absolute bottom-0 flex flex-col rounded-lg gap-y-1 xl:bottom-12 md:bottom-36 right-10">
+          <div className="absolute bottom-0 flex flex-col rounded-lg gap-y-1 xl:bottom-12 md:bottom-36 right-2 md:right-10">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
               onClick={handlePrev}
-              className="p-5 text-4xl bg-white rounded-lg hover:ring-1 focus:ring-1 focus:duration-500 focus:ring-purple-950 focus:bg-opacity-20 hover:ring-purple-900 focus:animate-pulse text-purple-950 bg-opacity-30 "
+              className="p-3 text-3xl bg-white rounded-lg md:p-5 md:text-4xl hover:ring-1 focus:ring-1 focus:duration-500 focus:ring-purple-950 focus:bg-opacity-20 hover:ring-purple-900 focus:animate-pulse text-purple-950 bg-opacity-30 "
             >
               <FaAngleLeft />
             </motion.button>
@@ -76,7 +76,7 @@ function Gallery() {
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
               onClick={handleNext}
-              className="p-5 text-4xl bg-white rounded-lg hover:ring-1 focus:ring-1 focus:duration-500 focus:ring-purple-950 focus:bg-opacity-20 hover:ring-purple-900 focus:animate-pulse text-purple-950 bg-opacity-30 "
+              className="p-3 text-3xl bg-white rounded-lg md:p-5 md:text-4xl hover:ring-1 focus:ring-1 focus:duration-500 focus:ring-purple-950 focus:bg-opacity-20 hover:ring-purple-900 focus:animate-pulse text-purple-950 bg-opacity-30 "
             >
               <FaAngleRight />
             </motion.button>
@@ -84,9 +84,9 @@ function Gallery() {
         </div>
       </div>
       <div className="flex flex-col px-2 bg-white shadow-2xl  border-b-8 border-b-[#a97c50] lg-px-10 sm:px-5 ">
-        <div className="py-3 mb-10 border-l-8 border-[#a97c50] shadow-xl border-r-8">
+        <div className="py-3 mb-10 shadow-xl ">
           <motion.h1
-            className="ml-2 text-4xl font-semibold text-[#a97c50] tracking-tighter md:text-5xll"
+            className="ml-2 md:text-4xl text-3xl font-semibold text-[#a97c50] tracking-tighter md:text-5xll"
             initial={{ opacity: 0, y: -20 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ function Gallery() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.8 }}
             transition={{ type: "spring", ease: "easeOut" }}
-            className="py-2 px-7 font-medium text-center hover:ring-black rounded-3xl text-white bg-[#a97c50] hover:bg-opacity-0 hover:text-black hover:ring-2 "
+            className="py-2 px-7 font-medium text-center hover:ring-black rounded-3xl text-white bg-[#a97c50] md:hover:bg-opacity-0 md:hover:text-black md:hover:ring-2 "
             onClick={handleCount}
           >
             more

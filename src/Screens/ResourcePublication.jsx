@@ -97,9 +97,9 @@ function ResourcePublication() {
           animate="animate"
         >
           {/* title */}
-          <div className="py-3 mb-10 shadow-xl">
-            <h1 className="text-2xl font-bold border-l-8 xl:text-4xl md:text-4xl border-l-black ">
-              <span className="ml-2"> Publications</span>
+          <div className="flex flex-col justify-center py-3 mb-10 shadow-xl">
+            <h1 className="text-2xl font-bold xl:text-4xl md:text-4xl ">
+              Publications
             </h1>
           </div>
           {/* publications */}
@@ -158,7 +158,7 @@ function ResourcePublication() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-2 text-white bg-[#b67a3d] "
+              className="px-5 py-2 text-white rounded-3xl bg-[#b67a3d] "
             >
               More
             </motion.button>

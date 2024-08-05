@@ -633,7 +633,7 @@ function HeroSection() {
               initial={{ x: 300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="md:min-h-screen h-[900px] shadow-md w-screen object-cover object-center group-hover:opacity-75"
+              className="md:min-h-screen md:h-[900px] h-[600px] shadow-md w-screen object-cover object-center group-hover:opacity-75"
             />
             {heroSect?.length === 0 && (
               <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
@@ -643,7 +643,7 @@ function HeroSection() {
           </motion.div>
         </AnimatePresence>
         <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-        <div className="container absolute top-0 bottom-[-899px] left-0 right-0 flex flex-row mx-auto mt-5 md:bottom-[-700px] rounded-2xl">
+        <div className="container absolute top-0 bottom-[-600px] left-0 right-0 flex flex-row mx-auto mt-5 md:bottom-[-700px] rounded-2xl">
           {/* herosection text */}
           <div className="flex flex-col justify-center w-full gap-y-2">
             <div className="flex flex-col justify-between md:flex-row">
@@ -656,7 +656,7 @@ function HeroSection() {
                   ease: "easeOut",
                   delay: 1,
                 }}
-                className="flex flex-col flex-grow p-10 bg-white md:rounded-l-2xl"
+                className="flex flex-col flex-grow p-6 bg-white md:p-10 md:rounded-l-2xl"
               >
                 <AnimatePresence mode="wait">
                   <motion.h1
@@ -730,7 +730,7 @@ function HeroSection() {
                     ease: "easeOut",
                     delay: 2,
                   }}
-                  className="flex flex-row justify-between"
+                  className="flex-row justify-between hidden md:flex"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -760,7 +760,7 @@ function HeroSection() {
                     ease: "easeOut",
                     delay: 3,
                   }}
-                  className="flex flex-col p-10 gap-y-2"
+                  className="flex flex-col px-6 md:p-10 gap-y-2 "
                 >
                   <h1 className="md:text-3xl text-2xl font-bold text-[#b67a3d]">
                     Become a Member
