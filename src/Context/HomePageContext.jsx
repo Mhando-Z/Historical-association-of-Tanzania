@@ -17,6 +17,7 @@ export function HomePageDataProvider({ children }) {
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
   const [ResourcesSect, setResources] = useState([]);
+  const [visible, setVisible] = useState("");
 
   // API CALLS
   // axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
@@ -140,6 +141,8 @@ export function HomePageDataProvider({ children }) {
         TermsSect,
         companies,
         ResourcesSect,
+        visible,
+        setVisible,
         setConference,
         setCompany,
         setResources,

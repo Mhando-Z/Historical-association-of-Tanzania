@@ -37,7 +37,9 @@ function Gallery() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+    <div
+      className={`flex ${gallerySect?.length === 0 ? "hidden" : ""} flex-col items-center justify-center min-h-screen bg-gray-50`}
+    >
       <div className="flex flex-col w-full mb-12 gap-y-3">
         <div className="relative w-full overflow-hidden bg-gray-200 aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7">
           <AnimatePresence mode="wait">

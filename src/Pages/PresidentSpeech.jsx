@@ -13,7 +13,9 @@ function PresidentSpeech() {
     });
   };
   return (
-    <div className="relative px-6 mt-40 shadow-xl sm:mt-32 p-14 md:py-20 md:mt-20 bg-opacity-15">
+    <div
+      className={`relative px-6 ${PresidentSect?.length === 0 ? "hidden" : ""} mt-40 shadow-xl sm:mt-32 p-14 md:py-20 md:mt-20 bg-opacity-15`}
+    >
       <div className="container flex flex-col mx-auto md:flex-row">
         {PresidentSect?.slice(0, 1).map((dt) => {
           return (

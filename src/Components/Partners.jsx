@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Partners() {
   const { companies } = useContext(HomePageContext);
   return (
-    <div className="mt-20 mb-20">
+    <div className={`mt-20 mb-20 ${companies?.length === 0 ? "hidden" : ""}`}>
       <div className="container flex flex-col mx-auto">
         <h2 className="xl:text-6xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners

@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import HomePageContext from "../Context/HomePageContext";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { setVisible } = useContext(HomePageContext);
 
   // Show button when page is scrolled up to a certain distance
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
+      setVisible("bg-white shadow ");
     } else {
       setIsVisible(false);
+      setVisible("");
     }
   };
 
@@ -34,7 +38,7 @@ const ScrollToTopButton = () => {
           onClick={scrollToTop}
           className="bg-[#b67a3d] text-white p-3 rounded-full shadow-lg ring-2 ring-[#a46425] hover:bg-[#bc8a59] transition duration-300 ease-in-out"
         >
-          <h1 className="animate-bounce transition-all ease-in-out duration-700 md:text-xl md:py-1 ">
+          <h1 className="transition-all duration-700 ease-in-out animate-bounce md:text-xl md:py-1 ">
             {" "}
             ↑
           </h1>

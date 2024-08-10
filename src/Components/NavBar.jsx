@@ -8,11 +8,13 @@ import { motion } from "framer-motion";
 import SideNavBar from "./SideNavBar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import HomePageContext from "../Context/HomePageContext";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { userData } = useContext(UserContext);
+  const { visible } = useContext(HomePageContext);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -35,7 +37,7 @@ function NavBar() {
         location.pathname === "/Register/" ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
-          ? " py-3 fixed top-0 left-0 w-full z-50"
+          ? `py-3 fixed top-0 left-0 w-full z-50 ${visible}`
           : "hidden"
       }`}
     >
@@ -109,7 +111,7 @@ function NavBar() {
               <Events />
             </NavLink>
           </div>
-          <div className="hidden md:flex flex-row gap-x-3">
+          <div className="flex-row hidden md:flex gap-x-3">
             {userData ? (
               <Link
                 to={userData?.is_staff ? "Dashboard/" : "Dashboard/UserHome"}
