@@ -59,7 +59,7 @@ function NavBar() {
               className={({ isActive }) =>
                 isActive
                   ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -78,7 +78,7 @@ function NavBar() {
               className={({ isActive }) =>
                 isActive
                   ? "px-4 rounded-3xl font-medium   hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -95,7 +95,7 @@ function NavBar() {
               className={({ isActive }) =>
                 isActive
                   ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-black hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
