@@ -43,8 +43,6 @@ import Membership from "./Dashboard/Users/Screens/Membership";
 import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
 import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 import Publications from "./Screens/Publications";
-import logo from "../src/Assets/Images/3dlogo.png";
-import { TypeAnimation } from "react-type-animation";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
 
 // stripe
@@ -53,16 +51,6 @@ import UserRegister from "./Dashboard/Componentz/UserRegister";
 
 // functional component Basic routing logic lies here
 function App() {
-  const [showIntro, setShowIntro] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowIntro(false);
-    }, 2000); // Show intro for 5 seconds
-
-    return () => clearTimeout(timer); // Cleanup the timer on component unmount
-  }, []);
-
   const [users, setUser] = useState("");
   useEffect(() => {
     try {
@@ -71,33 +59,6 @@ function App() {
       setUser(users);
     } catch (error) {}
   }, []);
-
-  if (showIntro) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <img
-          src={logo}
-          alt="HAT Logo"
-          className="md:h-auto w-[200px] md:w-[500px] transition-all animate-pulse duration-[30000ms] ease-in-out"
-        />
-        <TypeAnimation
-          style={{
-            whiteSpace: "pre-line",
-            height: "100px",
-            display: "block",
-          }}
-          className="text-xl text-center font-bold w-[200px] md:w-full opacity-50 capitalize md:text-3xl"
-          sequence={[
-            `Historical Association of Tanzania`,
-            // actual line-break inside string literal also gets animated in new line, but ensure there are no leading spaces
-            1000,
-            "",
-          ]}
-          repeat={Infinity}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-roboto">
