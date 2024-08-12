@@ -8,7 +8,7 @@ export default function Partners() {
   return (
     <div className={`mt-20 mb-20 ${companies?.length === 0 ? "hidden" : ""}`}>
       <div className="container flex flex-col mx-auto">
-        <h2 className="xl:text-6xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
+        <h2 className="xl:text-5xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
         <div className="relative grid items-center justify-center grid-cols-2 mt-10 md:grid-cols-4 gap-x-8 gap-y-10 sm:grid-cols-3 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
@@ -27,7 +27,7 @@ export default function Partners() {
                   src={`http://127.0.0.1:8000/${dt?.image}`}
                   alt={dt.title}
                 />
-                <div className="absolute hidden items-center justify-center  group-hover:flex top-0 right-0 left-0 bottom-0 bg-gradient-to-t from-black rounded-lg  via-95% via-transparent to-transparent">
+                <div className="absolute hidden items-center justify-center  group-hover:flex top-0 right-0 left-0 bottom-0 bg-gradient-to-t from-[#b67a3d] rounded-lg  via-95% via-transparent to-transparent">
                   <img
                     className="object-cover h-auto transition-all duration-500 ease-in max-w-screen lg:h-36 group-hover:scale-75"
                     src={`http://127.0.0.1:8000/${dt?.image}`}
