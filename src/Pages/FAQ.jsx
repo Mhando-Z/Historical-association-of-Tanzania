@@ -11,21 +11,21 @@ function FAQSection() {
 
   return (
     <div className="container flex flex-col mx-auto mt-8 mb-20">
-      <h2 className="xl:text-6xl ml-5 xl:ml-0 lg:text-5xl md:text-4xl text-3xl text-[#b67a3d] font-bold mb-10">
+      <h2 className="ml-5 xl:ml-0 lg:text-5xl md:text-4xl text-3xl text-[#b67a3d] font-bold mb-10">
         Curious minds Ask
       </h2>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, type: "spring" }}
-        className="p-5 pb-4 transition-all ease-out bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+        className="p-5 pb-4 transition-all ease-out bg-gray-100 border-b border-gray-200 rounded shadow-md"
       >
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(1)}
         >
-          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+          <h3 className="text-xl font-medium text-purple-950 ">
             How can I join HAT?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -73,16 +73,16 @@ function FAQSection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, type: "spring" }}
-        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 rounded shadow-md"
       >
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(2)}
         >
-          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+          <h3 className="text-xl font-medium text-purple-950 ">
             What events are coming up?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -118,16 +118,16 @@ function FAQSection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, type: "spring" }}
-        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 rounded shadow-md"
       >
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(3)}
         >
-          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+          <h3 className="text-xl font-medium text-purple-950 ">
             Where can I find past conference resources?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -149,16 +149,16 @@ function FAQSection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, type: "spring" }}
-        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 rounded shadow-md"
       >
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(4)}
         >
-          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+          <h3 className="text-xl font-medium text-purple-950 ">
             What are the benefits of HAT membership?
           </h3>
           <span className="text-xl text-[#b67a3d]">
@@ -198,16 +198,16 @@ function FAQSection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, type: "spring" }}
-        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 shadow-md rounded-2xl"
+        className="p-5 pb-4 mt-5 bg-gray-100 border-b border-gray-200 rounded shadow-md"
       >
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => toggleFAQ(5)}
         >
-          <h3 className="text-xl font-medium text-purple-950 lg:text-2xl">
+          <h3 className="text-xl font-medium text-purple-950 ">
             How do I contact HAT for Inquiries?
           </h3>
           <span className="text-xl text-[#b67a3d]">
