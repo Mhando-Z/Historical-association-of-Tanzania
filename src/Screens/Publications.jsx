@@ -91,7 +91,7 @@ function Publications() {
             src={`http://127.0.0.1:8000/${publication.image}`}
             alt={publication.title}
             loading="lazy"
-            className="h-[400px] md:h-full bg-cover max-w-screen aspect-video"
+            className="h-[400px] md:h-[700px] bg-cover max-w-screen aspect-video"
           />
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
           <div className="absolute flex flex-col items-center left-5 bottom-5">
