@@ -91,12 +91,12 @@ function Publications() {
             src={`http://127.0.0.1:8000/${publication.image}`}
             alt={publication.title}
             loading="lazy"
-            className="h-[400px] md:h-[700px] bg-cover max-w-screen aspect-video"
+            className="h-[400px] xl:h-[700px] md:h-[500px] bg-cover max-w-screen aspect-video"
           />
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
           <div className="absolute flex flex-col items-center left-5 bottom-5">
             <motion.h1
-              className="flex flex-col w-full max-w-2xl text-xl font-black text-white lg:text-4xl"
+              className="flex flex-col w-full max-w-2xl text-xl font-bold text-white lg:text-4xl"
               variants={textVariants}
             >
               {publication.title}
@@ -111,11 +111,11 @@ function Publications() {
         </motion.div>
         {/* Content Section */}
         <motion.div
-          className="flex flex-col mt-12 md:flex-row gap-x-5"
+          className="flex flex-col mt-5 md:flex-row gap-x-5"
           variants={containerVariants}
         >
           <motion.h1
-            className="text-3xl font-bold lg:text-3xl"
+            className="text-2xl font-bold lg:text-3xl"
             variants={textVariants}
           >
             Discussion
@@ -173,10 +173,8 @@ function Publications() {
         </motion.div>
       </div>
       <div className="mt-16">
-        <div className="flex flex-col justify-center py-3 mb-10 shadow-xl">
-          <h1 className="text-2xl font-bold xl:text-4xl md:text-4xl ">
-            Other Publications
-          </h1>
+        <div className="flex flex-col justify-center py-3 mb-10 shadow">
+          <h1 className="text-2xl font-bold md:text-3xl">Other Publications</h1>
         </div>
         <div className="mt-10 border-t border-gray-200 gap-y-16">
           {other?.slice(0, count).map((post) => (

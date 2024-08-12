@@ -72,7 +72,7 @@ function ResourcePublication() {
               src={`http://127.0.0.1:8000/${ResourcesSect[value]?.image}`}
               alt={ResourcesSect[value]?.title}
               loading="lazy"
-              className="h-[400px] md:h-[700px] bg-cover max-w-screen aspect-video"
+              className="h-[400px] xl:h-[700px] md:h-[500px] bg-cover max-w-screen aspect-video"
             />
             <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
             <div className="absolute flex flex-col items-center left-5 bottom-5">
@@ -97,13 +97,11 @@ function ResourcePublication() {
           animate="animate"
         >
           {/* title */}
-          <div className="flex flex-col justify-center py-3 mb-10 shadow-xl">
-            <h1 className="text-2xl font-bold xl:text-4xl md:text-4xl ">
-              Publications
-            </h1>
+          <div className="flex flex-col justify-center py-3 mb-10 shadow">
+            <h1 className="text-2xl font-medium md:text-3xl ">Publications</h1>
           </div>
           {/* publications */}
-          <div className="grid grid-cols-1 gap-2 gap-y-6 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+          <div className="flex flex-col items-center justify-center grid-cols-1 gap-2 md:grid gap-y-6 lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
             {ResourcesSect?.slice(0, count).map((dt, index) => {
               return (
                 <motion.div
@@ -124,20 +122,19 @@ function ResourcePublication() {
                       src={`http://127.0.0.1:8000/${dt?.image}`}
                       alt={ResourcesSect[value]?.title}
                       loading="lazy"
-                      className="sm:h-[300px] rounded-lg h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
+                      className="rounded-lg h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
                     />
-                    <div className="flex flex-col px-2 mt-2 bg-white">
-                      <h1 className="flex flex-col w-full text-xl font-black text-gray-900 lg:text-2xl">
+                    <div className="flex flex-col px-1 mt-2 bg-white">
+                      <h1 className="flex flex-col w-[350px] md:w-auto text-xl font-bold text-gray-900">
                         {dt?.title}
-                        <span className="max-w-xl text-base font-bold">
+                        <span className="max-w-sm text-base font-bold">
                           {dt?.subtitle}
                         </span>
                       </h1>
-
-                      <p className="max-w-2xl text-sm tracking-tighter text-justify line-clamp-3 lg:texl-base">
+                      <p className="w-[350px] md:w-auto text-sm tracking-tighter text-justify line-clamp-3 lg:texl-base">
                         {dt?.description}
                       </p>
-                      <div className="flex flex-col w-full mt-2">
+                      <div className="flex flex-col mt-2">
                         <p className="text-sm line-clamp-3 lg:texl-base">
                           <span className="text-bold">Author-</span>
                           {dt?.author}
