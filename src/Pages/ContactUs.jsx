@@ -139,8 +139,7 @@ function ContactUs() {
           {/*Map section  */}
           <motion.div
             initial={{ opacity: 0 }}
-            viewport={{ once: true }}
-            whileInView={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1.5, type: "spring" }}
             className="flex mb-10"
           >
