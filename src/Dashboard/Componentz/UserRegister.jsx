@@ -1,7 +1,8 @@
+// export default UserRegister;
 import React, { useState } from "react";
 import axiosInstance from "../../Context/axiosInstance";
 import logo from "../../Assets/Images/Logo3.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
@@ -27,8 +28,8 @@ export const Notifier = ({ data }) => {
           <p>{data?.email}</p>
         </div>
         <p className="font-medium text-center text-green-600">
-          was created successfully, click buthhon below to complete your
-          registartion
+          was created successfully, click the button below to complete your
+          registration
         </p>
         <Link
           to={"/Dashboard/UserHome"}
@@ -42,6 +43,7 @@ export const Notifier = ({ data }) => {
 };
 
 const UserRegister = ({ handleRegistration }) => {
+  const navigate = useNavigate();
   const [error, setError] = useState([]);
   const [view, setView] = useState(false);
   const [formData, setFormData] = useState({
@@ -63,11 +65,17 @@ const UserRegister = ({ handleRegistration }) => {
         "hat-users/register/",
         formData
       );
-      // save generated token from back-end to local storage
+      // Save generated token from back-end to local storage
       localStorage.setItem("token", headers["x-auth-token"]);
-      setView(!view);
+
+      setView(true); // Display the Notifier component
+
+      // Optionally, redirect the user after a short delay
+      setTimeout(() => {
+        navigate("/Dashboard/UserHome");
+      }, 10000); // 3-second delay before redirect
     } catch (error) {
-      toast.error("User Registraation failed");
+      toast.error("User Registration failed");
       setError(error.response.data);
     }
   };
@@ -98,7 +106,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 block w-full shadow-xl  outline-none sm:py-2 py-1 rounded-3xl ring-1 ring-[#b67a3d] px-10  border-gray-300 focus:bg-blue-50"
+              className="mt-1 block w-full shadow-xl outline-none sm:py-2 py-1 rounded-3xl ring-1 ring-[#b67a3d] px-10 border-gray-300 focus:bg-blue-50"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -115,7 +123,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="mt-1 sm:py-2 py-1 shadow-xl focus:bg-blue-50  ring-1 ring-[#b67a3d] px-10 outline-none rounded-3xl  block w-full  border-gray-300"
+              className="mt-1 sm:py-2 py-1 shadow-xl focus:bg-blue-50 ring-1 ring-[#b67a3d] px-10 outline-none rounded-3xl block w-full border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -132,7 +140,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="mt-1 block w-full shadow-xl focus:bg-blue-50  sm:py-2 py-1 px-10 outline-none ring-1 ring-[#b67a3d] rounded-3xl border-gray-300"
+              className="mt-1 block w-full shadow-xl focus:bg-blue-50 sm:py-2 py-1 px-10 outline-none ring-1 ring-[#b67a3d] rounded-3xl border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -149,7 +157,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="password2"
               value={formData.password2}
               onChange={handleChange}
-              className="mt-1 block w-full outline-none shadow-xl focus:bg-blue-50  ring-1 ring-[#b67a3d] rounded-3xl sm:py-2 py-1 px-10 border-gray-300"
+              className="mt-1 block w-full outline-none shadow-xl focus:bg-blue-50 ring-1 ring-[#b67a3d] rounded-3xl sm:py-2 py-1 px-10 border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -175,17 +183,8 @@ const UserRegister = ({ handleRegistration }) => {
             </motion.div>
           </div>
         </form>
-        {view ? (
-          <Notifier data={formData} handleRegistration={handleRegistration} />
-        ) : (
-          ""
-        )}
+        {view && <Notifier data={formData} />}
       </motion.div>
-      {/* <Link to={"/"}>
-        <div className=" absolute left-0 top-0 text-white font-bold cursor-pointer bg-[#b67a3d] rounded-3xl px-7 py-2 ring-inset ring-2 ring-white">
-          Back
-        </div>
-      </Link> */}
     </div>
   );
 };

@@ -8,7 +8,6 @@ const formatDate = (dateString) => {
 };
 
 function ProfileOverview({ data }) {
-  console.log(data);
   return (
     <div className="w-full shadow-xl bg-slate-100 ">
       <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">

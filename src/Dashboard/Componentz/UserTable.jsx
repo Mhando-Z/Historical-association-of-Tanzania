@@ -119,7 +119,7 @@ const UserTable = ({ data }) => {
                         transition={{ type: "spring", ease: "easeOut" }}
                         className="bg-slate-200 rounded-3xl ring-1 ring-[#b67a3d] shadow-lg font-medium py-2 px-6"
                       >
-                        Edit
+                        View
                       </motion.button>
                     </>
                   ) : (

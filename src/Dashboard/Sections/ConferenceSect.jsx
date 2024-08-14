@@ -138,7 +138,7 @@ function ConferenceSect() {
 
   const handleEdit = (id) => {
     setShow(!show);
-    console.log(id);
+
     setDataId(id);
   };
 

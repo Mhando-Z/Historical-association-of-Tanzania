@@ -97,7 +97,7 @@ function ResourcePublication() {
           animate="animate"
         >
           {/* title */}
-          <div className="flex flex-col justify-center py-3 mb-10 shadow">
+          <div className="flex flex-col justify-center mb-10 shadow">
             <h1 className="text-2xl font-medium md:text-3xl ">Publications</h1>
           </div>
           {/* publications */}

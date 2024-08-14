@@ -115,7 +115,7 @@ const Membership = () => {
       navigate("/Dashboard/UserProfile/");
       toast.success("Profile updated successfully");
     } catch (error) {
-      console.log(error.response);
+      console.error(error.response);
       toast.error("Error updating profile");
     }
   };

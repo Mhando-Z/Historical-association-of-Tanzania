@@ -52,16 +52,15 @@ const MemberRegister = () => {
     gender: formData.gender.toLowerCase(),
   };
   const phaseOne = async () => {
-    console.log(update1);
     try {
       const { data } = await axiosInstance.put(
         "/hat-users/UpdateUserProfile/",
         update1
       );
-      console.log(data);
+
       toast.success("Profile updated successfully");
     } catch (error) {
-      console.log(error.response);
+      console.error(error.response);
       toast.error("Error updating profile");
     }
   };
@@ -81,7 +80,7 @@ const MemberRegister = () => {
   };
 
   const handleComplete = () => {
-    console.log(formData);
+    // console.log(formData);
   };
 
   const renderStep = () => {

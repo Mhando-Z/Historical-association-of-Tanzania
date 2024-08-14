@@ -108,7 +108,7 @@ const PasswordResetConfirm = () => {
         token,
         new_password: newPassword,
       });
-      console.log(data);
+
       toast.success("Password reset successfully.");
       navigate("/login/");
     } catch (error) {

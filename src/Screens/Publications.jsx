@@ -41,8 +41,6 @@ function Publications() {
   const publication = data ? data[0] : null;
 
   const other = ResourcesSect?.filter((dt) => dt.id !== publication.id);
-  console.log(ResourcesSect);
-  console.log(other);
 
   if (!publication) {
     return (

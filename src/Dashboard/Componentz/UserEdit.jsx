@@ -46,7 +46,7 @@ const AdminUserManagement = () => {
       const response = await axiosInstance.get("/hat-users/admin/users/");
       setUsers(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       console.error("Error fetching users:", error);
     }
   };
