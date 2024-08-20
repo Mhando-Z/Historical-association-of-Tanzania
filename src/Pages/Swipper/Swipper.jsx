@@ -31,7 +31,7 @@ export default function Swipper() {
         <>
           <div className="mb-10 text-center">
             <motion.h2
-              className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl"
+              className="px-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
