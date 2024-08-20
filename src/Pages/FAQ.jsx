@@ -11,7 +11,7 @@ function FAQSection() {
 
   return (
     <div className="container flex flex-col mx-auto mt-8 mb-20">
-      <h2 className="lg:text-5xl md:text-4xl text-3xl text-[#b67a3d] font-bold mb-10">
+      <h2 className="md:text-4xl text-3xl text-[#b67a3d] font-bold mb-10">
         Curious minds Ask
       </h2>
       <motion.div

@@ -106,7 +106,7 @@ function HeroSection() {
                 <AnimatePresence mode="wait">
                   <motion.h1
                     key={value + "title"}
-                    initial={{ opacity: 0, x: "-100%" }}
+                    initial={{ opacity: 0, x: "-90px" }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: "100%" }}
                     transition={{
@@ -115,7 +115,7 @@ function HeroSection() {
                       ease: "easeOut",
                       delay: 0.5,
                     }}
-                    className="md:text-4xl mb-2 text-3xl xl:text-5xl text-[#b67a3d] xl:max-w-2xl max-w-2xl font-Roboto font-extrabold"
+                    className="md:text-3xl mb-2 text-3xl xl:text-4xl text-[#b67a3d] xl:max-w-2xl max-w-2xl font-Roboto font-extrabold"
                   >
                     {heroSect[value]?.title}
                   </motion.h1>
@@ -132,7 +132,7 @@ function HeroSection() {
                       ease: "easeOut",
                       delay: 2,
                     }}
-                    className="max-w-lg text-xl font-semibold tracking-tighter text-gray-900 md:line-clamp-2 xl:text-4xl md:text-2xl"
+                    className="max-w-lg text-xl font-semibold tracking-tighter text-gray-900 md:line-clamp-2 xl:text-2xl md:text-xl"
                   >
                     {heroSect[value]?.subtitle}
                   </motion.h2>
@@ -207,7 +207,7 @@ function HeroSection() {
                   }}
                   className="flex flex-col px-6 md:p-10 gap-y-2 "
                 >
-                  <h1 className="md:text-3xl text-2xl font-bold text-[#b67a3d]">
+                  <h1 className="md:text-2xl text-xl font-bold text-[#b67a3d]">
                     Become a Member
                   </h1>
                   <p className="max-w-lg tracking-tighter sm:text-base xl:max-w-2xl xl:text-lg">

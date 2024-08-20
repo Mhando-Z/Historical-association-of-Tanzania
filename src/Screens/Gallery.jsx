@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import HomePageContext from "../Context/HomePageContext";
-import { Link } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import ImageDisplay from "../Components/InageDisplay";
 import { Dots } from "react-activity";
@@ -10,7 +9,7 @@ function Gallery() {
   const { gallerySect } = useContext(HomePageContext);
   const [value, setValue] = useState(0);
   const [count, setCount] = useState(8);
-  const [valuez, setValuez] = useState(null);
+  const [selected, setSelect] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleCount = () => {
@@ -20,8 +19,9 @@ function Gallery() {
   };
 
   const handleValue = (index) => {
-    setValuez(index);
-    setOpen(!open);
+    // setValuez(index);
+    // setOpen(!open);
+    setSelect(index);
   };
 
   const handleNext = () => {
@@ -85,7 +85,7 @@ function Gallery() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col px-2 bg-white shadow-2xl  border-b-8 border-b-[#a97c50] lg-px-10 sm:px-5 ">
+      <div className="flex flex-col px-2 bg-white shadow  border-b-8 border-b-[#a97c50] lg-px-10 sm:px-5 ">
         <div className="py-3 mb-10 shadow-xl ">
           <motion.h1
             className="ml-2 md:text-4xl text-3xl font-semibold text-[#a97c50] tracking-tighter md:text-5xll"
@@ -99,13 +99,18 @@ function Gallery() {
         </div>
         <div className="grid grid-cols-1 gap-x-1 gap-y-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-1">
           {gallerySect?.slice(0, count).map((product, index) => (
-            <Link
+            <motion.div
+              whileHover={{ scale: 1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
               onClick={() => handleValue(index)}
               key={product.id}
-              className="group"
+              // className="group"
+              className={`overflow-hidden ${index === 0 ? "md:col-span-3 md:row-span-1 group" : "group w-full overflow-hidden rounded"} ${index === selected ? "md:col-span-3 md:row-span-2 sm:col-span-2" : ""} `}
+              layout
             >
               <motion.div
-                className="w-full overflow-hidden bg-gray-200 rounded-xl aspect-h-1 aspect-w-1 hover:rounded-2xl xl:aspect-h-8 xl:aspect-w-7"
+                // className="w-full overflow-hidden bg-gray-200 rounded-xl aspect-h-1 aspect-w-1 hover:rounded-2xl xl:aspect-h-8 xl:aspect-w-7"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -115,10 +120,10 @@ function Gallery() {
                   src={`http://127.0.0.1:8000/${product.image}`}
                   alt={product.title}
                   loading="lazy"
-                  className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
+                  className={`${index === selected ? "object-cover md:h-[820px] object-center w-full transition-all duration-500 ease-in " : "object-cover  h-[400px] object-center w-full transition-all duration-500 ease-in"}`}
                 />
               </motion.div>
-            </Link>
+            </motion.div>
           ))}
         </div>
         <div className="flex justify-end w-full py-2">
@@ -134,7 +139,7 @@ function Gallery() {
         </div>
       </div>
       <div className="flex items-end justify-end w-full mt-10 mb-16"></div>
-      <ImageDisplay value={valuez} open={open} setOpen={setOpen} />
+      <ImageDisplay open={open} setOpen={setOpen} />
     </div>
   );
 }
