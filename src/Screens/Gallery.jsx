@@ -233,7 +233,7 @@ function Gallery() {
                     />
                     <button
                       onClick={() => setOpen(false)}
-                      className="absolute px-2 text-4xl text-white bg-red-600 rounded-full top-2 right-2 hover:text-gray-900"
+                      className="absolute px-2 text-4xl text-white bg-red-600 rounded-full top-2 right-2 hover:text-gray-100"
                       aria-label="Close"
                     >
                       ×
