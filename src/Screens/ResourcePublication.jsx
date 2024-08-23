@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HomePageContext from "../Context/HomePageContext";
-import { Dots } from "react-activity";
 import moment from "moment";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 
 // Date formatter component
