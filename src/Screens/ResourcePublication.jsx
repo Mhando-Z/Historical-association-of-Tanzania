@@ -162,10 +162,10 @@ function ResourcePublication() {
                 <p className="w-full line-clamp-3">{data?.description}</p>
               </div>
               <div className="flex flex-col px-1">
-                <p className="text-sm line-clamp-3 lg:texl-base">
+                {/* <p className="text-sm line-clamp-3 lg:texl-base">
                   <span className="text-bold">Author-</span>
                   {data?.author}
-                </p>
+                </p> */}
                 <p className="text-sm text-blue-800">
                   {formatDate(data?.dateIssued)}
                 </p>
