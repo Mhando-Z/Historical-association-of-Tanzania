@@ -37,10 +37,10 @@ function Publications() {
   const { ResourcesSect } = useContext(HomePageContext);
   const [count, setCount] = useState(5);
 
-  const data = ResourcesSect?.filter((dt) => dt.id === publishId);
+  const data = ResourcesSect?.filter((dt) => dt?.id === publishId);
   const publication = data ? data[0] : null;
 
-  const other = ResourcesSect?.filter((dt) => dt.id !== publication.id);
+  const other = ResourcesSect?.filter((dt) => dt?.id !== publication?.id);
 
   if (!publication) {
     return (
@@ -79,7 +79,7 @@ function Publications() {
       animate="visible"
       variants={containerVariants}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full ">
         {/* Image Section */}
         <motion.div
           className="relative flex flex-col w-full"
@@ -89,92 +89,96 @@ function Publications() {
             src={`http://127.0.0.1:8000/${publication.image}`}
             alt={publication.title}
             loading="lazy"
-            className="h-[400px] xl:h-[700px] md:h-[500px] bg-cover max-w-screen aspect-video"
+            className="min-h-screen bg-cover xl:h-full max-w-screen aspect-video"
           />
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-          <div className="absolute flex flex-col items-center left-5 bottom-5">
-            <motion.h1
-              className="flex flex-col w-full max-w-2xl text-xl font-bold text-white lg:text-4xl"
-              variants={textVariants}
-            >
-              {publication.title}
-              <motion.span
-                className="max-w-xl text-base font-medium text-white lg:text-2xl"
+          <div className="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-40"></div>
+          <div className="absolute  h-[45rem] flex flex-col overflow-x-hidden overflow-y-auto top-20 left-5">
+            <div className="flex flex-col">
+              <motion.h1
+                className="text-xl font-semibold text-white lg:text-3xl"
+                variants={textVariants}
+              >
+                {publication.title}
+              </motion.h1>
+              <motion.h2
+                className="max-w-xl text-base text-white lg:text-xl"
                 variants={textVariants}
               >
                 {publication.subtitle}
-              </motion.span>
-            </motion.h1>
+              </motion.h2>
+            </div>
+            {/* descriptions */}
+            <motion.div
+              className="flex flex-col mt-5"
+              variants={containerVariants}
+            >
+              <motion.h1
+                className="text-xl font-bold text-gray-200 lg:text-2xl"
+                variants={textVariants}
+              >
+                Discussion
+              </motion.h1>
+              <motion.div
+                className="flex flex-col text-gray-300 gap-y-4"
+                variants={containerVariants}
+              >
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication.description}
+                </motion.p>
+                <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
+                  <div className="w-full">
+                    <motion.img
+                      src={`http://127.0.0.1:8000/${publication.image2}`}
+                      alt={publication.title}
+                      loading="lazy"
+                      className="w-full bg-cover aspect-video "
+                      variants={imageVariants}
+                    />
+                  </div>
+                  <motion.div
+                    className={`${publication.video_url.length === 0 ? "hidden" : ""}`}
+                    variants={iframeVariants}
+                  >
+                    {isYouTubeUrl(publication.video_url) ? (
+                      <iframe
+                        title={publication.title}
+                        className="w-full aspect-video"
+                        src={`https://www.youtube.com/embed/${new URL(publication.video_url).searchParams.get("v")}`}
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <iframe
+                        title={publication.title}
+                        className="w-full aspect-video"
+                        src={publication.video_url}
+                        allowFullScreen
+                      ></iframe>
+                    )}
+                  </motion.div>
+                </div>
+                <motion.p
+                  className="text-xl font-bold tracking-tighter lg:text-2xl"
+                  variants={textVariants}
+                >
+                  References
+                </motion.p>
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication.references}
+                </motion.p>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
-        {/* Content Section */}
-        <motion.div
-          className="flex flex-col mt-5 md:flex-row gap-x-5"
-          variants={containerVariants}
-        >
-          <motion.h1
-            className="text-2xl font-bold lg:text-3xl"
-            variants={textVariants}
-          >
-            Discussion
-          </motion.h1>
-          <motion.div
-            className="flex flex-col gap-y-4"
-            variants={containerVariants}
-          >
-            <motion.p
-              className="tracking-tighter text-justify"
-              variants={textVariants}
-            >
-              {publication.description}
-            </motion.p>
-            <motion.img
-              src={`http://127.0.0.1:8000/${publication.image2}`}
-              alt={publication.title}
-              loading="lazy"
-              className="xl:h-[600px] lg:h-[450px] h-[350px] bg-cover w-full aspect-video"
-              variants={imageVariants}
-            />
-            <motion.div
-              className={`${publication.video_url.length === 0 ? "hidden" : ""}`}
-              variants={iframeVariants}
-            >
-              {isYouTubeUrl(publication.video_url) ? (
-                <iframe
-                  title={publication.title}
-                  className="w-full aspect-video"
-                  src={`https://www.youtube.com/embed/${new URL(publication.video_url).searchParams.get("v")}`}
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <iframe
-                  title={publication.title}
-                  className="w-full aspect-video"
-                  src={publication.video_url}
-                  allowFullScreen
-                ></iframe>
-              )}
-            </motion.div>
-            <motion.p
-              className="text-3xl font-bold tracking-tighter"
-              variants={textVariants}
-            >
-              References
-            </motion.p>
-            <motion.p
-              className="tracking-tighter text-justify"
-              variants={textVariants}
-            >
-              {publication.references}
-            </motion.p>
-          </motion.div>
-        </motion.div>
       </div>
-      <div className="mt-16">
+      {/* Other publications and repports */}
+      <div className="mt-5">
         <div className="flex flex-col justify-center py-3 mb-10 shadow">
-          <h1 className="text-2xl font-bold md:text-3xl">Other Publications</h1>
+          <h1 className="px-2 text-xl font-bold border-l-4 border-l-black md:text-2xl">
+            Other Publications
+          </h1>
         </div>
-        <div className="mt-10 border-t border-gray-200 gap-y-16">
+        <div className="border-t border-gray-200 gap-y-16">
           {other?.slice(0, count).map((post) => (
             <motion.article
               key={post.id}
