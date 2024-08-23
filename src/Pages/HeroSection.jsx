@@ -115,7 +115,7 @@ function HeroSection() {
                       ease: "easeOut",
                       delay: 0.5,
                     }}
-                    className="md:text-3xl mb-2 text-3xl xl:text-4xl text-[#b67a3d] xl:max-w-2xl max-w-2xl font-Roboto font-extrabold"
+                    className="md:text-3xl mb-2 text-3xl xl:text-4xl text-[#b67a3d] max-w-2xl font-Roboto font-extrabold"
                   >
                     {heroSect[value]?.title}
                   </motion.h1>

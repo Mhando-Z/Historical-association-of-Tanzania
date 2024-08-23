@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 
 // Date formatter component
@@ -31,19 +31,6 @@ function ResourcePublication() {
     setcount(count + 4);
   };
 
-  // Animation variants
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1 },
-  };
-
-  const fadeIn = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 1 },
-  };
-
   const handleSelect = (id) => {
     setUpPId(id);
     navigate("/Publications/");
@@ -56,120 +43,150 @@ function ResourcePublication() {
       behavior: "smooth",
     });
   };
+  // animation logic
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+    hover: { scale: 1.03 },
+  };
+
+  const imgHoverEffect = {
+    hover: { scale: 1 },
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen mt-16 ">
-      <div className="container flex flex-col mx-auto">
+    <motion.div
+      className="flex flex-col min-h-screen mt-20"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <div className="container flex flex-col justify-center mx-auto ">
         {/* header */}
         <motion.div
-          className="grid grid-cols-1 gap-2 shadow-xl"
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
+          className="grid grid-flow-row-dense grid-cols-1 gap-y-5 gap-x-2 md:grid-cols-3"
+          variants={itemVariants}
         >
-          <div className="relative flex flex-col w-full ">
-            <img
+          <div className="md:h-[30rem] h-[20rem] col-span-2 relative">
+            <motion.img
               src={`http://127.0.0.1:8000/${ResourcesSect[value]?.image}`}
-              alt={ResourcesSect[value]?.title}
+              alt={`News picture`}
               loading="lazy"
-              className="h-[400px] xl:h-[700px] md:h-[500px] bg-cover max-w-screen aspect-video"
+              className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
+              variants={imgHoverEffect}
+              whileHover="hover"
             />
-            <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-            <div className="absolute flex flex-col items-center left-5 bottom-5">
-              <h1 className="flex flex-col w-full max-w-2xl text-xl font-black text-white lg:text-4xl ">
+            <div className="absolute top-0 bottom-0 left-0 right-0 rounded-xl bg-gradient-to-t from-black to-transparent via-transparent"></div>
+            <div className="absolute z-20 left-4 bottom-6 ">
+              <h1 className="text-2xl font-semibold text-white">
                 {ResourcesSect[value]?.title}
-                <span className="max-w-xl text-base font-medium text-white lg:text-2xl ">
-                  {ResourcesSect[value]?.subtitle}
-                </span>
               </h1>
-              <p className="max-w-xl px-0 mx-0 ml-0 text-2xl font-bold text-white "></p>
-              <p className="max-w-2xl text-sm text-white lg:text-base line-clamp-3 xl:text-lg ">
+              <p className="text-gray-300 line-clamp-3">
                 {ResourcesSect[value]?.description}
               </p>
             </div>
           </div>
+          {/* scroll grids */}
+          <motion.div
+            className="grid grid-flow-row gap-y-1 overflow-y-auto h-[30rem]"
+            variants={containerVariants}
+          >
+            {ResourcesSect?.slice(0, count).map((data, index) => (
+              <motion.div
+                key={index + data.id}
+                className="h-[10rem] relative cursor-pointer"
+                variants={itemVariants}
+                onClick={() => handleSelect(data.id)}
+              >
+                <motion.img
+                  src={`http://127.0.0.1:8000/${data?.image}`}
+                  alt={ResourcesSect[value]?.title}
+                  loading="lazy"
+                  className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
+                  variants={imgHoverEffect}
+                  whileHover="hover"
+                />
+                <div className="absolute top-0 bottom-0 left-0 right-0 rounded-xl bg-gradient-to-t from-black to-transparent "></div>
+                <div className="absolute z-20 bottom-2 left-4 ">
+                  <h1 className="text-lg font-semibold text-white xl:text-xl line-clamp-1">
+                    {data?.title}
+                  </h1>
+                  <p className="max-w-md text-gray-300 line-clamp-2">
+                    {data?.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-        {/* body */}
+        {/* news list */}
         <motion.div
-          className="flex flex-col mt-10 mb-28"
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
+          className="grid grid-cols-1 gap-2 mt-5 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5"
+          variants={containerVariants}
         >
-          {/* title */}
-          <div className="flex flex-col justify-center mb-10 shadow">
-            <h1 className="text-2xl font-medium md:text-3xl ">Publications</h1>
-          </div>
-          {/* publications */}
-          <div className="flex flex-col items-center justify-center grid-cols-1 gap-2 md:grid gap-y-6 lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-            {ResourcesSect?.slice(0, count).map((dt, index) => {
-              return (
-                <motion.div
-                  key={dt.id}
-                  variants={fadeIn}
-                  initial="initial"
-                  animate="animate"
-                  transition={{ delay: index * 0.1 }} // Staggered animation
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.8 }}
-                    transition={{ type: "spring", ease: "easeOut" }}
-                    onClick={() => handleSelect(dt.id)}
-                    className="w-full p-1"
-                  >
-                    <img
-                      src={`http://127.0.0.1:8000/${dt?.image}`}
-                      alt={ResourcesSect[value]?.title}
-                      loading="lazy"
-                      className="rounded-lg h-[200px] bg-cover max-w-screen cursor-pointer aspect-video"
-                    />
-                    <div className="flex flex-col px-1 mt-2 bg-white">
-                      <h1 className="flex flex-col w-[350px] md:w-auto text-xl font-bold text-gray-900">
-                        {dt?.title}
-                        <span className="max-w-sm text-base font-bold">
-                          {dt?.subtitle}
-                        </span>
-                      </h1>
-                      <p className="w-[350px] md:w-auto text-sm tracking-tighter text-justify line-clamp-3 lg:texl-base">
-                        {dt?.description}
-                      </p>
-                      <div className="flex flex-col mt-2">
-                        <p className="text-sm line-clamp-3 lg:texl-base">
-                          <span className="text-bold">Author-</span>
-                          {dt?.author}
-                        </p>
-                        <p className="text-sm text-blue-800">
-                          {formatDate(dt?.dateIssued)}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-          <div className="flex justify-end w-full mt-6">
-            <motion.button
-              onClick={handleCount}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.8 }}
-              transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-2 text-white rounded-3xl bg-[#b67a3d] "
+          {ResourcesSect?.slice(0, count).map((data, index) => (
+            <motion.div
+              key={index + data.id}
+              className="flex-col items-center justify-center cursor-pointer flx"
+              variants={itemVariants}
+              whileHover="hover"
+              onClick={() => handleSelect(data.id)}
             >
-              More
-            </motion.button>
-          </div>
+              <div className="h-[10rem]">
+                <motion.img
+                  src={`http://127.0.0.1:8000/${data?.image}`}
+                  alt={ResourcesSect[value]?.title}
+                  loading="lazy"
+                  className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
+                  variants={imgHoverEffect}
+                  whileHover="hover"
+                />
+              </div>
+              <div className="flex flex-col px-1 py-2">
+                <h1 className="w-full text-xl font-semibold line-clamp-2">
+                  {data?.title}
+                </h1>
+                <p className="w-full line-clamp-3">{data?.description}</p>
+              </div>
+              <div className="flex flex-col px-1">
+                <p className="text-sm line-clamp-3 lg:texl-base">
+                  <span className="text-bold">Author-</span>
+                  {data?.author}
+                </p>
+                <p className="text-sm text-blue-800">
+                  {formatDate(data?.dateIssued)}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-      </div>
-      {ResourcesSect?.length === 0 ? (
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center ">
-          <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+        <div className="flex justify-end w-full mt-6">
+          <motion.button
+            onClick={handleCount}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.8 }}
+            transition={{ type: "spring", ease: "easeOut" }}
+            className="px-5 py-2 text-white rounded-3xl bg-[#b67a3d] "
+          >
+            More
+          </motion.button>
         </div>
-      ) : (
-        ""
-      )}
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
