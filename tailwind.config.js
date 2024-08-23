@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
+        lobstyled: ["Lobster Two", "sans-serif"],
       },
       fontWeight: {
         hairline: 100,

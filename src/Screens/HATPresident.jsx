@@ -10,9 +10,9 @@ function HATPresident() {
         <img
           src={`http://127.0.0.1:8000/${PresidentSect[0]?.image2}`}
           alt={PresidentSect[0]?.subtitle}
-          className="h-[650px] w-full object-cover object-top hover:grayscale transition-all duration-500 ease-in"
+          className="h-[650px] w-full object-cover object-top  transition-all duration-500 ease-in"
         />
-        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b from-transparent via-transparent via-90% to-white"></div>
       </div>
       <div className="container flex flex-col mx-auto xl:mt-10 gap-y-3">
         <h1 className="max-w-2xl text-5xl font-bold tracking-tighter text-gray-800 xl:text-6xl">
