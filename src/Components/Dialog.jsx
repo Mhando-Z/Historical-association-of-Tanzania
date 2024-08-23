@@ -17,7 +17,7 @@ export default function Dialogue({ value, open, setOpen }) {
         className="fixed inset-0 bg-black bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
 
-      <div className="fixed inset-0 z-10 overflow-y-auto">
+      <div className="fixed inset-0 z-10 overflow-y-auto lg:top-10 xl:top-20">
         <div className="flex items-end justify-center p-4 text-center sm:items-center">
           <DialogPanel
             transition
@@ -68,7 +68,7 @@ export default function Dialogue({ value, open, setOpen }) {
             </div>
             <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
               <Link
-                className="inline-flex justify-center w-full px-6 py-2 font-semibold text-white bg-red-600 shadow-sm rounded-3xl md:text-xl hover:bg-red-500 sm:ml-3 sm:w-auto"
+                className="inline-flex justify-center w-full px-4 py-2 font-semibold text-white bg-red-600 rounded-3xl hover:bg-red-500 sm:ml-3 sm:w-auto"
                 onClick={() => setOpen(false)}
               >
                 Cancel
