@@ -62,7 +62,7 @@ function PresidentSpeech() {
                     <Link
                       onClick={scrollToTop}
                       to={"President/"}
-                      className="px-6 py-2 xl:py-2 mt-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black font-medium rounded-3xl bg-[#b67a3d] text-white"
+                      className="px-4 py-2 mt-2 font-medium text-black ring-2 ring-black xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}
