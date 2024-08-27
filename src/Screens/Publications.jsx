@@ -107,6 +107,12 @@ function Publications() {
               >
                 {publication.subtitle}
               </motion.h2>
+              <motion.h2
+                className="max-w-xl text-base text-white lg:text-lg"
+                variants={textVariants}
+              >
+                Author-{publication.author}
+              </motion.h2>
             </div>
             {/* descriptions */}
             <motion.div
