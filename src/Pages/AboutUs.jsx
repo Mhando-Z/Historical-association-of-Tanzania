@@ -85,7 +85,7 @@ function AboutUs() {
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
               onClick={handleClick}
-              className="px-5 py-2 hover:ring-2 hover:ring-black hover:text-black hover:bg-white rounded-3xl  mt-2  font-semibold bg-[#b67a3d] text-white"
+              className="px-4 py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
             >
               ReadMore
             </motion.button>
