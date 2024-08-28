@@ -11,7 +11,7 @@ export default function Partners() {
         <h2 className="xl:text-5xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
-        <div className="relative grid items-center justify-center grid-cols-2 mt-10 md:grid-cols-4 gap-x-8 gap-y-10 sm:grid-cols-3 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <div className="relative grid grid-flow-col mt-10 overflow-x-auto overflow-y-hidden gap-x-4">
           {companies?.map((dt) => {
             return (
               <motion.div
@@ -20,7 +20,7 @@ export default function Partners() {
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, type: "spring" }}
                 key={dt.id}
-                className="relative flex flex-col items-center justify-center h-full rounded-lg shadow-xl group xl:p-10 lg:p-5 bg-slate-100"
+                className="relative flex flex-col items-center justify-center w-[10rem] md:w-[20rem] h-full rounded-lg shadow-xl group xl:p-10 lg:p-5 bg-slate-100"
               >
                 <img
                   className="object-cover h-auto transition-all duration-500 ease-in max-w-screen lg:h-36 group-hover:scale-75"
