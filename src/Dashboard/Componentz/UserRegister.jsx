@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axiosInstance from "../../Context/axiosInstance";
 import logo from "../../Assets/Images/Logo3.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
@@ -52,6 +52,7 @@ const UserRegister = ({ handleRegistration }) => {
     password: "",
     password2: "",
   });
+  const location = useLocation();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,6 +80,16 @@ const UserRegister = ({ handleRegistration }) => {
       setError(error.response.data);
     }
   };
+
+  const handleLogin = () => {
+    if (location.pathname === "/Register/") {
+      navigate("/Login/");
+    } else {
+      handleRegistration();
+    }
+  };
+
+  console.log(location.pathname);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-sm lg:text-md">
@@ -167,7 +178,10 @@ const UserRegister = ({ handleRegistration }) => {
           <div className="flex flex-col-reverse justify-between w-full gap-y-5 md:flex-row md:items-end">
             <div className="flex flex-col items-center lg:flex-row gap-y-2 gap-x-2">
               <h1>Already have an Account?</h1>
-              <Link onClick={handleRegistration}>
+              <Link
+                to={`${location.pathname === "/Register/" ? "/Login/" : ""}`}
+                onClick={handleLogin}
+              >
                 <h1 className="font-medium text-blue-700">Log-in</h1>
               </Link>
             </div>
