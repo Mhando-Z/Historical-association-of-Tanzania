@@ -44,6 +44,7 @@ import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
 import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 import Publications from "./Screens/Publications";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
+import Announce from "./Screens/Announce";
 
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
@@ -87,6 +88,7 @@ function App() {
               <Route path="Gallery/" element={<Gallery />} />
               <Route path="Research/" element={<ResourcePublication />} />
               <Route path="Announcements/" element={<Announcements />} />
+              <Route path="Announce/" element={<Announce />} />
               <Route path="*" element={<PageNotFound />} />
               <Route
                 path="Password-reset/"

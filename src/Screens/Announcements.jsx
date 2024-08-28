@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
 import moment from "moment";
 import { motion } from "framer-motion";
+import UserContext from "../Context/UserContext";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -23,6 +24,22 @@ const itemVariants = {
 
 export default function Announcements() {
   const { AnnounceSect } = useContext(HomePageContext);
+  const { setAnnounceId } = useContext(UserContext);
+  // functions imports
+  const navigate = useNavigate();
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleSelect = (id) => {
+    setAnnounceId(id);
+    navigate("/Announce/");
+    scrollToTop();
+  };
   return (
     <motion.div
       className="mb-20 mt-28"
@@ -56,6 +73,7 @@ export default function Announcements() {
           {AnnounceSect?.map((post) => (
             <motion.article
               key={post.id}
+              onClick={() => handleSelect(post.id)}
               className="flex flex-col items-start justify-between mt-5 gap-x-10 md:flex-row"
               variants={itemVariants}
             >

@@ -10,6 +10,7 @@ function Footer() {
         location.pathname === "/" ||
         location.pathname === "/Gallery/" ||
         location.pathname === "/Announcements/" ||
+        location.pathname === "/Announce/" ||
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
         location.pathname === "/Register/" ||

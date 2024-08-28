@@ -6,12 +6,6 @@ import { Dots } from "react-activity";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-// Utility function to check if the URL is a YouTube URL
-const isYouTubeUrl = (url) => {
-  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
-  return youtubeRegex.test(url);
-};
-
 // Date formatter component
 const formatDate = (dateString) => {
   return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
@@ -27,22 +21,17 @@ const textVariants = {
   visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } },
 };
 
-const iframeVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { delay: 0.7, duration: 0.8 } },
-};
-
-function Publications() {
-  const { publishId, setUpPId } = useContext(UserContext);
-  const { ResourcesSect } = useContext(HomePageContext);
+function Announce() {
+  const { AnnounceID, setAnnounceId } = useContext(UserContext);
+  const { AnnounceSect } = useContext(HomePageContext);
   const [count, setCount] = useState(5);
 
-  const data = ResourcesSect?.filter((dt) => dt?.id === publishId);
-  const publication = data ? data[0] : null;
+  const data = AnnounceSect?.filter((dt) => dt?.id === AnnounceID);
+  const Announcement = data ? data[0] : null;
 
-  const other = ResourcesSect?.filter((dt) => dt?.id !== publication?.id);
+  const other = AnnounceSect?.filter((dt) => dt?.id !== Announcement?.id);
 
-  if (!publication) {
+  if (!Announcement) {
     return (
       <div className="flex items-center justify-center min-h-screen ">
         <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
@@ -61,7 +50,7 @@ function Publications() {
   };
 
   const handleSelection = (id) => {
-    setUpPId(id);
+    setAnnounceId(id);
     scrollToTop();
   };
 
@@ -86,32 +75,26 @@ function Publications() {
           variants={imageVariants}
         >
           <img
-            src={`http://127.0.0.1:8000/${publication.image}`}
-            alt={publication.title}
+            src={`http://127.0.0.1:8000/${Announcement.image}`}
+            alt={Announcement.title}
             loading="lazy"
-            className="object-cover min-h-screen rounded-sm xl:h-full max-w-screen aspect-video"
+            className="object-cover min-h-screen rounded-2xl xl:h-full max-w-screen aspect-video"
           />
-          <div className="absolute top-0 bottom-0 left-0 right-0 rounded-sm bg-gradient-to-t from-slate-900 to-transparent"></div>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-black rounded-sm bg-opacity-40"></div>
+          <div className="absolute top-0 bottom-0 left-0 right-0 rounded-2xl bg-gradient-to-t from-slate-900 to-transparent"></div>
+          <div className="absolute top-0 bottom-0 left-0 right-0 bg-black rounded-2xl bg-opacity-40"></div>
           <div className="absolute  h-[45rem] flex flex-col overflow-x-hidden overflow-y-auto top-20 left-5">
             <div className="flex flex-col">
               <motion.h1
                 className="text-xl font-semibold text-white lg:text-3xl"
                 variants={textVariants}
               >
-                {publication.title}
+                {Announcement.title}
               </motion.h1>
               <motion.h2
                 className="max-w-xl text-base text-white lg:text-xl"
                 variants={textVariants}
               >
-                {publication.subtitle}
-              </motion.h2>
-              <motion.h2
-                className="max-w-xl text-base text-white lg:text-lg"
-                variants={textVariants}
-              >
-                Author-{publication.author}
+                {Announcement?.subtitle}
               </motion.h2>
             </div>
             {/* descriptions */}
@@ -130,61 +113,41 @@ function Publications() {
                 variants={containerVariants}
               >
                 <motion.p className="tracking-tighter" variants={textVariants}>
-                  {publication.description}
+                  {Announcement.description}
                 </motion.p>
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
                   <div className="w-full">
                     <motion.img
-                      src={`http://127.0.0.1:8000/${publication.image2}`}
-                      alt={publication.title}
+                      src={`http://127.0.0.1:8000/${Announcement.image2}`}
+                      alt={Announcement.title}
                       loading="lazy"
                       className="object-cover w-full aspect-video "
                       variants={imageVariants}
                     />
                   </div>
-                  <motion.div
-                    className={`${publication.video_url.length === 0 ? "hidden" : ""}`}
-                    variants={iframeVariants}
-                  >
-                    {isYouTubeUrl(publication.video_url) ? (
-                      <iframe
-                        title={publication.title}
-                        className="w-full aspect-video"
-                        src={`https://www.youtube.com/embed/${new URL(publication.video_url).searchParams.get("v")}`}
-                        allowFullScreen
-                      ></iframe>
-                    ) : (
-                      <iframe
-                        title={publication.title}
-                        className="w-full aspect-video"
-                        src={publication.video_url}
-                        allowFullScreen
-                      ></iframe>
-                    )}
-                  </motion.div>
+                  <div className="w-full">
+                    <motion.img
+                      src={`http://127.0.0.1:8000/${Announcement.image}`}
+                      alt={Announcement.title}
+                      loading="lazy"
+                      className="object-cover w-full aspect-video "
+                      variants={imageVariants}
+                    />
+                  </div>
                 </div>
-                <motion.p
-                  className="text-xl font-bold tracking-tighter lg:text-2xl"
-                  variants={textVariants}
-                >
-                  References
-                </motion.p>
-                <motion.p className="tracking-tighter" variants={textVariants}>
-                  {publication.references}
-                </motion.p>
               </motion.div>
             </motion.div>
           </div>
         </motion.div>
       </div>
-      {/* Other publications and repports */}
+      {/* Other Announcements and repports */}
       <div className="mt-5">
         <div className="flex flex-col justify-center py-3 mb-10 shadow">
           <h1 className="px-2 text-xl font-bold border-l-4 border-l-black md:text-2xl">
-            Other Publications
+            Other Announcements
           </h1>
         </div>
-        <div className="border-t border-gray-200 gap-y-16">
+        <div className=" gap-y-16">
           {other?.slice(0, count).map((post) => (
             <motion.article
               key={post.id}
@@ -226,7 +189,7 @@ function Publications() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-2 text-white bg-[#b67a3d] "
+              className="px-4 font-medium rounded-3xl py-2 text-sm text-gray-900 ring-2  ring-[#b67a3d] "
             >
               More
             </motion.button>
@@ -237,4 +200,4 @@ function Publications() {
   );
 }
 
-export default Publications;
+export default Announce;

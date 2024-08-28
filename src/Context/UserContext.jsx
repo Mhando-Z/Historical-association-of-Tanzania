@@ -10,6 +10,7 @@ export function UserProvider({ children }) {
   const [userId, setId] = useState("");
   const [show, setShow] = useState(false);
   const [publishId, setUpPId] = useState();
+  const [AnnounceID, setAnnounceId] = useState();
 
   const fetchUserData = async () => {
     try {
@@ -40,6 +41,8 @@ export function UserProvider({ children }) {
         userData,
         userId,
         publishId,
+        AnnounceID,
+        setAnnounceId,
         setUpPId,
         setOpen,
         setId,
