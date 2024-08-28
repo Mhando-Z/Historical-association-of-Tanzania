@@ -184,7 +184,7 @@ function Publications() {
             Other Publications
           </h1>
         </div>
-        <div className="border-t border-gray-200 gap-y-16">
+        <div className="gap-y-16">
           {other?.slice(0, count).map((post) => (
             <motion.article
               key={post.id}
