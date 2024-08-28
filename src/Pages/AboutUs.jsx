@@ -96,7 +96,7 @@ function AboutUs() {
             <img
               src={`http://127.0.0.1:8000/${AboutUSSect[0]?.image}`}
               alt="Historical Association of Tanzania"
-              className="w-full md:h-full  h-[450px] bg-cover shadow-lg rounded-lg md:rounded-xl"
+              className="w-full md:h-full  h-[450px] object-cover shadow-lg rounded-lg md:rounded-xl"
             />
           </motion.div>
         </div>
