@@ -226,7 +226,7 @@ function Publications() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-2 text-white bg-[#b67a3d] "
+              className="px-4 font-medium rounded-3xl py-2 text-sm text-gray-900 ring-2  ring-[#b67a3d] "
             >
               More
             </motion.button>
