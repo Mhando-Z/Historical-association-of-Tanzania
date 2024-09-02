@@ -135,7 +135,7 @@ function Researchpublications() {
           <span className="">Add/Create</span>
           <br />
           <span className="text-sm text-gray-600 capitalize ">
-            To this section you can add more data on HeroSection
+            To this section you can add more data on Publication Section
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
