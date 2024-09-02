@@ -6,7 +6,6 @@ import UserContext from "../../Context/UserContext";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import UserDetailsPreview from "./UserDetailsPreview";
-import { ImTable } from "react-icons/im";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -40,9 +39,8 @@ const UserTable = ({ data }) => {
 
   return (
     <div className="mt-14">
-      <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase border-l-8 md:text-xl">
-        <ImTable className="text-xl" />
-        <span className="ml-2">User Table</span>
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">User table</span>
       </h1>
       <div className="mb-4">
         <input
@@ -50,13 +48,13 @@ const UserTable = ({ data }) => {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className="p-2 border shadow-md outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-100 rounded w-full"
+          className="p-2 border shadow-md outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-300 rounded w-full"
         />
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full overflow-y-auto bg-gray-100 border border-gray-300 shadow-2xl">
+        <table className="min-w-full overflow-y-auto border border-gray-300 shadow-2xl bg-slate-100">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-slate-200">
               <th className="px-4 py-2 text-left border-b">ID</th>
               <th className="px-4 py-2 text-left border-b">Name</th>
               <th className="px-4 py-2 text-left border-b">Email</th>
@@ -108,7 +106,7 @@ const UserTable = ({ data }) => {
                     </>
                   )}
                 </td>
-                <td className="px-4 py-2 border-b line-clamp-1">
+                <td className="px-4 py-2 border-b">
                   {formatDate(item.profile.date_registered)}
                 </td>
                 <td className="px-4 py-2 border-b">
@@ -119,7 +117,7 @@ const UserTable = ({ data }) => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.8 }}
                         transition={{ type: "spring", ease: "easeOut" }}
-                        className="bg-slate-200 rounded-3xl ring-1 ring-[#b67a3d] shadow font-medium py-2 px-6"
+                        className="bg-slate-200 rounded-3xl ring-1 ring-[#b67a3d] shadow-lg font-medium py-2 px-6"
                       >
                         View
                       </motion.button>

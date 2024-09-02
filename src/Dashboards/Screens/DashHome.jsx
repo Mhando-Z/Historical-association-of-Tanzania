@@ -8,7 +8,6 @@ import PieCharts from "../Charts/PieChart";
 import RegistrationStats from "../Charts/LineChart";
 import BarChart1 from "./../Charts/BarChart2";
 import { motion } from "framer-motion";
-import { FaChartSimple } from "react-icons/fa6";
 
 function DashHome() {
   const { userData } = useContext(UserContext);
@@ -39,8 +38,8 @@ function DashHome() {
                 stiffness: 140,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              whileHover={{ y: 30 }}
+              className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Users</h1>
@@ -57,8 +56,8 @@ function DashHome() {
                 stiffness: 140,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              whileHover={{ y: 30 }}
+              className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Conference</h1>
@@ -75,8 +74,8 @@ function DashHome() {
                 stiffness: 140,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              whileHover={{ y: 30 }}
+              className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Students</h1>
@@ -93,8 +92,8 @@ function DashHome() {
                 stiffness: 140,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              whileHover={{ y: 30 }}
+              className="size-52 shadow-xl ring-1 ring-[#b67a3d] bg-slate-100 p-10 rounded-xl"
             >
               <BsPeopleFill className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">members</h1>
@@ -107,18 +106,16 @@ function DashHome() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col mt-16 mb-14"
+            className="flex flex-col mt-16 shadow-xl bg-slate-100 mb-14"
           >
-            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase border-l-8 md:text-xl">
-              <FaChartSimple className="text-xl" />
-              <span className="ml-2">User statistics</span>
+            <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+              <span className="ml-2">User Registration statistics</span>
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-10">
+            <div className="flex flex-col items-center gap-x-5 gap-y-8 md:flex-row">
               {/* Barchart */}
               <motion.div
                 initial={{ x: 100, opacity: 0 }}
                 animate={{ x: 1, opacity: 1 }}
-                className="flex items-center w-full bg-gray-100 rounded-3xl"
                 transition={{
                   duration: 0.7,
                   type: "spring",
@@ -132,47 +129,24 @@ function DashHome() {
               <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 1, opacity: 1 }}
-                className="flex items-center justify-center w-full bg-gray-100 rounded-3xl"
                 transition={{
                   duration: 0.7,
                   type: "spring",
                   ease: "easeOut",
                   stiffness: 140,
                 }}
+                className="flex w-full"
               >
                 <PieCharts data={users} />
               </motion.div>
-              {/* bar chart */}
-              <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 1, opacity: 1 }}
-                className="flex items-center justify-center w-full bg-gray-100 rounded-3xl"
-                transition={{
-                  duration: 0.7,
-                  type: "spring",
-                  ease: "easeOut",
-                  stiffness: 140,
-                }}
-              >
-                <RegistrationStats registrations={users} />
-              </motion.div>
-              <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 1, opacity: 1 }}
-                className="flex items-center justify-center w-full bg-gray-100 rounded-3xl"
-                transition={{
-                  duration: 0.7,
-                  type: "spring",
-                  ease: "easeOut",
-                  stiffness: 140,
-                }}
-              >
-                <BarChart1 registrations={users} />
-              </motion.div>
+            </div>
+            <div className="flex flex-col mt-7 md:flex-row">
+              <RegistrationStats registrations={users} />
+              <BarChart1 registrations={users} />
             </div>
           </motion.div>
           {/* users table */}
-          <div className="shadow">
+          <div className="shadow-xl">
             <UserTable data={users} />
           </div>
         </div>

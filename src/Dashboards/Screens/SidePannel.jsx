@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiSpeakerphone } from "react-icons/hi";
 import { AiFillPicture } from "react-icons/ai";
@@ -12,7 +12,6 @@ import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
 import { PiVideoConferenceFill } from "react-icons/pi";
 import { FaRegCircleUser, FaUserGroup } from "react-icons/fa6";
-import lgo from "../../Assets/Images/Logo3.png";
 import logo from "../../Assets/Images/3dlogo.png";
 // profile logos
 import stdprofile from "../../Assets/profiles/man.png";
@@ -116,17 +115,11 @@ function SidePannel() {
   };
   return (
     <motion.div
-      initial={{ opacity: 1, x: -100 }}
+      initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
-      transition={{ duration: 0.1, ease: "easeOut" }}
-      className="flex overflow-y-auto z-40 py-4 md:py-0 fixed flex-col h-screen xl:w-[300px] w-[200px] md:w-[250px] bg-slate-100"
+      transition={{ duration: 1, type: "spring", ease: "easeOut" }}
+      className="lg:flex py-14 ring-1  overflow-y-auto shadow-2xl ring-[#b67a3d] fixed mt-5 flex-col min-h-screen xl:w-[300px] md:w-[250px] hidden bg-slate-100"
     >
-      {/* HAT logo */}
-      <div className="flex px-4 py-5 mb-5">
-        <Link to={"/Dashboard/"}>
-          <img src={lgo} alt="hat-logo" className="h-8" />
-        </Link>
-      </div>
       {userData?.is_staff === true ? (
         <>
           <div className="">
@@ -148,15 +141,13 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded"
-                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded"
+                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-2xl"
+                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-2xl bg-slate-300"
                       }
                       to={dt.links}
                     >
                       <p className="text-xl">{dt.icon}</p>
-                      <h1 className="text-sm xl:text-base line-clamp-1">
-                        {dt.sections}
-                      </h1>
+                      <h1 className=" xl:text-lg">{dt.sections}</h1>
                     </NavLink>
                   </motion.div>
                 </div>
@@ -182,13 +173,13 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded"
-                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded"
+                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-2xl"
+                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-2xl bg-slate-300"
                       }
                       to={dt.links}
                     >
                       <p className="text-xl">{dt.icon}</p>
-                      <h1 className="text-sm xl:text-base ">{dt.sections}</h1>
+                      <h1 className=" xl:text-lg">{dt.sections}</h1>
                     </NavLink>
                   </motion.div>
                 </div>
@@ -239,7 +230,7 @@ function SidePannel() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.8 }}
           transition={{ type: "spring", ease: "easeOut" }}
-          className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl left-4 size-28 w-full"
+          className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] ring-1 rounded-xl  bg-slate-300  shadow-xl left-4 size-28 w-full"
         >
           <NavLink
             className={({ isActive }) =>
@@ -252,6 +243,7 @@ function SidePannel() {
             <div className="flex flex-row items-center justify-between w-full p-5 gap-x-5">
               <div>
                 {/* profile images */}
+
                 {userData?.profile?.profile_picture !== null ? (
                   <>
                     <motion.img
@@ -299,23 +291,21 @@ function SidePannel() {
                   />
                 ) : (
                   <div>
-                    <FaRegCircleUser className="text-4xl xl:text-7xl" />
+                    <FaRegCircleUser className="text-7xl" />
                   </div>
                 )}
               </div>
               <div className="flex flex-col flex-grow">
                 {/* user details and status */}
-                <h1 className="text-sm font-bold xl:text-base line-clamp-2">
+                <h1 className="text-lg font-bold line-clamp-2">
                   {userData?.username}
                 </h1>
                 {userData?.is_staff ? (
                   <div className="flex flex-row items-center w-full gap-x-1">
                     <>
-                      <h1 className="text-sm font-medium xl:text-base">
-                        Admin
-                      </h1>
+                      <h1 className="font-medium">Admin</h1>
                     </>
-                    <HiMiniCheckBadge className="text-sm text-blue-700 xl:text-lg gap-x-10" />
+                    <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
                   </div>
                 ) : (
                   <div className="flex flex-row items-center w-full gap-x-1">
@@ -339,6 +329,7 @@ function SidePannel() {
           </NavLink>
         </motion.div>
       </div>
+
       <div className="absolute bottom-10 left-4 ">
         <img src={logo} alt="hatlogo" className="hidden opacity-25 h-14" />
       </div>

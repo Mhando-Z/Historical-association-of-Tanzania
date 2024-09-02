@@ -1,22 +1,22 @@
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
+import React, { useContext, useState } from "react";
 import Table from "../Componentz/Table";
-import { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
+import { motion } from "framer-motion";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 
-export default function AboutUsSect() {
-  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+function HeroSect() {
+  const { heroSect, setHero } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
-  const [AboutData, setData] = useState({
+  const [heroData, setData] = useState({
     title: "",
     subtitle: "",
     description: "",
     image: null,
   });
 
-  // handles Input values
+  // Handle file changes (from input or drop)
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
@@ -24,7 +24,6 @@ export default function AboutUsSect() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setData((data) => ({ ...data, image: file }));
-        // Set the image preview URL
         setPreviewURL(reader.result);
       };
       if (file) {
@@ -35,60 +34,53 @@ export default function AboutUsSect() {
     }
   };
 
-  // handle file drop
+  // Handle file drop
   const handleDrop = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-      handleFile(files[0]);
-    }
-  };
-
-  // handle file select
-  const handleFile = (file) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setData((data) => ({ ...data, image: file }));
-      setPreviewURL(reader.result);
-    };
-    if (file) {
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.match("image.*")) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData((data) => ({ ...data, image: file }));
+        setPreviewURL(reader.result);
+      };
       reader.readAsDataURL(file);
     }
   };
 
-  // handle drag over
+  // Prevent default behavior for dragover
   const handleDragOver = (e) => {
     e.preventDefault();
-    e.stopPropagation();
   };
 
-  // Asynchronous Functions
-  async function postData() {
+  // Asynchronous function to post hero data
+  async function postHerodata() {
     const formData = new FormData();
-    formData.append("title", AboutData.title);
-    formData.append("subtitle", AboutData.subtitle);
-    formData.append("description", AboutData.description);
-    formData.append("image", AboutData.image);
+    formData.append("title", heroData.title);
+    formData.append("subtitle", heroData.subtitle);
+    formData.append("description", heroData.description);
+    formData.append("image", heroData.image);
 
     try {
-      const { data } = await axiosInstance.post("hat-api/AboutUs/", formData);
-      const vibes = [data, ...AboutUSSect];
-      setAboutUs(vibes);
+      const { data } = await axiosInstance.post("hat-api/heroSect/", formData);
+      const vibes = [data, ...heroSect];
+      setHero(vibes);
       setPreviewURL(null);
       toast.success("Data upload was a success");
     } catch (error) {
       toast.error("Data upload was a failure");
+      console.error(error.response);
     }
   }
 
+  // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const handlePost = () => {
-    if (AboutData.title !== "" && AboutData.image !== null) {
-      postData();
+    if (heroData.title !== "" && heroData.image !== null) {
+      postHerodata();
     } else {
       toast.error("Fill all sections");
     }
@@ -96,8 +88,12 @@ export default function AboutUsSect() {
 
   return (
     <div className="container flex flex-col mx-auto mt-24 mb-20">
-      <div className="mt-10 mb-10 bg-gray-100 shadow ">
-        <Table data={AboutUSSect} />
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">Hero Section</span>
+      </h1>
+
+      <div className="mt-10 mb-10 shadow-xl bg-slate-100 ">
+        <Table data={heroSect} />
       </div>
       <motion.div
         initial={{ opacity: 0, scale: 0, x: -100 }}
@@ -108,17 +104,17 @@ export default function AboutUsSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow"
+        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        {/* title and descriptions */}
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-slate-50 py-3  border-r-[#b67a3d]   border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add/create more AboutUs Sections</span>
+        {/* Title and descriptions */}
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+          <span className="ml-2">Add/Create More AboutUs Sections</span>
           <br />
           <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
-            To this section you can add more data to AboutUs section
+            To this section you can add more data on AboutUs section
           </span>
         </h1>
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit}>
           <div className="mt-5 space-y-12">
             <div className="pb-12">
               <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -177,12 +173,12 @@ export default function AboutUsSect() {
                     />
                   </div>
                   <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
-                    Number of words: {AboutData?.description.length}
+                    Number of words: {heroData?.description.length}
                   </p>
                 </div>
 
                 <div
-                  className="relative shadow-lg col-span-full"
+                  className="border-2 border-gray-300 border-dashed shadow-lg col-span-full"
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                 >
@@ -218,13 +214,13 @@ export default function AboutUsSect() {
                         </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        Name: {AboutData?.image?.name}
+                        Name: {heroData?.image?.name}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Size: {AboutData?.image?.size}
+                        Size: {heroData?.image?.size}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Type: {AboutData?.image?.type}
+                        Type: {heroData?.image?.type}
                       </p>
                     </div>
                     {previewURL && (
@@ -266,3 +262,5 @@ export default function AboutUsSect() {
     </div>
   );
 }
+
+export default HeroSect;

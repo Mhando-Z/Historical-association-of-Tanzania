@@ -7,7 +7,6 @@ import { FaAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
-import { MdOutlineSettingsInputAntenna } from "react-icons/md";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
@@ -201,11 +200,10 @@ function ContactUsSect() {
             stiffness: 140,
             type: "spring",
           }}
-          className="bg-slate-100  border-b-2 border-b-[#b67a3d] shadow"
+          className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
         >
           <div className="p-10">
-            <h1 className="flex flex-row py-3 mb-2 font-bold uppercase gap-x-3 md:text-xl bg-slate-50">
-              <MdOutlineSettingsInputAntenna className="text-2xl" />
+            <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
               <span className="ml-2">contact Section</span>
             </h1>
 
@@ -288,7 +286,7 @@ function ContactUsSect() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.8 }}
                   transition={{ type: "spring", ease: "easeOut" }}
-                  className="px-5  py-1 bg-[#b67a3d] text-white rounded-3xl"
+                  className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
                 >
                   Edit
                 </motion.button>
@@ -796,7 +794,7 @@ function ContactUsSect() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="px-4 py-1 bg-[#e43127] text-white rounded-3xl"
+                className="px-4 py-2 bg-[#e43127] text-white rounded-3xl"
               >
                 cancel
               </motion.button>
@@ -805,7 +803,7 @@ function ContactUsSect() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="px-4 py-1 bg-[#b67a3d] text-white rounded-3xl"
+                className="px-4 py-2 bg-[#b67a3d] text-white rounded-3xl"
               >
                 Update
               </motion.button>

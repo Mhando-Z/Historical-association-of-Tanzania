@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
+import logo from "../../Assets/Images/Logo3.png";
 import { RiAlignJustify } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import { GrNotification } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa6";
 import { FaPowerOff } from "react-icons/fa6";
 import { IoKeySharp } from "react-icons/io5";
@@ -31,13 +33,27 @@ function DashNav() {
     setshow(!show);
   };
 
+  const handleShow1 = () => {
+    if (show === true) {
+      setshow(!show);
+      setshow1(!show1);
+    }
+    setshow1(!show1);
+  };
+
   const handleSideview = () => {
     setOpen(!open);
   };
 
   return (
-    <div className="bg-slate-100 w-full shadow ring-[#b67a3d] py-3 z-50">
-      <div className="flex flex-row items-center justify-between px-4">
+    <div className="bg-slate-100 ring-1 shadow-xl ring-[#b67a3d] py-3 fixed top-0 left-0 w-full z-50">
+      <div className="flex flex-row items-center justify-between w-full px-4">
+        {/* HAT logo */}
+        <div className="xl:w-[300px] md:w-[250px] w-[100px]">
+          <Link to={"/Dashboard/"}>
+            <img src={logo} alt="hat-logo" className="h-8" />
+          </Link>
+        </div>
         <div className="flex items-start justify-start flex-1 gap-x-3 ">
           <Link>
             <RiAlignJustify onClick={handleSideview} className="text-3xl" />
@@ -48,10 +64,10 @@ function DashNav() {
         </div>
         <div className="flex flex-row items-center justify-between gap-x-7 ">
           <div className="relative flex flex-col items-center cursor-pointer gap-x-2">
-            {/* <GrNotification
+            <GrNotification
               onClick={handleShow1}
               className="text-3xl xl:text-3xl"
-            /> */}
+            />
             {show1 ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}

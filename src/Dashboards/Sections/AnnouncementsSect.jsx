@@ -1,100 +1,83 @@
-import HomePageContext from "../../Context/HomePageContext";
-import { PhotoIcon } from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
+import { motion } from "framer-motion";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 import Table from "../Componentz/Table";
+import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
+import { useDropzone } from "react-dropzone";
 
-function PresidentSect() {
-  const { PresidentSect, setPresident } = useContext(HomePageContext);
+function AnnouncementsSect() {
+  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
-  const [presoData, setData] = useState({
+  const [AnnounceData, setData] = useState({
     title: "",
-    subtitle: "",
     description: "",
     image: null,
     image2: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    if (name === "image" || name === "image2") {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setData((data) => ({ ...data, [name]: file }));
-
-        if (name === "image") {
-          setPreviewURL1(reader.result); // Set preview for first image
-        } else if (name === "image2") {
-          setPreviewURL2(reader.result); // Set preview for second image
-        }
-      };
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    } else {
-      setData((data) => ({ ...data, [name]: value }));
-    }
-  };
-
-  const handleDrop = (e, name) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
+  const handleDrop = (acceptedFiles, imageIndex) => {
+    const file = acceptedFiles[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setData((data) => ({ ...data, [name]: file }));
-
-      if (name === "image") {
-        setPreviewURL1(reader.result); // Set preview for first image
-      } else if (name === "image2") {
-        setPreviewURL2(reader.result); // Set preview for second image
+      if (imageIndex === 1) {
+        setData((data) => ({ ...data, image: file }));
+        setPreviewURL1(reader.result);
+      } else if (imageIndex === 2) {
+        setData((data) => ({ ...data, image2: file }));
+        setPreviewURL2(reader.result);
       }
     };
+
     if (file) {
       reader.readAsDataURL(file);
     }
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
+  const { getRootProps: getRootProps1, getInputProps: getInputProps1 } =
+    useDropzone({
+      onDrop: (acceptedFiles) => handleDrop(acceptedFiles, 1),
+      accept: "image/*",
+      maxSize: 10 * 1024 * 1024, // 10MB
+    });
 
-  // Asynchronous Function
-  async function posPresotdata() {
+  const { getRootProps: getRootProps2, getInputProps: getInputProps2 } =
+    useDropzone({
+      onDrop: (acceptedFiles) => handleDrop(acceptedFiles, 2),
+      accept: "image/*",
+      maxSize: 10 * 1024 * 1024, // 10MB
+    });
+
+  async function postdata() {
     const formData = new FormData();
-    formData.append("title", presoData.title);
-    formData.append("subtitle", presoData.subtitle);
-    formData.append("description", presoData.description);
-    formData.append("image", presoData.image);
-    formData.append("image2", presoData.image2);
+    formData.append("title", AnnounceData.title);
+    formData.append("description", AnnounceData.description);
+    formData.append("image", AnnounceData.image);
+    formData.append("image2", AnnounceData.image2);
 
     try {
-      const { data } = await axiosInstance.post("hat-api/President/", formData);
-      const vibes = [data, ...PresidentSect];
-      setPresident(vibes);
+      const { data } = await axiosInstance.post("/hat-api/Announce/", formData);
+      const vibes = [data, ...AnnounceSect];
       setPreviewURL1(null);
       setPreviewURL2(null);
-      toast.success("data upload was a success");
+      setAnnounce(vibes);
+      toast.success("Data upload was successful");
     } catch (error) {
-      toast.error("data upload was a failure");
+      toast.error("Data upload failed");
       console.error(error);
     }
   }
 
-  // Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const handlePost = () => {
-    if (presoData.title !== "" && presoData.image !== null) {
-      posPresotdata();
+    if (AnnounceData.title !== "" && AnnounceData.image !== null) {
+      postdata();
     } else {
       toast.error("Fill all sections");
     }
@@ -102,8 +85,11 @@ function PresidentSect() {
 
   return (
     <div className="container flex flex-col mx-auto mt-24 mb-20">
-      <div className="mt-10 mb-10 shadow-xl bg-slate-100 ">
-        <Table data={PresidentSect} />
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">AboutUs Section</span>
+      </h1>
+      <div className="mt-10 mb-10 shadow-xl bg-slate-100">
+        <Table data={AnnounceSect} />
       </div>
       <motion.div
         initial={{ opacity: 0, scale: 0, x: -100 }}
@@ -114,14 +100,13 @@ function PresidentSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100  border-b-4 border-b-[#b67a3d]"
+        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
-        {/* title and descriptions */}
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-gray-50 py-3  border-r-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add data to president Sections</span>
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
+          <span className="ml-2">Add/Post New Announcements</span>
           <br />
           <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
-            To this section you can add more data to president section
+            To this section you can post new announcements
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
@@ -140,26 +125,13 @@ function PresidentSect() {
                       type="text"
                       name="title"
                       required
-                      onChange={handleChange}
+                      onChange={(e) =>
+                        setData((data) => ({
+                          ...data,
+                          [e.target.name]: e.target.value,
+                        }))
+                      }
                       id="title"
-                      autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="subtitle"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
-                  >
-                    <span className="ml-2">Subtitle</span>
-                  </label>
-                  <div className="px-4 mt-4">
-                    <input
-                      type="text"
-                      name="subtitle"
-                      onChange={handleChange}
-                      id="subtitle"
                       autoComplete="given-name"
                       className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
@@ -176,65 +148,57 @@ function PresidentSect() {
                   <div className="px-4 mt-4">
                     <textarea
                       id="description"
-                      onChange={handleChange}
+                      onChange={(e) =>
+                        setData((data) => ({
+                          ...data,
+                          [e.target.name]: e.target.value,
+                        }))
+                      }
                       name="description"
                       rows={3}
-                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
                   <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
-                    Number of words {presoData?.description.length}
+                    Number of words {AnnounceData?.description.length}
                   </p>
                 </div>
                 {/* image1 */}
-                <div
-                  className="border-2 border-gray-300 border-dashed shadow-lg col-span-full"
-                  onDrop={(e) => handleDrop(e, "image")}
-                  onDragOver={handleDragOver}
-                >
+                <div className="shadow-lg col-span-full">
                   <label
-                    htmlFor="cover-photo"
+                    htmlFor="cover-photo1"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">Photo1</span>
+                    <span className="ml-2">Photo 1</span>
                   </label>
-                  <div className="relative flex justify-center px-6 py-10 mt-4 rounded-lg">
+                  <div
+                    {...getRootProps1({
+                      className:
+                        "mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10",
+                    })}
+                  >
+                    <input {...getInputProps1()} />
                     <div className="text-center">
                       <PhotoIcon
                         className="w-12 h-12 mx-auto text-gray-300"
                         aria-hidden="true"
                       />
                       <div className="flex mt-4 text-sm leading-6 text-gray-600">
-                        <label
-                          htmlFor="image"
-                          className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id="image"
-                            name="image"
-                            required
-                            onChange={handleChange}
-                            type="file"
-                            className="sr-only"
-                          />
-                        </label>
                         <p className="text-xs leading-5 text-gray-600">
-                          PNG, JPG, GIF up to 10MB
+                          Drag & drop or click to upload
                         </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        Name: {presoData?.image?.name}
+                        Name: {AnnounceData?.image?.name}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Size: {presoData?.image?.size}
+                        Size: {AnnounceData?.image?.size}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Type: {presoData?.image?.type}
+                        Type: {AnnounceData?.image?.type}
                       </p>
                     </div>
-                    {/* image */}
                     {previewURL1 && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0, x: 100 }}
@@ -249,60 +213,47 @@ function PresidentSect() {
                         <img
                           src={previewURL1}
                           alt="Preview"
-                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video  aspect-square object-cover rounded-xl"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video aspect-square object-cover rounded-xl"
                         />
                       </motion.div>
                     )}
                   </div>
                 </div>
                 {/* image2 */}
-                <div
-                  className="border-2 border-gray-300 border-dashed shadow-lg col-span-full"
-                  onDrop={(e) => handleDrop(e, "image2")}
-                  onDragOver={handleDragOver}
-                >
+                <div className="shadow-lg col-span-full">
                   <label
-                    htmlFor="cover-photo"
+                    htmlFor="cover-photo2"
                     className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
                   >
-                    <span className="ml-2">Photo2</span>
+                    <span className="ml-2">Photo 2</span>
                   </label>
-                  <div className="relative flex justify-center px-6 py-10 mt-4 rounded-lg">
+                  <div
+                    {...getRootProps2({
+                      className:
+                        "mt-4 relative flex justify-center rounded-lg border border-dashed border-gray-900 px-6 py-10",
+                    })}
+                  >
+                    <input {...getInputProps2()} />
                     <div className="text-center">
                       <PhotoIcon
                         className="w-12 h-12 mx-auto text-gray-300"
                         aria-hidden="true"
                       />
                       <div className="flex flex-row items-center mt-4 text-sm leading-6 text-gray-600 gap-x-4">
-                        <label
-                          htmlFor="image2"
-                          className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id="image2"
-                            name="image2"
-                            required
-                            onChange={handleChange}
-                            type="file"
-                            className="sr-only"
-                          />
-                        </label>
                         <p className="text-xs leading-5 text-gray-600">
-                          PNG, JPG, GIF up to 10MB
+                          Drag & drop or click to upload
                         </p>
                       </div>
                       <p className="text-xs leading-5 text-gray-600">
-                        Name: {presoData?.image2?.name}
+                        Name: {AnnounceData?.image2?.name}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Size: {presoData?.image2?.size}
+                        Size: {AnnounceData?.image2?.size}
                       </p>
                       <p className="text-xs leading-5 text-gray-600">
-                        Type: {presoData?.image2?.type}
+                        Type: {AnnounceData?.image2?.type}
                       </p>
                     </div>
-                    {/* image */}
                     {previewURL2 && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0, x: 100 }}
@@ -317,7 +268,7 @@ function PresidentSect() {
                         <img
                           src={previewURL2}
                           alt="Preview"
-                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video  aspect-square object-cover rounded-xl"
+                          className="h-[230px] ml-40 lg:ml-0 lg:aspect-video aspect-square object-cover rounded-xl"
                         />
                       </motion.div>
                     )}
@@ -343,4 +294,4 @@ function PresidentSect() {
   );
 }
 
-export default PresidentSect;
+export default AnnouncementsSect;

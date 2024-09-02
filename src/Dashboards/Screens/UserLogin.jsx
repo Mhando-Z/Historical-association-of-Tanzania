@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Dots } from "react-activity";
 import { jwtDecode } from "jwt-decode";
-import GoogleLoginComponent from "./GoogleLogin";
 
 export default function UserLogin() {
   const { gallerySect } = useContext(HomePageContext);
@@ -217,7 +216,6 @@ export default function UserLogin() {
                 </motion.button>
               </div>
             </form>
-            <GoogleLoginComponent />
 
             <p className="mt-10 text-sm font-bold text-center text-black ">
               Not a member

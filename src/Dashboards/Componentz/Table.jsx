@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import Drawer from "./Drawer";
 import Notification from "./Notification";
 import moment from "moment";
-import { MdOutlinePostAdd } from "react-icons/md";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -57,7 +56,7 @@ const Table = ({ data }) => {
     {
       label: "Image",
       renderCell: (item) => (
-        <div className=" rounded-xl">
+        <div className="rounded-xl">
           <motion.img
             initial={{}}
             whileHover={{ height: "150px" }}
@@ -97,20 +96,20 @@ const Table = ({ data }) => {
       ),
     },
     {
-      label: "",
+      label: "Actions",
       renderCell: (item) => (
-        <div className="flex flex-row items-center justify-center gap-x-3">
+        <div className="flex flex-row items-center gap-x-3">
           <Link
             onClick={() => handleClick(item.id)}
-            className="p-2 text-white bg-blue-600 rounded-md md:px-3 md:py-2"
+            className="px-3 py-2 text-white bg-blue-600 rounded-md"
           >
-            <FaRegPenToSquare className="md:text-xl" />
+            <FaRegPenToSquare className="text-xl" />
           </Link>
           <Link
             onClick={() => handleDelete(item.id)}
-            className="p-2 text-white bg-red-600 rounded-md md:px-3 md:py-2"
+            className="px-3 py-2 text-white bg-red-600 rounded-md"
           >
-            <FaRegTrashCan className="md:text-xl" />
+            <FaRegTrashCan className="text-xl" />
           </Link>
         </div>
       ),
@@ -129,17 +128,16 @@ const Table = ({ data }) => {
       }}
       className="flex flex-col mb-10"
     >
-      <h1 className="flex flex-row items-center px-1 mt-4 mb-5 font-bold uppercase gap-x-2 md:text-xl">
-        <MdOutlinePostAdd className="text-2xl" />
-        <span className="">Posted data</span>
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-md bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">Posted data</span>
       </h1>
       <div className="flex justify-end w-full px-3 xl:text-lg">
         <label htmlFor="search">
+          Search:&nbsp;
           <input
             id="search"
-            className="px-5 py-1 rounded shadow outline-none focus:bg-blue-50"
+            className="ring-1 shadow-md focus:bg-blue-50 py-1 px-5 outline-none rounded w-[400px]"
             type="text"
-            placeholder="Seacrh"
             value={search}
             onChange={handleSearch}
           />
@@ -153,8 +151,8 @@ const Table = ({ data }) => {
         theme={theme}
         layout={{ fixedHeader: true }}
       />
-      <div className="flex items-center justify-between px-4 mt-3">
-        <span className="">
+      <div className="flex items-center justify-between mt-3">
+        <span className="px-4">
           Total Pages: {pagination.state.getTotalPages(filteredData)}
         </span>
         <span>
@@ -162,7 +160,7 @@ const Table = ({ data }) => {
           {pagination.state.getPages(filteredData).map((_, index) => (
             <Link
               key={index}
-              className="px-2 ml-2 rounded-sm bg-slate-200 ring-1"
+              className="px-2 rounded-sm bg-slate-200 ring-1 ring-slate-800"
               style={{
                 fontWeight: pagination.state.page === index ? "bold" : "normal",
               }}

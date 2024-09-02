@@ -10,7 +10,6 @@ import HATPresident from "./Screens/HATPresident";
 import AboutHAT from "./Screens/AboutHAT";
 import Announcements from "./Screens/Announcements";
 import UserLogin from "./Dashboard/Screens/UserLogin";
-import MainPage from "./Dashboard/Page/MainPage";
 import DashHome from "./Dashboard/Screens/DashHome";
 import HeroSect from "./Dashboard/Sections/HeroSect";
 import ContactUsSect from "./Dashboard/Sections/ContactUsSect";
@@ -45,6 +44,7 @@ import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 import Publications from "./Screens/Publications";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
 import Announce from "./Screens/Announce";
+import IndexPage from "./Dashboard/Page/IndexPage";
 
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
@@ -123,7 +123,7 @@ function App() {
                 path="Dashboard/*"
                 element={
                   <ProtectedRoute user={users}>
-                    <MainPage />
+                    <IndexPage />
                   </ProtectedRoute>
                 }
               >

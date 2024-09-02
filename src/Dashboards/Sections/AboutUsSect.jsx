@@ -96,7 +96,10 @@ export default function AboutUsSect() {
 
   return (
     <div className="container flex flex-col mx-auto mt-24 mb-20">
-      <div className="mt-10 mb-10 bg-gray-100 shadow ">
+      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
+        <span className="ml-2">AboutUs Section</span>
+      </h1>
+      <div className="mt-10 mb-10 shadow-xl bg-slate-100 ">
         <Table data={AboutUSSect} />
       </div>
       <motion.div
@@ -108,10 +111,10 @@ export default function AboutUsSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow"
+        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow-2xl"
       >
         {/* title and descriptions */}
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-slate-50 py-3  border-r-[#b67a3d]   border-l-8 mb-5 font-bold uppercase">
+        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold uppercase">
           <span className="ml-2">Add/create more AboutUs Sections</span>
           <br />
           <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
