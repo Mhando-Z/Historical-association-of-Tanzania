@@ -306,10 +306,11 @@ function Researchpublications() {
                     </div>
                     {previewURL1 && (
                       <motion.div
-                        initial={{ opacity: 0, scale: 0, x: 100 }}
-                        animate={{ opacity: 1, scale: 1, x: 1 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         transition={{
-                          duration: 0.5,
+                          delay: 0.3,
+                          duration: 1,
                           ease: "easeOut",
                           type: "spring",
                         }}
