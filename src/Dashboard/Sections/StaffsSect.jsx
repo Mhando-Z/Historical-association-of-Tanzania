@@ -5,6 +5,7 @@ import Table from "../Componentz/Table";
 import { motion } from "framer-motion";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
+import { MdCreateNewFolder } from "react-icons/md";
 
 function StaffsSect() {
   const { StaffsSect, setStaffs } = useContext(HomePageContext);
@@ -90,20 +91,23 @@ function StaffsSect() {
         <Table data={StaffsSect} />
       </div>
       <motion.div
-        initial={{ opacity: 0, scale: 0, x: -100 }}
-        animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
-          duration: 0.5,
+          delay: 0.5,
+          duration: 1,
           ease: "easeOut",
           stiffness: 140,
           type: "spring",
         }}
         className="bg-slate-100 border-b-4 border-b-[#b67a3d]"
       >
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-slate-50 py-3 border-r-[#b67a3d]  border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add more staff members</span>
+        {/* Title and descriptions */}
+        <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
+          <MdCreateNewFolder className="text-3xl" />
+          <span className="">Add more staff members</span>
           <br />
-          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
+          <span className="mt-1 text-sm leading-6 text-gray-600">
             To this section you can add new staff members
           </span>
         </h1>
@@ -111,14 +115,14 @@ function StaffsSect() {
           <div className="mt-5 space-y-12">
             <div className="pb-12">
               <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="name"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Name</span>
+                    <span className="">Name</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       required
@@ -126,91 +130,91 @@ function StaffsSect() {
                       name="name"
                       id="name"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="position"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Position</span>
+                    <span className="">Position</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       onChange={handleChange}
                       name="position"
                       id="position"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="contact1"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Email</span>
+                    <span className="">Email</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="email"
                       onChange={handleChange}
                       name="contact1"
                       id="contact1"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="contact2"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Phone Number</span>
+                    <span className="">Phone Number</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       onChange={handleChange}
                       name="contact2"
                       id="contact2"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="contact3"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Social Media</span>
+                    <span className="">Social Media</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       onChange={handleChange}
                       name="contact3"
                       id="contact3"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="description"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Description</span>
+                    <span className="">Biography</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <textarea
                       id="description"
                       onChange={handleChange}
@@ -225,15 +229,15 @@ function StaffsSect() {
                   </p>
                 </div>
                 <div
-                  className="relative border-2 border-gray-300 border-dashed shadow-lg col-span-full"
+                  className="relative px-4 border-gray-300 border-dashed shadow-lg col-span-full"
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                 >
                   <label
                     htmlFor="image"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Image</span>
+                    <span className="">Image</span>
                   </label>
                   <div className="relative flex justify-center px-6 py-10 mt-4 border border-gray-900 border-dashed rounded-lg">
                     <div className="text-center">
@@ -298,7 +302,7 @@ function StaffsSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
               Add
             </motion.button>

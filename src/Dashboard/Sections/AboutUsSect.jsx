@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
+import { MdCreateNewFolder } from "react-icons/md";
 
 export default function AboutUsSect() {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
@@ -100,97 +101,101 @@ export default function AboutUsSect() {
         <Table data={AboutUSSect} />
       </div>
       <motion.div
-        initial={{ opacity: 0, scale: 0, x: -100 }}
-        animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
-          duration: 0.5,
+          delay: 0.3,
+          duration: 1,
           ease: "easeOut",
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100  border-b-4 border-b-[#b67a3d] shadow"
+        className="bg-slate-100 border-b-2 py-5 border-b-[#b67a3d] shadow"
       >
-        {/* title and descriptions */}
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-slate-50 py-3  border-r-[#b67a3d]   border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add/create more AboutUs Sections</span>
+        {/* Title and descriptions */}
+        <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
+          <MdCreateNewFolder className="text-3xl" />
+          <span className="">Add/Create</span>
           <br />
-          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
-            To this section you can add more data to AboutUs section
+          <span className="text-sm text-gray-600 capitalize ">
+            To this section you can add more data on AboutUs Section
           </span>
         </h1>
-        <form onSubmit={handleSubmit} className="">
+        <form onSubmit={handleSubmit}>
           <div className="mt-5 space-y-12">
             <div className="pb-12">
               <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="title"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Title</span>
+                    <span className="">Title</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
+                      placeholder="title"
                       required
                       onChange={handleChange}
                       name="title"
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="subtitle"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Subtitle</span>
+                    <span className="ml-2">subtitle</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
+                      placeholder="subtitle"
+                      required
                       onChange={handleChange}
                       name="subtitle"
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="description"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Description</span>
+                    <span className="">Description</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <textarea
                       id="description"
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                   <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
                     Number of words: {AboutData?.description.length}
                   </p>
                 </div>
-
                 <div
-                  className="relative shadow-lg col-span-full"
+                  className="px-4 border-2 border-gray-300 border-dashed shadow-lg col-span-full"
                   onDrop={handleDrop}
                   onDragOver={handleDragOver}
                 >
                   <label
                     htmlFor="cover-photo"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Photo</span>
+                    <span className="">Photo</span>
                   </label>
                   <div className="relative flex justify-center px-6 py-10 mt-4 border border-gray-900 border-dashed rounded-lg">
                     <div className="text-center">
@@ -256,7 +261,7 @@ export default function AboutUsSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-7 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
               Add
             </motion.button>

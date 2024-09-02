@@ -6,6 +6,7 @@ import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
+import { MdCreateNewFolder } from "react-icons/md";
 
 function AnnouncementsSect() {
   const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
@@ -97,27 +98,29 @@ function AnnouncementsSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow"
+        className="bg-slate-100 border-b-2 border-b-[#b67a3d] shadow"
       >
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow bg-slate-50 py-3 border-r-[#b67a3d] border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add/Post New Announcements</span>
+        {/* Title and descriptions */}
+        <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
+          <MdCreateNewFolder className="text-3xl" />
+          <span className="">Add/Create</span>
           <br />
-          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
-            To this section you can post new announcements
+          <span className="text-sm text-gray-600 capitalize ">
+            To this section you can add more data on Announcement Section
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mt-5 space-y-12">
             <div className="pb-12">
               <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="title"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Title</span>
+                    <span className="">Title</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       name="title"
@@ -130,19 +133,19 @@ function AnnouncementsSect() {
                       }
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="description"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Description</span>
+                    <span className="">Description</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <textarea
                       id="description"
                       onChange={(e) =>
@@ -162,12 +165,12 @@ function AnnouncementsSect() {
                   </p>
                 </div>
                 {/* image1 */}
-                <div className="shadow-lg col-span-full">
+                <div className="px-4 shadow col-span-full">
                   <label
                     htmlFor="cover-photo1"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Photo 1</span>
+                    <span className="">Photo 1</span>
                   </label>
                   <div
                     {...getRootProps1({
@@ -217,12 +220,12 @@ function AnnouncementsSect() {
                   </div>
                 </div>
                 {/* image2 */}
-                <div className="shadow-lg col-span-full">
+                <div className="px-4 shadow col-span-full">
                   <label
                     htmlFor="cover-photo2"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Photo 2</span>
+                    <span className="">Photo 2</span>
                   </label>
                   <div
                     {...getRootProps2({

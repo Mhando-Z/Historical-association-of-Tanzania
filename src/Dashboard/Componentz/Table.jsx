@@ -119,25 +119,25 @@ const Table = ({ data }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0, x: 100 }}
-      animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        duration: 0.5,
+        duration: 1,
         ease: "easeOut",
         stiffness: 140,
         type: "spring",
       }}
       className="flex flex-col mb-10"
     >
-      <h1 className="flex flex-row items-center px-1 mt-4 mb-5 font-bold uppercase gap-x-2 md:text-xl">
-        <MdOutlinePostAdd className="text-2xl" />
+      <h1 className="flex flex-row items-center px-3 mt-4 mb-5 font-bold uppercase gap-x-2 md:text-xl">
+        <MdOutlinePostAdd className="text-3xl" />
         <span className="">Posted data</span>
       </h1>
       <div className="flex justify-end w-full px-3 xl:text-lg">
         <label htmlFor="search">
           <input
             id="search"
-            className="px-5 py-1 rounded shadow outline-none focus:bg-blue-50"
+            className="px-5 py-1 rounded outline-none focus:ring-[#b67a3d] focus:ring-1 focus:bg-blue-50"
             type="text"
             placeholder="Seacrh"
             value={search}

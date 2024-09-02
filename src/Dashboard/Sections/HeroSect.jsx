@@ -93,15 +93,16 @@ function HeroSect() {
         <Table data={heroSect} />
       </div>
       <motion.div
-        initial={{ opacity: 0, scale: 0, x: -100 }}
-        animate={{ opacity: 1, scale: [1, 0, 1], x: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
-          duration: 0.5,
+          delay: 0.5,
+          duration: 1,
           ease: "easeOut",
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100 border-b-2 border-b-[#b67a3d] shadow"
+        className="bg-slate-100 border-b-2 py-5 border-b-[#b67a3d] shadow"
       >
         {/* Title and descriptions */}
         <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
@@ -109,7 +110,7 @@ function HeroSect() {
           <span className="">Add/Create</span>
           <br />
           <span className="text-sm text-gray-600 capitalize ">
-            To this section you can add more data on AboutUs section
+            To this section you can add more data on HeroSection
           </span>
         </h1>
         <form onSubmit={handleSubmit}>

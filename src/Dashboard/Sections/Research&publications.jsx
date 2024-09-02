@@ -6,6 +6,7 @@ import Table from "../Componentz/Table";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
+import { MdCreateNewFolder } from "react-icons/md";
 
 function Researchpublications() {
   const { ResourcesSect, setResources } = useContext(HomePageContext);
@@ -114,10 +115,7 @@ function Researchpublications() {
 
   return (
     <div className="container flex flex-col mx-auto mt-24 mb-20">
-      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">Resources Section</span>
-      </h1>
-      <div className="mt-10 mb-10 shadow-xl bg-slate-100">
+      <div className="mt-10 mb-10 shadow bg-slate-100">
         <Table data={ResourcesSect} />
       </div>
       <motion.div
@@ -129,27 +127,29 @@ function Researchpublications() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100 border-b-4 border-b-[#b67a3d] shadow-2xl"
+        className="bg-slate-100 border-b-2 border-b-[#b67a3d] shadow"
       >
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow-lg bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">Add data to Resources Section</span>
+        {/* Title and descriptions */}
+        <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
+          <MdCreateNewFolder className="text-3xl" />
+          <span className="">Add/Create</span>
           <br />
-          <span className="mt-1 ml-2 text-sm leading-6 text-gray-600">
-            To this section, you can add more data to resources section
+          <span className="text-sm text-gray-600 capitalize ">
+            To this section you can add more data on HeroSection
           </span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mt-5 space-y-12">
             <div className="pb-12">
               <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="title"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Title</span>
+                    <span className="">Title</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       name="title"
@@ -157,79 +157,79 @@ function Researchpublications() {
                       onChange={handleChange}
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="subtitle"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Subtitle</span>
+                    <span className="">Subtitle</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       name="subtitle"
                       onChange={handleChange}
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="author"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">author</span>
+                    <span className="">author</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       name="author"
                       onChange={handleChange}
                       id="author"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                <div className="px-4 sm:col-span-3">
                   <label
                     htmlFor="video_url"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">video_url</span>
+                    <span className="">video_url</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <input
                       type="text"
                       name="video_url"
                       onChange={handleChange}
                       id="video_url"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-lg ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
-                <div className="col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="description"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Description</span>
+                    <span className="">Description</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <textarea
                       id="description"
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900 shadow ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
@@ -237,20 +237,20 @@ function Researchpublications() {
                     Number of words {resourceData?.description.length}
                   </p>
                 </div>
-                <div className="col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="references"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">references</span>
+                    <span className="">references</span>
                   </label>
-                  <div className="px-4 mt-4">
+                  <div className="">
                     <textarea
                       id="references"
                       onChange={handleChange}
                       name="references"
                       rows={3}
-                      className="block p-7 w-full h-[200px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[200px] rounded-2xl border-0 text-gray-900 shadow ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
@@ -259,12 +259,12 @@ function Researchpublications() {
                   </p>
                 </div>
                 {/* image1 */}
-                <div className="shadow-lg col-span-full">
+                <div className="px-4 shadow col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Photo1</span>
+                    <span className="">Photo1</span>
                   </label>
                   <div
                     {...getRootProps1()}
@@ -325,12 +325,12 @@ function Researchpublications() {
                   </div>
                 </div>
                 {/* image2 */}
-                <div className="shadow-lg col-span-full">
+                <div className="px-4 shadow col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block py-2 bg-slate-50 w-[200px] mb-2 shadow uppercase border-l-8 border-l-[#b67a3d] xl:text-lg text-sm font-medium leading-6 text-gray-900"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="ml-2">Photo2</span>
+                    <span className="">Photo2</span>
                   </label>
                   <div
                     {...getRootProps2()}
@@ -399,7 +399,7 @@ function Researchpublications() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
               Add
             </motion.button>
