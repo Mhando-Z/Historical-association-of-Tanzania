@@ -1,7 +1,8 @@
 // export default ProfileEdit;
 import React, { useContext } from "react";
 import { Dots } from "react-activity";
-import { FaEdit } from "react-icons/fa";
+import { RiFolderUserFill } from "react-icons/ri";
+
 import UserContext from "../../Context/UserContext";
 // profile logos
 import stdprofile from "../../Assets/profiles/man.png";
@@ -30,9 +31,9 @@ function PreviewDetails() {
   return (
     <div>
       <div>
-        <h1 className="md:text-2xl flex flex-row items-center gap-x-3 border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-medium  ">
-          <FaEdit className="ml-3" />
-          <span className="ml-1">User Profile Details</span>
+        <h1 className="flex flex-row items-center px-3 py-3 font-medium md:text-2xl gap-x-2">
+          <RiFolderUserFill className="text-3xl" />
+          <span className="ml-1">User Details</span>
         </h1>
 
         <form>
@@ -45,7 +46,7 @@ function PreviewDetails() {
                   <img
                     src={`http://127.0.0.1:8000/${user[0]?.profile.profile_picture}`}
                     alt="Profile"
-                    className="object-cover object-top shadow-lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
+                    className="object-cover object-top -lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
                   />
                 </>
               ) : user[0]?.profile.is_student === true &&
@@ -54,14 +55,14 @@ function PreviewDetails() {
                   <img
                     src={stdprofile}
                     alt="user[0] pprofile.rofile"
-                    className="h-20 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
+                    className="h-20 ring-4 rounded-full  -xl ring-[#b67a3d] "
                   />
                 </div>
               ) : user[0]?.profile.gender === "male" ? (
                 <img
                   src={manprofile}
                   alt="user[0] pprofile.rofile"
-                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                  className="h-20 ring-4 rounded-full -xl ring-[#b67a3d]"
                 />
               ) : user[0]?.profile.is_student === true &&
                 user[0]?.profile.gender === "female" ? (
@@ -69,14 +70,14 @@ function PreviewDetails() {
                   <img
                     src={stdprofile2}
                     alt="user[0] pprofile.rofile"
-                    className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                    className="h-20 ring-4 rounded-full -xl ring-[#b67a3d]"
                   />
                 </div>
               ) : user[0]?.profile.gender === "female" ? (
                 <img
                   src={womanProfile}
                   alt="user[0] pprofile.rofile"
-                  className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                  className="h-20 ring-4 rounded-full -xl ring-[#b67a3d]"
                 />
               ) : (
                 <div>
@@ -118,7 +119,7 @@ function PreviewDetails() {
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="full_name"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Username</span>
             </label>
@@ -126,13 +127,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.username}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-md focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="full_name"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Full Name</span>
             </label>
@@ -140,13 +141,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.full_name}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-md focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="full_name"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Email</span>
             </label>
@@ -154,14 +155,14 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.email}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-md focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
 
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="phone_number"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Phone Number</span>
             </label>
@@ -169,13 +170,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.phone_number}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="nationality"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Nationality</span>
             </label>
@@ -184,7 +185,7 @@ function PreviewDetails() {
               readOnly
               value={user[0]?.profile.nationality}
               required
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
 
@@ -194,7 +195,7 @@ function PreviewDetails() {
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="student_id"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Student Id</span>
                 </label>
@@ -202,13 +203,13 @@ function PreviewDetails() {
                   type="text"
                   readOnly
                   value={user[0]?.profile.student_id}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="course_of_study"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Course of Study</span>
                 </label>
@@ -216,13 +217,13 @@ function PreviewDetails() {
                   type="text"
                   readOnly
                   value={user[0]?.profile.course_of_study}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="institution"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Institution</span>
                 </label>
@@ -230,13 +231,13 @@ function PreviewDetails() {
                   type="text"
                   readOnly
                   value={user[0]?.profile.institution}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="college"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">College</span>
                 </label>
@@ -244,7 +245,7 @@ function PreviewDetails() {
                   type="text"
                   readOnly
                   value={user[0]?.profile.college}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
             </>
@@ -253,7 +254,7 @@ function PreviewDetails() {
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="title"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Title</span>
             </label>
@@ -261,13 +262,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.title}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="branch"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Branch</span>
             </label>
@@ -275,13 +276,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.branch}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="country"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Country</span>
             </label>
@@ -289,13 +290,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.country}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="city"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">City</span>
             </label>
@@ -303,13 +304,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.city}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="physical_address"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Physical address</span>
             </label>
@@ -317,13 +318,13 @@ function PreviewDetails() {
               type="text"
               readOnly
               value={user[0]?.profile.physical_address}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mt-5 mb-10 ">
             <label
               htmlFor="reviews"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Reviews</span>
             </label>
@@ -333,7 +334,7 @@ function PreviewDetails() {
               cols="30"
               rows="6"
               value={user[0]?.profile.reviews}
-              className="block p-7 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-7 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
         </form>

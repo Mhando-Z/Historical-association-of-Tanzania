@@ -15,7 +15,7 @@ function MembersMgt() {
       <div className="flex flex-col w-full">
         <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase md:text-lg gap-x-3">
           <MdManageAccounts className="text-3xl" />
-          <span className="">User Management</span>
+          <span className="">User Statistics</span>
         </h1>
 
         <div className="flex flex-col items-center justify-between w-full gap-x-5 md:flex-row">
