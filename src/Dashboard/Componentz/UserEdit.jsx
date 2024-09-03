@@ -6,6 +6,7 @@ import UserTable from "./UserTable";
 import { HiMiniCheckBadge } from "react-icons/hi2";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { FaUserEdit } from "react-icons/fa";
+import { PiUserListFill } from "react-icons/pi";
 
 const AdminUserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -184,8 +185,9 @@ const AdminUserManagement = () => {
       >
         <div className="flex flex-wrap">
           <div className="w-full p-2 lg:w-1/2">
-            <h1 className="md:text-xl border-l-[#b67a3d] border-l-4 mb-5 font-bold uppercase">
-              <span className="ml-2">Users List</span>
+            <h1 className="flex flex-row items-center px-2 mb-5 font-bold uppercase gap-x-3 md:text-xl">
+              <PiUserListFill className="text-4xl" />
+              <span className="">Users List</span>
             </h1>
             <ul className="relative p-4 bg-white rounded-lg shadow-lg">
               {users?.map((user) => (
@@ -309,7 +311,7 @@ const AdminUserManagement = () => {
                 <span className="">Edit User Info</span>
               </h1>
               <form
-                className="p-4 bg-white rounded-lg shadow-xl"
+                className="p-4 bg-white rounded-lg shadow"
                 onSubmit={handleSubmit}
               >
                 <div className="mb-4">
@@ -319,7 +321,7 @@ const AdminUserManagement = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                     required
                   />
                 </div>
@@ -330,7 +332,7 @@ const AdminUserManagement = () => {
                     name="username"
                     value={formData.username}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                     required
                   />
                 </div>
@@ -362,7 +364,7 @@ const AdminUserManagement = () => {
                     name="profile.full_name"
                     value={formData.profile.full_name}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -372,7 +374,7 @@ const AdminUserManagement = () => {
                     name="profile.reviews"
                     value={formData.profile.reviews}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -382,7 +384,7 @@ const AdminUserManagement = () => {
                     name="profile.student_id"
                     value={formData.profile.student_id}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -392,7 +394,7 @@ const AdminUserManagement = () => {
                     name="profile.course_of_study"
                     value={formData.profile.course_of_study}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -402,7 +404,7 @@ const AdminUserManagement = () => {
                     name="profile.institution"
                     value={formData.profile.institution}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -412,7 +414,7 @@ const AdminUserManagement = () => {
                     name="profile.branch"
                     value={formData.profile.branch}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -422,7 +424,7 @@ const AdminUserManagement = () => {
                     name="profile.title"
                     value={formData.profile.title}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -432,7 +434,7 @@ const AdminUserManagement = () => {
                     name="profile.phone_number"
                     value={formData.profile.phone_number}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -442,7 +444,7 @@ const AdminUserManagement = () => {
                     name="profile.nationality"
                     value={formData.profile.nationality}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -452,7 +454,7 @@ const AdminUserManagement = () => {
                     name="profile.address"
                     value={formData.profile.address}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -462,7 +464,7 @@ const AdminUserManagement = () => {
                     name="profile.gender"
                     value={formData.profile.gender}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -472,7 +474,7 @@ const AdminUserManagement = () => {
                     name="profile.college"
                     value={formData.profile.college}
                     onChange={handleChange}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="mb-4">
@@ -482,7 +484,7 @@ const AdminUserManagement = () => {
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-3 outline-none ring-1   ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
+                    className="w-full px-3 outline-none ring-1 ring-slate-100 focus:ring-1 focus:ring-[#b67a3d] py-2 border rounded"
                   />
                 </div>
                 <div className="flex items-center mb-4">

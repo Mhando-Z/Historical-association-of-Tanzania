@@ -13,12 +13,12 @@ function MembersMgt() {
   return (
     <div className="container relative flex flex-col min-h-screen mx-auto mt-16 mb-20 overflow-x-hidden py-9">
       <div className="flex flex-col w-full">
-        <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase shadow-xl md:text-lg gap-x-3 bg-slate-50">
+        <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase md:text-lg gap-x-3">
           <MdManageAccounts className="text-3xl" />
           <span className="">User Management</span>
         </h1>
 
-        <div className="flex flex-col items-center justify-between w-full md:flex-row">
+        <div className="flex flex-col items-center justify-between w-full gap-x-5 md:flex-row">
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 1, opacity: 1 }}
@@ -28,7 +28,7 @@ function MembersMgt() {
               ease: "easeOut",
               stiffness: 140,
             }}
-            className="flex items-center w-full "
+            className="flex items-center w-full bg-slate-100 rounded-2xl "
           >
             <RegistrationStats registrations={users} />
           </motion.div>
@@ -41,7 +41,7 @@ function MembersMgt() {
               ease: "easeOut",
               stiffness: 140,
             }}
-            className="flex items-center w-full"
+            className="flex items-center w-full bg-slate-100 rounded-2xl"
           >
             <BarsChart data={users} />
           </motion.div>
