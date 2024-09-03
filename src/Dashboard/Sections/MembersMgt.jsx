@@ -5,6 +5,7 @@ import RegistrationStats from "../Charts/LineChart";
 import BarsChart from "../Charts/BarChart";
 import { motion } from "framer-motion";
 import AdminUserManagement from "../Componentz/UserEdit";
+import { MdManageAccounts } from "react-icons/md";
 
 function MembersMgt() {
   const { users } = useContext(UserContext);
@@ -12,8 +13,9 @@ function MembersMgt() {
   return (
     <div className="container relative flex flex-col min-h-screen mx-auto mt-16 mb-20 overflow-x-hidden py-9">
       <div className="flex flex-col w-full">
-        <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3   border-r-8  border-l-8 mb-5 font-bold uppercase">
-          <span className="ml-2">User Management</span>
+        <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase shadow-xl md:text-lg gap-x-3 bg-slate-50">
+          <MdManageAccounts className="text-3xl" />
+          <span className="">User Management</span>
         </h1>
 
         <div className="flex flex-col items-center justify-between w-full md:flex-row">
@@ -26,7 +28,7 @@ function MembersMgt() {
               ease: "easeOut",
               stiffness: 140,
             }}
-            className="flex flex-grow"
+            className="flex items-center w-full "
           >
             <RegistrationStats registrations={users} />
           </motion.div>
@@ -39,7 +41,7 @@ function MembersMgt() {
               ease: "easeOut",
               stiffness: 140,
             }}
-            className="flex flex-grow"
+            className="flex items-center w-full"
           >
             <BarsChart data={users} />
           </motion.div>
