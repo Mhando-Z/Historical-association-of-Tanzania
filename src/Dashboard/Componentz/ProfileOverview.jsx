@@ -2,6 +2,9 @@ import moment from "moment";
 import React from "react";
 import { FaXmark } from "react-icons/fa6";
 import { GiCheckMark } from "react-icons/gi";
+import { MdOutlinePersonPin } from "react-icons/md";
+import { MdOutlineContactPhone } from "react-icons/md";
+import { PiStudentFill } from "react-icons/pi";
 
 const formatDate = (dateString) => {
   return moment(dateString).format("MMMM D, YYYY [at] h:mm:ss A");
@@ -9,14 +12,12 @@ const formatDate = (dateString) => {
 
 function ProfileOverview({ data }) {
   return (
-    <div className="w-full shadow-xl bg-slate-100 ">
-      <h1 className="md:text-xl border-l-[#b67a3d] shadow-xl bg-slate-50 py-3 border-r-[#b67a3d] border-r-8 border-l-8 mb-5 font-bold uppercase">
-        <span className="ml-2">User Profile Overview</span>
-      </h1>
+    <div className="flex flex-col justify-center w-full gap-10 md:flex-row bg-slate-100 ">
       {/* section 1 user bried info */}
-      <div className="w-full p-2 bg-white shadow-xl rounded-xl ring-1 ring-[#b67a3d]">
+      <div className="w-full p-2 bg-slate-100 rounded-xl ">
         <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-          <h1 className="py-3 mb-5 font-bold uppercase shadow-lg md:text-xl bg-slate-50">
+          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl">
+            <MdOutlinePersonPin className="text-3xl" />
             <span>personal info</span>
           </h1>
           <h1 className="flex flex-col">
@@ -76,9 +77,10 @@ function ProfileOverview({ data }) {
       </div>
       {/* students information */}
       {data?.profile?.is_student ? (
-        <div className="w-full p-2 mt-10 bg-white rounded-xl ring-1 ring-[#b67a3d]">
+        <div className="w-full p-2 mt-10 md:mt-0 rounded-xl ">
           <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-            <h1 className="py-3 mb-5 font-bold uppercase shadow-lg md:text-xl bg-slate-50">
+            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl ">
+              <PiStudentFill className="text-3xl" />
               <span>Student info</span>
             </h1>
             <h1 className="flex flex-col">
@@ -100,9 +102,10 @@ function ProfileOverview({ data }) {
         ""
       )}
       {/* other infos */}
-      <div className="w-full p-2 mt-10 bg-white shadow-xl rounded-xl ring-1 ring-[#b67a3d]">
+      <div className="w-full p-2 mt-10 md:mt-0 bg-slate-100 xl rounded-xl ">
         <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-          <h1 className="py-3 mb-5 font-bold uppercase shadow-lg md:text-xl bg-slate-50">
+          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl">
+            <MdOutlineContactPhone className="text-3xl" />
             <span>Contacts info</span>
           </h1>
           <h1 className="flex flex-col">

@@ -99,7 +99,7 @@ const SideNavBar = ({ open, setOpen }) => {
             to="/Gallery/"
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                ? "bg-[#ce8d4c] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
                 : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
             }
             onClick={closeMenu}

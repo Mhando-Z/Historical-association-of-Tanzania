@@ -55,9 +55,38 @@ const UserProfile = () => {
     );
   return (
     <div className="flex flex-col min-h-screen p-10 mt-10">
-      <div className="flex flex-col justify-between w-full gap-y-10 md:flex-row gap-x-10">
-        <div>
-          <ProfilePictures data={userData} />
+      <div className="flex flex-col w-full gap-y-10 gap-x-10">
+        <div className="flex-col w-full felx">
+          <img
+            src={`https://picsum.photos/id/${13}/1200/800`}
+            alt="Bg-picha"
+            className="w-full object-cover rounded-3xl h-[25rem]"
+          />
+          <div className="flex flex-col items-center justify-center py-5 gap-y-10 md:px-10 md:justify-between rounded-3xl bg-slate-100 md:flex-row">
+            <ProfilePictures data={userData} />
+
+            {/* Action buttons */}
+            <div className="flex flex-col gap-y-3">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                onClick={handleEdit}
+                className="py-2 border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
+              >
+                <FaEdit className="mr-2" /> Edit Acc
+              </motion.button>
+              <motion.button
+                onClick={handleDeleteUserAccount}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="flex flex-row items-center justify-center px-5 py-2 text-white bg-red-600 border-none rounded-3xl"
+              >
+                <FaTrash className="mr-2" /> Account
+              </motion.button>
+            </div>
+          </div>
         </div>
 
         <div className="relative flex flex-grow">
@@ -70,14 +99,14 @@ const UserProfile = () => {
               transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
               className="absolute top-0 bottom-0 left-0 right-0 items-center justify-center w-full p-20 bg-black bg-opacity-15"
             >
-              <div className="bg-white p-10 h-[220px] shadow-2xl rounded-xl">
+              <div className="px-4 py-4 bg-white shadow-xl md:p-10 rounded-xl">
                 <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
                   <ExclamationTriangleIcon
                     aria-hidden="true"
                     className="w-6 h-6 text-red-600"
                   />
                 </div>
-                <p className="text-lg">
+                <p className="text-sm">
                   Are you sure you want to delete this Account? note all data
                   will be permanently removed. This action cannot be undone.
                 </p>
@@ -118,28 +147,8 @@ const UserProfile = () => {
             ""
           )}
         </div>
-        <div className="flex flex-col gap-y-3">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.8 }}
-            transition={{ type: "spring", ease: "easeOut" }}
-            onClick={handleEdit}
-            className="py-2 border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
-          >
-            <FaEdit className="mr-2" /> Edit Acc
-          </motion.button>
-          <motion.button
-            onClick={handleDeleteUserAccount}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.8 }}
-            transition={{ type: "spring", ease: "easeOut" }}
-            className="flex flex-row items-center justify-center px-5 py-2 text-white bg-red-600 border-none rounded-3xl"
-          >
-            <FaTrash className="mr-2" /> Account
-          </motion.button>
-        </div>
       </div>
-      <div className="max-w-6xl p-6 mx-auto mt-20 bg-white rounded-lg shadow-lg ">
+      <div className="max-w-6xl p-6 mx-auto mt-20 rounded-lg shadow-lg ">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
