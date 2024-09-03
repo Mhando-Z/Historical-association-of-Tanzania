@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -15,8 +15,19 @@ const UserProfile = () => {
   const { userData } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [notification, setNotification] = useState(false);
+  const [value, setValue] = useState(13);
+
   // custom functions hooks
   const navigate = useNavigate();
+
+  const getRandomValue = () => {
+    const randomValue = Math.floor(Math.random() * 10) + 10; // Generates a random number between 10 and 19
+    setValue(randomValue);
+  };
+
+  useEffect(() => {
+    getRandomValue();
+  }, []);
 
   const handleDeleteUserAccount = () => {
     setNotification(true);
@@ -58,7 +69,7 @@ const UserProfile = () => {
       <div className="flex flex-col w-full gap-y-10 gap-x-10">
         <div className="flex-col w-full felx">
           <img
-            src={`https://picsum.photos/id/${13}/1200/800`}
+            src={`https://picsum.photos/id/${value}/1200/800`}
             alt="Bg-picha"
             className="w-full object-cover rounded-3xl h-[25rem]"
           />
