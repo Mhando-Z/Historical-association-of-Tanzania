@@ -86,7 +86,7 @@ function ProfileEdit() {
   return (
     <div>
       <div>
-        <h1 className="md:text-2xl flex flex-row items-center gap-x-3 border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-medium  ">
+        <h1 className="md:text-2xl flex flex-row items-center gap-x-3 border-l-[#b67a3d] py-3  mb-5 font-medium">
           <FaEdit className="ml-3" />
           <span className="ml-1">Edit User Profile</span>
         </h1>
@@ -95,7 +95,7 @@ function ProfileEdit() {
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="full_name"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Full Name</span>
             </label>
@@ -106,13 +106,13 @@ function ProfileEdit() {
               required
               placeholder="Full Name"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-md focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -md focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="phone_number"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Phone Number</span>
             </label>
@@ -123,13 +123,13 @@ function ProfileEdit() {
               required
               placeholder="Phone Number"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="nationality"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Nationality</span>
             </label>
@@ -140,7 +140,7 @@ function ProfileEdit() {
               placeholder="Nationality"
               required
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
 
@@ -150,7 +150,7 @@ function ProfileEdit() {
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="student_id"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Student Id</span>
                 </label>
@@ -160,13 +160,13 @@ function ProfileEdit() {
                   value={formData.profile.student_id}
                   placeholder="Student ID"
                   onChange={handleChange}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="course_of_study"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Course of Study</span>
                 </label>
@@ -176,13 +176,13 @@ function ProfileEdit() {
                   value={formData.profile.course_of_study}
                   placeholder="Course of Study"
                   onChange={handleChange}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="institution"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">Institution</span>
                 </label>
@@ -192,13 +192,13 @@ function ProfileEdit() {
                   value={formData.profile.institution}
                   placeholder="Institution"
                   onChange={handleChange}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
               <div className="flex flex-col w-full mb-4 ">
                 <label
                   htmlFor="college"
-                  className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+                  className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
                 >
                   <span className="ml-2">College</span>
                 </label>
@@ -208,7 +208,7 @@ function ProfileEdit() {
                   value={formData.profile.college}
                   placeholder="College"
                   onChange={handleChange}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                  className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
             </>
@@ -217,7 +217,7 @@ function ProfileEdit() {
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="title"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Title</span>
             </label>
@@ -227,13 +227,13 @@ function ProfileEdit() {
               value={formData.profile.title}
               placeholder="Title"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="branch"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Branch</span>
             </label>
@@ -243,13 +243,13 @@ function ProfileEdit() {
               value={formData.profile.branch}
               placeholder="Branch"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="country"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Country</span>
             </label>
@@ -259,13 +259,13 @@ function ProfileEdit() {
               name="country"
               placeholder="Country"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="city"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">City</span>
             </label>
@@ -275,13 +275,13 @@ function ProfileEdit() {
               value={formData.profile.city}
               placeholder="City"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
               htmlFor="physical_address"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Physical address</span>
             </label>
@@ -291,13 +291,13 @@ function ProfileEdit() {
               value={formData.profile.physical_address}
               placeholder="Physical Address"
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex flex-col w-full mt-5 mb-10 ">
             <label
               htmlFor="reviews"
-              className="block py-2 bg-slate-50 w-full mb-2 shadow border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
             >
               <span className="ml-2">Reviews</span>
             </label>
@@ -309,7 +309,7 @@ function ProfileEdit() {
               value={formData.profile.reviews}
               placeholder="reviews"
               onChange={handleChange}
-              className="block p-7 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-7 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
           <div className="flex justify-end mt-10 mb-10">
@@ -318,7 +318,7 @@ function ProfileEdit() {
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
               type="submit"
-              className="bg-[#b67a3d] flex flex-row items-center gap-x-2 text-white py-2 px-4 rounded-full shadow-md hover:bg-[#a36a30]"
+              className="bg-[#b67a3d] flex flex-row items-center gap-x-2 text-white py-2 px-4 rounded-full -md hover:bg-[#a36a30]"
             >
               <FaSave />
               Save Changes
@@ -327,7 +327,7 @@ function ProfileEdit() {
         </form>
         <div className="flex flex-col w-full">
           <div className="flex flex-col w-full">
-            <h3 className="py-3 mb-4 ml-2 text-xl shadow-sm bg-slate-50">
+            <h3 className="py-3 mb-4 ml-2 text-xl -sm bg-slate-50">
               Change Password
             </h3>
             <input
@@ -335,7 +335,7 @@ function ProfileEdit() {
               name="new_password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
               placeholder="New Password"
             />
             <motion.button

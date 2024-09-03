@@ -31,12 +31,12 @@ export const Notifier = ({ data }) => {
           was created successfully, click the button below to complete your
           registration
         </p>
-        <Link
-          to={"/Dashboard/UserHome"}
+        <a
+          href={"/Dashboard/UserHome"}
           // onClick={() => window.location("/UserHome/")}
         >
           <p className="font-medium text-blue-600">Membership</p>
-        </Link>
+        </a>
       </div>
     </motion.div>
   );
@@ -72,9 +72,9 @@ const UserRegister = ({ handleRegistration }) => {
       setView(true); // Display the Notifier component
 
       // Optionally, redirect the user after a short delay
-      setTimeout(() => {
-        navigate("/Dashboard/UserHome");
-      }, 10000); // 3-second delay before redirect
+      // setTimeout(() => {
+      //   navigate("/Dashboard/UserHome");
+      // }, 10000); // 3-second delay before redirect
     } catch (error) {
       toast.error("User Registration failed");
       setError(error.response.data);
@@ -88,8 +88,6 @@ const UserRegister = ({ handleRegistration }) => {
       handleRegistration();
     }
   };
-
-  console.log(location.pathname);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-sm lg:text-md">
