@@ -40,7 +40,7 @@ function DashHome() {
                 ease: "easeOut",
               }}
               whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              className="size-52 shadow-md bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Users</h1>
@@ -58,7 +58,7 @@ function DashHome() {
                 ease: "easeOut",
               }}
               whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              className="size-52 shadow-md bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Conference</h1>
@@ -76,7 +76,7 @@ function DashHome() {
                 ease: "easeOut",
               }}
               whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              className="size-52 shadow-md bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
             >
               <FaUser className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">Students</h1>
@@ -94,7 +94,7 @@ function DashHome() {
                 ease: "easeOut",
               }}
               whileHover={{ y: -30 }}
-              className="size-52 shadow-xl bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
+              className="size-52 shadow-md bg-opacity-80 ring-[#b67a3d] bg-gray-100  p-10 rounded-xl"
             >
               <BsPeopleFill className="text-4xl" />
               <h1 className="mt-2 text-2xl font-bold uppercase">members</h1>
