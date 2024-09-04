@@ -148,8 +148,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded"
-                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded"
+                          ? "bg-slate-300 items-center gap-x-5 text-center font-medium  text-gray-900 w-full flex flex-row py-2 px-7 mt-2 rounded"
+                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-slate-300 hover:text-gray-900 hover:font-medium  px-7 mt-2 text-slate-800 rounded"
                       }
                       to={dt.links}
                     >
@@ -182,8 +182,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded"
-                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded"
+                          ? "bg-slate-300 items-center gap-x-5 text-center font-medium  text-gray-900 w-full flex flex-row py-2 px-7 mt-2 rounded"
+                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-slate-300 hover:text-gray-900 hover:font-medium  px-7 mt-2 text-slate-800 rounded"
                       }
                       to={dt.links}
                     >
@@ -217,8 +217,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-[#b67a3d] items-center gap-x-5 text-center text-white w-full flex flex-row py-2 px-7 mt-2 rounded-2xl"
-                          : "flex flex-row py-2 w-full shadow-md gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-[#ca935c] hover:text-white hover:font-medium  px-7 mt-2 text-slate-800 rounded-2xl bg-slate-300"
+                          ? "bg-slate-300 items-center gap-x-5 text-center font-medium  text-gray-900 w-full flex flex-row py-2 px-7 mt-2 rounded"
+                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-slate-300 hover:text-gray-900 hover:font-medium  px-7 mt-2 text-slate-800 rounded"
                       }
                       to={dt.links}
                     >
@@ -244,8 +244,8 @@ function SidePannel() {
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-[#b67a3d] items-center text-white w-full rounded-xl"
-                : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-[#ca935c] hover:text-white hover:font-medium"
+                ? "bg-slate-300 items-center text-gray-900 w-full rounded-xl"
+                : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-slate-300 hover:text-gray-900 hover:font-medium"
             }
             to={"UserProfile/"}
           >
