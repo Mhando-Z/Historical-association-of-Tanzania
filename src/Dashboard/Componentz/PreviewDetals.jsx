@@ -1,7 +1,7 @@
 // export default ProfileEdit;
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dots } from "react-activity";
-import { RiFolderUserFill } from "react-icons/ri";
+// import { RiFolderUserFill } from "react-icons/ri";
 
 import UserContext from "../../Context/UserContext";
 // profile logos
@@ -12,14 +12,26 @@ import manprofile from "../../Assets/profiles/man1.png";
 import womanProfile from "../../Assets/profiles/woman.png";
 // verification badge
 import { HiMiniCheckBadge } from "react-icons/hi2";
+import axiosInstance from "../../Context/axiosInstance";
 
 function PreviewDetails() {
   const { userId } = useContext(UserContext);
-  const { users } = useContext(UserContext);
+  const [users, setUsers] = useState([]);
+
+  async function getUsers() {
+    try {
+      const { data } = await axiosInstance.get("/hat-users/users/");
+      setUsers(data);
+    } catch (error) {}
+  }
 
   const user = users?.filter((dt) => {
     return dt.id === userId;
   });
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   if (!user || user.length === 0)
     return (
@@ -31,10 +43,10 @@ function PreviewDetails() {
   return (
     <div>
       <div>
-        <h1 className="flex flex-row items-center px-3 py-3 font-medium md:text-2xl gap-x-2">
+        {/* <h1 className="flex flex-row items-center px-3 py-3 font-medium md:text-2xl gap-x-2">
           <RiFolderUserFill className="text-3xl" />
           <span className="ml-1">User Details</span>
-        </h1>
+        </h1> */}
 
         <form>
           <div className="flex flex-row items-center justify-between w-full p-5 gap-x-5">
