@@ -171,7 +171,7 @@ export default function UserLogin() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="block w-full shadow-xl focus:bg-blue-50  rounded-md border-0 py-2 px-3 scroll-px-3.5 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                    className="block w-full   focus:bg-blue-50  rounded-md border-0 py-2 px-3 scroll-px-3.5 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function UserLogin() {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="block w-full px-3 py-2 text-gray-900 border-0 rounded-md shadow-xl outline-none focus:bg-blue-50 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-3 py-2 text-gray-900 border-0 rounded-md outline-none focus:bg-blue-50 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
