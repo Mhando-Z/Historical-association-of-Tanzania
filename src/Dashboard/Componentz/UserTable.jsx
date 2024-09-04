@@ -53,67 +53,58 @@ const UserTable = ({ data }) => {
           className="p-2 border shadow-md outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-100 rounded w-full"
         />
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full overflow-y-auto border border-gray-300 shadow-2xl bg-slate-100">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left border-b">ID</th>
-              <th className="px-4 py-2 text-left border-b">Name</th>
-              <th className="px-4 py-2 text-left border-b">Email</th>
-              <th className="px-4 py-2 text-left border-b">isStudent</th>
-              <th className="px-4 py-2 text-left border-b">isMember</th>
-              <th className="px-4 py-2 text-left border-b">PaidConference</th>
-              <th className="px-4 py-2 text-left border-b">date Registerd</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData?.map((item) => (
-              <motion.tr
-                key={item.id}
-                className="cursor-pointer hover:bg-gray-200"
-              >
-                <td className="px-4 py-2 border-b">{item.id}</td>
-                <td className="px-4 py-2 border-b">{item.username}</td>
-                <td className="px-4 py-2 border-b">{item.email}</td>
-                <td className="px-4 py-2 border-b">
-                  {item.profile.is_student ? (
-                    <>
+      <div className="overflow-x-auto h-[600px]">
+        <div className="relative">
+          <table className="min-w-full border border-gray-300 shadow-2xl bg-slate-100">
+            <thead className="sticky top-0 bg-gray-200">
+              <tr>
+                <th className="px-4 py-2 text-left border-b">ID</th>
+                <th className="px-4 py-2 text-left border-b">Name</th>
+                <th className="px-4 py-2 text-left border-b">Email</th>
+                <th className="px-4 py-2 text-left border-b">isStudent</th>
+                <th className="px-4 py-2 text-left border-b">isMember</th>
+                <th className="px-4 py-2 text-left border-b">PaidConference</th>
+                <th className="px-4 py-2 text-left border-b">
+                  Date Registered
+                </th>
+                <th className="px-4 py-2 text-left border-b"></th>
+              </tr>
+            </thead>
+            <tbody className="overflow-y-auto">
+              {filteredData?.map((item) => (
+                <motion.tr
+                  key={item.id}
+                  className="cursor-pointer hover:bg-gray-200"
+                >
+                  <td className="px-4 py-2 border-b">{item.id}</td>
+                  <td className="px-4 py-2 border-b">{item.username}</td>
+                  <td className="px-4 py-2 border-b">{item.email}</td>
+                  <td className="px-4 py-2 border-b">
+                    {item.profile.is_student ? (
                       <GiCheckMark className="text-green-600" />
-                    </>
-                  ) : (
-                    <>
+                    ) : (
                       <FaXmark className="text-red-600" />
-                    </>
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {item.profile.is_paid_membership ? (
-                    <>
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {item.profile.is_paid_membership ? (
                       <GiCheckMark className="text-green-600" />
-                    </>
-                  ) : (
-                    <>
+                    ) : (
                       <FaXmark className="text-red-600" />
-                    </>
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {item.profile.is_paid_conference ? (
-                    <>
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {item.profile.is_paid_conference ? (
                       <GiCheckMark className="text-green-600" />
-                    </>
-                  ) : (
-                    <>
+                    ) : (
                       <FaXmark className="text-red-600" />
-                    </>
-                  )}
-                </td>
-                <td className="px-4 py-2 border-b line-clamp-1">
-                  {formatDate(item.profile.date_registered)}
-                </td>
-                <td className="px-4 py-2 border-b">
-                  {location.pathname === "/Dashboard/MembersMgt/" ? (
-                    <>
+                    )}
+                  </td>
+                  <td className="px-4 py-2 border-b line-clamp-1">
+                    {formatDate(item.profile.date_registered)}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {location.pathname === "/Dashboard/MembersMgt/" ? (
                       <motion.button
                         onClick={() => handleProfieView(item.id)}
                         whileHover={{ scale: 1.05 }}
@@ -123,15 +114,15 @@ const UserTable = ({ data }) => {
                       >
                         View
                       </motion.button>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
+                    ) : (
+                      ""
+                    )}
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <UserDetailsPreview open={open} setOpen={setOpen} />
     </div>
