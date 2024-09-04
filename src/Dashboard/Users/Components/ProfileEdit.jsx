@@ -50,7 +50,6 @@ function ProfileEdit() {
         "/hat-users/UpdateUserProfile/",
         formData
       );
-      console.log(formData);
 
       if (response.status === 200) {
         // Update context with new data
@@ -64,7 +63,6 @@ function ProfileEdit() {
     } catch (error) {
       toast.error("Error updating profile");
       console.error("Error updating profile:", error);
-      console.log(error);
     }
   };
 
