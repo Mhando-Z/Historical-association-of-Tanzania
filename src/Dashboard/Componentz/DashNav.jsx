@@ -9,10 +9,9 @@ import { motion } from "framer-motion";
 import UserContext from "../../Context/UserContext";
 import ProfileIcon from "../Users/Components/ProfileIcon";
 
-function DashNav() {
+function DashNav({ handleClick }) {
   const [show, setshow] = useState(false);
   const [show1, setshow1] = useState(false);
-  const { open, setOpen } = useContext(UserContext);
   const { userData, setUserData } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ function DashNav() {
   };
 
   const handleSideview = () => {
-    setOpen(!open);
+    handleClick();
   };
 
   return (
@@ -83,7 +82,7 @@ function DashNav() {
                   ease: "easeOut",
                   type: "spring",
                 }}
-                className="absolute top-14 ring-1 ring-[#b67a3d] right-0 h-72 w-[270px] rounded-2xl bg-slate-100 "
+                className="absolute top-14 right-0 h-72 w-[270px] rounded-sm bg-slate-100 "
               >
                 <div className="flex flex-col justify-center py-10 gap-y-4 px-7">
                   <div className="flex flex-row items-center gap-x-4 ">

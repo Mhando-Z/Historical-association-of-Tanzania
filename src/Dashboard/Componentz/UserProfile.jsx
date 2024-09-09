@@ -65,13 +65,13 @@ const UserProfile = () => {
       </div>
     );
   return (
-    <div className="flex flex-col min-h-screen p-10 mt-10">
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-col w-full gap-y-10 gap-x-10">
         <div className="flex-col w-full felx">
           <img
             src={`https://picsum.photos/id/${value}/1200/800`}
             alt="Bg-picha"
-            className="w-full object-cover rounded-3xl h-[25rem]"
+            className="w-full object-cover rounded-3xl h-[18rem] md:h-[25rem]"
           />
           <div className="flex flex-col items-center justify-center py-5 gap-y-10 md:px-10 md:justify-between rounded-3xl bg-slate-100 md:flex-row">
             <ProfilePictures data={userData} />

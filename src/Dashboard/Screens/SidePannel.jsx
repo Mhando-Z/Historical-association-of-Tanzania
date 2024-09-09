@@ -119,10 +119,10 @@ function SidePannel() {
       initial={{ opacity: 1, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 0.1, ease: "easeOut" }}
-      className="flex overflow-y-auto z-40 py-4 md:py-0 fixed flex-col h-screen xl:w-[300px] w-[200px] md:w-[250px] bg-slate-100"
+      className="z-40 flex flex-col h-screen overflow-y-auto bg-slate-100"
     >
       {/* HAT logo */}
-      <div className="flex px-4 py-5 mb-5">
+      <div className="flex py-5 mb-5">
         <Link to={"/Dashboard/"}>
           <img src={lgo} alt="hat-logo" className="h-8" />
         </Link>
@@ -130,11 +130,11 @@ function SidePannel() {
       {userData?.is_staff === true ? (
         <>
           <div className="">
-            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-8 text-lg font-medium text-slate-900 px-4">
+            <h1 className="xl:text-xl px-3 border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 ">
               WEB-SECTIONS
             </h1>
           </div>
-          <div className="flex flex-col w-full px-4">
+          <div className="flex flex-col w-full ">
             {Sections?.map((dt, index) => {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
@@ -164,11 +164,11 @@ function SidePannel() {
             })}
           </div>
           <div className="mt-10">
-            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-8 text-lg font-medium text-slate-900 px-4">
+            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 px-3 ">
               OTHER
             </h1>
           </div>
-          <div className="flex flex-col w-full px-4">
+          <div className="flex flex-col w-full ">
             {Other?.map((dt, index) => {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
@@ -199,11 +199,11 @@ function SidePannel() {
       ) : userData ? (
         <>
           <div className="">
-            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-8 text-lg font-medium text-slate-900 px-4">
+            <h1 className="xl:text-xl border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 px-3 ">
               SECTIONS
             </h1>
           </div>
-          <div className="flex flex-col w-full px-4">
+          <div className="flex flex-col w-full ">
             {UserChoices?.map((dt, index) => {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
@@ -234,7 +234,7 @@ function SidePannel() {
       ) : (
         ""
       )}
-      <div className="flex flex-col px-4">
+      <div className="flex flex-col ">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.8 }}

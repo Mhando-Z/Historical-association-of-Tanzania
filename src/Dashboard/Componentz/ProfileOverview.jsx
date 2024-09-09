@@ -16,9 +16,9 @@ function ProfileOverview({ data }) {
       {/* section 1 user bried info */}
       <div className="w-full p-2 bg-slate-100 rounded-xl ">
         <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl">
+          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2">
             <MdOutlinePersonPin className="text-3xl" />
-            <span>personal info</span>
+            <span className="">personal info</span>
           </h1>
           <h1 className="flex flex-col">
             Full Name <span className="">{data?.profile?.full_name}</span>
@@ -79,7 +79,7 @@ function ProfileOverview({ data }) {
       {data?.profile?.is_student ? (
         <div className="w-full p-2 mt-10 md:mt-0 rounded-xl ">
           <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl ">
+            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg ">
               <PiStudentFill className="text-3xl" />
               <span>Student info</span>
             </h1>
@@ -104,7 +104,7 @@ function ProfileOverview({ data }) {
       {/* other infos */}
       <div className="w-full p-2 mt-10 md:mt-0 bg-slate-100 xl rounded-xl ">
         <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">
-          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg md:text-xl">
+          <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase gap-x-2 lg ">
             <MdOutlineContactPhone className="text-3xl" />
             <span>Contacts info</span>
           </h1>

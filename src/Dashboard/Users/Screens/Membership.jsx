@@ -1,5 +1,5 @@
 // export default Membership;
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../Context/axiosInstance";
 import UserContext from "../../../Context/UserContext";
@@ -20,6 +20,10 @@ import { useNavigate } from "react-router-dom";
 
 const Membership = () => {
   const { userData, setUserData } = useContext(UserContext);
+  const { countries } = useContext(UserContext);
+  const [Regions, setRegion] = useState([]);
+  const [CountryCode, setCountryCode] = useState("AF");
+
   const [step, setStep] = useState(1);
   const [isStudent, setIsStudent] = useState(false);
   const navigate = useNavigate();
@@ -45,27 +49,6 @@ const Membership = () => {
     },
   });
 
-  //   const schema = Joi.object({
-  //     profile: Joi.object({
-  //       full_name: Joi.string().required(),
-  //       reviews: Joi.string().optional(),
-  //       is_student: Joi.boolean().required(),
-  //       student_id: Joi.string().optional(),
-  //       course_of_study: Joi.string().optional(),
-  //       institution: Joi.string().optional(),
-  //       branch: Joi.string().required(),
-  //       country: Joi.string().required(),
-  //       city: Joi.string().required(),
-  //       title: Joi.string().required(),
-  //       phone_number: Joi.string().required(),
-  //       nationality: Joi.string().required(),
-  //       physical_address: Joi.string().required(),
-  //       gender: Joi.string().required(),
-  //       college: Joi.string().required(),
-  //       is_paid_membership: Joi.boolean().required(),
-  //     }),
-  //   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -75,23 +58,13 @@ const Membership = () => {
         [name]: value,
       },
     }));
+    if (name === "country") {
+      setCountryCode(value);
+      console.log(value);
+    }
   };
 
-  // const handleFileChange = (e) => {
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     profile_picture: e.target.files[0],
-  //   }));
-  //   console.log();
-  // };
-
   const handleSave = async () => {
-    // const { error } = schema.validate(formData, { abortEarly: false });
-    // if (error) {
-    //   toast.error("Please fill out all required fields.");
-    //   return;
-    // }
-
     const updateData = new FormData();
     for (const key in formData.profile) {
       updateData.append(`profile.${key}`, formData.profile[key]);
@@ -119,6 +92,27 @@ const Membership = () => {
       toast.error("Error updating profile");
     }
   };
+
+  const fetchCitiesesData = async () => {
+    try {
+      const { data } = await axiosInstance.get(
+        `https://api.countrystatecity.in/v1/countries/${CountryCode}/states`,
+        {
+          headers: {
+            "X-CSCAPI-KEY":
+              "S0RSSFRVWkg0dE5DaEFMM0FtVkJQbDRGcWNjT2JiVFY3WlpXYjNwYg==",
+          },
+        }
+      );
+
+      setRegion(data);
+      console.log(data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchCitiesesData();
+  }, [CountryCode]);
 
   const handleNext = () => {
     setStep(step + 1);
@@ -221,7 +215,7 @@ const Membership = () => {
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
               />
-              <input
+              {/* <input
                 type="text"
                 name="gender"
                 value={formData.profile.gender}
@@ -229,7 +223,20 @@ const Membership = () => {
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-              />
+              /> */}
+              <select
+                name="gender"
+                value={formData.profile.gender}
+                onChange={handleChange}
+                required
+                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="Male">male</option>
+                <option value="Female">female</option>
+              </select>
             </div>
             <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
               <motion.button
@@ -318,7 +325,7 @@ const Membership = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
-              <input
+              {/* <input
                 type="text"
                 name="country"
                 placeholder="Country"
@@ -326,8 +333,42 @@ const Membership = () => {
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-              />
-              <input
+              /> */}
+              <select
+                name="country"
+                placeholder="Country"
+                value={formData.profile.country}
+                onChange={handleChange}
+                required
+                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+              >
+                <option value="" disabled>
+                  Select Country
+                </option>
+                {countries?.map((dt) => (
+                  <option key={dt.id} value={dt.name}>
+                    {dt.name}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="city"
+                placeholder="city"
+                value={formData.profile.city}
+                onChange={handleChange}
+                required
+                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+              >
+                <option value="" disabled>
+                  Select Region
+                </option>
+                {Regions?.map((dt) => (
+                  <option key={dt.id} value={dt.name}>
+                    {dt.name}
+                  </option>
+                ))}
+              </select>
+              {/* <input
                 type="text"
                 name="city"
                 placeholder="City"
@@ -335,7 +376,7 @@ const Membership = () => {
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-              />
+              /> */}
               <input
                 type="text"
                 name="physical_address"
