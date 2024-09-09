@@ -190,7 +190,7 @@ function ContactUsSect() {
   };
 
   return (
-    <div className="container flex flex-col mx-auto mt-16">
+    <div className="container flex flex-col mx-auto ">
       {editContacts ? (
         <motion.div
           initial={{ opacity: 0, scale: 0, x: -100 }}

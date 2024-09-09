@@ -66,7 +66,7 @@ function GallerySect() {
   };
 
   return (
-    <div className="container flex flex-col mx-auto mt-24 mb-20">
+    <div className="container flex flex-col mx-auto mb-20">
       <div className="mt-10 mb-10 shadow bg-slate-100">
         <Table data={gallerySect} />
       </div>

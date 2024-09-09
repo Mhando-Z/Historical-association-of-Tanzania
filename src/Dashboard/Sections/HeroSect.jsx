@@ -88,7 +88,7 @@ function HeroSect() {
   };
 
   return (
-    <div className="container flex flex-col mx-auto mt-24 mb-20">
+    <div className="container flex flex-col mx-auto mb-20">
       <div className="mt-10 mb-10 bg-gray-100 shadow ">
         <Table data={heroSect} />
       </div>

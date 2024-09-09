@@ -39,7 +39,7 @@ const UserTable = ({ data }) => {
   };
 
   return (
-    <div className="mt-14">
+    <div className="">
       <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase border-l-8 md:text-xl">
         <ImTable className="text-xl" />
         <span className="ml-2">User Table</span>

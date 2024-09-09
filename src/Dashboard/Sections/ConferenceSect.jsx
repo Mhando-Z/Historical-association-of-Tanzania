@@ -145,7 +145,7 @@ function ConferenceSect() {
   };
 
   return (
-    <div className="container flex flex-col mx-auto mt-24 mb-20">
+    <div className="container flex flex-col mx-auto mb-20">
       <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase shadow-xl gap-x-3 md:text-xl bg-slate-50">
         <PiVideoConference className="text-3xl" />
         <span className="">Conference</span>

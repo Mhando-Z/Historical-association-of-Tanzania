@@ -25,7 +25,7 @@ function DashHome() {
   );
 
   return (
-    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mt-10 mb-40">
+    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mb-40">
       {userData?.is_staff === true ? (
         <div className="container flex flex-col mx-auto">
           {/* Figures */}
