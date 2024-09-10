@@ -12,7 +12,7 @@ const formatDate = (dateString) => {
 
 function ProfileOverview({ data }) {
   return (
-    <div className="flex flex-col justify-center w-full gap-10 md:flex-row bg-slate-100 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-center w-full gap-10 md:flex-row bg-slate-100 ">
       {/* section 1 user bried info */}
       <div className="w-full p-2 bg-slate-100 rounded-xl ">
         <div className="flex flex-col justify-between px-2 divide-y-2 gap-y-5 ">

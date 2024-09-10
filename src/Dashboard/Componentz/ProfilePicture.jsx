@@ -11,7 +11,7 @@ function ProfilePictures({ data }) {
   return (
     <>
       <div className="flex flex-col items-center justify-center w-full md:items-start md:justify-between md:flex-row rounded-2xl gap-y-7 gap-x-5">
-        <div className="items-center justify-center ">
+        <div className="flex items-center justify-center ">
           {/* profile images */}
           {data?.profile.profile_picture !== null ? (
             <>
@@ -22,7 +22,7 @@ function ProfilePictures({ data }) {
                 src={data?.profile.profile_picture}
                 alt="Profile"
                 // className="object-cover object-top   ring-1 size-60 md:size-60 ring-[#b67a3d] rounded max-w-screen"
-                className="h-32 w-32 object-cover object-top ring-4 rounded-full  ring-[#b67a3d] "
+                className="h-24 w-24 object-cover object-top ring-4 rounded-full  ring-[#b67a3d] "
               />
             </>
           ) : (
@@ -67,7 +67,7 @@ function ProfilePictures({ data }) {
         </div>
         <div className="flex flex-col flex-grow">
           {/* data details and status */}
-          <h1 className="text-lg font-bold md:text-2xl">{data?.username}</h1>
+          <h1 className="text-lg font-bold md:text-xl">{data?.username}</h1>
           <h1 className="text-base font-medium text-gray-700 md:text-lg">
             {data?.email}
           </h1>

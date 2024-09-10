@@ -65,15 +65,15 @@ const UserProfile = () => {
       </div>
     );
   return (
-    <div className="flex flex-col min-h-screen p-10 mt-10">
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-col w-full gap-y-10 gap-x-10">
         <div className="flex-col w-full felx">
           <img
             src={`https://picsum.photos/id/${value}/1200/800`}
             alt="Bg-picha"
-            className="w-full object-cover rounded-3xl h-[18rem] md:h-[25rem]"
+            className="w-full object-cover rounded-3xl h-[18rem] md:h-[20rem] xl:h-[25rem]"
           />
-          <div className="flex flex-col items-center justify-center py-5 gap-y-10 md:px-10 md:justify-between rounded-3xl bg-slate-100 md:flex-row">
+          <div className="flex flex-col items-center justify-center py-5 gap-y-10 md:justify-between rounded-3xl bg-slate-100 md:flex-row">
             <ProfilePictures data={userData} />
 
             {/* Action buttons */}
@@ -83,7 +83,7 @@ const UserProfile = () => {
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
                 onClick={handleEdit}
-                className="py-2 border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
+                className="py-1 text-sm border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
               >
                 <FaEdit className="mr-2" /> Edit Acc
               </motion.button>
@@ -92,7 +92,7 @@ const UserProfile = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="flex flex-row items-center justify-center px-5 py-2 text-white bg-red-600 border-none rounded-3xl"
+                className="flex flex-row items-center justify-center px-3 py-1 text-sm text-white bg-red-600 border-none rounded-3xl"
               >
                 <FaTrash className="mr-2" /> Account
               </motion.button>
