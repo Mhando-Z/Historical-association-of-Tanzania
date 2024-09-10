@@ -119,7 +119,7 @@ function SidePannel() {
       initial={{ opacity: 1, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 0.1, ease: "easeOut" }}
-      className="z-40 flex flex-col h-screen overflow-y-auto bg-slate-100"
+      className="z-40 flex flex-col h-screen justify-between overflow-y-auto bg-slate-100"
     >
       {/* HAT logo */}
       <div className="flex py-5 mb-5">
@@ -128,7 +128,7 @@ function SidePannel() {
         </Link>
       </div>
       {userData?.is_staff === true ? (
-        <>
+        <div className="flex flex-col flex-grow">
           <div className="">
             <h1 className="xl:text-xl px-3 border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 ">
               WEB-SECTIONS
@@ -195,9 +195,9 @@ function SidePannel() {
               );
             })}
           </div>
-        </>
+        </div>
       ) : userData ? (
-        <>
+        <div className="flex flex-grow flex-col">
           <div className="">
             <h1 className="xl:text-xl border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 px-3 ">
               SECTIONS
@@ -230,16 +230,16 @@ function SidePannel() {
               );
             })}
           </div>
-        </>
+        </div>
       ) : (
         ""
       )}
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.8 }}
           transition={{ type: "spring", ease: "easeOut" }}
-          className=" flex xl:mt-20 mt-5 items-center justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl left-4 size-28 w-full"
+          className=" flex items-center justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl  size-28 w-full"
         >
           <NavLink
             className={({ isActive }) =>
@@ -249,7 +249,7 @@ function SidePannel() {
             }
             to={"UserProfile/"}
           >
-            <div className="flex flex-row items-center justify-between w-full p-5 gap-x-5">
+            <div className="flex flex-row items-center justify-between w-full px-2 py-5 gap-x-5">
               <div>
                 {/* profile images */}
                 {userData?.profile?.profile_picture !== null ? (
@@ -264,7 +264,7 @@ function SidePannel() {
                       }}
                       src={userData?.profile.profile_picture}
                       alt="Profile"
-                      className="object-cover object-top shadow-lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
+                      className="object-cover object-top shadow-lg ring-1 size-14  ring-[#b67a3d] rounded-full max-w-screen"
                     />
                   </>
                 ) : userData?.profile.is_student === true &&
@@ -273,14 +273,14 @@ function SidePannel() {
                     <img
                       src={stdprofile}
                       alt="userData pprofile.rofile"
-                      className="h-20 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
+                      className="h-12 ring-4 rounded-full  shadow-xl ring-[#b67a3d] "
                     />
                   </div>
                 ) : userData?.profile.gender === "male" ? (
                   <img
                     src={manprofile}
                     alt="userData pprofile.rofile"
-                    className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                    className="h-12 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
                   />
                 ) : userData?.profile.is_student === true &&
                   userData?.profile.gender === "female" ? (
@@ -288,19 +288,24 @@ function SidePannel() {
                     <img
                       src={stdprofile2}
                       alt="userData pprofile.rofile"
-                      className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                      className="h-12 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
                     />
                   </div>
                 ) : userData?.profile.gender === "female" ? (
                   <img
                     src={womanProfile}
                     alt="userData pprofile.rofile"
-                    className="h-20 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
+                    className="h-12 ring-4 rounded-full shadow-xl ring-[#b67a3d]"
                   />
                 ) : (
-                  <div>
-                    <FaRegCircleUser className="text-4xl xl:text-7xl" />
-                  </div>
+                  <motion.img
+                    className="object-cover border-4 border-green-300 rounded-full h-14"
+                    src={`https://ui-avatars.com/api/?name=${userData?.email}`}
+                    alt="User Avatar"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
                 )}
               </div>
               <div className="flex flex-col flex-grow">

@@ -22,7 +22,7 @@ function ProfilePictures({ data }) {
                 src={data?.profile.profile_picture}
                 alt="Profile"
                 // className="object-cover object-top   ring-1 size-60 md:size-60 ring-[#b67a3d] rounded max-w-screen"
-                className="h-24 w-24 object-cover object-top ring-4 rounded-full  ring-[#b67a3d] "
+                className="md:size-20 size-24 object-cover object-top ring-4 rounded-full ring-[#b67a3d] "
               />
             </>
           ) : (
@@ -33,14 +33,14 @@ function ProfilePictures({ data }) {
                   <img
                     src={stdprofile}
                     alt="data profile"
-                    className="h-32 ring-4 rounded-full    ring-[#b67a3d] "
+                    className="h-20 ring-4 rounded-full    ring-[#b67a3d] "
                   />
                 </>
               ) : data?.profile.gender === "male" ? (
                 <img
                   src={manprofile}
                   alt="data profile"
-                  className="h-32 ring-4 rounded-full   ring-[#b67a3d]"
+                  className="h-20 ring-4 rounded-full   ring-[#b67a3d]"
                 />
               ) : data?.profile.is_student === true &&
                 data?.profile.gender === "female" ? (
@@ -48,19 +48,24 @@ function ProfilePictures({ data }) {
                   <img
                     src={stdprofile2}
                     alt="data profile"
-                    className="h-32 ring-4 rounded-full   ring-[#b67a3d]"
+                    className="h-20 ring-4 rounded-full   ring-[#b67a3d]"
                   />
                 </>
               ) : data?.profile.gender === "female" ? (
                 <img
                   src={womanProfile}
                   alt="data profile"
-                  className="h-32 ring-4 rounded-full   ring-[#b67a3d]"
+                  className="h-20 ring-4 rounded-full   ring-[#b67a3d]"
                 />
               ) : (
-                <>
-                  <FaRegCircleUser className="text-7xl" />
-                </>
+                <motion.img
+                  className="object-cover border-4 border-green-300 rounded-full h-14"
+                  src={`https://ui-avatars.com/api/?name=${data?.email}`}
+                  alt="User Avatar"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
               )}
             </>
           )}

@@ -19,7 +19,7 @@ function IndexPage() {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
-        <div className="flex flex-col justify-between min-h-screen p-6">
+        <div className="flex flex-col justify-between min-h-screen py-1 px-6">
           <div>
             {/* <img src={logo} alt="herveg logo" className="h-10 " /> */}
             <nav className="">
@@ -39,7 +39,7 @@ function IndexPage() {
 
       {/* Main content */}
       <div className="flex-1 ml-0 overflow-y-auto bg-gray-50 md:ml-64">
-        <header className="sticky top-0 z-30 flex items-center justify-between py-4 shadow bg-slate-100 md:py-6">
+        <header className="sticky top-0 z-30 flex items-center justify-between py-4 shadow bg-slate-100 md:py-2">
           {/* Button to toggle sidebar on mobile */}
           <DashNav handleClick={toggleSidebar} />
         </header>
