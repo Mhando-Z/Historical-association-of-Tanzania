@@ -4,7 +4,6 @@ import stdprofile from "../../Assets/profiles/man.png";
 import stdprofile2 from "../../Assets/profiles/woman2.png";
 import manprofile from "../../Assets/profiles/man1.png";
 import womanProfile from "../../Assets/profiles/woman.png";
-import { FaRegCircleUser } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 function ProfilePictures({ data }) {

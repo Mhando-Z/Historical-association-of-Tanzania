@@ -13,6 +13,8 @@ const AdminUserManagement = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [notification, setNotification] = useState(false);
   const [Id, setUserId] = useState("");
+  // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -79,6 +81,11 @@ const AdminUserManagement = () => {
       },
     });
   };
+
+  // Function to filter users based on the search query
+  const filteredUsers = users?.filter((user) =>
+    user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -189,51 +196,87 @@ const AdminUserManagement = () => {
               <PiUserListFill className="text-4xl" />
               <span className="">Users List</span>
             </h1>
-            <ul className="relative p-4 bg-white rounded-lg shadow-lg">
-              {users?.map((user) => (
-                <li
-                  key={user.id}
-                  className="flex items-center justify-between p-2 border-b hover:bg-slate-100"
-                >
-                  <span>{user.username}</span>
-                  <div className="flex space-x-2">
-                    <span className="mr-14">
-                      {user.is_staff === true ? (
-                        <HiMiniCheckBadge className="text-xl text-blue-700 gap-x-10" />
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.8 }}
-                      transition={{
-                        type: "spring",
-                        ease: "easeOut",
-                        stiffness: 140,
-                      }}
-                      className="px-4 py-1 text-white bg-blue-600 rounded-3xl"
-                      onClick={() => handleSelectUser(user)}
-                    >
-                      Edit
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.8 }}
-                      transition={{
-                        type: "spring",
-                        ease: "easeOut",
-                        stiffness: 140,
-                      }}
-                      className="px-3 py-1 text-white bg-red-600 rounded-3xl"
-                      onClick={() => deleteFunction(user.id)}
-                    >
-                      Delete
-                    </motion.button>
-                  </div>
-                </li>
-              ))}
-              {notification ? (
+            <div className="relative w-full p-4 bg-white rounded-lg shadow">
+              {/* Search Input */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="Search users..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-amber-600"
+                />
+              </div>
+
+              {/* Table Container */}
+              <table className="w-full bg-white rounded">
+                {/* Table Header */}
+                <thead className="sticky top-0 z-10 bg-gray-200">
+                  <tr>
+                    <th className="p-2 text-left">Username</th>
+                    <th className="p-2 text-center">Role</th>
+                    <th className="p-2 text-center">Actions</th>
+                  </tr>
+                </thead>
+              </table>
+
+              {/* Scrollable Table Body */}
+              <div className="overflow-y-scroll h-96">
+                <table className="w-full bg-white rounded">
+                  <tbody>
+                    {filteredUsers?.map((user) => (
+                      <tr key={user.id} className="border-b hover:bg-slate-100">
+                        {/* Username */}
+                        <td className="p-2">{user.username}</td>
+
+                        {/* Is Staff */}
+                        <td className="flex items-center justify-center p-2 text-center">
+                          {user.is_staff ? (
+                            <HiMiniCheckBadge className="text-xl text-center text-blue-700" />
+                          ) : (
+                            "User"
+                          )}
+                        </td>
+
+                        {/* Action Buttons */}
+                        <td className="p-2 text-center">
+                          <div className="flex justify-center space-x-2">
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.8 }}
+                              transition={{
+                                type: "spring",
+                                ease: "easeOut",
+                                stiffness: 140,
+                              }}
+                              className="px-4 py-1 text-white bg-blue-600 rounded-3xl"
+                              onClick={() => handleSelectUser(user)}
+                            >
+                              Edit
+                            </motion.button>
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.8 }}
+                              transition={{
+                                type: "spring",
+                                ease: "easeOut",
+                                stiffness: 140,
+                              }}
+                              className="px-3 py-1 text-white bg-red-600 rounded-3xl"
+                              onClick={() => deleteFunction(user.id)}
+                            >
+                              Delete
+                            </motion.button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Notification */}
+              {notification && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -243,20 +286,21 @@ const AdminUserManagement = () => {
                     ease: "easeInOut",
                     type: "spring",
                   }}
-                  className="absolute top-0 bottom-0 left-0 right-0 items-center justify-center w-full p-20 bg-black bg-opacity-15"
+                  className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center w-full p-20 bg-black bg-opacity-15"
                 >
                   <div className="bg-white px-3 py-4 md:p-10 h-[220px] shadow-2xl rounded-xl">
-                    <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                    <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
                       <ExclamationTriangleIcon
                         aria-hidden="true"
                         className="w-6 h-6 text-red-600"
                       />
                     </div>
-                    <p className="">
-                      Are you sure you want to delete this User? note all data
-                      will be permanently removed. This action cannot be undone.
+                    <p className="mt-4">
+                      Are you sure you want to delete this User? Note that all
+                      data will be permanently removed. This action cannot be
+                      undone.
                     </p>
-                    <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
+                    <div className="flex justify-end mt-4 space-x-2">
                       <motion.button
                         initial={{ opacity: 0, y: 90, scale: 0 }}
                         animate={{ opacity: 1, scale: [1, 0, 1], y: 1 }}
@@ -266,8 +310,7 @@ const AdminUserManagement = () => {
                           type: "spring",
                         }}
                         onClick={deleteFunction}
-                        type="button"
-                        className="inline-flex justify-center w-full px-3 py-1 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                        className="px-3 py-1 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500"
                       >
                         Delete
                       </motion.button>
@@ -279,20 +322,16 @@ const AdminUserManagement = () => {
                           ease: "easeOut",
                           type: "spring",
                         }}
-                        type="button"
                         onClick={() => setNotification(false)}
-                        data-autofocus
-                        className="inline-flex justify-center w-full px-3 py-1 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                        className="px-3 py-1 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50"
                       >
                         Cancel
                       </motion.button>
                     </div>
                   </div>
                 </motion.div>
-              ) : (
-                ""
               )}
-            </ul>
+            </div>
           </div>
           {selectedUser && (
             <motion.div

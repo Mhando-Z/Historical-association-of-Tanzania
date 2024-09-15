@@ -11,7 +11,7 @@ import { FaHome } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
 import { PiVideoConferenceFill } from "react-icons/pi";
-import { FaRegCircleUser, FaUserGroup } from "react-icons/fa6";
+import { FaUserGroup } from "react-icons/fa6";
 import lgo from "../../Assets/Images/Logo3.png";
 import logo from "../../Assets/Images/3dlogo.png";
 // profile logos
@@ -119,7 +119,7 @@ function SidePannel() {
       initial={{ opacity: 1, x: -100 }}
       animate={{ opacity: 1, x: 1 }}
       transition={{ duration: 0.1, ease: "easeOut" }}
-      className="z-40 flex flex-col h-screen justify-between overflow-y-auto bg-slate-100"
+      className="z-40 flex flex-col justify-between h-screen overflow-y-auto bg-slate-100"
     >
       {/* HAT logo */}
       <div className="flex py-5 mb-5">
@@ -182,8 +182,8 @@ function SidePannel() {
                       onClick={scrollToTop}
                       className={({ isActive }) =>
                         isActive
-                          ? "bg-slate-300 items-center gap-x-5 text-center font-medium  text-gray-900 w-full flex flex-row py-2 px-7 mt-2 rounded"
-                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-slate-300 hover:text-gray-900 hover:font-medium  px-7 mt-2 text-slate-800 rounded"
+                          ? "bg-slate-300 items-center px-4 gap-x-2 w-full text-center font-medium  text-gray-900  flex flex-row py-2  mt-2 rounded"
+                          : "flex flex-row py-2 w-full  gap-x-2 hover:transition-colors items-center hover:ease-out hover:duration-300 hover:bg-slate-300 hover:text-gray-900 hover:font-medium  px-4 mt-2 text-slate-800 rounded"
                       }
                       to={dt.links}
                     >
@@ -197,7 +197,7 @@ function SidePannel() {
           </div>
         </div>
       ) : userData ? (
-        <div className="flex flex-grow flex-col">
+        <div className="flex flex-col flex-grow">
           <div className="">
             <h1 className="xl:text-xl border-l-[#b67a3d] border-l-4 text-lg font-medium text-slate-900 px-3 ">
               SECTIONS
@@ -234,18 +234,18 @@ function SidePannel() {
       ) : (
         ""
       )}
-      <div className="flex flex-col">
+      <div className="flex flex-col mb-5">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.8 }}
           transition={{ type: "spring", ease: "easeOut" }}
-          className=" flex items-center justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl  size-28 w-full"
+          className=" flex items-center py-5 justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl  size-28 w-full"
         >
           <NavLink
             className={({ isActive }) =>
               isActive
                 ? "bg-slate-300 items-center text-gray-900 w-full rounded-xl"
-                : "hover:transition-colors hover:ease-out w-full hover:duration-300 rounded-xl hover:bg-slate-300 hover:text-gray-900 hover:font-medium"
+                : "w-full rounded-xl text-gray-900  "
             }
             to={"UserProfile/"}
           >
