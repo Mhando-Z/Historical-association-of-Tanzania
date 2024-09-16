@@ -34,7 +34,7 @@ function AboutUs() {
 
   return (
     <motion.div
-      className="container px-6 py-16 mx-auto "
+      className="container py-16 mx-auto "
       initial="hidden"
       viewport={{ once: true }}
       whileInView="visible"
