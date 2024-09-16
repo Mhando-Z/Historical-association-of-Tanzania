@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { TfiMenuAlt } from "react-icons/tfi";
 import UserContext from "../Context/UserContext";
 import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
 import { motion } from "framer-motion";
@@ -9,6 +8,7 @@ import SideNavBar from "./SideNavBar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import HomePageContext from "../Context/HomePageContext";
+import { FiMenu } from "react-icons/fi";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -59,8 +59,8 @@ function NavBar() {
               to={"/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1 text-sm rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -78,8 +78,8 @@ function NavBar() {
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium   hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1 text-sm  rounded-3xl font-medium   hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -95,8 +95,8 @@ function NavBar() {
               to={"Research/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1 text-sm rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
               <motion.h1
@@ -130,10 +130,7 @@ function NavBar() {
           </div>
           {/* Hamburger Menu icon */}
           <div className="flex md:hidden">
-            <TfiMenuAlt
-              onClick={handleClick}
-              className="text-3xl text-[#d99958]"
-            />
+            <FiMenu onClick={handleClick} className="text-3xl text-[#d99958]" />
           </div>
         </div>
       </div>

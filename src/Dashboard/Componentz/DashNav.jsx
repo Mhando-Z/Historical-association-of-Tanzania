@@ -41,9 +41,9 @@ function DashNav({ handleClick }) {
           <Link>
             <RiAlignJustify onClick={handleSideview} className="text-3xl" />
           </Link>
-          <Link to={"/"}>
+          <a href={"/"}>
             <LuLaptop2 className="text-3xl" />
-          </Link>
+          </a>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-7 ">
           <div className="relative flex flex-col items-center cursor-pointer gap-x-2">
