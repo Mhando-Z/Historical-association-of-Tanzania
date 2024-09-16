@@ -181,14 +181,14 @@ function HeroSection() {
                     ease: "easeOut",
                     delay: 2,
                   }}
-                  className="flex-row justify-between hidden md:flex"
+                  className="flex-row justify-end hidden px-2 md:flex"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     onClick={handlePrev}
-                    className="p-5 text-3xl text-purple-900 md:text-4xl"
+                    className="p-5 text-xl text-gray-400 md:text-4xl"
                   >
                     <FaAngleLeft />
                   </motion.button>
@@ -197,7 +197,7 @@ function HeroSection() {
                     whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     onClick={handleNext}
-                    className="p-5 text-3xl text-purple-900 md:text-4xl"
+                    className="p-5 text-xl text-gray-400 md:text-4xl"
                   >
                     <FaAngleRight />
                   </motion.button>
