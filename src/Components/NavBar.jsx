@@ -3,7 +3,7 @@ import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import SideNavBar from "./SideNavBar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -53,13 +53,19 @@ function NavBar() {
               className="h-6 xl:h-9 md:h-7"
             />
           </NavLink>
+
           {/* Pages Links */}
-          <div className="flex-row items-center justify-center hidden px-5 py-2 bg-white bg-opacity-60 hover:bg-opacity-85 rounded-3xl md:flex gap-x-10">
+          <motion.div
+            className="flex-row items-center justify-center hidden px-5 py-2 bg-white bg-opacity-60 hover:bg-opacity-85 rounded-3xl md:flex gap-x-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          >
             <NavLink
               to={"/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
+                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -78,7 +84,7 @@ function NavBar() {
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm  rounded-3xl font-medium   hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -91,11 +97,12 @@ function NavBar() {
                 About-Us
               </motion.h1>
             </NavLink>
+
             <NavLink
               to={"Research/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm rounded-3xl font-medium  hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
                   : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
               }
             >
@@ -108,10 +115,13 @@ function NavBar() {
                 Research
               </motion.h1>
             </NavLink>
+
             <NavLink>
               <Events />
             </NavLink>
-          </div>
+          </motion.div>
+
+          {/* User Profile or Sign-In */}
           <div className="flex-row hidden md:flex gap-x-3">
             {userData ? (
               <Link
@@ -122,21 +132,41 @@ function NavBar() {
             ) : (
               <Link
                 to={`Login/`}
-                className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
+                className="px-5 py-2 md:text-sm lg:text-md xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
               >
                 Sign In
               </Link>
             )}
           </div>
+
           {/* Hamburger Menu icon */}
           <div className="flex md:hidden">
-            <FiMenu onClick={handleClick} className="text-3xl text-[#d99958]" />
+            <motion.div
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleClick}
+              className="text-3xl text-[#d99958]"
+            >
+              <FiMenu />
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className="md:hidden">
-        <SideNavBar open={open} setOpen={setOpen} />
-      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="md:hidden"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <SideNavBar open={open} setOpen={setOpen} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -166,31 +196,43 @@ export function Events() {
         <div className="py-1">
           <MenuItem>
             {({ focus }) => (
-              <NavLink
-                to={"Announcements/"}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
-                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
-                }
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                Announcements
-              </NavLink>
+                <NavLink
+                  to={"Announcements/"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
+                      : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
+                  }
+                >
+                  Announcements
+                </NavLink>
+              </motion.div>
             )}
           </MenuItem>
           <MenuItem>
             {({ focus }) => (
-              <NavLink
-                onClick={scrollToTop}
-                to={"Gallery/"}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
-                    : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
-                }
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                Gallery
-              </NavLink>
+                <NavLink
+                  onClick={scrollToTop}
+                  to={"Gallery/"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
+                      : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
+                  }
+                >
+                  Gallery
+                </NavLink>
+              </motion.div>
             )}
           </MenuItem>
         </div>
