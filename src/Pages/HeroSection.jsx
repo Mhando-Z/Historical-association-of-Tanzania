@@ -32,21 +32,22 @@ function HeroSection() {
           }
         }
       });
-    }, 30000); // Interval duration 30000 means 30 seconds timer will execute code
+    }, 30000); // 30-second timer
 
-    return () => clearInterval(interval); // Cleanup the interval on unmount
+    return () => clearInterval(interval);
   }, [direction, heroSect]);
 
-  // change buttons logic
+  // Reset direction and pause auto-rotation on user interaction
   const handleNext = () => {
-    if (value <= heroSect.length - 2) {
-      setValue(value + 1);
-    }
+    setDirection(1);
+    setValue((prevValue) =>
+      prevValue < heroSect.length - 1 ? prevValue + 1 : prevValue
+    );
   };
+
   const handlePrev = () => {
-    if (value > 0) {
-      setValue(value - 1);
-    }
+    setDirection(-1);
+    setValue((prevValue) => (prevValue > 0 ? prevValue - 1 : prevValue));
   };
 
   const scrollToTop = () => {
@@ -75,14 +76,19 @@ function HeroSection() {
             <motion.img
               src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
               alt={heroSect[value]?.title}
+              onError={(e) => (e.target.src = "/path/to/default-image.jpg")} // Fallback image
               initial={{ x: 300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1 }}
-              className="md:min-h-screen md:h-[900px] h-[600px] shadow-md w-screen object-cover object-center group-hover:opacity-75"
+              className="md:min-h-screen md:h-[700px] xl:h-[900px] lg:h-[700px] h-screen shadow-md w-screen object-cover object-center group-hover:opacity-75"
             />
+
             {heroSect?.length === 0 && (
-              <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+              <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center">
                 <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
+                <p className="mt-4 text-lg text-gray-600">
+                  Loading content, please wait...
+                </p>
               </div>
             )}
           </motion.div>
@@ -220,7 +226,7 @@ function HeroSection() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.8 }}
                       transition={{ type: "spring", ease: "easeOut" }}
-                      className="px-5 rounded-3xl py-2 text-base font-bold text-white bg-[#b67a3d]"
+                      className="px-4 py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
                     >
                       <Link onClick={scrollToTop} to="/Register/">
                         Sign Up
