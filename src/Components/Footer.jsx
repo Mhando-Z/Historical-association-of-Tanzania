@@ -15,12 +15,12 @@ function Footer() {
         location.pathname === "/AboutUs/" ||
         location.pathname === "/Register/" ||
         location.pathname === "/Publications/" ||
-        location.pathname === "/Register/"
+        location.pathname === "/Research/"
           ? "block"
           : "hidden"
       }`}
     >
-      <div>
+      <div className="flex flex-col min-h-screen">
         <NewsLetter />
       </div>
     </div>

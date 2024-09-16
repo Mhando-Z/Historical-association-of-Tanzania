@@ -69,7 +69,7 @@ function ResourcePublication() {
 
   return (
     <motion.div
-      className="flex flex-col min-h-screen mt-20"
+      className="flex flex-col min-h-screen mt-20 mb-20"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -91,10 +91,10 @@ function ResourcePublication() {
             />
             <div className="absolute top-0 bottom-0 left-0 right-0 rounded-xl bg-gradient-to-t from-black to-transparent via-transparent"></div>
             <div className="absolute z-20 left-4 bottom-6 ">
-              <h1 className="text-2xl font-semibold text-white">
+              <h1 className="text-xl font-semibold text-white">
                 {ResourcesSect[value]?.title}
               </h1>
-              <p className="text-gray-300 line-clamp-3">
+              <p className="text-sm text-gray-300 line-clamp-3">
                 {ResourcesSect[value]?.description}
               </p>
             </div>
@@ -121,10 +121,10 @@ function ResourcePublication() {
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 rounded-xl bg-gradient-to-t from-black to-transparent "></div>
                 <div className="absolute z-20 bottom-2 left-4 ">
-                  <h1 className="text-lg font-semibold text-white xl:text-xl line-clamp-1">
+                  <h1 className="font-semibold text-white text-md xl:text-lg line-clamp-1">
                     {data?.title}
                   </h1>
-                  <p className="max-w-md text-gray-300 line-clamp-2">
+                  <p className="max-w-md text-xs text-gray-300 line-clamp-2">
                     {data?.description}
                   </p>
                 </div>
@@ -156,10 +156,12 @@ function ResourcePublication() {
                 />
               </div>
               <div className="flex flex-col px-1 py-2">
-                <h1 className="w-full text-xl font-semibold line-clamp-2">
+                <h1 className="w-full text-lg font-semibold line-clamp-2">
                   {data?.title}
                 </h1>
-                <p className="w-full line-clamp-3">{data?.description}</p>
+                <p className="w-full text-sm line-clamp-3">
+                  {data?.description}
+                </p>
               </div>
               <div className="flex flex-col px-1">
                 {/* <p className="text-sm line-clamp-3 lg:texl-base">
@@ -173,17 +175,21 @@ function ResourcePublication() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="flex justify-end w-full mt-6">
-          <motion.button
-            onClick={handleCount}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.8 }}
-            transition={{ type: "spring", ease: "easeOut" }}
-            className="px-5 py-2 text-white rounded-3xl bg-[#b67a3d] "
-          >
-            More
-          </motion.button>
-        </div>
+        {ResourcesSect?.length >= 11 ? (
+          <div className="flex justify-end w-full mt-6">
+            <motion.button
+              onClick={handleCount}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{ type: "spring", ease: "easeOut" }}
+              className="px-4 py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
+            >
+              More
+            </motion.button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </motion.div>
   );

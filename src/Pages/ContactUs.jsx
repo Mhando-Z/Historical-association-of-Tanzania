@@ -13,7 +13,7 @@ function ContactUs() {
 
   return (
     <div className="flex flex-col">
-      <div className="container flex flex-col items-center justify-center px-6 py-10 mx-auto mb-1 bg-gray-200 shadow-2xl md:p-20 sm:rounded-xl">
+      <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 bg-gray-100 shadow-md md:p-20 sm:rounded-xl">
         {/* Get intouch section */}
         <div className="flex flex-col items-center justify-center w-full ">
           <motion.div
@@ -34,7 +34,7 @@ function ContactUs() {
               >
                 <input
                   type="text"
-                  className="w-full py-2 md:py-3 text-base shadow-xl ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
+                  className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
                   placeholder="Name"
                 />
               </motion.div>
@@ -45,7 +45,7 @@ function ContactUs() {
               >
                 <input
                   type="text"
-                  className="w-full py-2 md:py-3 text-base shadow-xl ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
+                  className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
                   placeholder="Email"
                 />
               </motion.div>
@@ -54,7 +54,7 @@ function ContactUs() {
               <textarea
                 cols="30"
                 rows="8"
-                className="text-base shadow-xl ring-[#b67a3d]  outline-none py-7 focus:bg-blue-50 xl:text-xl rounded-3xl px-7 ring-1"
+                className="text-base shadow ring-[#b67a3d]  outline-none py-7 focus:bg-blue-50 xl:text-xl rounded-3xl px-7 ring-1"
                 placeholder="Message"
               ></textarea>
             </div>

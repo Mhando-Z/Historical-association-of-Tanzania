@@ -12,7 +12,7 @@ export default function NewsLetter() {
   const { footerSect } = useContext(HomePageContext);
 
   return (
-    <div className="relative h-full isolate overflow-hidden bg-[#b67a3d] opacity-95  py-16 sm:py-24 lg:py-32">
+    <div className="relative flex flex-col min-h-screen isolate overflow-hidden bg-[#b67a3d] bg-opacity-95  py-16 sm:py-24 lg:py-32">
       <div className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
