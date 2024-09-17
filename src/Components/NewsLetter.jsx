@@ -10,6 +10,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function NewsLetter() {
   const { footerSect } = useContext(HomePageContext);
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="flex flex-col min-h-screen isolate overflow-hidden bg-[#b67a3d] bg-opacity-95  py-16 sm:py-24 lg:py-32">
@@ -197,6 +198,14 @@ export default function NewsLetter() {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="container flex flex-col mx-auto border-b border-white mt-14"></div>
+      {/* year declaration */}
+      <div className="px-4 mt-5 mb-10 text-center">
+        <p className="text-gray-50">
+          &copy; {currentYear} The Historical Association of Tanzania, Inc. All
+          rights reserved.
+        </p>
       </div>
     </div>
   );
