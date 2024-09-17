@@ -18,7 +18,7 @@ function MembersMgt() {
           <span className="">User Statistics</span>
         </h1>
 
-        <div className="flex flex-col items-center justify-between w-full gap-x-5 md:flex-row">
+        <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2">
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 1, opacity: 1 }}
@@ -65,7 +65,7 @@ function MembersMgt() {
           value={users?.length}
           sx={(theme) => ({
             [`& .${gaugeClasses.valueText}`]: {
-              fontSize: 60,
+              fontSize: 55,
               fontFamily: "inherit",
               fontWeight: "bold",
               color: "red",

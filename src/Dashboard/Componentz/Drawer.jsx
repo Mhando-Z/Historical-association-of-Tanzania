@@ -37,8 +37,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     subtitle: "",
     author: "",
     description: "",
-    references: "",
     video_url: "",
+    ref1: "",
+    ref2: "",
+    ref3: "",
+    ref4: "",
+    ref5: "",
   });
 
   const [heroUpdate, setHeros] = useState({
@@ -213,7 +217,11 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     formData.append("subtitle", resourceData.subtitle);
     formData.append("author", resourceData.author);
     formData.append("description", resourceData.description);
-    formData.append("references", resourceData.references);
+    formData.append("ref1", resourceData.ref1);
+    formData.append("ref2", resourceData.ref2);
+    formData.append("ref3", resourceData.ref3);
+    formData.append("ref4", resourceData.ref4);
+    formData.append("ref5", resourceData.ref5);
     formData.append("video_url", resourceData.video_url);
 
     try {
@@ -644,24 +652,103 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                     />
                                   </div>
                                 </div>
-                                <div className="sm:col-span-6">
+                                {/* reference zone */}
+                                <div className="sm:col-span-3">
                                   <label
-                                    htmlFor="references"
+                                    htmlFor="ref1"
                                     className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
-                                    References
+                                    ref1
                                   </label>
                                   <div className="mt-2">
-                                    <textarea
-                                      defaultValue={data[0]?.references}
+                                    <input
+                                      defaultValue={data[0]?.ref1}
                                       onChange={handleChange}
-                                      id="references"
-                                      name="references"
-                                      rows={3}
-                                      className="block overflow-y-auto w-full h-[200px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                      type="text"
+                                      name="ref1"
+                                      id="ref1"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />
                                   </div>
                                 </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="ref2"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    ref2
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.ref2}
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="ref2"
+                                      id="ref2"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="ref3"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    ref3
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.ref3}
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="ref3"
+                                      id="ref3"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="ref4"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    ref4
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.ref4}
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="ref4"
+                                      id="ref4"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="ref5"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    ref5
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.ref5}
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="ref5"
+                                      id="ref5"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+
                                 <div className="col-span-full">
                                   <label
                                     htmlFor="about"

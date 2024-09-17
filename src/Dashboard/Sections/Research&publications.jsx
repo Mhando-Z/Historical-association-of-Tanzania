@@ -17,7 +17,11 @@ function Researchpublications() {
     subtitle: "",
     author: "",
     description: "",
-    references: "",
+    ref1: "",
+    ref2: "",
+    ref3: "",
+    ref4: "",
+    ref5: "",
     image: null,
     image2: null,
     video_url: "",
@@ -83,7 +87,11 @@ function Researchpublications() {
     formData.append("subtitle", resourceData.subtitle);
     formData.append("author", resourceData.author);
     formData.append("description", resourceData.description);
-    formData.append("references", resourceData.references);
+    formData.append("ref1", resourceData.ref1);
+    formData.append("ref2", resourceData.ref2);
+    formData.append("ref3", resourceData.ref3);
+    formData.append("ref4", resourceData.ref4);
+    formData.append("ref5", resourceData.ref5);
     formData.append("image", resourceData.image);
     formData.append("image2", resourceData.image2);
     formData.append("video_url", resourceData.video_url);
@@ -237,27 +245,99 @@ function Researchpublications() {
                     Number of words {resourceData?.description.length}
                   </p>
                 </div>
-                <div className="px-4 col-span-full">
+                {/* reference zone */}
+
+                <div className="px-4 sm:col-span-3">
                   <label
-                    htmlFor="references"
+                    htmlFor="ref1"
                     className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="">references</span>
+                    <span className="">ref1</span>
                   </label>
                   <div className="">
-                    <textarea
-                      id="references"
+                    <input
+                      type="text"
+                      name="ref1"
                       onChange={handleChange}
-                      name="references"
-                      rows={3}
-                      className="block p-7 w-full h-[200px] rounded-2xl border-0 text-gray-900 shadow ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
-                      defaultValue={""}
+                      id="ref1"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
-                  <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
-                    Number of words {resourceData?.description.length}
-                  </p>
                 </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="ref2"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">ref2</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      name="ref2"
+                      onChange={handleChange}
+                      id="ref2"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="ref3"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">ref3</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      name="ref3"
+                      onChange={handleChange}
+                      id="ref3"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="ref4"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">ref4</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      name="ref4"
+                      onChange={handleChange}
+                      id="ref4"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="ref5"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">ref5</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      name="ref5"
+                      onChange={handleChange}
+                      id="ref5"
+                      autoComplete="given-name"
+                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
                 {/* image1 */}
                 <div className="px-4 shadow col-span-full">
                   <label
