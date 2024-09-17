@@ -82,33 +82,32 @@ function Publications() {
       <div className="flex flex-col w-full ">
         {/* Image Section */}
         <motion.div
-          className="relative flex flex-col w-full"
+          className="flex flex-col w-full gap-y-5"
           variants={imageVariants}
         >
           <img
             src={`http://127.0.0.1:8000/${publication.image}`}
             alt={publication.title}
             loading="lazy"
-            className="object-cover min-h-screen rounded-sm xl:h-full max-w-screen aspect-video"
+            className="object-cover h-[300px] md:h-[400px] rounded-xl max-w-screen aspect-video"
           />
-          <div className="absolute top-0 bottom-0 left-0 right-0 rounded-sm bg-gradient-to-t from-slate-900 to-transparent"></div>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-black rounded-sm bg-opacity-40"></div>
-          <div className="absolute  h-[45rem] flex flex-col overflow-x-hidden overflow-y-auto top-20 left-5">
+
+          <div className="flex flex-col overflow-x-hidden overflow-y-auto ">
             <div className="flex flex-col">
               <motion.h1
-                className="text-xl font-semibold text-white lg:text-3xl"
+                className="text-xl font-semibold text-gray-900 lg:text-3xl"
                 variants={textVariants}
               >
                 {publication.title}
               </motion.h1>
               <motion.h2
-                className="max-w-xl text-base text-white lg:text-xl"
+                className="max-w-xl text-base font-medium text-gray-900 lg:text-xl"
                 variants={textVariants}
               >
                 {publication.subtitle}
               </motion.h2>
               <motion.h2
-                className="max-w-xl text-base text-white lg:text-lg"
+                className="max-w-xl text-base text-gray-900 lg:text-lg"
                 variants={textVariants}
               >
                 Author-{publication.author}
@@ -120,16 +119,19 @@ function Publications() {
               variants={containerVariants}
             >
               <motion.h1
-                className="text-xl font-bold text-gray-200 lg:text-2xl"
+                className="text-xl font-bold text-gray-800 lg:text-2xl"
                 variants={textVariants}
               >
                 Discussion
               </motion.h1>
               <motion.div
-                className="flex flex-col text-gray-300 gap-y-4"
+                className="flex flex-col text-gray-800 gap-y-4"
                 variants={containerVariants}
               >
-                <motion.p className="tracking-tighter" variants={textVariants}>
+                <motion.p
+                  className="text-sm tracking-tighter text-justify text-gray-700 md:text-base"
+                  variants={textVariants}
+                >
                   {publication.description}
                 </motion.p>
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
@@ -170,7 +172,19 @@ function Publications() {
                   References
                 </motion.p>
                 <motion.p className="tracking-tighter" variants={textVariants}>
-                  {publication.references}
+                  {publication?.ref1}
+                </motion.p>
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication?.ref2}
+                </motion.p>
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication?.ref3}
+                </motion.p>
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication?.ref4}
+                </motion.p>
+                <motion.p className="tracking-tighter" variants={textVariants}>
+                  {publication?.ref5}
                 </motion.p>
               </motion.div>
             </motion.div>
@@ -179,8 +193,8 @@ function Publications() {
       </div>
       {/* Other publications and repports */}
       <div className="mt-5">
-        <div className="flex flex-col justify-center py-3 mb-10 shadow">
-          <h1 className="px-2 text-xl font-bold border-l-4 border-l-black md:text-2xl">
+        <div className="flex flex-col justify-center py-3 mb-10 ">
+          <h1 className="px-2 text-xl font-bold border-l-2 border-l-black md:text-2xl">
             Other Publications
           </h1>
         </div>
@@ -220,7 +234,9 @@ function Publications() {
               </div>
             </motion.article>
           ))}
-          <div className="flex justify-end w-full mt-10">
+          <div
+            className={`flex ${other.length >= 11 ? "flex" : "hidden"} justify-end w-full mt-10`}
+          >
             <motion.button
               onClick={() => setCount(count + 5)}
               whileHover={{ scale: 1.05 }}
