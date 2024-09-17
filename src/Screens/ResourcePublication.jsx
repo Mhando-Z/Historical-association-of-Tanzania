@@ -94,7 +94,7 @@ function ResourcePublication() {
               <h1 className="text-xl font-semibold text-white">
                 {ResourcesSect[value]?.title}
               </h1>
-              <p className="text-sm text-gray-300 line-clamp-3">
+              <p className="max-w-xl text-sm text-gray-300 line-clamp-3">
                 {ResourcesSect[value]?.description}
               </p>
             </div>
@@ -168,7 +168,7 @@ function ResourcePublication() {
                   <span className="text-bold">Author-</span>
                   {data?.author}
                 </p> */}
-                <p className="text-sm text-blue-800">
+                <p className="text-xs text-blue-800">
                   {formatDate(data?.dateIssued)}
                 </p>
               </div>
