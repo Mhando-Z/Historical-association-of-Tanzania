@@ -12,9 +12,9 @@ export default function NewsLetter() {
   const { footerSect } = useContext(HomePageContext);
 
   return (
-    <div className="relative flex flex-col min-h-screen isolate overflow-hidden bg-[#b67a3d] bg-opacity-95  py-16 sm:py-24 lg:py-32">
-      <div className="px-6 mx-auto max-w-7xl lg:px-8">
-        <div className="grid max-w-2xl grid-cols-1 mx-auto gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+    <div className="flex flex-col min-h-screen isolate overflow-hidden bg-[#b67a3d] bg-opacity-95  py-16 sm:py-24 lg:py-32">
+      <div className="px-4 mx-auto max-w-7xl">
+        <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Subscribe to our newsletter.
@@ -74,21 +74,10 @@ export default function NewsLetter() {
           </dl>
         </div>
       </div>
-      <div
-        className="absolute top-0 -translate-x-1/2 left-1/2 -z-10 blur-3xl xl:-top-6"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
+
       {/* FOOTER SECTION*/}
       <div className="container flex flex-col mx-auto border-b border-white mt-14"></div>
-      <div className="container flex flex-col mx-auto mt-12">
+      <div className="flex flex-col mt-12 ">
         <div className="flex flex-col justify-between w-full px-5 gap-x-10 gap-y-4 md:flex-row">
           {/* Logo */}
           <div>
