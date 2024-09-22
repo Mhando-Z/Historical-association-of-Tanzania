@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 // images imports
 import mage1 from "../Assets/AboutUs/03.jpg";
+import mage2 from "../Assets/AboutUs/16.jpg";
 // icons imports
 import { FaEye } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
@@ -93,11 +94,11 @@ function AboutHAT() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex items-center justify-center w-full h-[350px] sm:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
+            <div className="flex items-center justify-center w-full h-[300px] sm:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
               <img
                 src={mage1}
                 alt="HAT group pic"
-                className="object-cover w-full h-full rounded-md"
+                className="object-cover object-center w-full h-full rounded-md"
               />
             </div>
           </motion.div>
@@ -432,8 +433,12 @@ function AboutHAT() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="flex items-center justify-center w-full h-64 bg-gray-300 rounded-md">
-            <p className="text-gray-500">[Place Image Here]</p>
+          <div className="flex items-center justify-center w-full h-[300px] md:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
+            <img
+              src={mage2}
+              alt="HAT group pic"
+              className="object-cover object-center w-full h-full rounded-md"
+            />
           </div>
         </motion.div>
 
@@ -480,14 +485,14 @@ function AboutHAT() {
                 application, fees should be paid via HAT’s designated bank
                 accounts or mobile money platforms. The annual membership fees
                 are:
-                <ul className="pl-5 mt-2 list-disc">
-                  <li>
+                <ul className="grid grid-cols-1 gap-5 mt-4 mb-4 list-disc md:grid-cols-3">
+                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
                     <strong>Ordinary Membership:</strong> 50,000 TZS per year.
                   </li>
-                  <li>
+                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
                     <strong>Student Membership:</strong> 30,000 TZS per year.
                   </li>
-                  <li>
+                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
                     <strong>Corporate Membership:</strong> 200,000 TZS per year.
                   </li>
                 </ul>
