@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import HomePageContext from "../Context/HomePageContext";
+import React from "react";
 import { motion } from "framer-motion";
+// images imports
+import mage1 from "../Assets/AboutUs/03.jpg";
+// icons imports
+import { FaEye } from "react-icons/fa";
+import { TbTargetArrow } from "react-icons/tb";
 
 function AboutHAT() {
-  const { AboutUSSect } = useContext(HomePageContext);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen mt-28">
       <motion.div
@@ -42,7 +44,7 @@ function AboutHAT() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="space-y-4 text-gray-700"
+            className="space-y-4 tracking-tighter text-gray-700 sm:text-justify"
           >
             <p>
               The Historical Association of Tanzania (HAT) is one of the oldest
@@ -91,8 +93,12 @@ function AboutHAT() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex items-center justify-center w-full h-64 bg-gray-300 rounded-md">
-              <p className="text-gray-500">[Place Image Here]</p>
+            <div className="flex items-center justify-center w-full h-[350px] sm:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
+              <img
+                src={mage1}
+                alt="HAT group pic"
+                className="object-cover w-full h-full rounded-md"
+              />
             </div>
           </motion.div>
         </section>
@@ -100,15 +106,16 @@ function AboutHAT() {
         {/* Vision Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="flex flex-row items-center mb-4 text-3xl font-semibold text-gray-800 gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Vision
+            <FaEye className=" text-amber-600" />
+            <>Vision</>
           </motion.h2>
           <motion.p
-            className="text-gray-700"
+            className="tracking-tighter text-gray-700 sm:text-justify"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -125,7 +132,7 @@ function AboutHAT() {
             transition={{ delay: 0.4 }}
           >
             <p>HAT’s vision also includes efforts to:</p>
-            <ul className="pl-5 space-y-2 list-disc">
+            <ul className="pl-5 space-y-2 tracking-tighter list-disc sm:text-justify">
               <li>
                 <strong>
                   Preserve Tanzanian history through digitization and archiving:
@@ -172,15 +179,16 @@ function AboutHAT() {
         {/* Mission Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="flex flex-row items-center mb-4 text-3xl font-semibold text-gray-800 gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
+            <TbTargetArrow className="text-amber-600" />
             Mission
           </motion.h2>
           <motion.p
-            className="text-gray-700"
+            className="tracking-tighter text-gray-700 sm:text-justify"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -194,7 +202,7 @@ function AboutHAT() {
             society.
           </motion.p>
           <motion.div
-            className="mt-4 space-y-4 text-gray-700"
+            className="mt-4 space-y-4 tracking-tighter text-gray-700 sm:text-justify"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}

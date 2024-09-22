@@ -69,7 +69,7 @@ function ResourcePublication() {
 
   return (
     <motion.div
-      className="flex flex-col min-h-screen mt-20 mb-20"
+      className="flex flex-col min-h-screen mt-20 mb-28"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

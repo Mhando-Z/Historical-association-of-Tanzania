@@ -74,7 +74,7 @@ function Publications() {
 
   return (
     <motion.div
-      className="container flex flex-col mx-auto mt-16 mb-48 gap-y-5"
+      className="container flex flex-col mx-auto mt-24 mb-48 gap-y-5"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
