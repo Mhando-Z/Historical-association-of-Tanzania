@@ -78,7 +78,7 @@ export default function NewsLetter() {
 
       {/* FOOTER SECTION*/}
       <div className="container flex flex-col mx-auto border-b border-white mt-14"></div>
-      <div className="flex flex-col mt-12 ">
+      <div className="flex flex-col mt-12 md:container md:mx-auto ">
         <div className="flex flex-col justify-between w-full px-5 gap-x-10 gap-y-4 md:flex-row">
           {/* Logo */}
           <div>

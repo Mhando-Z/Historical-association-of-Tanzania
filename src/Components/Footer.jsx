@@ -20,7 +20,7 @@ function Footer() {
           : "hidden"
       }`}
     >
-      <div className="flex flex-col min-h-screen">
+      <div className="">
         <NewsLetter />
       </div>
     </div>

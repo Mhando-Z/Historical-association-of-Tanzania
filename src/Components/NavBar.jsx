@@ -196,11 +196,7 @@ export function Events() {
         <div className="py-1">
           <MenuItem>
             {({ focus }) => (
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <motion.div>
                 <NavLink
                   to={"Announcements/"}
                   className={({ isActive }) =>
@@ -216,11 +212,7 @@ export function Events() {
           </MenuItem>
           <MenuItem>
             {({ focus }) => (
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <motion.div>
                 <NavLink
                   onClick={scrollToTop}
                   to={"Gallery/"}
