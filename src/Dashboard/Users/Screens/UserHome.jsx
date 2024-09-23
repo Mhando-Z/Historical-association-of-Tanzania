@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import UserContext from "../../../Context/UserContext";
 import { motion } from "framer-motion";
 import { Dots } from "react-activity";
-import logo from "../../../Assets/Images/3dlogo.png";
 import { Link } from "react-router-dom";
 
 function UserHome() {
@@ -10,12 +9,7 @@ function UserHome() {
 
   if (!userData)
     return (
-      <div
-        style={{
-          backgroundImage: `url("${`${logo}`}")`,
-        }}
-        className="flex flex-col items-center justify-center w-screen min-h-screen overflow-hidden bg-center bg-no-repeat bg-inherit bg-opacity-10 px-30"
-      >
+      <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
         <Dots color="" size={35} speed={0.7} animating={true} />
       </div>
     );
@@ -55,6 +49,7 @@ function UserHome() {
             </motion.button>
           </Link>
         </div>
+        <div></div>
       </motion.div>
     </div>
   );
