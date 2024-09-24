@@ -166,7 +166,7 @@ const Membership = () => {
                 name="first_name"
                 placeholder="First Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border relative placeholder:text-sm   focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border relative placeholder:text-sm   focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -174,14 +174,14 @@ const Membership = () => {
                 required
                 placeholder="Middle Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
                 name="last_name"
                 placeholder="Last Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
           </div>
@@ -206,7 +206,7 @@ const Membership = () => {
                 required
                 placeholder="Phone Number"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -215,14 +215,14 @@ const Membership = () => {
                 placeholder="Nationality"
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <select
                 name="gender"
                 value={formData.profile.gender}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Gender
@@ -252,7 +252,7 @@ const Membership = () => {
                 value={formData.profile.title}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -261,7 +261,7 @@ const Membership = () => {
                 value={formData.profile.branch}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
           </div>
@@ -285,7 +285,7 @@ const Membership = () => {
                 value={formData.profile.country}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               /> */}
               <select
                 name="country"
@@ -293,7 +293,7 @@ const Membership = () => {
                 value={formData.profile.country}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Country
@@ -310,7 +310,7 @@ const Membership = () => {
                 value={formData.profile.city}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Region
@@ -328,7 +328,7 @@ const Membership = () => {
                 value={formData.profile.city}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               /> */}
               <input
                 type="text"
@@ -337,7 +337,7 @@ const Membership = () => {
                 value={formData.profile.physical_address}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
           </div>
@@ -395,7 +395,7 @@ const Membership = () => {
                       placeholder="Student ID"
                       value={formData.profile.student_id}
                       onChange={handleChange}
-                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -407,7 +407,7 @@ const Membership = () => {
                       placeholder="Course of Study"
                       value={formData.profile.course_of_study}
                       onChange={handleChange}
-                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -419,7 +419,7 @@ const Membership = () => {
                       placeholder="Institution"
                       value={formData.profile.institution}
                       onChange={handleChange}
-                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -431,7 +431,7 @@ const Membership = () => {
                       placeholder="College"
                       value={formData.profile.college}
                       onChange={handleChange}
-                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
