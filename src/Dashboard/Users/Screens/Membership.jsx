@@ -462,9 +462,8 @@ const Membership = () => {
         return (
           <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             <div>
-              <h1 className="flex flex-col py-3 mb-5 text-2xl text-center md:text-2xl md:text-start bg-slate-50 ">
+              <h1 className="flex flex-col py-3 text-2xl text-center md:text-2xl md:text-start bg-slate-50 ">
                 <span className="ml-2 font-semibold">
-                  {" "}
                   Review before you Save
                 </span>
                 <span className="ml-2 text-sm text-center capitalize md:text-start sm:text-lg">
@@ -475,12 +474,7 @@ const Membership = () => {
             </div>
             <div className="grid grid-cols-1 ml-2 md:grid-cols-3 gap-x-4">
               <div className="flex flex-col gap-y-2">
-                <div className="flex flex-col justify-end w-full">
-                  {/* hat pdf header */}
-                  {/* <div>
-                    <img src={logo} alt="hat logo" className="h-[]" />
-                  </div> */}
-                </div>
+                <div className="flex flex-col justify-end w-full"></div>
                 <label className="font-semibold">Full Name:</label>
                 <p>{formData.profile.full_name}</p>
                 <label className="font-semibold">Phone Number:</label>
