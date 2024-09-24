@@ -24,12 +24,12 @@ function UserHome() {
           ease: "easeOut",
           type: "spring",
         }}
-        className="flex flex-col p-10 mt-16 bg-white shadow-xl gap-y-4 rounded-2xl"
+        className="flex flex-col p-2 mt-16 md:p-10 gap-y-4 rounded-2xl"
       >
-        <h2 className="text-4xl font-bold">
+        <h2 className="text-2xl font-bold md:text-3xl">
           Hello, {userData.username || "User"}!
         </h2>
-        <p className="max-w-4xl text-sm sm:text-lg">
+        <p className="max-w-4xl text-sm sm:text-md">
           Welcome to, Historical Association of Tanzania.We will be happy to
           have you as a Member, there are some few things you need to know. To
           be our member, there are few registration processes you need to pass
@@ -43,7 +43,7 @@ function UserHome() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-6 py-1 mt-4 text-white rounded-2xl   bg-[#b67a3d]"
+              className="px-6 py-1 mt-4 text-white rounded-2xl  text-sm  bg-[#b67a3d]"
             >
               Next
             </motion.button>

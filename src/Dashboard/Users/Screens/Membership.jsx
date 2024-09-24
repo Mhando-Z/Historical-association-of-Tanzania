@@ -150,7 +150,7 @@ const Membership = () => {
         );
       case 2:
         return (
-          <div className="flex flex-col p-10 gap-y-5">
+          <div className="flex flex-col py-10 gap-y-5">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Get to Know You
@@ -188,7 +188,7 @@ const Membership = () => {
         );
       case 3:
         return (
-          <div className="flex flex-col p-10 gap-y-5">
+          <div className="flex flex-col py-10 gap-y-5">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Contact Information
@@ -235,7 +235,7 @@ const Membership = () => {
         );
       case 4:
         return (
-          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
+          <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Work Information
@@ -268,7 +268,7 @@ const Membership = () => {
         );
       case 5:
         return (
-          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
+          <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Location
@@ -344,7 +344,7 @@ const Membership = () => {
         );
       case 6:
         return (
-          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
+          <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
               <h1 className="text-2xl font-semibold md:text-3xl">
                 Hey! Tell Us More...
@@ -446,7 +446,7 @@ const Membership = () => {
 
       case 7:
         return (
-          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
+          <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             {/* <Payment /> */}
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
@@ -460,7 +460,7 @@ const Membership = () => {
         );
       case 8:
         return (
-          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
+          <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
               <h1 className="flex flex-col py-3 text-2xl text-center md:text-2xl md:text-start bg-slate-50 ">
                 <span className="ml-2 font-semibold">
@@ -572,7 +572,7 @@ const Membership = () => {
         {step > 1 && (
           <button
             onClick={handleBack}
-            className="px-3 py-2 text-sm text-gray-700 bg-gray-200 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            className="px-3 py-2 text-sm text-gray-700 bg-gray-200 rounded-md sm:px-4 sm:py-2 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
           >
             BACK
           </button>
@@ -580,7 +580,7 @@ const Membership = () => {
         {step < steps.length && (
           <button
             onClick={handleNext}
-            className="px-3 py-2 ml-auto text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="px-3 py-2 ml-auto text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             NEXT
           </button>
@@ -589,7 +589,7 @@ const Membership = () => {
           <>
             <button
               onClick={handleSave}
-              className="px-3 py-2 ml-2 text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="px-3 py-2 ml-2 text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               Confirm
             </button>
