@@ -43,13 +43,12 @@ function UserHome() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
+              className="px-6 py-1 mt-4 text-white rounded-2xl   bg-[#b67a3d]"
             >
               Next
             </motion.button>
           </Link>
         </div>
-        <div></div>
       </motion.div>
     </div>
   );

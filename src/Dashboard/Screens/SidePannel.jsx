@@ -13,7 +13,6 @@ import { MdLocalPolice } from "react-icons/md";
 import { PiVideoConferenceFill } from "react-icons/pi";
 import { FaUserGroup } from "react-icons/fa6";
 import lgo from "../../Assets/Images/Logo3.png";
-import logo from "../../Assets/Images/3dlogo.png";
 // profile logos
 import stdprofile from "../../Assets/profiles/man.png";
 import stdprofile2 from "../../Assets/profiles/woman2.png";
@@ -139,8 +138,6 @@ function SidePannel() {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     className="flex w-full"
                   >
@@ -173,8 +170,6 @@ function SidePannel() {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     className="flex w-full"
                   >
@@ -208,8 +203,6 @@ function SidePannel() {
               return (
                 <div key={index + 234} className="flex flex-col gap-y-4">
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.8 }}
                     transition={{ type: "spring", ease: "easeOut" }}
                     className="flex w-full"
                   >
@@ -234,17 +227,15 @@ function SidePannel() {
       ) : (
         ""
       )}
-      <div className="flex flex-col mb-5">
+      <div className="flex flex-col w-full mb-5">
         <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.8 }}
           transition={{ type: "spring", ease: "easeOut" }}
-          className=" flex items-center py-5 justify-center ring-[#b67a3d] border border-gray-300 bg-gray-200 bg-opacity-50 rounded-xl  size-28 w-full"
+          className="flex items-center justify-center w-full bg-gray-200 bg-opacity-50 rounded "
         >
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-slate-300 items-center text-gray-900 w-full rounded-xl"
+                ? "bg-slate-300 items-center text-gray-900 w-full rounded"
                 : "w-full rounded-xl text-gray-900  "
             }
             to={"UserProfile/"}
@@ -343,9 +334,6 @@ function SidePannel() {
             </div>
           </NavLink>
         </motion.div>
-      </div>
-      <div className="absolute bottom-10 left-4 ">
-        <img src={logo} alt="hatlogo" className="hidden opacity-25 h-14" />
       </div>
     </motion.div>
   );

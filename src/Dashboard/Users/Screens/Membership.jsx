@@ -3,23 +3,28 @@ import React, { useState, useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../../../Context/axiosInstance";
 import UserContext from "../../../Context/UserContext";
-import { Dots } from "react-activity";
 // import Joi from "joi";
 import { motion } from "framer-motion";
-import {
-  PDFDownloadLink,
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-} from "@react-pdf/renderer";
+
 import { useNavigate } from "react-router-dom";
 // import Payment from "../Components/Payments";
+import { AnimatePresence } from "framer-motion";
+
+// steps
+const steps = [
+  { id: 1, name: "INTRODUCTION" },
+  { id: 2, name: "PERSONAL INFO" },
+  { id: 3, name: "CONTACT INFO" },
+  { id: 4, name: "WORK INFO" },
+  { id: 5, name: "LOCATION INFO" },
+  { id: 6, name: "STUDENT INFO" },
+  { id: 7, name: "PAYMENT" },
+  { id: 8, name: "SUMMARY" },
+];
 
 const Membership = () => {
   const { userData, setUserData } = useContext(UserContext);
+
   const { countries } = useContext(UserContext);
   const [Regions, setRegion] = useState([]);
   const [CountryCode, setCountryCode] = useState("AF");
@@ -115,24 +120,44 @@ const Membership = () => {
   }, [CountryCode]);
 
   const handleNext = () => {
-    setStep(step + 1);
+    if (step < steps.length) setStep(step + 1);
   };
 
   const handleBack = () => {
-    setStep(step - 1);
+    if (step > 1) setStep(step - 1);
   };
-
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <>
+            <h2 className="text-2xl font-semibold md:text-3xl">
+              Hello, {userData.username || "User"}!
+            </h2>
+            <p className="max-w-4xl mt-4 text-sm sm:text-lg">
+              Welcome to the Historical Association of Tanzania. We will be
+              happy to have you as a Member. There are a few things you need to
+              know. To become our member, there are some registration steps you
+              need to pass through.
+              <span className="font-semibold">
+                {" "}
+                What are those steps?...
+              </span>{" "}
+              Well, if you want to know then please click next to start the
+              registration.
+            </p>
+          </>
+        );
+      case 2:
+        return (
+          <div className="flex flex-col p-10 gap-y-5">
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
-                Personal Information
+              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
+                Get to Know You
               </h2>
               <p className="text-sm text-center md:text-start sm:text-lg">
-                Please fill out your personal information.
+                Tell us more about you, how can we contact you, where are you
+                from...
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
@@ -141,7 +166,7 @@ const Membership = () => {
                 name="first_name"
                 placeholder="First Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border relative placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border relative placeholder:text-sm   focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -149,46 +174,23 @@ const Membership = () => {
                 required
                 placeholder="Middle Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
                 name="last_name"
                 placeholder="Last Name"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
-            </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <button
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </button>
-              <button
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={() => {
-                  setFormData((prevFormData) => ({
-                    ...prevFormData,
-                    profile: {
-                      ...prevFormData.profile,
-                      full_name: `${prevFormData.profile.first_name} ${prevFormData.profile.middle_name} ${prevFormData.profile.last_name}`,
-                    },
-                  }));
-                  handleNext();
-                }}
-              >
-                Next
-              </button>
             </div>
           </div>
         );
-      case 2:
+      case 3:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5">
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
+              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Contact Information
               </h2>
               <p className="text-sm text-center md:text-start sm:text-lg">
@@ -204,7 +206,7 @@ const Membership = () => {
                 required
                 placeholder="Phone Number"
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -213,23 +215,14 @@ const Membership = () => {
                 placeholder="Nationality"
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
-              {/* <input
-                type="text"
-                name="gender"
-                value={formData.profile.gender}
-                placeholder="Gender"
-                required
-                onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-              /> */}
               <select
                 name="gender"
                 value={formData.profile.gender}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Gender
@@ -238,33 +231,13 @@ const Membership = () => {
                 <option value="Female">female</option>
               </select>
             </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleNext}
-              >
-                Next
-              </motion.button>
-            </div>
           </div>
         );
-      case 3:
+      case 4:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
+              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Work Information
               </h2>
               <p className="text-sm text-center md:text-start sm:text-lg">
@@ -279,7 +252,7 @@ const Membership = () => {
                 value={formData.profile.title}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
@@ -288,36 +261,16 @@ const Membership = () => {
                 value={formData.profile.branch}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
-            </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleNext}
-              >
-                Next
-              </motion.button>
             </div>
           </div>
         );
-      case 4:
+      case 5:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
+              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Location
               </h2>
               <p className="text-sm text-center md:text-start sm:text-lg">
@@ -332,7 +285,7 @@ const Membership = () => {
                 value={formData.profile.country}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               /> */}
               <select
                 name="country"
@@ -340,7 +293,7 @@ const Membership = () => {
                 value={formData.profile.country}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Country
@@ -357,7 +310,7 @@ const Membership = () => {
                 value={formData.profile.city}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Region
@@ -375,7 +328,7 @@ const Membership = () => {
                 value={formData.profile.city}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               /> */}
               <input
                 type="text"
@@ -384,49 +337,30 @@ const Membership = () => {
                 value={formData.profile.physical_address}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
+                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
-            </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleNext}
-              >
-                Next
-              </motion.button>
             </div>
           </div>
         );
-      case 5:
+      case 6:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
-                Academic Information
+              <h1 className="text-2xl font-semibold md:text-3xl">
+                Hey! Tell Us More...
+              </h1>
+              <h2 className="mt-2 text-md">
+                Are you a student? If yes, please fill out the following form
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
-                Please provide your academic information if you are a student.
-              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
               <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="is_student"
-                  checked={isStudent}
-                  onChange={() => {
+                <span className="mr-4">Are you a student?</span>
+                <div
+                  className={`relative w-14 h-8 ${
+                    isStudent ? "bg-green-500" : "bg-gray-300"
+                  } rounded-full cursor-pointer transition-colors duration-300`}
+                  onClick={() => {
                     setIsStudent(!isStudent);
                     setFormData((prevFormData) => ({
                       ...prevFormData,
@@ -436,112 +370,106 @@ const Membership = () => {
                       },
                     }));
                   }}
-                  className="mr-2"
-                />
-                Are you a student?
+                >
+                  <motion.div
+                    layout
+                    className={`absolute top-1 h-6 w-6 rounded-full bg-white transform ${
+                      isStudent ? "translate-x-6" : "translate-x-0"
+                    } transition-transform duration-300 ease-in-out`}
+                  />
+                </div>
               </label>
-              {isStudent && (
-                <>
-                  <input
-                    type="text"
-                    name="student_id"
-                    placeholder="Student ID"
-                    value={formData.profile.student_id}
-                    onChange={handleChange}
-                    className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-                  />
-                  <input
-                    type="text"
-                    name="course_of_study"
-                    placeholder="Course of Study"
-                    value={formData.profile.course_of_study}
-                    onChange={handleChange}
-                    className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-                  />
-                  <input
-                    type="text"
-                    name="institution"
-                    placeholder="Institution"
-                    value={formData.profile.institution}
-                    onChange={handleChange}
-                    className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-                  />
-                  <input
-                    type="text"
-                    name="college"
-                    placeholder="college"
-                    value={formData.profile.college}
-                    onChange={handleChange}
-                    className="block p-2 mt-2 border placeholder:text-sm shadow-xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-                  />
-                </>
-              )}
-            </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleNext}
-              >
-                Next
-              </motion.button>
+
+              <AnimatePresence>
+                {isStudent && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid col-span-3 mt-4 gap-y-4"
+                  >
+                    <motion.input
+                      type="text"
+                      name="student_id"
+                      placeholder="Student ID"
+                      value={formData.profile.student_id}
+                      onChange={handleChange}
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.input
+                      type="text"
+                      name="course_of_study"
+                      placeholder="Course of Study"
+                      value={formData.profile.course_of_study}
+                      onChange={handleChange}
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                    />
+                    <motion.input
+                      type="text"
+                      name="institution"
+                      placeholder="Institution"
+                      value={formData.profile.institution}
+                      onChange={handleChange}
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                    />
+                    <motion.input
+                      type="text"
+                      name="college"
+                      placeholder="College"
+                      value={formData.profile.college}
+                      onChange={handleChange}
+                      className="block p-2 border placeholder:text-sm shadow focus:bg-blue-100 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, delay: 0.3 }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         );
-      case 6:
+
+      case 7:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             {/* <Payment /> */}
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-center md:text-start md:text-4xl">
+              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
                 Payments Section
               </h2>
               <p className="text-sm text-center md:text-start sm:text-lg">
                 Please complete your registration by contributing a small fee.
               </p>
             </div>
-
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleNext}
-              >
-                Next
-              </motion.button>
-            </div>
           </div>
         );
-      case 7:
+      case 8:
         return (
-          <div className="flex flex-col p-10 bg-white shadow-xl gap-y-5 rounded-2xl">
+          <div className="flex flex-col p-10 gap-y-5 rounded-2xl">
             <div>
-              <h1 className="md:text-3xl flex-col flex text-2xl text-center  md:text-start border-l-[#b67a3d] shadow-xl bg-slate-50 py-3  border-r-[#b67a3d] border-r-8  border-l-8 mb-5 font-bold  ">
-                <span className="ml-2"> Review before you Save</span>
-                <span className="ml-2 text-sm font-medium text-center capitalize md:text-start sm:text-lg">
-                  Please review your information before saving.
+              <h1 className="flex flex-col py-3 mb-5 text-2xl text-center md:text-2xl md:text-start bg-slate-50 ">
+                <span className="ml-2 font-semibold">
+                  {" "}
+                  Review before you Save
+                </span>
+                <span className="ml-2 text-sm text-center capitalize md:text-start sm:text-lg">
+                  Please review all the details you have entered. If everything
+                  is correct, click "Confirm" to complete the registration.{" "}
                 </span>
               </h1>
             </div>
@@ -579,26 +507,6 @@ const Membership = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col-reverse justify-end mt-6 text-sm md:flex-row gap-x-5">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#482ea8]"
-                onClick={handleBack}
-              >
-                Back
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-                onClick={handleSave}
-              >
-                Save
-              </motion.button>
-            </div>
           </div>
         );
       default:
@@ -606,197 +514,93 @@ const Membership = () => {
     }
   };
 
-  const MyDocument = () => (
-    <Document>
-      <Page style={styles.body}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Image style={styles.logo} src="" />
-          <View style={styles.contactDetails}>
-            <Text style={styles.companyName}>
-              Historical Association of Tanzania
-            </Text>
-            <Text>Contact: +255 123 456 789</Text>
-            <Text>Email: info@historicalassociation.tz</Text>
-          </View>
-        </View>
-        <View style={styles.divider} />
-
-        {/* Personal Information Section */}
-        <View style={styles.section}>
-          <Text style={styles.heading}>PERSONAL INFORMATION</Text>
-          <View style={styles.divider} />
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Full Name</Text>
-              <Text style={styles.tableCell}>{formData.profile.full_name}</Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Nationality</Text>
-              <Text style={styles.tableCell}>
-                {formData.profile.nationality}
-              </Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Gender</Text>
-              <Text style={styles.tableCell}>{formData.profile.gender}</Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Phone Number</Text>
-              <Text style={styles.tableCell}>
-                {formData.profile.phone_number}
-              </Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Academic Information Section (if student) */}
-        {isStudent && (
-          <View style={styles.section}>
-            <Text style={styles.heading}>ACADEMIC INFORMATION</Text>
-            <View style={styles.divider} />
-            <View style={styles.table}>
-              <View style={styles.tableRow}>
-                <Text style={styles.tableCellLabel}>Student ID</Text>
-                <Text style={styles.tableCell}>
-                  {formData.profile.student_id}
-                </Text>
-              </View>
-              <View style={styles.tableRow}>
-                <Text style={styles.tableCellLabel}>Course of Study</Text>
-                <Text style={styles.tableCell}>
-                  {formData.profile.course_of_study}
-                </Text>
-              </View>
-              <View style={styles.tableRow}>
-                <Text style={styles.tableCellLabel}>Institution</Text>
-                <Text style={styles.tableCell}>
-                  {formData.profile.institution}
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
-
-        {/* Work Information Section */}
-        <View style={styles.section}>
-          <Text style={styles.heading}>WORK INFORMATION</Text>
-          <View style={styles.divider} />
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Job Title</Text>
-              <Text style={styles.tableCell}>{formData.profile.title}</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Location Information Section */}
-        <View style={styles.section}>
-          <Text style={styles.heading}>LOCATION INFORMATION</Text>
-          <View style={styles.divider} />
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Country</Text>
-              <Text style={styles.tableCell}>{formData.profile.country}</Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>City</Text>
-              <Text style={styles.tableCell}>{formData.profile.city}</Text>
-            </View>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCellLabel}>Physical Address</Text>
-              <Text style={styles.tableCell}>{formData.profile.address}</Text>
-            </View>
-          </View>
-        </View>
-      </Page>
-    </Document>
-  );
-
-  const styles = StyleSheet.create({
-    body: {
-      padding: 20,
-      fontFamily: "roboto",
-    },
-    header: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: 20,
-    },
-    logo: {
-      width: 100,
-      height: 70,
-    },
-    contactDetails: {
-      textAlign: "right",
-    },
-    companyName: {
-      fontSize: 20,
-      fontWeight: "bold",
-      color: "#b67a3d",
-    },
-    divider: {
-      borderBottomWidth: 2,
-      borderBottomColor: "#b67a3d",
-      marginVertical: 10,
-    },
-    section: {
-      marginBottom: 20,
-    },
-    heading: {
-      fontSize: 14,
-      marginBottom: 5,
-      fontWeight: "black",
-      color: "#b67a3d",
-    },
-    table: {
-      display: "table",
-      width: "auto",
-    },
-    tableRow: {
-      flexDirection: "row",
-    },
-    tableCellLabel: {
-      width: "40%",
-      fontSize: 12,
-      fontWeight: "bold",
-      padding: 5,
-      border: "none",
-    },
-    tableCell: {
-      width: "60%",
-      fontSize: 12,
-      textAlign: "left",
-      padding: 5,
-      border: "none",
-    },
-  });
-
   return (
-    <div className="container flex flex-col min-h-screen py-20 mx-auto mt-10">
-      {renderStep()}
+    <div className="mt-16">
+      {/* Steps Navigation */}
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-wrap items-center justify-between sm:justify-start">
+          {steps.map((stp, index) => (
+            <React.Fragment key={stp.id}>
+              <div className="flex items-center mb-2 sm:mb-0">
+                <motion.div
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm ${
+                    stp.id <= step
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-300 text-gray-600"
+                  }`}
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: stp.id === step ? 1.1 : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {stp.id < step ? (
+                    <svg
+                      className="w-4 h-4 sm:w-5 sm:h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    stp.id
+                  )}
+                </motion.div>
+                <span className="hidden ml-2 text-xs font-medium xl:text-sm xl:inline">
+                  {stp.name}
+                </span>
+              </div>
+              {index < steps.length - 1 && (
+                <div className="flex-1 hidden h-px mx-2 bg-gray-300 sm:block" />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
 
-      <div className="mt-4">
-        <PDFDownloadLink
-          document={<MyDocument />}
-          fileName="Membership_form.pdf"
+      {/* Form Fields */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
         >
-          {({ loading }) =>
-            loading ? (
-              <Dots size={14} color="#482ea8" />
-            ) : (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-1 mt-4 text-white rounded-2xl shadow-xl bg-[#b67a3d]"
-              >
-                Download PDF
-              </motion.button>
-            )
-          }
-        </PDFDownloadLink>
+          {renderStep()}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-between mt-6 sm:mt-8">
+        {step > 1 && (
+          <button
+            onClick={handleBack}
+            className="px-3 py-2 text-sm text-gray-700 bg-gray-200 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            BACK
+          </button>
+        )}
+        {step < steps.length && (
+          <button
+            onClick={handleNext}
+            className="px-3 py-2 ml-auto text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            NEXT
+          </button>
+        )}
+        {step === steps.length && (
+          <>
+            <button
+              onClick={handleSave}
+              className="px-3 py-2 ml-2 text-sm text-white bg-green-500 rounded-md sm:px-4 sm:py-2 sm:text-base hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              Confirm
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
