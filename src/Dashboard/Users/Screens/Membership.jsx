@@ -62,8 +62,9 @@ const Membership = () => {
       },
     }));
     if (name === "country") {
-      console.log(value);
-      setCountryCode(value);
+      // handles region selection based on country selected
+      const filterd = countries?.filter((dt) => dt.name === value);
+      setCountryCode(filterd[0]?.iso2);
     }
   };
 
