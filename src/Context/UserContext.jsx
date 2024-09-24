@@ -32,7 +32,6 @@ export function UserProvider({ children }) {
           },
         }
       );
-      console.log(data);
 
       setCountry(data);
     } catch (error) {}
@@ -50,7 +49,6 @@ export function UserProvider({ children }) {
       );
 
       setRegion(data);
-      console.log(data);
     } catch (error) {}
   };
 

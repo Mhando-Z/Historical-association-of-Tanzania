@@ -1,13 +1,13 @@
 // export default Membership;
 import React, { useState, useContext, useEffect } from "react";
-import { toast } from "react-toastify";
 import axiosInstance from "../../../Context/axiosInstance";
 import UserContext from "../../../Context/UserContext";
+import { toast } from "react-toastify";
 // import Joi from "joi";
 import { motion } from "framer-motion";
 
-import { useNavigate } from "react-router-dom";
 // import Payment from "../Components/Payments";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // steps
@@ -24,11 +24,9 @@ const steps = [
 
 const Membership = () => {
   const { userData, setUserData } = useContext(UserContext);
-
   const { countries } = useContext(UserContext);
   const [Regions, setRegion] = useState([]);
-  const [CountryCode, setCountryCode] = useState("AF");
-
+  const [CountryCode, setCountryCode] = useState("TZ");
   const [step, setStep] = useState(1);
   const [isStudent, setIsStudent] = useState(false);
   const navigate = useNavigate();
@@ -64,8 +62,8 @@ const Membership = () => {
       },
     }));
     if (name === "country") {
-      setCountryCode(value);
       console.log(value);
+      setCountryCode(value);
     }
   };
 
@@ -109,9 +107,7 @@ const Membership = () => {
           },
         }
       );
-
       setRegion(data);
-      console.log(data);
     } catch (error) {}
   };
 
@@ -132,17 +128,14 @@ const Membership = () => {
         return (
           <>
             <h2 className="text-2xl font-semibold md:text-3xl">
-              Hello, {userData.username || "User"}!
+              Hello, {userData?.username || "User"}!
             </h2>
             <p className="max-w-4xl mt-4 text-sm sm:text-lg">
               Welcome to the Historical Association of Tanzania. We will be
               happy to have you as a Member. There are a few things you need to
               know. To become our member, there are some registration steps you
               need to pass through.
-              <span className="font-semibold">
-                {" "}
-                What are those steps?...
-              </span>{" "}
+              <span className="font-semibold">What are those steps?...</span>
               Well, if you want to know then please click next to start the
               registration.
             </p>
