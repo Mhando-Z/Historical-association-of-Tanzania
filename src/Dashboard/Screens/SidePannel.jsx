@@ -8,6 +8,7 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { BsFillPrinterFill } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
+import { FaMoneyBillWave } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
 import { PiVideoConferenceFill } from "react-icons/pi";
@@ -86,13 +87,13 @@ const UserChoices = [
   {
     sections: "Home",
     links: "UserHome/",
-    icon: <FaUserGroup />,
+    icon: <FaHome />,
   },
-  {
-    sections: "Membership",
-    links: "Membership/",
-    icon: <FaUserGroup />,
-  },
+  // {
+  //   sections: "Membership",
+  //   links: "Membership/",
+  //   icon: <FaUserGroup />,
+  // },
   {
     sections: "Conference",
     links: "UserConference/",
@@ -101,7 +102,7 @@ const UserChoices = [
   {
     sections: "My Payments",
     links: "MyPayments/",
-    icon: <FaUserGroup />,
+    icon: <FaMoneyBillWave />,
   },
 ];
 
