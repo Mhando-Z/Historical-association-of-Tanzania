@@ -177,7 +177,7 @@ function DashHome() {
           </div>
         </div>
       ) : (
-        <div></div>
+        ""
       )}
     </div>
   );

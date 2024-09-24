@@ -159,7 +159,7 @@ const UserProfile = () => {
           )}
         </div>
       </div>
-      <div className="max-w-6xl p-6 mx-auto mt-20 rounded-lg shadow-lg ">
+      <div className="max-w-6xl p-6 mx-auto mt-20 rounded-lg">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

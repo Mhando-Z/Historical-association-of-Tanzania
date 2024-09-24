@@ -230,12 +230,12 @@ function SidePannel() {
       <div className="flex flex-col w-full mb-5">
         <motion.div
           transition={{ type: "spring", ease: "easeOut" }}
-          className="flex items-center justify-center w-full bg-gray-200 bg-opacity-50 rounded "
+          className="flex items-center justify-center w-full bg-gray-200 bg-opacity-50"
         >
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-slate-300 items-center text-gray-900 w-full rounded"
+                ? "items-center text-gray-900 w-full rounded"
                 : "w-full rounded-xl text-gray-900  "
             }
             to={"UserProfile/"}
