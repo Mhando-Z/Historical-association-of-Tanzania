@@ -63,7 +63,7 @@ function Announce() {
 
   return (
     <motion.div
-      className="container flex flex-col mx-auto mt-16 mb-48 gap-y-5"
+      className="container flex flex-col mx-auto mt-24 mb-24 gap-y-5"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -71,27 +71,26 @@ function Announce() {
       <div className="flex flex-col w-full ">
         {/* Image Section */}
         <motion.div
-          className="relative flex flex-col w-full"
+          className="flex flex-col w-full gap-y-5"
           variants={imageVariants}
         >
           <img
-            src={`http://127.0.0.1:8000/${Announcement.image}`}
-            alt={Announcement.title}
+            src={`http://127.0.0.1:8000/${Announcement?.image}`}
+            alt={Announcement?.title}
             loading="lazy"
-            className="object-cover min-h-screen rounded-2xl xl:h-full max-w-screen aspect-video"
+            className="object-cover h-[300px] md:h-[400px] rounded-xl max-w-screen aspect-video"
           />
-          <div className="absolute top-0 bottom-0 left-0 right-0 rounded-2xl bg-gradient-to-t from-slate-900 to-transparent"></div>
-          <div className="absolute top-0 bottom-0 left-0 right-0 bg-black rounded-2xl bg-opacity-40"></div>
-          <div className="absolute  h-[45rem] flex flex-col overflow-x-hidden overflow-y-auto top-20 left-5">
+
+          <div className="flex flex-col overflow-x-hidden overflow-y-auto ">
             <div className="flex flex-col">
               <motion.h1
-                className="text-xl font-semibold text-white lg:text-3xl"
+                className="text-xl font-semibold text-gray-900 lg:text-3xl"
                 variants={textVariants}
               >
-                {Announcement.title}
+                {Announcement?.title}
               </motion.h1>
               <motion.h2
-                className="max-w-xl text-base text-white lg:text-xl"
+                className="max-w-xl text-base font-medium text-gray-900 lg:text-xl"
                 variants={textVariants}
               >
                 {Announcement?.subtitle}
@@ -103,32 +102,26 @@ function Announce() {
               variants={containerVariants}
             >
               <motion.h1
-                className="text-xl font-bold text-gray-200 lg:text-2xl"
+                className="text-xl font-bold text-gray-800 lg:text-2xl"
                 variants={textVariants}
               >
                 Discussion
               </motion.h1>
               <motion.div
-                className="flex flex-col text-gray-300 gap-y-4"
+                className="flex flex-col text-gray-800 gap-y-4"
                 variants={containerVariants}
               >
-                <motion.p className="tracking-tighter" variants={textVariants}>
-                  {Announcement.description}
+                <motion.p
+                  className="text-sm tracking-tighter text-justify text-gray-700 md:text-base"
+                  variants={textVariants}
+                >
+                  {Announcement?.description}
                 </motion.p>
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
                   <div className="w-full">
                     <motion.img
-                      src={`http://127.0.0.1:8000/${Announcement.image2}`}
-                      alt={Announcement.title}
-                      loading="lazy"
-                      className="object-cover w-full aspect-video "
-                      variants={imageVariants}
-                    />
-                  </div>
-                  <div className="w-full">
-                    <motion.img
-                      src={`http://127.0.0.1:8000/${Announcement.image}`}
-                      alt={Announcement.title}
+                      src={`http://127.0.0.1:8000/${Announcement?.image2}`}
+                      alt={Announcement?.title}
                       loading="lazy"
                       className="object-cover w-full aspect-video "
                       variants={imageVariants}
@@ -140,12 +133,11 @@ function Announce() {
           </div>
         </motion.div>
       </div>
+
       {/* Other Announcements and repports */}
       <div className="mt-5">
-        <div className="flex flex-col justify-center py-3 mb-10 shadow">
-          <h1 className="px-2 text-xl font-bold border-l-4 border-l-black md:text-2xl">
-            Other Announcements
-          </h1>
+        <div className="flex flex-col justify-center py-3 mb-10 ">
+          <h1 className="text-xl font-bold md:text-2xl">Other Announcements</h1>
         </div>
         <div className=" gap-y-16">
           {other?.slice(0, count).map((post) => (
