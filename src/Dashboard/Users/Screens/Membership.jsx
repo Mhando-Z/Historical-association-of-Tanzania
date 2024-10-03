@@ -5,6 +5,7 @@ import UserContext from "../../../Context/UserContext";
 import { toast } from "react-toastify";
 // import Joi from "joi";
 import { motion } from "framer-motion";
+import PhoneInput from "react-phone-input-2";
 
 // import Payment from "../Components/Payments";
 import { useNavigate } from "react-router-dom";
@@ -61,10 +62,15 @@ const Membership = () => {
         [name]: value,
       },
     }));
+    // if (name === "country") {
+    //   // handles region selection based on country selected
+    //   const filterd = countries?.filter((dt) => dt.name === value);
+    //   setCountryCode(filterd[0]?.iso2);
+    // }
+    // Country selection in handleChange could be updated for clarity
     if (name === "country") {
-      // handles region selection based on country selected
-      const filterd = countries?.filter((dt) => dt.name === value);
-      setCountryCode(filterd[0]?.iso2);
+      const selectedCountry = countries.find((dt) => dt.name === value);
+      setCountryCode(selectedCountry?.iso2 || "TZ"); // Default to TZ if not found
     }
   };
 
@@ -192,38 +198,69 @@ const Membership = () => {
                 from...
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
-              <input
-                type="text"
-                name="phone_number"
-                value={formData.profile.phone_number}
-                required
-                placeholder="Phone Number"
-                onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
-              />
-              <input
-                type="text"
-                name="nationality"
-                value={formData.profile.nationality}
-                placeholder="Nationality"
-                required
-                onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
-              />
-              <select
-                name="gender"
-                value={formData.profile.gender}
-                onChange={handleChange}
-                required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
-              >
-                <option value="" disabled>
-                  Select Gender
-                </option>
-                <option value="Male">male</option>
-                <option value="Female">female</option>
-              </select>
+            <div className="grid items-center grid-cols-1 md:grid-cols-3 gap-x-4">
+              <div className="flex flex-col">
+                <label htmlFor="phone" className="mb-1">
+                  Phone Number
+                </label>
+                <PhoneInput
+                  country={"tz"} // Default country Tanzania with code +255
+                  value={formData?.profile.phone_number}
+                  onChange={(phone) =>
+                    setFormData((prevFormData) => ({
+                      ...prevFormData,
+                      profile: {
+                        ...prevFormData.profile,
+                        phone_number: phone, //   property name
+                      },
+                    }))
+                  }
+                  inputProps={{
+                    name: "phone",
+                    required: true,
+                    autoFocus: true,
+                    id: "phone",
+                  }}
+                  containerClass="!w-full !mt-2"
+                  inputClass="!w-full !h-full !border-none !bg-transparent !pl-12 !pr-4 !py-3 !rounded  !ring-1 !ring-[#b67a3d] focus:!ring-1 focus:!ring-[#b67a3d] focus:!bg-blue-50 !outline-none"
+                  buttonClass="!absolute !left-0 !top-0 !bottom-0 !border-none !bg-transparent !rounded-l"
+                  dropdownClass="!left-0"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="nationality" className="mb-1">
+                  Nationality
+                </label>
+                <input
+                  type="text"
+                  name="nationality"
+                  value={formData.profile.nationality}
+                  placeholder="Nationality"
+                  required
+                  onChange={handleChange}
+                  className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="gender" className="mb-1">
+                  Gender
+                </label>
+                <select
+                  name="gender"
+                  value={formData.profile.gender}
+                  onChange={handleChange}
+                  required
+                  className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="Male">male</option>
+                  <option value="Female">female</option>
+                </select>
+              </div>
             </div>
           </div>
         );
@@ -272,15 +309,6 @@ const Membership = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
-              {/* <input
-                type="text"
-                name="country"
-                placeholder="Country"
-                value={formData.profile.country}
-                required
-                onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
-              /> */}
               <select
                 name="country"
                 placeholder="Country"
@@ -315,15 +343,7 @@ const Membership = () => {
                   </option>
                 ))}
               </select>
-              {/* <input
-                type="text"
-                name="city"
-                placeholder="City"
-                value={formData.profile.city}
-                required
-                onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
-              /> */}
+
               <input
                 type="text"
                 name="physical_address"
