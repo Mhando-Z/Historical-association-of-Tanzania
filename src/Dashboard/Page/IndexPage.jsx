@@ -19,11 +19,11 @@ function IndexPage() {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
-        <div className="flex flex-col justify-between min-h-screen py-1 px-6">
+        <div className="flex flex-col justify-between min-h-screen px-6 py-1">
           <div>
             {/* <img src={logo} alt="herveg logo" className="h-10 " /> */}
             <nav className="">
-              <SidePannel />
+              <SidePannel toggleSidebar={toggleSidebar} />
             </nav>
           </div>
         </div>

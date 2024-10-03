@@ -106,13 +106,17 @@ const UserChoices = [
   },
 ];
 
-function SidePannel() {
+function SidePannel({ toggleSidebar }) {
   const { userData } = useContext(UserContext);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+    // Check if the screen width is less than or equal to the tablet breakpoint (e.g., 768px)
+    if (window.innerWidth <= 768) {
+      toggleSidebar(); // Only toggle sidebar for tablet or mobile views
+    }
   };
   return (
     <motion.div
