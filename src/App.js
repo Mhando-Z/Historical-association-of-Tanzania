@@ -31,12 +31,6 @@ import { ToastContainer } from "react-toastify";
 import CompanySect from "./Dashboard/Sections/CompanySect";
 import UserProfile from "./Dashboard/Componentz/UserProfile";
 import ConferenceSect from "./Dashboard/Sections/ConferenceSect";
-import {
-  PasswordResetConfirm,
-  PasswordResetRequest,
-} from "./Dashboard/Componentz/PasswordReset";
-import "react-toastify/dist/ReactToastify.css";
-import "react-activity/dist/library.css";
 import UserHome from "./Dashboard/Users/Screens/UserHome";
 import Membership from "./Dashboard/Users/Screens/Membership";
 import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
@@ -45,6 +39,13 @@ import Publications from "./Screens/Publications";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
 import Announce from "./Screens/Announce";
 import IndexPage from "./Dashboard/Page/IndexPage";
+import {
+  PasswordResetConfirm,
+  PasswordResetRequest,
+} from "./Dashboard/Componentz/PasswordReset";
+import "react-toastify/dist/ReactToastify.css";
+import "react-activity/dist/library.css";
+import "react-phone-input-2/lib/style.css";
 
 // stripe
 // import { Elements } from "@stripe/react-stripe-js";
