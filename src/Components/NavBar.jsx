@@ -157,11 +157,10 @@ function NavBar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="md:hidden"
+            className="bg-white md:hidden"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <SideNavBar open={open} setOpen={setOpen} />
           </motion.div>

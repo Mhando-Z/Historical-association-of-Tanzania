@@ -21,22 +21,31 @@ const SideNavBar = ({ open, setOpen }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${
+      className={`fixed inset-0 z-50 transition-opacity duration-500 ease-in-out ${
         open
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
       }`}
     >
+      {/* Background overlay */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transition-transform duration-300 ${
-          open ? "transform translate-x-0" : "transform -translate-x-full"
+        className={`fixed inset-0 bg-black transition-opacity duration-500 ease-in-out ${
+          open ? "opacity-50" : "opacity-0"
+        }`}
+        onClick={closeMenu}
+      ></div>
+
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-500 ease-in-out ${
+          open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex flex-row justify-between p-4">
           <div>
             <img
               src={logo}
-              alt="Historical association of Tanzania Logo"
+              alt="Historical Association of Tanzania Logo"
               title="HAT Logo"
               className="h-7 xl:h-9 md:h-7"
             />
@@ -124,13 +133,13 @@ const SideNavBar = ({ open, setOpen }) => {
                 <div className="flex flex-row-reverse justify-between w-full">
                   <Link
                     to={`Login/`}
-                    className="px-5  py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-[#b67a3d] text-white"
+                    className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-[#b67a3d] text-white"
                   >
                     Sign In
                   </Link>
                   <Link
                     to={`Register/`}
-                    className="px-5  py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-blue-700 text-white"
+                    className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-blue-700 text-white"
                   >
                     Sign Up
                   </Link>
@@ -139,8 +148,6 @@ const SideNavBar = ({ open, setOpen }) => {
             )}
           </div>
         </nav>
-
-        <div className="grow"></div>
       </div>
     </div>
   );

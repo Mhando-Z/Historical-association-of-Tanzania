@@ -6,7 +6,7 @@ import { Dots } from "react-activity";
 function Staffs() {
   const { StaffsSect } = useContext(HomePageContext);
   return (
-    <div className="container relative flex min-h-screen px-6 mx-auto mt-20">
+    <div className="container relative flex min-h-screen mx-auto mt-20">
       <div className="flex flex-col ">
         <h1 className="md:text-5xl flex flex-col text-4xl font-extrabold mb-7 text-[#b67a3d]">
           Our Team
