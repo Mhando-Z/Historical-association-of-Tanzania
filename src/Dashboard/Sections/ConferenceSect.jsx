@@ -226,7 +226,7 @@ function ConferenceSect() {
                           onChange={handleChange}
                           id="title"
                           autoComplete="given-name"
-                          className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                          className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -245,7 +245,7 @@ function ConferenceSect() {
                           onChange={handleChange}
                           id="subtitle"
                           autoComplete="given-name"
-                          className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                          className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -283,7 +283,7 @@ function ConferenceSect() {
                           //   value={conferenceData.date_of_conference}
                           onChange={handleChange}
                           id="date_of_conference"
-                          className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                          className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -359,7 +359,7 @@ function ConferenceSect() {
                       onChange={handleChange}
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -378,7 +378,7 @@ function ConferenceSect() {
                       onChange={handleChange}
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -415,7 +415,7 @@ function ConferenceSect() {
                       value={conferenceData.date_of_conference}
                       onChange={handleChange}
                       id="date_of_conference"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>

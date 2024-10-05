@@ -180,7 +180,7 @@ const AdminUserManagement = () => {
           ease: "easeOut",
           stiffness: 140,
         }}
-        className="shadow"
+        className=""
       >
         <UserTable data={users} />
       </motion.div>

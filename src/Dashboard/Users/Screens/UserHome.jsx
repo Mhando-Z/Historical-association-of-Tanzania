@@ -3,6 +3,7 @@ import UserContext from "../../../Context/UserContext";
 import { motion } from "framer-motion";
 import { Dots } from "react-activity";
 import { Link } from "react-router-dom";
+import GreetingsTimer from "../../Componentz/GreetingsTimer";
 
 function UserHome() {
   const { userData } = useContext(UserContext);
@@ -26,9 +27,9 @@ function UserHome() {
         }}
         className="flex flex-col p-2 mt-16 md:p-10 gap-y-4 rounded-2xl"
       >
-        <h2 className="text-2xl font-bold md:text-3xl">
-          Hello, {userData.username || "User"}!
-        </h2>
+        <>
+          <GreetingsTimer Username={userData.username || ""} />
+        </>
         <p className="max-w-4xl text-sm sm:text-md">
           Welcome to, Historical Association of Tanzania.We will be happy to
           have you as a Member, there are some few things you need to know. To

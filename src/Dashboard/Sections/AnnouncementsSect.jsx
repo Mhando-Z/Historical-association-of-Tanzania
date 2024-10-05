@@ -86,7 +86,7 @@ function AnnouncementsSect() {
 
   return (
     <div className="container flex flex-col mx-auto mb-20">
-      <div className="mt-10 mb-10 bg-gray-100 shadow">
+      <div className="mt-10 mb-10 bg-gray-100 ">
         <Table data={AnnounceSect} />
       </div>
       <motion.div
@@ -99,7 +99,7 @@ function AnnouncementsSect() {
           stiffness: 140,
           type: "spring",
         }}
-        className="bg-slate-100 border-b-2 border-b-[#b67a3d] shadow"
+        className="bg-slate-100 border-b-2 border-b-[#b67a3d]  "
       >
         {/* Title and descriptions */}
         <h1 className="px-4 py-3 mb-5 font-bold uppercase md:text-lg">
@@ -134,7 +134,7 @@ function AnnouncementsSect() {
                       }
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900   ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -157,7 +157,7 @@ function AnnouncementsSect() {
                       }
                       name="description"
                       rows={3}
-                      className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px] rounded-2xl border-0 text-gray-900  -lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
@@ -166,7 +166,7 @@ function AnnouncementsSect() {
                   </p>
                 </div>
                 {/* image1 */}
-                <div className="px-4 shadow col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="cover-photo1"
                     className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
@@ -221,7 +221,7 @@ function AnnouncementsSect() {
                   </div>
                 </div>
                 {/* image2 */}
-                <div className="px-4 shadow col-span-full">
+                <div className="px-4 col-span-full">
                   <label
                     htmlFor="cover-photo2"
                     className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"

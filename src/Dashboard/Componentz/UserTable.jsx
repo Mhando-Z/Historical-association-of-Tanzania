@@ -50,12 +50,12 @@ const UserTable = ({ data }) => {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className="p-2 border shadow-md outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-100 rounded w-full"
+          className="p-2 border shadow outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-100 rounded w-full"
         />
       </div>
       <div className="overflow-x-auto h-[600px]">
         <div className="relative">
-          <table className="min-w-full border border-gray-300 shadow-2xl bg-slate-100">
+          <table className="min-w-full border border-gray-300 shadow bg-slate-100">
             <thead className="sticky top-0 bg-gray-200">
               <tr>
                 <th className="px-4 py-2 text-left border-b">ID</th>

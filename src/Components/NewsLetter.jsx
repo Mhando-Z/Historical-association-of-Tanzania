@@ -93,35 +93,55 @@ export default function NewsLetter() {
           <div className="flex flex-col items-center justify-center flex-1 gap-y-4">
             <div className="flex flex-col">
               <h1 className="text-xl font-medium text-white">Policies</h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.policies?.policy1}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.policies?.policy2}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.policies?.policy3}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.policies?.policy4}
-              </h1>
+              <div className="flex flex-col gap-y-3">
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none ">
+                  <span className="mr-2">(1)</span>
+                  {footerSect[0]?.policies?.policy1}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(2)</span>
+                  {footerSect[0]?.policies?.policy2}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(3)</span>
+                  {footerSect[0]?.policies?.policy3}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(4)</span>
+                  {footerSect[0]?.policies?.policy4}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(5)</span>
+                  {footerSect[0]?.policies?.policy5}
+                </h1>
+              </div>
             </div>
             <div className="flex flex-col">
               <h1 className="text-xl font-medium text-white">
                 Terms of Service
               </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.termsofService.term1}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.termsofService.term2}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.termsofService.term3}
-              </h1>
-              <h1 className="max-w-xl text-white line-clamp-1">
-                {footerSect[0]?.termsofService.term4}
-              </h1>
+              <div className="flex flex-col gap-y-3">
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(1)</span>
+                  {footerSect[0]?.termsofService.term1}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(2)</span>
+                  {footerSect[0]?.termsofService.term2}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(3)</span>
+                  {footerSect[0]?.termsofService.term3}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(4)</span>
+                  {footerSect[0]?.termsofService.term4}
+                </h1>
+                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+                  <span className="mr-2">(5)</span>
+                  {footerSect[0]?.termsofService.term5}
+                </h1>
+              </div>
             </div>
           </div>
           {/* Contacts section */}

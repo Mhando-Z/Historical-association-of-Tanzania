@@ -49,25 +49,36 @@ const Membership = () => {
       gender: userData?.profile?.gender || "",
       college: userData?.profile?.college || "",
       is_paid_membership: userData?.profile?.is_paid_membership || false,
+      first_name: "",
+      middle_name: "",
+      last_name: "",
       // profile_picture: userData?.profile?.profile_picture || null,
     },
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      profile: {
+
+    setFormData((prevFormData) => {
+      // Update the specific name field
+      const updatedProfile = {
         ...prevFormData.profile,
         [name]: value,
-      },
-    }));
-    // if (name === "country") {
-    //   // handles region selection based on country selected
-    //   const filterd = countries?.filter((dt) => dt.name === value);
-    //   setCountryCode(filterd[0]?.iso2);
-    // }
-    // Country selection in handleChange could be updated for clarity
+      };
+
+      // If any of the name fields change, update the full_name
+      if (["first_name", "middle_name", "last_name"].includes(name)) {
+        updatedProfile.full_name = `${updatedProfile.first_name || ""} ${
+          updatedProfile.middle_name || ""
+        } ${updatedProfile.last_name || ""}`.trim();
+      }
+
+      return {
+        ...prevFormData,
+        profile: updatedProfile,
+      };
+    });
+
     if (name === "country") {
       const selectedCountry = countries.find((dt) => dt.name === value);
       setCountryCode(selectedCountry?.iso2 || "TZ"); // Default to TZ if not found
@@ -218,7 +229,7 @@ const Membership = () => {
                   inputProps={{
                     name: "phone",
                     required: true,
-                    autoFocus: true,
+                    autoFocus: false,
                     id: "phone",
                   }}
                   containerClass="!w-full !mt-2"
@@ -257,8 +268,8 @@ const Membership = () => {
                   <option value="" disabled>
                     Select Gender
                   </option>
-                  <option value="Male">male</option>
-                  <option value="Female">female</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
                 </select>
               </div>
             </div>

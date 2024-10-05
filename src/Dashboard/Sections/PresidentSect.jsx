@@ -147,7 +147,7 @@ function PresidentSect() {
                       name="title"
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -167,7 +167,7 @@ function PresidentSect() {
                       name="subtitle"
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -184,7 +184,7 @@ function PresidentSect() {
                       onChange={handleChange}
                       name="description"
                       rows={3}
-                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 shadow-lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       defaultValue={""}
                     />
                   </div>
@@ -194,13 +194,13 @@ function PresidentSect() {
                 </div>
                 {/* image1 */}
                 <div
-                  className="px-4 border-2 border-gray-300 border-dashed shadow-lg col-span-full"
+                  className="px-4 border-2 border-gray-300 border-dashed lg col-span-full"
                   onDrop={(e) => handleDrop(e, "image")}
                   onDragOver={handleDragOver}
                 >
                   <label
                     htmlFor="cover-photo"
-                    className="block py-2 mb-2 text-sm font-medium text-gray-900 uppercase shadow xl:text-lg"
+                    className="block py-2 mb-2 text-sm font-medium text-gray-900 uppercase xl:text-lg"
                   >
                     <span className="ml-2">Photo1</span>
                   </label>
@@ -262,13 +262,13 @@ function PresidentSect() {
                 </div>
                 {/* image2 */}
                 <div
-                  className="px-4 border-2 border-gray-300 border-dashed shadow-lg col-span-full"
+                  className="px-4 border-2 border-gray-300 border-dashed lg col-span-full"
                   onDrop={(e) => handleDrop(e, "image2")}
                   onDragOver={handleDragOver}
                 >
                   <label
                     htmlFor="cover-photo"
-                    className="block py-2 mb-2 text-sm font-medium text-gray-900 uppercase shadow xl:text-lg"
+                    className="block py-2 mb-2 text-sm font-medium text-gray-900 uppercase xl:text-lg"
                   >
                     <span className="ml-2">Photo2</span>
                   </label>
