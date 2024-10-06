@@ -149,10 +149,10 @@ const Membership = () => {
               Hello, {userData?.username || "User"}!
             </h2>
             <p className="max-w-4xl mt-4 text-sm sm:text-lg">
-              Welcome to the Historical Association of Tanzania. We will be
-              happy to have you as a Member. There are a few things you need to
-              know. To become our member, there are some registration steps you
-              need to pass through.
+              Welcome to the Historical Association of Tanzania. We are happy to
+              have you as a Member. There are few things that you need to know,
+              To become our member, there are some registration steps you need
+              to pass through.
               <span className="font-semibold">What are those steps?...</span>
               Well, if you want to know then please click next to start the
               registration.
@@ -195,6 +195,18 @@ const Membership = () => {
                 className="block p-2 mt-2 border placeholder:text-sm  focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
+            {formData?.profile?.full_name ? (
+              <>
+                <h1 className="flex flex-col mt-2 text-sm font-semibold gap-y-2 md:text-md">
+                  Fullname:-<>{formData?.profile?.full_name}</>
+                  <span className="text-xs font-normal md:text-sm">
+                    Click next, If you wish to continue using the above name{" "}
+                  </span>
+                </h1>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         );
       case 3:
@@ -246,7 +258,7 @@ const Membership = () => {
                 <input
                   type="text"
                   name="nationality"
-                  value={formData.profile.nationality}
+                  value={formData?.profile.nationality}
                   placeholder="Nationality"
                   required
                   onChange={handleChange}
@@ -260,7 +272,7 @@ const Membership = () => {
                 </label>
                 <select
                   name="gender"
-                  value={formData.profile.gender}
+                  value={formData?.profile.gender}
                   onChange={handleChange}
                   required
                   className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
@@ -291,7 +303,7 @@ const Membership = () => {
                 type="text"
                 name="title"
                 placeholder="Job Title"
-                value={formData.profile.title}
+                value={formData?.profile.title}
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
@@ -300,7 +312,7 @@ const Membership = () => {
                 type="text"
                 name="branch"
                 placeholder="Branch"
-                value={formData.profile.branch}
+                value={formData?.profile.branch}
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
@@ -323,7 +335,7 @@ const Membership = () => {
               <select
                 name="country"
                 placeholder="Country"
-                value={formData.profile.country}
+                value={formData?.profile.country}
                 onChange={handleChange}
                 required
                 className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
@@ -340,7 +352,7 @@ const Membership = () => {
               <select
                 name="city"
                 placeholder="city"
-                value={formData.profile.city}
+                value={formData?.profile.city}
                 onChange={handleChange}
                 required
                 className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
@@ -359,7 +371,7 @@ const Membership = () => {
                 type="text"
                 name="physical_address"
                 placeholder="Physical Address"
-                value={formData.profile.physical_address}
+                value={formData?.profile.physical_address}
                 required
                 onChange={handleChange}
                 className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
@@ -418,7 +430,7 @@ const Membership = () => {
                       type="text"
                       name="student_id"
                       placeholder="Student ID"
-                      value={formData.profile.student_id}
+                      value={formData?.profile.student_id}
                       onChange={handleChange}
                       className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
@@ -430,7 +442,7 @@ const Membership = () => {
                       type="text"
                       name="course_of_study"
                       placeholder="Course of Study"
-                      value={formData.profile.course_of_study}
+                      value={formData?.profile.course_of_study}
                       onChange={handleChange}
                       className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
@@ -442,7 +454,7 @@ const Membership = () => {
                       type="text"
                       name="institution"
                       placeholder="Institution"
-                      value={formData.profile.institution}
+                      value={formData?.profile.institution}
                       onChange={handleChange}
                       className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}
@@ -454,7 +466,7 @@ const Membership = () => {
                       type="text"
                       name="college"
                       placeholder="College"
-                      value={formData.profile.college}
+                      value={formData?.profile.college}
                       onChange={handleChange}
                       className="block p-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                       initial={{ opacity: 0 }}

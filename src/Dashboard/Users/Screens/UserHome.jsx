@@ -31,10 +31,9 @@ function UserHome() {
           <GreetingsTimer Username={userData.username || ""} />
         </>
         <p className="max-w-4xl text-sm sm:text-md">
-          Welcome to, Historical Association of Tanzania.We will be happy to
-          have you as a Member, there are some few things you need to know. To
-          be our member, there are few registration processes you need to pass
-          through.
+          Welcome to, Historical Association of Tanzania.We are happy to have
+          you as a Member, there are few things you need to know. To be our
+          member, there are few registration processes you need to pass through.
           <span className="font-bold">What are those steps?...</span> well if
           you want to know then please Click next to start the registration.
         </p>
