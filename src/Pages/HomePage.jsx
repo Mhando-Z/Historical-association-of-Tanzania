@@ -10,6 +10,7 @@ import CallForAction from "../Components/CallForAction";
 import Countdown from "../Components/TimeRemainingStats";
 import Partners from "../Components/Partners";
 import Swipper from "./Swipper/Swipper";
+import TestMonials from "./TestMonials";
 
 function HomePage() {
   return (
@@ -29,8 +30,9 @@ function HomePage() {
       <Staffs />
       <div className="mt-16"></div>
       <FAQSection />
-      <div className="mt-32 "></div>
-      <Swipper />
+      <div className="mt-24 "></div>
+      {/* testimonials */}
+      <TestMonials />
       <div className="mt-48"></div>
       <ContactUs />
       <Partners />

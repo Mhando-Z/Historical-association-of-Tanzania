@@ -47,11 +47,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-activity/dist/library.css";
 import "react-phone-input-2/lib/style.css";
 
-// stripe
-// import { Elements } from "@stripe/react-stripe-js";
-// import { stripePromise } from "./Context/Stripe";
-
-// functional component Basic routing logic lies here
 function App() {
   const [users, setUser] = useState("");
   useEffect(() => {

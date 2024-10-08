@@ -1,25 +1,45 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "hattz",
+  "name": "The Historical Association of Tanzania",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "./Icons/48.png",
+      "sizes": "48x48",
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "./Icons/96.png",
+      "sizes": "94x94",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "./Icons/144.png",
+      "sizes": "145x145",
+      "type": "image/png"
+    },
+    {
+      "src": "./Icons/193.png",
+      "sizes": "193x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./Icons/257.png",
+      "sizes": "257x256",
+      "type": "image/png"
+    },
+    {
+      "src": "./Icons/384.png",
+      "sizes": "385x384",
+      "type": "image/png"
+    },
+    {
+      "src": "./Icons/512.png",
+      "sizes": "513x512",
+      "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }
