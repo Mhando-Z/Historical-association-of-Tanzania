@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HomePageContext from "../Context/HomePageContext";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 
 // Date formatter component
@@ -17,6 +17,7 @@ function ResourcePublication() {
   const [count, setcount] = useState(10);
   // functions imports
   const navigate = useNavigate();
+  const locations = useLocation();
 
   // Update the value every 5 seconds
   useEffect(() => {
@@ -32,8 +33,12 @@ function ResourcePublication() {
 
   const handleSelect = (id) => {
     setUpPId(id);
-    navigate("/Publications/");
     scrollToTop();
+    if (locations?.pathname === "/Dashboard/UserHome/") {
+      navigate("/Dashboard/Publications/");
+    } else {
+      navigate("/Publications/");
+    }
   };
 
   const scrollToTop = () => {

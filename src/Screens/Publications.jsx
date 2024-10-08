@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import UserContext from "../Context/UserContext";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import moment from "moment";
+import { IoArrowBack } from "react-icons/io5";
 
 // Utility function to check if the URL is a YouTube URL
 const isYouTubeUrl = (url) => {
@@ -36,6 +37,7 @@ function Publications() {
   const { publishId, setUpPId } = useContext(UserContext);
   const { ResourcesSect } = useContext(HomePageContext);
   const [count, setCount] = useState(5);
+  const locations = useLocation();
 
   const data = ResourcesSect?.filter((dt) => dt?.id === publishId);
   const publication = data ? data[0] : null;
@@ -79,6 +81,20 @@ function Publications() {
       animate="visible"
       variants={containerVariants}
     >
+      {/* Back Logic */}
+      {locations?.pathname === "/Dashboard/Publications/" ? (
+        <>
+          <Link
+            to={"/Dashboard/UserHome/"}
+            className="mb-5 cursor-pointer flex flex-row items-center gap-x-3  w-[100px] py-1"
+          >
+            <IoArrowBack className="text-2xl" />
+            <h1 className="text-xs md:text-sm">Back</h1>
+          </Link>
+        </>
+      ) : (
+        ""
+      )}
       <div className="flex flex-col w-full ">
         {/* Image Section */}
         <motion.div
@@ -145,14 +161,18 @@ function Publications() {
                     />
                   </div>
                   <motion.div
-                    className={`${publication.video_url.length === 0 ? "hidden" : ""}`}
+                    className={`${
+                      publication.video_url.length === 0 ? "hidden" : ""
+                    }`}
                     variants={iframeVariants}
                   >
                     {isYouTubeUrl(publication.video_url) ? (
                       <iframe
                         title={publication.title}
                         className="w-full aspect-video"
-                        src={`https://www.youtube.com/embed/${new URL(publication.video_url).searchParams.get("v")}`}
+                        src={`https://www.youtube.com/embed/${new URL(
+                          publication.video_url
+                        ).searchParams.get("v")}`}
                         allowFullScreen
                       ></iframe>
                     ) : (
@@ -235,7 +255,9 @@ function Publications() {
             </motion.article>
           ))}
           <div
-            className={`flex ${other.length >= 11 ? "flex" : "hidden"} justify-end w-full mt-10`}
+            className={`flex ${
+              other.length >= 11 ? "flex" : "hidden"
+            } justify-end w-full mt-10`}
           >
             <motion.button
               onClick={() => setCount(count + 5)}

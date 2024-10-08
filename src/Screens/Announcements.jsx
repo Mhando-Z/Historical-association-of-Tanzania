@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
 import moment from "moment";
@@ -27,6 +27,7 @@ export default function Announcements() {
   const { setAnnounceId } = useContext(UserContext);
   // functions imports
   const navigate = useNavigate();
+  const locations = useLocation();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -37,9 +38,23 @@ export default function Announcements() {
 
   const handleSelect = (id) => {
     setAnnounceId(id);
-    navigate("/Announce/");
     scrollToTop();
+    if (locations?.pathname === "/Dashboard/UserHome/") {
+      navigate("/Dashboard/Announce/");
+    } else {
+      navigate("/Announce/");
+    }
   };
+
+  // Fallback UI when there are no reviews
+  if (!AnnounceSect || AnnounceSect.length === 0) {
+    return (
+      <div className="bg-white">
+        <Dots color="#b67a3d" size={20} speed={0.7} animating={true} />
+        <h1>No posted Announcements....</h1>
+      </div>
+    );
+  }
   return (
     <motion.div
       className="mb-20 mt-28"
@@ -62,13 +77,7 @@ export default function Announcements() {
             Learn how to grow your business with our expert advice.
           </motion.p>
         </div>
-        {AnnounceSect?.length === 0 ? (
-          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center top-28">
-            <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
-          </div>
-        ) : (
-          ""
-        )}
+
         <div className="mt-10 border-t border-gray-200 gap-y-16">
           {AnnounceSect?.map((post) => (
             <motion.article

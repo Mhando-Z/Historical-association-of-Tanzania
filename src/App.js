@@ -145,6 +145,8 @@ function App() {
                 <Route path="Membership/" element={<Membership />} />
                 <Route path="UserConference/" element={<UserConfernce />} />
                 <Route path="MyPayments/" element={<MyPayments />} />
+                <Route path="Announce/" element={<Announce />} />
+                <Route path="Publications/" element={<Publications />} />
               </Route>
             </Routes>
             <ScrollToTopButton />

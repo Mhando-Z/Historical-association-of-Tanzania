@@ -127,7 +127,7 @@ const TestMonials = () => {
             </div>
 
             {userReviews && userReviews[currentIndex] && (
-              <div className="flex-grow mt-4 text-center md:mt-0 md:text-left">
+              <div className="flex-grow mt-4 text-center px-7 md:px-0 md:mt-0 md:text-left">
                 <p className="text-lg text-gray-700">
                   {userReviews[currentIndex]?.profile?.reviews}
                 </p>

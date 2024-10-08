@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import UserContext from "../Context/UserContext";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import moment from "moment";
+import { IoArrowBack } from "react-icons/io5";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -25,6 +26,7 @@ function Announce() {
   const { AnnounceID, setAnnounceId } = useContext(UserContext);
   const { AnnounceSect } = useContext(HomePageContext);
   const [count, setCount] = useState(5);
+  const locations = useLocation();
 
   const data = AnnounceSect?.filter((dt) => dt?.id === AnnounceID);
   const Announcement = data ? data[0] : null;
@@ -68,6 +70,20 @@ function Announce() {
       animate="visible"
       variants={containerVariants}
     >
+      {/* Back Logic */}
+      {locations?.pathname === "/Dashboard/Announce/" ? (
+        <>
+          <Link
+            to={"/Dashboard/UserHome/"}
+            className="mb-5 cursor-pointer flex flex-row items-center gap-x-3  w-[100px] py-1"
+          >
+            <IoArrowBack className="text-2xl" />
+            <h1 className="text-xs md:text-sm">Back</h1>
+          </Link>
+        </>
+      ) : (
+        ""
+      )}
       <div className="flex flex-col w-full ">
         {/* Image Section */}
         <motion.div
