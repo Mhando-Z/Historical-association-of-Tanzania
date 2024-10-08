@@ -3,7 +3,7 @@ import logo from "../Assets/Images/Logo3.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import SideNavBar from "./SideNavBar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -38,7 +38,7 @@ function NavBar() {
         location.pathname === "/Register/" ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
-          ? `py-3 fixed top-0 left-0 w-full z-50 ${visible}`
+          ? `py-3 fixed top-0 left-0 w-full z-40 ${visible}`
           : "hidden"
       }`}
     >
@@ -153,19 +153,7 @@ function NavBar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="bg-white md:hidden"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-          >
-            <SideNavBar open={open} setOpen={setOpen} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SideNavBar open={open} setOpen={setOpen} />
     </div>
   );
 }

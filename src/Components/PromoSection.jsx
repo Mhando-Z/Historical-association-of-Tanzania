@@ -82,6 +82,7 @@ export default function PromoSect() {
                     className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8"
                     initial="hidden"
                     whileInView="visible"
+                    viewport={{ once: true }}
                     variants={gridContainerVariants}
                   >
                     <div className="flex items-center space-x-6 lg:space-x-8">

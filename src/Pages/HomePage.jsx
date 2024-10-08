@@ -9,7 +9,6 @@ import PromoSect from "../Components/PromoSection";
 import CallForAction from "../Components/CallForAction";
 import Countdown from "../Components/TimeRemainingStats";
 import Partners from "../Components/Partners";
-import Swipper from "./Swipper/Swipper";
 import TestMonials from "./TestMonials";
 
 function HomePage() {

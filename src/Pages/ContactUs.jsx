@@ -12,10 +12,10 @@ function ContactUs() {
   const { ContactSect } = useContext(HomePageContext);
 
   return (
-    <div className="flex flex-col">
-      <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 bg-gray-100 shadow-md md:p-20 sm:rounded-xl">
+    <div className="flex flex-col ">
+      <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 md:bg-gray-100 md:p-20 sm:rounded-xl">
         {/* Get intouch section */}
-        <div className="flex flex-col items-center justify-center w-full ">
+        <div className="w-full md:flex md:flex-col md:items-center md:justify-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ function ContactUs() {
               >
                 <input
                   type="text"
-                  className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
+                  className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d] outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
                   placeholder="Name"
                 />
               </motion.div>
@@ -82,7 +82,7 @@ function ContactUs() {
                 Contact Us
               </h1>
             </div>
-            <div className="flex flex-row items-center justify-between px-6 md:px-0 md:items-start xl:flex-col md: gap-y-5">
+            <div className="flex flex-row items-center justify-between md:px-0 md:items-start xl:flex-col md: gap-y-5">
               <div className="flex flex-col justify-center xl:justify-between gap-x-10">
                 <h1 className="text-2xl font-bold text-purple-900">Phone</h1>
                 <div className="flex flex-col mt-2 text-sm md:text-base xl:text-lg">
@@ -115,7 +115,7 @@ function ContactUs() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-center px-6 md:px-0 xl:justify-between gap-x-10">
+            <div className="flex flex-col justify-center md:px-0 xl:justify-between gap-x-10">
               <h1 className="text-2xl font-bold text-purple-900">Socials</h1>
               <div className="flex flex-row mt-8 text-3xl gap-x-10">
                 <Link to={`${ContactSect[0]?.facebook}`}>

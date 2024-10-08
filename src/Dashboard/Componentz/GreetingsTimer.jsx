@@ -25,7 +25,7 @@ const GreetingsTimer = ({ Username }) => {
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        Hello {greeting}! {Username}
+        {greeting}! {Username}
       </motion.h1>
     </motion.div>
   );
