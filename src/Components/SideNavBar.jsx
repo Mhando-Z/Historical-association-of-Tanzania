@@ -9,7 +9,8 @@ import { FaNewspaper } from "react-icons/fa6";
 import { HiSpeakerphone } from "react-icons/hi";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import UserContext from "../Context/UserContext";
-import { BsPersonSquare } from "react-icons/bs";
+import { FiLogIn } from "react-icons/fi";
+import { MdPersonAddAlt1 } from "react-icons/md";
 import ProfilePictures from "../Dashboard/Componentz/ProfilePicture";
 
 const SideNavBar = ({ open, setOpen }) => {
@@ -52,7 +53,7 @@ const SideNavBar = ({ open, setOpen }) => {
           </div>
           <TfiClose
             onClick={closeMenu}
-            className="text-2xl ring-2 rounded-full ring-[#a56322] cursor-pointer text-[#a56322]"
+            className="text-xl text-gray-400 cursor-pointer"
           />
         </div>
         <nav className="flex flex-col p-4 space-y-2 overflow-y-auto">
@@ -126,24 +127,21 @@ const SideNavBar = ({ open, setOpen }) => {
                 </div>
               </Link>
             ) : (
-              <div className="flex flex-col w-full mt-10 gap-y-5">
-                <div>
-                  <BsPersonSquare className="h-auto w-[230px] opacity-25" />
-                </div>
-                <div className="flex flex-row-reverse justify-between w-full">
-                  <Link
-                    to={`Login/`}
-                    className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-[#b67a3d] text-white"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    to={`Register/`}
-                    className="px-5 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-blue-700 text-white"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
+              <div className="flex flex-col w-full mt-10 gap-y-2">
+                <Link
+                  to={`Register/`}
+                  className="px-5 py-2 flex items-center gap-x-2 flex-row md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-blue-600 text-white"
+                >
+                  <MdPersonAddAlt1 />
+                  Sign Up
+                </Link>
+                <Link
+                  to={`Login/`}
+                  className="px-5 flex items-center flex-row gap-x-2 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-green-600 text-white"
+                >
+                  <FiLogIn />
+                  Sign In
+                </Link>
               </div>
             )}
           </div>

@@ -152,7 +152,7 @@ function NavBar() {
           </div>
         </div>
       </div>
-
+      {/* sidebar toggler */}
       <SideNavBar open={open} setOpen={setOpen} />
     </div>
   );
