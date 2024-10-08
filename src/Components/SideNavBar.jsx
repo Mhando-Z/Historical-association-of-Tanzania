@@ -129,6 +129,7 @@ const SideNavBar = ({ open, setOpen }) => {
             ) : (
               <div className="flex flex-col w-full mt-10 gap-y-2">
                 <Link
+                  onClick={closeMenu}
                   to={`Register/`}
                   className="px-5 py-2 flex items-center gap-x-2 flex-row md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-blue-600 text-white"
                 >
@@ -136,6 +137,7 @@ const SideNavBar = ({ open, setOpen }) => {
                   Sign Up
                 </Link>
                 <Link
+                  onClick={closeMenu}
                   to={`Login/`}
                   className="px-5 flex items-center flex-row gap-x-2 py-2 md:text-sm xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded bg-green-600 text-white"
                 >

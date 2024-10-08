@@ -193,7 +193,7 @@ const UserRegister = ({ handleRegistration }) => {
               transition={{ type: "spring", ease: "easeOut" }}
               className="flex flex-col w-full md:w-auto"
             >
-              <button className="bg-[#b67a3d] rounded-3xl text-white px-6 sm:py-2 py-1 hover:bg-[#d79f67] transition-colors">
+              <button className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1 hover:bg-[#d79f67] transition-colors">
                 Register
               </button>
             </motion.div>
