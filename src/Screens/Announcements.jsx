@@ -57,7 +57,11 @@ export default function Announcements() {
   }
   return (
     <motion.div
-      className="mb-20 mt-28"
+      className={`${
+        locations?.pathname === "/Dashboard/UserHome/"
+          ? "mb-28"
+          : "mb-20 mt-28 "
+      }`}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
