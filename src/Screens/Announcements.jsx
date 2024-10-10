@@ -49,9 +49,9 @@ export default function Announcements() {
   // Fallback UI when there are no reviews
   if (!AnnounceSect || AnnounceSect.length === 0) {
     return (
-      <div className="bg-white">
-        <Dots color="#b67a3d" size={20} speed={0.7} animating={true} />
+      <div className="flex items-center justify-center min-h-screen bg-white gap-x-2 ">
         <h1>No posted Announcements....</h1>
+        <Dots color="#b67a3d" size={20} speed={0.7} animating={true} />
       </div>
     );
   }
