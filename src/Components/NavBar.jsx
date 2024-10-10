@@ -170,19 +170,19 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black">
           Events
           <ChevronDownIcon className="w-5 h-5 text-black" aria-hidden="true" />
-        </MenuButton>
+        </Menu.Button>
       </div>
 
-      <MenuItems
+      <Menu.Items
         transition
-        className="absolute right-0 z-10 mt-4 w-56 origin-top-right divide-y bg-opacity-60 hover:bg-opacity-85 divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+        className="absolute right-0 z-10 w-56 mt-4 transition origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg bg-opacity-60 hover:bg-opacity-85 ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
         <div className="py-1">
-          <MenuItem>
-            {({ focus }) => (
+          <Menu.Item>
+            {({ active }) => (
               <motion.div>
                 <NavLink
                   to={"Announcements/"}
@@ -191,31 +191,34 @@ export function Events() {
                       ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
                       : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
                   }
+                  onClick={scrollToTop} // The menu will close automatically after click
                 >
                   Announcements
                 </NavLink>
               </motion.div>
             )}
-          </MenuItem>
-          <MenuItem>
-            {({ focus }) => (
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
               <motion.div>
                 <NavLink
-                  onClick={scrollToTop}
                   to={"Gallery/"}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-lg xl:text-xl"
+                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
                       : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
                   }
+                  onClick={() => {
+                    scrollToTop();
+                  }} // The menu will close automatically after click
                 >
                   Gallery
                 </NavLink>
               </motion.div>
             )}
-          </MenuItem>
+          </Menu.Item>
         </div>
-      </MenuItems>
+      </Menu.Items>
     </Menu>
   );
 }
