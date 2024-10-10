@@ -4,6 +4,7 @@ import HomePageContext from "../Context/HomePageContext";
 import moment from "moment";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
+import { Dots } from "react-activity";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -71,6 +72,15 @@ function ResourcePublication() {
   const imgHoverEffect = {
     hover: { scale: 1 },
   };
+
+  if (!ResourcesSect || ResourcesSect.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white gap-x-2 ">
+        <h1>No post....</h1>
+        <Dots color="#b67a3d" size={20} speed={0.7} animating={true} />
+      </div>
+    );
+  }
 
   return (
     <motion.div
