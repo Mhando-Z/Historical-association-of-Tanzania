@@ -18,7 +18,7 @@ function ProfileIcon({ data }) {
               initial={{ initial: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
-              src={data?.profile.profile_picture}
+              src={`${data?.profile.profile_picture}`}
               alt="Profile"
               className="object-cover object-top shadow-lg ring-1 size-10  ring-[#b67a3d] rounded-full max-w-screen"
             />
