@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
+// icons imports
+import { ImCamera } from "react-icons/im";
 
 function Gallery() {
   const { gallerySect } = useContext(HomePageContext);
@@ -90,8 +92,13 @@ function Gallery() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen mt-28">
-      <div className="container flex flex-col px-2 mx-auto border-l-4 border-black bg-gray-50">
-        <h1 className="text-2xl font-lobstyled md:text-3xl">Gallery</h1>
+      <div className="container flex flex-col mx-auto">
+        <h1 className="flex flex-row items-center mb-2 text-2xl font-lobstyled md:text-3xl gap-x-2">
+          Gallery
+          <span>
+            <ImCamera className="text-gray-500" />
+          </span>
+        </h1>
         <p className="max-w-5xl">
           This section showcases a curated collection of images from various
           conferences and events. Each photo captures key moments, highlighting
@@ -201,7 +208,7 @@ function Gallery() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-2 text-white rounded-3xl bg-[#b67a3d] hover:bg-[#a56a2e]"
+              className="px-5 py-1.5 text-white rounded-3xl bg-[#b67a3d] hover:bg-[#a56a2e]"
             >
               More
             </motion.button>
