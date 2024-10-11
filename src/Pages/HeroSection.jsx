@@ -57,6 +57,9 @@ function HeroSection() {
     });
   };
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div className="relative flex">
       <div className="flex flex-col min-h-screen">
@@ -74,7 +77,7 @@ function HeroSection() {
             className="relative overflow-hidden aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7"
           >
             <motion.img
-              src={`http://127.0.0.1:8000/${heroSect[value]?.image}`}
+              src={`${IMAGE_BASE_URL}${heroSect[value]?.image}`}
               alt={heroSect[value]?.title}
               onError={(e) => (e.target.src = "/path/to/default-image.jpg")} // Fallback image
               initial={{ x: 300, opacity: 0 }}

@@ -98,6 +98,9 @@ export default function UserLogin() {
     // Cleanup the interval on unmount
   }, [direction, gallerySect.length]);
 
+  // image Url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div className="flex flex-row min-h-screen overflow-y-hidden">
       <div className="h-screen relative hidden md:flex xl:w-[900px] lg:w-[600px] lg:flex bg-gradient-to-r from-[#b67a3d] to-transparent">
@@ -107,7 +110,7 @@ export default function UserLogin() {
           </div>
         ) : (
           <img
-            src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
+            src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
             alt={gallerySect[1]?.title}
             className="object-cover object-center w-full h-screen"
           />

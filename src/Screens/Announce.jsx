@@ -63,6 +63,9 @@ function Announce() {
     });
   };
 
+  // image Url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <motion.div
       className="container flex flex-col mx-auto mt-24 mb-24 gap-y-5"
@@ -91,7 +94,7 @@ function Announce() {
           variants={imageVariants}
         >
           <img
-            src={`http://127.0.0.1:8000/${Announcement?.image}`}
+            src={`${IMAGE_BASE_URL}${Announcement?.image}`}
             alt={Announcement?.title}
             loading="lazy"
             className="object-cover h-[300px] md:h-[400px] rounded-xl max-w-screen aspect-video"
@@ -136,7 +139,7 @@ function Announce() {
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
                   <div className="w-full">
                     <motion.img
-                      src={`http://127.0.0.1:8000/${Announcement?.image2}`}
+                      src={`${IMAGE_BASE_URL}${Announcement?.image2}`}
                       alt={Announcement?.title}
                       loading="lazy"
                       className="object-cover w-full aspect-video "
@@ -164,7 +167,7 @@ function Announce() {
             >
               <motion.img
                 onClick={() => handleSelection(post.id)}
-                src={`http://127.0.0.1:8000/${post.image}`}
+                src={`${IMAGE_BASE_URL}${post.image}`}
                 alt={post.title}
                 loading="lazy"
                 className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"

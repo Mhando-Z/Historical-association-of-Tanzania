@@ -55,6 +55,9 @@ export default function Announcements() {
       </div>
     );
   }
+  // image link
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <motion.div
       className={`${
@@ -91,7 +94,7 @@ export default function Announcements() {
               variants={itemVariants}
             >
               <motion.img
-                src={`http://127.0.0.1:8000/${post.image}`}
+                src={`${IMAGE_BASE_URL}${post.image}`}
                 alt={post.title}
                 loading="lazy"
                 className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"

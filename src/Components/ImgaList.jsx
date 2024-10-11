@@ -17,6 +17,10 @@ export default function ImageList({ data }) {
     setValue(index);
     setOpen(!open);
   };
+
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div className="relative bg-white">
       <div className="">
@@ -38,7 +42,7 @@ export default function ImageList({ data }) {
                 <AnimatePresence mode="wait">
                   <motion.img
                     exit={{ opacity: 0, x: "-200vw" }}
-                    src={`http://127.0.0.1:8000/${product.image}`}
+                    src={`${IMAGE_BASE_URL}${product.image}`}
                     alt={product.name}
                     loading="lazy"
                     className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
@@ -53,7 +57,7 @@ export default function ImageList({ data }) {
                       type: "spring",
                       ease: "easeOut",
                     }}
-                    src={`http://127.0.0.1:8000/${product.image}`}
+                    src={`${IMAGE_BASE_URL}${product.image}`}
                     alt="staffname"
                     className="object-cover object-top mt-5 rounded-full ring-2 ring-white size-32"
                   />
@@ -93,7 +97,11 @@ export default function ImageList({ data }) {
         <Dialogue value={value} open={open} setOpen={setOpen} />
       </div>
       <div
-        className={`${data?.length <= 8 ? "hidden" : "flex justify-end mt-20 items-end w-full "}`}
+        className={`${
+          data?.length <= 8
+            ? "hidden"
+            : "flex justify-end mt-20 items-end w-full "
+        }`}
       >
         <Link
           onClick={handleCount}

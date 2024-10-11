@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 
 export default function Partners() {
   const { companies } = useContext(HomePageContext);
+
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div className={`mt-20 mb-20 ${companies?.length === 0 ? "hidden" : ""}`}>
       <div className="container flex flex-col mx-auto">
@@ -24,13 +28,13 @@ export default function Partners() {
               >
                 <img
                   className="object-cover h-auto transition-all duration-500 ease-in max-w-screen lg:h-36 group-hover:scale-75"
-                  src={`http://127.0.0.1:8000/${dt?.image}`}
+                  src={`${IMAGE_BASE_URL}${dt?.image}`}
                   alt={dt.title}
                 />
                 <div className="absolute hidden items-center justify-center  group-hover:flex top-0 right-0 left-0 bottom-0 bg-gradient-to-t from-[#b67a3d] rounded-lg  via-95% via-transparent to-transparent">
                   <img
                     className="object-cover h-auto transition-all duration-500 ease-in max-w-screen lg:h-36 group-hover:scale-75"
-                    src={`http://127.0.0.1:8000/${dt?.image}`}
+                    src={`${IMAGE_BASE_URL}${dt?.image}`}
                     alt={dt.title}
                   />
                 </div>

@@ -12,9 +12,15 @@ function PresidentSpeech() {
       behavior: "smooth",
     });
   };
+
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div
-      className={`relative px-6 ${PresidentSect?.length === 0 ? "hidden" : ""} mt-40 shadow-md sm:mt-32 p-14 md:py-20 md:mt-20 bg-opacity-15`}
+      className={`relative px-6 ${
+        PresidentSect?.length === 0 ? "hidden" : ""
+      } mt-40 shadow-md sm:mt-32 p-14 md:py-20 md:mt-20 bg-opacity-15`}
     >
       <div className="container flex flex-col mx-auto md:flex-row">
         {PresidentSect?.slice(0, 1).map((dt) => {
@@ -33,7 +39,7 @@ function PresidentSpeech() {
               >
                 <div className="w-full overflow-hidden bg-gray-200 rounded-lg aspect-h-1 aspect-w-1 md:rounded-xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={`http://127.0.0.1:8000/${dt.image}`}
+                    src={`${IMAGE_BASE_URL}${dt.image}`}
                     alt={dt?.subtitle}
                     className="h-[400px] w-full shadow-lg object-cover object-top md:object-center group-hover:opacity-75"
                   />

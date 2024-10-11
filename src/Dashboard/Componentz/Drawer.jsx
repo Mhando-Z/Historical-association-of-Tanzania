@@ -422,6 +422,9 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     e.preventDefault();
   };
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
       <DialogBackdrop
@@ -535,7 +538,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
@@ -769,7 +772,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
@@ -868,7 +871,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
@@ -966,12 +969,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl flex flex-row sm:w-[400px] gap-x-2 w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image2}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image2}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
@@ -1050,12 +1053,12 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl flex flex-row sm:w-[400px] gap-x-2 w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image2}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image2}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover aspect-square rounded-xl w-full object-center"
                                   />
@@ -1115,7 +1118,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
@@ -1175,7 +1178,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />
@@ -1331,7 +1334,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
                                   <img
-                                    src={`http://127.0.0.1:8000/${data[0]?.image}`}
+                                    src={`${IMAGE_BASE_URL}${data[0]?.image}`}
                                     alt={data[0]?.title}
                                     className="size-40 h-[300px] object-cover rounded-xl w-full object-center"
                                   />

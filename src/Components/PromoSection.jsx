@@ -42,6 +42,9 @@ export default function PromoSect() {
     navigate("/Register/");
   };
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div className="relative min-h-screen mt-20 overflow-hidden bg-white">
       {ConferenceSect?.length === 0 ? (
@@ -101,7 +104,7 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`http://127.0.0.1:8000/${item?.image}`}
+                              src={`${IMAGE_BASE_URL}${item?.image}`}
                               alt={`Hat conference pictures ${index}`}
                               className="object-cover object-center w-full h-full"
                             />
@@ -123,7 +126,7 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`http://127.0.0.1:8000/${item?.image}`}
+                              src={`${IMAGE_BASE_URL}${item?.image}`}
                               alt={`Hat conference pictures ${index + 2}`}
                               className="object-cover object-center w-full h-full"
                             />
@@ -145,7 +148,7 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`http://127.0.0.1:8000/${item?.image}`}
+                              src={`${IMAGE_BASE_URL}${item?.image}`}
                               alt={`Hat conference pictures ${index + 5}`}
                               className="object-cover object-center w-full h-full"
                             />

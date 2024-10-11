@@ -82,6 +82,9 @@ function ResourcePublication() {
     );
   }
 
+  //image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <motion.div
       className="flex flex-col min-h-screen mt-20 mb-28"
@@ -97,7 +100,7 @@ function ResourcePublication() {
         >
           <div className="md:h-[30rem] h-[20rem] col-span-2 relative">
             <motion.img
-              src={`http://127.0.0.1:8000/${ResourcesSect[value]?.image}`}
+              src={`${IMAGE_BASE_URL}${ResourcesSect[value]?.image}`}
               alt={`News picture`}
               loading="lazy"
               className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -127,7 +130,7 @@ function ResourcePublication() {
                 onClick={() => handleSelect(data.id)}
               >
                 <motion.img
-                  src={`http://127.0.0.1:8000/${data?.image}`}
+                  src={`${IMAGE_BASE_URL}${data?.image}`}
                   alt={ResourcesSect[value]?.title}
                   loading="lazy"
                   className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -162,7 +165,7 @@ function ResourcePublication() {
             >
               <div className="h-[10rem]">
                 <motion.img
-                  src={`http://127.0.0.1:8000/${data?.image}`}
+                  src={`${IMAGE_BASE_URL}${data?.image}`}
                   alt={ResourcesSect[value]?.title}
                   loading="lazy"
                   className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"

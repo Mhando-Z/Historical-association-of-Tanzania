@@ -10,6 +10,10 @@ import { Link } from "react-router-dom";
 
 export default function Dialogue({ value, open, setOpen }) {
   const { StaffsSect } = useContext(HomePageContext);
+
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <Dialog className="relative z-10" open={open} onClose={setOpen}>
       <DialogBackdrop
@@ -27,7 +31,7 @@ export default function Dialogue({ value, open, setOpen }) {
               <div className="flex flex-col sm:flex sm:items-start gap-y-4">
                 <div className="flex flex-col w-full overflow-hidden aspect-h-1 md:flex-row gap-x-14 aspect-w-1 rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={`http://127.0.0.1:8000/${StaffsSect[value]?.image}`}
+                    src={`${IMAGE_BASE_URL}${StaffsSect[value]?.image}`}
                     alt={StaffsSect[value]?.name}
                     className="h-[400px] object-cover object-center group-hover:opacity-75"
                   />

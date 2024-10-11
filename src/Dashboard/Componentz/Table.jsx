@@ -53,6 +53,9 @@ const Table = ({ data }) => {
     }
   );
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   const COLUMNS = [
     {
       label: "Image",
@@ -62,7 +65,7 @@ const Table = ({ data }) => {
             initial={{}}
             whileHover={{ height: "150px" }}
             transition={{ duration: 1.5, type: "spring", ease: "easeOut" }}
-            src={`http://127.0.0.1:8000/${item.image}`}
+            src={`${IMAGE_BASE_URL}${item.image}`}
             alt={item.title || item.name}
             className="object-cover object-center w-full size-24 rounded-xl"
           />
@@ -84,10 +87,10 @@ const Table = ({ data }) => {
         data[0]?.subtitle !== undefined
           ? "Subtitle"
           : data[0]?.position !== undefined
-            ? "position"
-            : data[0]?.author !== undefined
-              ? "Author"
-              : "",
+          ? "position"
+          : data[0]?.author !== undefined
+          ? "Author"
+          : "",
       renderCell: (item) => (
         <div className="flex flex-col">
           <div className="xl:text-lg w-[250px]">

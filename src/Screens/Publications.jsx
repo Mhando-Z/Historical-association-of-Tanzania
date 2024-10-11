@@ -74,6 +74,9 @@ function Publications() {
     });
   };
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <motion.div
       className="container flex flex-col mx-auto mt-24 mb-48 gap-y-5"
@@ -102,7 +105,7 @@ function Publications() {
           variants={imageVariants}
         >
           <img
-            src={`http://127.0.0.1:8000/${publication.image}`}
+            src={`${IMAGE_BASE_URL}${publication.image}`}
             alt={publication.title}
             loading="lazy"
             className="object-cover h-[300px] md:h-[400px] rounded-xl max-w-screen aspect-video"
@@ -153,7 +156,7 @@ function Publications() {
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
                   <div className="w-full">
                     <motion.img
-                      src={`http://127.0.0.1:8000/${publication.image2}`}
+                      src={`${IMAGE_BASE_URL}${publication.image2}`}
                       alt={publication.title}
                       loading="lazy"
                       className="object-cover w-full aspect-video "
@@ -170,7 +173,7 @@ function Publications() {
                       <iframe
                         title={publication.title}
                         className="w-full aspect-video"
-                        src={`https://www.youtube.com/embed/${new URL(
+                        src={`${IMAGE_BASE_URL}${new URL(
                           publication.video_url
                         ).searchParams.get("v")}`}
                         allowFullScreen
@@ -227,7 +230,7 @@ function Publications() {
             >
               <motion.img
                 onClick={() => handleSelection(post.id)}
-                src={`http://127.0.0.1:8000/${post.image}`}
+                src={`${IMAGE_BASE_URL}${post.image}`}
                 alt={post.title}
                 loading="lazy"
                 className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"

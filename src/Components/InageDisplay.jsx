@@ -6,6 +6,10 @@ import { RxCrossCircled } from "react-icons/rx";
 
 export default function ImageDisplay({ value, open, setOpen }) {
   const { gallerySect } = useContext(HomePageContext);
+
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <Dialog className="relative z-10" open={open} onClose={setOpen}>
       <DialogBackdrop
@@ -21,21 +25,21 @@ export default function ImageDisplay({ value, open, setOpen }) {
           >
             <div className="bg-slate-100 xl:h-[700px] h-[600px] py-2  px-2">
               <div className="flex sm:flex sm:items-start gap-y-4">
-                <div className="aspect-h-1 flex w-full md:flex-row flex-col gap-x-14 aspect-w-1 overflow-hidden rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
+                <div className="flex flex-col w-full overflow-hidden aspect-h-1 md:flex-row gap-x-14 aspect-w-1 rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={`http://127.0.0.1:8000/${gallerySect[value]?.image}`}
+                    src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
                     alt={gallerySect[value]?.title}
-                    className="h-auto object-cover object-center group-hover:opacity-75"
+                    className="object-cover object-center h-auto group-hover:opacity-75"
                   />
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
               <Link
-                className="inline-flex w-full justify-center rounded-full  bg-red-800  font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                className="inline-flex justify-center w-full font-semibold text-white bg-red-800 rounded-full shadow-sm sm:ml-3 sm:w-auto"
                 onClick={() => setOpen(false)}
               >
-                <RxCrossCircled className="text-4xl xl:text-4xl font-bold" />
+                <RxCrossCircled className="text-4xl font-bold xl:text-4xl" />
               </Link>
             </div>
           </DialogPanel>

@@ -40,6 +40,9 @@ function PreviewDetails() {
       </div>
     );
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <div>
       <div>
@@ -56,7 +59,7 @@ function PreviewDetails() {
               {user[0]?.profile?.profile_picture !== null ? (
                 <>
                   <img
-                    src={`http://127.0.0.1:8000/${user[0]?.profile.profile_picture}`}
+                    src={`${IMAGE_BASE_URL}${user[0]?.profile.profile_picture}`}
                     alt="Profile"
                     className="object-cover object-top -lg ring-1 size-20  ring-[#b67a3d] rounded-full max-w-screen"
                   />

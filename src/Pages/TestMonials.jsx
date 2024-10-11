@@ -50,7 +50,7 @@ const TestMonials = () => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
-          src={`http://127.0.0.1:8000/${profile?.profile_picture}`}
+          src={`https://hat-dashboard.onrender.com/${profile?.profile_picture}`}
           alt="Profile"
           className="object-cover object-top size-28 shadow-lg ring-1 ring-[#b67a3d] rounded-full max-w-screen"
         />
@@ -97,6 +97,9 @@ const TestMonials = () => {
       </div>
     );
   }
+
+  // image url
+  // const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
 
   return (
     <div className="py-10 bg-white">

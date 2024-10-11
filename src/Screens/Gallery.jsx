@@ -86,8 +86,7 @@ function Gallery() {
     );
   }
 
-  const IMAGE_BASE_URL =
-    process.env.REACT_APP_IMAGE_BASE_URL || "http://127.0.0.1:8000/";
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
 
   return (
     <div className="flex flex-col justify-center min-h-screen mt-28">

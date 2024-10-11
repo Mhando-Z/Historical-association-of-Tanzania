@@ -32,6 +32,9 @@ function AboutUs() {
     });
   };
 
+  // image url
+  const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+
   return (
     <motion.div
       className="container py-16 mx-auto "
@@ -94,7 +97,7 @@ function AboutUs() {
         <div className="flex flex-col w-full">
           <motion.div className=" rounded-xl" variants={itemVariants}>
             <img
-              src={`http://127.0.0.1:8000/${AboutUSSect[0]?.image}`}
+              src={`${IMAGE_BASE_URL}${AboutUSSect[0]?.image}`}
               alt="Historical Association of Tanzania"
               className="w-full md:h-full  h-[450px] object-cover shadow-lg rounded-lg md:rounded-xl"
             />
