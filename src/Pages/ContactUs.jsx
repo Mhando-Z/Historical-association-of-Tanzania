@@ -78,13 +78,15 @@ function ContactUs() {
           {/* contact details */}
           <div className="flex flex-col gap-y-10">
             <div className="flex mb-3">
-              <h1 className="xl:text-5xl lg:text-4xl text-3xl font-black text-[#b67a3d]">
+              <h1 className="xl:text-5xl md:text-4xl text-3xl font-black text-[#b67a3d]">
                 Contact Us
               </h1>
             </div>
             <div className="flex flex-row items-center justify-between md:px-0 md:items-start xl:flex-col md: gap-y-5">
               <div className="flex flex-col justify-center xl:justify-between gap-x-10">
-                <h1 className="text-2xl font-bold text-purple-900">Phone</h1>
+                <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
+                  Phone
+                </h1>
                 <div className="flex flex-col mt-2 text-sm md:text-base xl:text-lg">
                   <h5 className="font-semibold">
                     {ContactSect[0]?.phoneNumber1}
@@ -100,8 +102,10 @@ function ContactUs() {
                   </h5>
                 </div>
               </div>
-              <div className="flex flex-col justify-center px-6 md:px-0 xl:justify-between gap-x-10">
-                <h1 className="text-2xl font-bold text-purple-900">Emails</h1>
+              <div className="flex flex-col justify-center md:px-0 xl:justify-between gap-x-10">
+                <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
+                  Emails
+                </h1>
                 <div className="flex flex-col mt-1 md:text-base xl:text-lg">
                   <Link className="font-semibold ">
                     {ContactSect[0]?.email1}
@@ -116,7 +120,9 @@ function ContactUs() {
               </div>
             </div>
             <div className="flex flex-col justify-center md:px-0 xl:justify-between gap-x-10">
-              <h1 className="text-2xl font-bold text-purple-900">Socials</h1>
+              <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
+                Socials
+              </h1>
               <div className="flex flex-row mt-8 text-3xl gap-x-10">
                 <Link to={`${ContactSect[0]?.facebook}`}>
                   <BsFacebook className="text-blue-600 duration-1000 animate-bounce" />

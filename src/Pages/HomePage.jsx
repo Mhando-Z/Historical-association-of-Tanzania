@@ -29,7 +29,6 @@ function HomePage() {
       <Staffs />
       <div className="mt-16"></div>
       <FAQSection />
-      <div className="mt-24 "></div>
       {/* testimonials */}
       <TestMonials />
       <div className="mt-48"></div>

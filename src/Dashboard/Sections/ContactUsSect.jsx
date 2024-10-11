@@ -626,7 +626,7 @@ function ContactUsSect() {
                   {/* Policy Section */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="Policy5"
+                      htmlFor="Policy1"
                       className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                     >
                       Policy1
@@ -695,6 +695,25 @@ function ContactUsSect() {
                         defaultValue={PolicieSect[0]?.policy4}
                         name="policy4"
                         id="policy4"
+                        autoComplete="given-name"
+                        className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="policy5"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                    >
+                      policy5
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange1}
+                        defaultValue={PolicieSect[0]?.policy5}
+                        name="policy5"
+                        id="policy5"
                         autoComplete="given-name"
                         className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />
@@ -781,6 +800,25 @@ function ContactUsSect() {
                         defaultValue={TermsSect[0]?.term4}
                         name="term4"
                         id="term4"
+                        autoComplete="given-name"
+                        className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="term5"
+                      className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                    >
+                      term5
+                    </label>
+                    <div className="mt-2">
+                      <textarea
+                        type="text"
+                        onChange={handleChange2}
+                        defaultValue={TermsSect[0]?.term5}
+                        name="term5"
+                        id="term5"
                         autoComplete="given-name"
                         className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                       />

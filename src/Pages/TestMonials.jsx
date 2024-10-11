@@ -89,20 +89,12 @@ const TestMonials = () => {
   };
 
   // Fallback UI when there are no reviews
-  if (!userReviews || userReviews.length === 0) {
-    return (
-      <div className="bg-white">
-        {/* <h2 className="text-3xl font-bold text-orange-500">TESTIMONIALS</h2>
-        <p className="text-gray-600">No reviews available at the moment.</p> */}
-      </div>
-    );
+  if (!userReviews || userReviews?.length === 0) {
+    return <div className="bg-white"></div>;
   }
 
-  // image url
-  // const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
-
   return (
-    <div className="py-10 bg-white">
+    <div className="py-10 mt-24 bg-white">
       <h2 className="mb-4 text-3xl font-bold text-center text-[#b67a3d]">
         TESTIMONIALS
       </h2>

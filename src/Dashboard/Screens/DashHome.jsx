@@ -109,7 +109,7 @@ function DashHome() {
             animate={{ opacity: 1 }}
             className="flex flex-col mt-16 mb-14"
           >
-            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase border-l-8 md:text-xl">
+            <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase md:text-xl">
               <FaChartSimple className="text-xl" />
               <span className="ml-2">User statistics</span>
             </h1>
@@ -172,9 +172,9 @@ function DashHome() {
             </div>
           </motion.div>
           {/* users table */}
-          <div className="shadow">
+          <>
             <UserTable data={users} />
-          </div>
+          </>
         </div>
       ) : (
         ""

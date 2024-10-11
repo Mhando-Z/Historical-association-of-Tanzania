@@ -40,7 +40,7 @@ const UserTable = ({ data }) => {
 
   return (
     <div className="">
-      <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase border-l-8 md:text-xl">
+      <h1 className="flex flex-row items-center py-3 mb-5 font-bold uppercase md:text-xl">
         <ImTable className="text-xl" />
         <span className="ml-2">User Table</span>
       </h1>
@@ -55,7 +55,7 @@ const UserTable = ({ data }) => {
       </div>
       <div className="overflow-x-auto h-[600px]">
         <div className="relative">
-          <table className="min-w-full border border-gray-300 shadow bg-slate-100">
+          <table className="min-w-full border border-gray-300 bg-slate-100">
             <thead className="sticky top-0 bg-gray-200">
               <tr>
                 <th className="px-4 py-2 text-left border-b">ID</th>
@@ -110,7 +110,7 @@ const UserTable = ({ data }) => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.8 }}
                         transition={{ type: "spring", ease: "easeOut" }}
-                        className="bg-slate-200 rounded-3xl ring-1 ring-[#b67a3d] shadow font-medium py-2 px-6"
+                        className="bg-slate-200 rounded-3xl ring-1 ring-[#b67a3d]   font-medium py-2 px-6"
                       >
                         View
                       </motion.button>

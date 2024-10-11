@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
-import { Dots } from "react-activity";
 import { motion } from "framer-motion";
 
 export default function Partners() {
@@ -9,10 +8,15 @@ export default function Partners() {
   // image url
   const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
 
+  // Fallback UI when there are no reviews
+  if (!companies || companies?.length === 0) {
+    return <div className="bg-white"></div>;
+  }
+
   return (
     <div className={`mt-20 mb-20 ${companies?.length === 0 ? "hidden" : ""}`}>
       <div className="container flex flex-col mx-auto">
-        <h2 className="xl:text-5xl  text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
+        <h2 className="xl:text-5xl text-3xl md:text-4xl mb-5 md:mb-12 font-black leading-8 text-[#b67a3d]">
           Our Partners
         </h2>
         <div className="relative grid grid-flow-col mt-10 overflow-x-auto overflow-y-hidden gap-x-4">
@@ -53,13 +57,6 @@ export default function Partners() {
               </motion.div>
             );
           })}
-          {companies?.length === 0 ? (
-            <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center ">
-              <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
     </div>

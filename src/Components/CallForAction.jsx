@@ -40,13 +40,13 @@ export default function CallForAction() {
             </p>
             <div className="flex items-center justify-start mt-10 gap-x-6">
               <Link
-                href="#"
+                to={"/Register/"}
                 className="rounded-md bg-white px-3.5 py-2.5 text-sm font-medium text-black"
               >
                 Join Now
               </Link>
               <Link
-                href="#"
+                to={"/AboutUs/"}
                 className="text-sm font-semibold leading-6 text-white"
               >
                 Learn more <span aria-hidden="true">→</span>

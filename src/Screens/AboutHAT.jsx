@@ -34,7 +34,7 @@ function AboutHAT() {
         {/* About Us Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="mb-4 text-2xl font-semibold text-gray-800"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -107,7 +107,7 @@ function AboutHAT() {
         {/* Vision Section */}
         <section className="mb-16">
           <motion.h2
-            className="flex flex-row items-center mb-4 text-3xl font-semibold text-gray-800 gap-x-2"
+            className="flex flex-row items-center mb-4 text-2xl font-semibold text-gray-800 gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -180,7 +180,7 @@ function AboutHAT() {
         {/* Mission Section */}
         <section className="mb-16">
           <motion.h2
-            className="flex flex-row items-center mb-4 text-3xl font-semibold text-gray-800 gap-x-2"
+            className="flex flex-row items-center mb-4 text-2xl font-semibold text-gray-800 gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -288,7 +288,7 @@ function AboutHAT() {
         {/* Membership Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="mb-4 text-2xl font-semibold text-gray-800"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -337,7 +337,7 @@ function AboutHAT() {
         <section className="mb-16">
           {/* Section Title */}
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="mb-4 text-2xl font-semibold text-gray-800"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -445,7 +445,7 @@ function AboutHAT() {
         <section className="mb-16">
           {/* Section Title */}
           <motion.h2
-            className="mb-4 text-3xl font-semibold text-gray-800"
+            className="mb-4 text-2xl font-semibold text-gray-800"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
