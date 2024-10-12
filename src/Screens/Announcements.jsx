@@ -30,16 +30,8 @@ export default function Announcements() {
   const navigate = useNavigate();
   const locations = useLocation();
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const handleSelect = (id) => {
     setAnnounceId(id);
-    scrollToTop();
     if (locations?.pathname === "/Dashboard/UserHome/") {
       navigate("/Dashboard/Announce/");
     } else {
