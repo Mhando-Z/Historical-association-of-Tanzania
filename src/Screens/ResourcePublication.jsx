@@ -131,7 +131,7 @@ function ResourcePublication() {
                 <h1 className="font-semibold text-white text-md md:text-lg line-clamp-3 xl:text-xl">
                   {ResourcesSect[value]?.title}
                 </h1>
-                <p className="max-w-xl text-xs text-gray-300 md:text-sm line-clamp-2 md:line-clamp-none">
+                <p className="max-w-xl text-xs text-gray-300 md:text-sm line-clamp-3">
                   {ResourcesSect[value]?.description}
                 </p>
               </div>
