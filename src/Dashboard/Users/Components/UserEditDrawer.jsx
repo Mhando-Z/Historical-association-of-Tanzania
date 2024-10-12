@@ -36,11 +36,9 @@ export default function UserEditDrawer({ open, setOpen }) {
                   </button>
                 </div>
               </TransitionChild>
-              <div className="flex flex-col h-full py-6 overflow-y-scroll bg-gray-100 shadow-xl ">
+              <div className="flex flex-col h-full py-6 overflow-y-scroll bg-gray-100">
                 <div className="px-4 sm:px-6">
-                  <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
-                    Panel title
-                  </DialogTitle>
+                  <DialogTitle className="text-base font-semibold leading-6 text-gray-900"></DialogTitle>
                 </div>
                 <div className="relative flex-1 px-4 mt-6 sm:px-6">
                   {/* User edits contents */}

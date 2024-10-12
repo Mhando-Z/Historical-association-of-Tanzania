@@ -4,12 +4,17 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Dots } from "react-activity";
 import axiosInstance from "../../Context/axiosInstance";
-import ProfilePictures from "./ProfilePicture";
 import ProfileOverview from "./ProfileOverview";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import UserContext from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 import UserEditDrawer from "../Users/Components/UserEditDrawer";
+import { HiMiniCheckBadge } from "react-icons/hi2";
+// icons impots
+import stdprofile from "../../Assets/profiles/man.png";
+import stdprofile2 from "../../Assets/profiles/woman2.png";
+import manprofile from "../../Assets/profiles/man1.png";
+import womanProfile from "../../Assets/profiles/woman.png";
 
 const UserProfile = () => {
   const { userData } = useContext(UserContext);
@@ -71,10 +76,107 @@ const UserProfile = () => {
           <img
             src={`https://picsum.photos/id/${value}/1200/800`}
             alt="Bg-picha"
-            className="w-full object-cover rounded-3xl h-[18rem] md:h-[20rem] xl:h-[25rem]"
+            className="w-full object-cover rounded-3xl h-[14rem] md:h-[20rem] xl:h-[25rem]"
           />
-          <div className="flex flex-col items-center justify-center py-5 gap-y-10 md:justify-between rounded-3xl bg-slate-100 md:flex-row">
-            <ProfilePictures data={userData} />
+          <div className="flex flex-row items-center justify-between py-5 rounded-3xl bg-slate-100">
+            <div className="flex flex-row justify-between gap-x-5">
+              <div className="flex items-center justify-center ">
+                {/* profile images */}
+                {userData?.profile.profile_picture !== null ? (
+                  <>
+                    <motion.img
+                      initial={{ initial: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 1,
+                        ease: "easeInOut",
+                        type: "spring",
+                      }}
+                      src={`${userData?.profile.profile_picture}`}
+                      alt="Profile"
+                      // className="object-cover object-top   ring-1 size-60 md:size-60 ring-[#b67a3d] rounded max-w-screen"
+                      className="md:size-20 size-16 object-cover object-top ring-4 rounded-full ring-[#b67a3d] "
+                    />
+                  </>
+                ) : (
+                  <>
+                    {userData?.profile.is_student === true &&
+                    userData?.profile.gender === "male" ? (
+                      <>
+                        <img
+                          src={stdprofile}
+                          alt="userData profile"
+                          className=" h-14 md:h-20 ring-4 rounded-full    ring-[#b67a3d] "
+                        />
+                      </>
+                    ) : userData?.profile.gender === "male" ? (
+                      <img
+                        src={manprofile}
+                        alt="userData profile"
+                        className=" h-14 md:h-20 ring-4 rounded-full   ring-[#b67a3d]"
+                      />
+                    ) : userData?.profile.is_student === true &&
+                      userData?.profile.gender === "female" ? (
+                      <>
+                        <img
+                          src={stdprofile2}
+                          alt="userData profile"
+                          className=" h-14 md:h-20 ring-4 rounded-full   ring-[#b67a3d]"
+                        />
+                      </>
+                    ) : userData?.profile.gender === "female" ? (
+                      <img
+                        src={womanProfile}
+                        alt="userData profile"
+                        className=" h-14 md:h-20 ring-4 rounded-full   ring-[#b67a3d]"
+                      />
+                    ) : (
+                      <motion.img
+                        className="object-cover border-4 border-green-300 rounded-full h-14"
+                        src={`https://ui-avatars.com/api/?name=${userData?.email}`}
+                        alt="User Avatar"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    )}
+                  </>
+                )}
+              </div>
+              <div className="flex flex-col flex-grow">
+                {/* userData details and status */}
+                <h1 className="text-sm font-bold md:text-lg">
+                  {userData?.username}
+                </h1>
+                <h1 className="text-xs font-medium text-gray-700 md:text-sm xl:text-lg">
+                  {userData?.email}
+                </h1>
+                {userData?.is_staff ? (
+                  <div className="flex flex-row items-center w-full gap-x-1">
+                    <>
+                      <h1 className="font-medium ">Admin</h1>
+                    </>
+                    <HiMiniCheckBadge className="text-blue-700 md:text-xl gap-x-10" />
+                  </div>
+                ) : (
+                  <div className="flex flex-row items-center w-full gap-x-1">
+                    <>
+                      <h1 className="font-medium">User</h1>
+                    </>
+                    {userData?.profile.is_paid_membership === true &&
+                    userData?.profile.is_paid_conference ? (
+                      <HiMiniCheckBadge className="text-xl text-green-700 gap-x-10" />
+                    ) : userData?.profile.is_paid_membership === true ? (
+                      <HiMiniCheckBadge className="text-xl text-yellow-700 gap-x-10" />
+                    ) : userData?.profile.is_paid_conference === true ? (
+                      <HiMiniCheckBadge className="text-xl text-purple-700 gap-x-10" />
+                    ) : (
+                      <HiMiniCheckBadge className="text-xl text-black gap-x-10" />
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* Action buttons */}
             <div className="flex flex-col gap-y-3">
@@ -83,7 +185,7 @@ const UserProfile = () => {
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
                 onClick={handleEdit}
-                className="py-1 text-sm border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
+                className="py-1 text-xs md:text-sm border-none flex flex-row items-center justify-center text-white bg-[#b67a3d] px-3 rounded-3xl"
               >
                 <FaEdit className="mr-2" /> Edit Acc
               </motion.button>
@@ -92,7 +194,7 @@ const UserProfile = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="flex flex-row items-center justify-center px-3 py-1 text-sm text-white bg-red-600 border-none rounded-3xl"
+                className="flex flex-row items-center justify-center px-3 py-1 text-xs text-white bg-red-600 border-none md:text-sm rounded-3xl"
               >
                 <FaTrash className="mr-2" /> Account
               </motion.button>
@@ -101,7 +203,9 @@ const UserProfile = () => {
         </div>
 
         <div className="relative flex flex-grow">
+          {/* profile details overview */}
           <ProfileOverview data={userData} />
+          {/* notifications revireal */}
           {notification ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -117,7 +221,7 @@ const UserProfile = () => {
                     className="w-6 h-6 text-red-600"
                   />
                 </div>
-                <p className="text-sm">
+                <p className="text-sm text-center">
                   Are you sure you want to delete this Account? note all data
                   will be permanently removed. This action cannot be undone.
                 </p>
@@ -132,7 +236,7 @@ const UserProfile = () => {
                     }}
                     type="button"
                     onClick={handleDelete}
-                    className="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                    className="inline-flex justify-center w-full px-3 py-1 text-xs font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                   >
                     Delete
                   </motion.button>
@@ -147,7 +251,7 @@ const UserProfile = () => {
                     type="button"
                     onClick={() => setNotification(false)}
                     data-autofocus
-                    className="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                    className="inline-flex justify-center w-full px-3 py-1 mt-3 text-xs font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50 sm:mt-0 sm:w-auto"
                   >
                     Cancel
                   </motion.button>

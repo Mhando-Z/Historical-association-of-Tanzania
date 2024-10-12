@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 function ProfileEdit() {
   const { userData, setUserData } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState("");
+  const { countries } = useContext(UserContext);
+
   const [formData, setFormData] = useState({
     profile: {
       full_name: userData?.profile?.full_name || "",
@@ -144,6 +146,27 @@ function ProfileEdit() {
               className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
             />
           </div>
+          <div className="flex flex-col w-full mb-4 ">
+            <label
+              htmlFor="gender"
+              className="block py-2 bg-slate-50 w-full mb-2  border-l-[#b67a3d] border-r-[#b67a3d] xl:text-lg text-sm  leading-6 text-gray-900"
+            >
+              <span className="ml-2">gender</span>
+            </label>
+            <select
+              name="gender"
+              value={formData?.profile.gender}
+              onChange={handleChange}
+              required
+              className="block p-2 rounded-3xl mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none  px-7 ring-1 ring-[#b67a3d] bg-white"
+            >
+              <option value="" disabled>
+                Select Gender
+              </option>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
+          </div>
 
           {userData?.profile.is_student && (
             <>
@@ -254,14 +277,23 @@ function ProfileEdit() {
             >
               <span className="ml-2">Country</span>
             </label>
-            <input
-              type="text"
-              value={formData.profile.country}
+            <select
               name="country"
               placeholder="Country"
+              value={formData?.profile.country}
               onChange={handleChange}
-              className="block p-2 mt-2 border placeholder:text-sm -xl focus:bg-blue-100 outline-none rounded-3xl px-7 ring-1 ring-[#b67a3d]"
-            />
+              required
+              className="block p-2 rounded-3xl mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none  px-7 ring-1 ring-[#b67a3d] bg-white"
+            >
+              <option value="" disabled>
+                Select Country
+              </option>
+              {countries?.map((dt) => (
+                <option key={dt.id} value={dt.name}>
+                  {dt.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="flex flex-col w-full mb-4 ">
             <label
