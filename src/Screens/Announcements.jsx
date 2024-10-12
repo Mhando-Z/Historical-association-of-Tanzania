@@ -5,6 +5,7 @@ import { Dots } from "react-activity";
 import moment from "moment";
 import { motion } from "framer-motion";
 import UserContext from "../Context/UserContext";
+import { HiSpeakerphone } from "react-icons/hi";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -70,18 +71,21 @@ export default function Announcements() {
       variants={containerVariants}
     >
       <div className="container relative flex flex-col mx-auto">
-        <div className="max-w-2xl mx-auto lg:mx-0">
-          <motion.h2
-            className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl sm:text-4xl"
+        <div className="container flex flex-col mx-auto">
+          <motion.h1
             variants={itemVariants}
+            className="flex flex-row items-center mb-2 text-2xl font-lobstyled md:text-3xl gap-x-2"
           >
             Announcements
-          </motion.h2>
-          <motion.p
-            className="mt-2 text-lg leading-8 text-gray-600"
-            variants={itemVariants}
-          >
-            Learn how to grow your business with our expert advice.
+            <span>
+              <HiSpeakerphone className="text-gray-500" />
+            </span>
+          </motion.h1>
+          <motion.p variants={itemVariants} className="max-w-5xl">
+            This section highlights the association’s latest announcements and
+            updates. Stay informed about important events, upcoming activities,
+            and recent developments within the community. Keep up to date with
+            all the latest news and important messages from the association.
           </motion.p>
         </div>
 

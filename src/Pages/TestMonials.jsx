@@ -95,7 +95,7 @@ const TestMonials = () => {
 
   return (
     <div className="py-10 mt-24 bg-white">
-      <h2 className="mb-4 text-3xl font-bold text-center text-[#b67a3d]">
+      <h2 className="mb-4 font-lobstyled tracking-wider text-3xl font-bold text-center text-[#b67a3d]">
         TESTIMONIALS
       </h2>
       <p className="mb-8 text-center text-gray-600">

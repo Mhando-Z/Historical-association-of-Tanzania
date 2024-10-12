@@ -44,7 +44,7 @@ function AboutUs() {
       variants={containerVariants}
     >
       <motion.h1
-        className="mb-8 text-3xl md:text-4xl font-black text-[#b67a3d]"
+        className="mb-8 font-lobstyled text-3xl md:text-4xl font-black text-[#b67a3d]"
         variants={itemVariants}
       >
         Who we Are
