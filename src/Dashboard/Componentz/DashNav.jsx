@@ -103,14 +103,14 @@ function DashNav({ handleClick }) {
                           <img
                             src={stdprofile}
                             alt="userData profile"
-                            className=" h-14 md:h-20 ring-4 rounded-full ring-[#b67a3d] "
+                            className=" h-5 md:h-7 ring-4 rounded-full ring-[#b67a3d] "
                           />
                         </>
                       ) : userData?.profile.gender === "male" ? (
                         <img
                           src={manprofile}
                           alt="userData profile"
-                          className=" h-14 md:h-20 ring-4 rounded-full ring-[#b67a3d]"
+                          className=" h-5 md:h-7 ring-4 rounded-full ring-[#b67a3d]"
                         />
                       ) : userData?.profile.is_student === true &&
                         userData?.profile.gender === "female" ? (
@@ -118,14 +118,14 @@ function DashNav({ handleClick }) {
                           <img
                             src={stdprofile2}
                             alt="userData profile"
-                            className=" h-14 md:h-20 ring-4 rounded-full   ring-[#b67a3d]"
+                            className=" h-5 md:h-7 ring-4 rounded-full   ring-[#b67a3d]"
                           />
                         </>
                       ) : userData?.profile.gender === "female" ? (
                         <img
                           src={womanProfile}
                           alt="userData profile"
-                          className=" h-14 md:h-20 ring-4 rounded-full   ring-[#b67a3d]"
+                          className=" h-5 md:h-7 ring-4 rounded-full   ring-[#b67a3d]"
                         />
                       ) : (
                         <motion.img
