@@ -6,6 +6,7 @@ import mage2 from "../Assets/AboutUs/16.jpg";
 // icons imports
 import { FaEye } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 function AboutHAT() {
   return (
@@ -34,12 +35,13 @@ function AboutHAT() {
         {/* About Us Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-2xl font-semibold text-gray-800"
+            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            About Us
+            <BsFillInfoCircleFill className="text-2xl text-amber-600" />
+            <>About Us</>
           </motion.h2>
           <motion.div
             initial={{ opacity: 0 }}
@@ -107,12 +109,12 @@ function AboutHAT() {
         {/* Vision Section */}
         <section className="mb-16">
           <motion.h2
-            className="flex flex-row items-center mb-4 text-2xl font-semibold text-gray-800 gap-x-2"
+            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <FaEye className=" text-amber-600" />
+            <FaEye className="text-2xl text-amber-600" />
             <>Vision</>
           </motion.h2>
           <motion.p
@@ -180,12 +182,12 @@ function AboutHAT() {
         {/* Mission Section */}
         <section className="mb-16">
           <motion.h2
-            className="flex flex-row items-center mb-4 text-2xl font-semibold text-gray-800 gap-x-2"
+            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <TbTargetArrow className="text-amber-600" />
+            <TbTargetArrow className="text-2xl text-amber-600" />
             Mission
           </motion.h2>
           <motion.p
@@ -288,7 +290,7 @@ function AboutHAT() {
         {/* Membership Section */}
         <section className="mb-16">
           <motion.h2
-            className="mb-4 text-2xl font-semibold text-gray-800"
+            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -337,7 +339,7 @@ function AboutHAT() {
         <section className="mb-16">
           {/* Section Title */}
           <motion.h2
-            className="mb-4 text-2xl font-semibold text-gray-800"
+            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -445,7 +447,7 @@ function AboutHAT() {
         <section className="mb-16">
           {/* Section Title */}
           <motion.h2
-            className="mb-4 text-2xl font-semibold text-gray-800"
+            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}

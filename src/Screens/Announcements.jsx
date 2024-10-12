@@ -50,7 +50,7 @@ export default function Announcements() {
   if (!AnnounceSect || AnnounceSect.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white gap-x-2 ">
-        <h1>No posted Announcements....</h1>
+        <h1>No post ....</h1>
         <Dots color="#b67a3d" size={20} speed={0.7} animating={true} />
       </div>
     );

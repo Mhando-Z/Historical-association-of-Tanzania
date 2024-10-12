@@ -6,7 +6,7 @@ import ProfileIcon from "../Dashboard/Users/Components/ProfileIcon";
 import { motion } from "framer-motion";
 import SideNavBar from "./SideNavBar";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import HomePageContext from "../Context/HomePageContext";
 import { FiMenu } from "react-icons/fi";
 
@@ -42,7 +42,7 @@ function NavBar() {
           : "hidden"
       }`}
     >
-      <div className="px-1 md:px-10">
+      <div className="">
         <div className="container flex flex-row items-center justify-between w-full mx-auto gap-x-6">
           {/* logo section */}
           <NavLink to={"/"}>
@@ -73,7 +73,7 @@ function NavBar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-base xl:text-lg"
+                className="text-lg"
               >
                 Home
               </motion.h1>
@@ -92,7 +92,7 @@ function NavBar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-base xl:text-lg"
+                className="text-lg"
               >
                 About-Us
               </motion.h1>
@@ -110,7 +110,7 @@ function NavBar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-base xl:text-lg"
+                className="text-lg"
               >
                 Research
               </motion.h1>

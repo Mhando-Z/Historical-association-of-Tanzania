@@ -46,6 +46,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import "react-activity/dist/library.css";
 import "react-phone-input-2/lib/style.css";
+import ClearHistoryScroll from "./Components/ClearHistoryScroll";
 
 function App() {
   const [users, setUser] = useState("");
@@ -76,6 +77,7 @@ function App() {
         <UserProvider>
           <BrowserRouter>
             <NavBar />
+            <ClearHistoryScroll />
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="AboutUs/" element={<AboutHAT />} />

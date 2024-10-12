@@ -48,9 +48,7 @@ export default function PromoSect() {
   return (
     <div className="relative min-h-screen mt-20 overflow-hidden bg-white">
       {ConferenceSect?.length === 0 ? (
-        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
-          <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
-        </div>
+        <div className="bg-white"></div>
       ) : (
         <motion.div
           className="pt-16 pb-80 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40"
