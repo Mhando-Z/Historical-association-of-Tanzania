@@ -129,7 +129,7 @@ function DashNav({ handleClick }) {
                         />
                       ) : (
                         <motion.img
-                          className="object-cover border-4 border-green-300 rounded-full h-14"
+                          className="object-cover h-5 border-4 border-green-300 rounded-full md:h-7"
                           src={`https://ui-avatars.com/api/?name=${userData?.email}`}
                           alt="User Avatar"
                           initial={{ scale: 0 }}

@@ -132,7 +132,7 @@ const UserProfile = () => {
                       />
                     ) : (
                       <motion.img
-                        className="object-cover border-4 border-green-300 rounded-full h-14"
+                        className="object-cover border-4 border-green-300 rounded-full h-14 md:h-20"
                         src={`https://ui-avatars.com/api/?name=${userData?.email}`}
                         alt="User Avatar"
                         initial={{ scale: 0 }}
