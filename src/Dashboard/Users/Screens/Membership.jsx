@@ -149,13 +149,13 @@ const Membership = () => {
               Hello, {userData?.username || "User"}!
             </h2>
             <p className="max-w-4xl mt-4 text-sm sm:text-lg">
-              Welcome to the Historical Association of Tanzania. We are happy to
-              have you as a Member. There are few things that you need to know,
-              To become our member, there are some registration steps you need
-              to pass through.
-              <span className="font-semibold">What are those steps?...</span>
-              Well, if you want to know then please click next to start the
-              registration.
+              Welcome to the Historical Association of Tanzania! We are excited
+              to have you join us as a valued member. Before we can officially
+              welcome you aboard, there are a few important steps in the
+              registration process that you'll need to complete.
+              <span className="font-semibold">What are those steps?</span>
+              Don't worry, we'll guide you through them. Just click "Next" to
+              begin your journey and become an official member!
             </p>
           </>
         );
@@ -163,15 +163,14 @@ const Membership = () => {
         return (
           <div className="flex flex-col py-10 gap-y-5">
             <div>
-              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
+              <h2 className="mb-2 text-2xl font-semibold text-start md:text-3xl">
                 Get to Know You
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
-                Tell us more about you, how can we contact you, where are you
-                from...
+              <p className="text-sm text-start sm:text-lg">
+                We’d love to learn more about you! Please share your full name,
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-4">
               <input
                 type="text"
                 name="first_name"
@@ -213,17 +212,18 @@ const Membership = () => {
         return (
           <div className="flex flex-col py-10 gap-y-5">
             <div>
-              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
-                Contact Information
+              <h2 className="mb-2 text-2xl font-semibold text-start md:text-3xl">
+                Your Contact Information
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
-                Tell us more about you, how can we contact you, where are you
-                from...
+              <p className="text-sm text-start sm:text-lg">
+                Help us stay connected! Please provide your contact details and
+                let us know where you’re from, so we can keep in touch and share
+                important updates with you.
               </p>
             </div>
-            <div className="grid items-center grid-cols-1 md:grid-cols-3 gap-x-4">
+            <div className="grid items-center grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-4">
               <div className="flex flex-col">
-                <label htmlFor="phone" className="mb-1">
+                <label htmlFor="phone" className="md:mb-1">
                   Phone Number
                 </label>
                 <PhoneInput
@@ -252,7 +252,7 @@ const Membership = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="nationality" className="mb-1">
+                <label htmlFor="nationality" className="md:mb-1">
                   Nationality
                 </label>
                 <input
@@ -267,7 +267,7 @@ const Membership = () => {
               </div>
 
               <div className="flex flex-col">
-                <label htmlFor="gender" className="mb-1">
+                <label htmlFor="gender" className="md:mb-1">
                   Gender
                 </label>
                 <select
@@ -291,14 +291,16 @@ const Membership = () => {
         return (
           <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
-              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
-                Work Information
+              <h2 className="mb-2 text-2xl font-semibold text-start md:text-3xl">
+                Your Work Information
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
-                Please tell us about your work experience.
+              <p className="text-sm text-start sm:text-lg">
+                We’d love to learn about your professional background! Please
+                share your work experience and any relevant details about your
+                career journey.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-4">
               <input
                 type="text"
                 name="title"
@@ -324,14 +326,16 @@ const Membership = () => {
         return (
           <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
-              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
-                Location
+              <h2 className="mb-2 text-2xl font-semibold text-start md:text-3xl">
+                Your Location
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
-                Please tell us where are you located.
+              <p className="text-sm text-start sm:text-lg">
+                Let us know where you’re based! Please provide your current
+                location so we can better understand where you're joining us
+                from.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-4">
               <select
                 name="country"
                 placeholder="Country"
@@ -384,13 +388,14 @@ const Membership = () => {
           <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
               <h1 className="text-2xl font-semibold md:text-3xl">
-                Hey! Tell Us More...
+                Hey there! We’d Love to Know More...
               </h1>
               <h2 className="mt-2 text-md">
-                Are you a student? If yes, please fill out the following form
+                Are you a student? If so, please take a moment to fill out the
+                form below with your details.
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-x-4">
               <label className="flex items-center">
                 <span className="mr-4">Are you a student?</span>
                 <div
@@ -486,10 +491,10 @@ const Membership = () => {
           <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             {/* <Payment /> */}
             <div>
-              <h2 className="mb-2 text-2xl font-semibold text-center md:text-start md:text-3xl">
+              <h2 className="mb-2 text-2xl font-semibold text-start md:text-3xl">
                 Payments Section
               </h2>
-              <p className="text-sm text-center md:text-start sm:text-lg">
+              <p className="text-sm text-start sm:text-lg">
                 Please complete your registration by contributing a small fee.
               </p>
             </div>
@@ -499,11 +504,11 @@ const Membership = () => {
         return (
           <div className="flex flex-col py-10 gap-y-5 rounded-2xl">
             <div>
-              <h1 className="flex flex-col py-3 text-2xl text-center md:text-2xl md:text-start bg-slate-50 ">
+              <h1 className="flex flex-col py-3 text-2xl md:text-2xl text-start bg-slate-50 ">
                 <span className="ml-2 font-semibold">
                   Review before you Save
                 </span>
-                <span className="ml-2 text-sm text-center capitalize md:text-start sm:text-lg">
+                <span className="ml-2 text-sm capitalize text-start sm:text-lg">
                   Please review all the details you have entered. If everything
                   is correct, click "Confirm" to complete the registration.{" "}
                 </span>

@@ -64,7 +64,7 @@ function ProfileOverview({ data }) {
             {data.profile.is_paid_conference ? (
               <div className="flex flex-row items-center justify-between text-xs md:text-sm">
                 <h1>Paid Conference</h1>
-                <GiCheckMark className="text-xl text-green-600" />
+                <GiCheckMark className="text-green-600 md:text-xl" />
               </div>
             ) : (
               <div className="flex flex-row items-center justify-between">

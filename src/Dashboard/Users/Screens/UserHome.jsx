@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import GreetingsTimer from "../../Componentz/GreetingsTimer";
 import Announcements from "../../../Screens/Announcements";
 import ResourcePublication from "../../../Screens/ResourcePublication";
-import { IoArrowBack } from "react-icons/io5";
 
 function UserHome() {
   const { userData } = useContext(UserContext);
@@ -37,13 +36,14 @@ function UserHome() {
               <GreetingsTimer Username={userData.username || ""} />
             </>
             <p className="max-w-4xl text-sm sm:text-md">
-              Welcome to, Historical Association of Tanzania.We are happy to
-              have you as a Member, there are few things you need to know. To be
-              our member, there are few registration processes you need to pass
-              through.
-              <span className="font-bold">What are those steps?...</span> well
-              if you want to know then please Click next to start the
-              registration.
+              Welcome to the Historical Association of Tanzania! 🎉 We're
+              thrilled to have you as a valued member of our community. Your
+              membership opens the door to a rich network of history enthusiasts
+              and professionals, and we can't wait to see the unique
+              contributions you'll make. Whether you're here to explore, learn,
+              or share knowledge, we're happy to have you with us on this
+              exciting journey!, click next to continue with the Registration
+              process.
             </p>
             <div className="flex justify-end w-full">
               <Link to={"/Dashboard/Membership/"}>
