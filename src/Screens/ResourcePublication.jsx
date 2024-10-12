@@ -95,7 +95,7 @@ function ResourcePublication() {
             <ImBook className="text-gray-500" />
           </span>
         </h1>
-        <p className="max-w-5xl">
+        <p className="max-w-5xl text-sm md:text-sm">
           This section highlights the association’s latest research work and
           publications. Explore groundbreaking studies, insightful reports, and
           articles authored by members of the community. Our research covers a

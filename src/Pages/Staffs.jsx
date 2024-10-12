@@ -19,8 +19,8 @@ function Staffs() {
             Our team is a group of passionate professionals dedicated to
             delivering top-notch services and solutions. Each of us brings
             unique skills and expertise, working together to ensure the best
-            experience for our clients. Meet the team behind our success and
-            discover what makes us tick!
+            experience. Meet the team behind our success and discover what makes
+            us tick!
           </span>
         </h1>
         <ImageList data={StaffsSect} />

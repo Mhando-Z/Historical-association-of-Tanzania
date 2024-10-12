@@ -99,7 +99,7 @@ function Gallery() {
             <ImCamera className="text-gray-500" />
           </span>
         </h1>
-        <p className="max-w-5xl">
+        <p className="max-w-5xl text-sm">
           This section showcases a curated collection of images from various
           conferences and events. Each photo captures key moments, highlighting
           the atmosphere, participants, and significant activities that took

@@ -73,7 +73,7 @@ export default function Announcements() {
               <HiSpeakerphone className="text-gray-500" />
             </span>
           </motion.h1>
-          <motion.p variants={itemVariants} className="max-w-5xl">
+          <motion.p variants={itemVariants} className="max-w-5xl text-sm">
             This section highlights the association’s latest announcements and
             updates. Stay informed about important events, upcoming activities,
             and recent developments within the community. Keep up to date with
