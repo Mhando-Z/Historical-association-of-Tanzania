@@ -128,10 +128,10 @@ function ResourcePublication() {
               />
               <div className="absolute top-0 bottom-0 left-0 right-0 rounded-xl bg-gradient-to-t from-black to-transparent via-transparent"></div>
               <div className="absolute z-20 left-4 bottom-6 ">
-                <h1 className="text-xl font-semibold text-white">
+                <h1 className="font-semibold text-white text-md md:text-lg line-clamp-3 xl:text-xl">
                   {ResourcesSect[value]?.title}
                 </h1>
-                <p className="max-w-xl text-sm text-gray-300 line-clamp-3">
+                <p className="max-w-xl text-xs text-gray-300 md:text-sm line-clamp-2 md:line-clamp-none">
                   {ResourcesSect[value]?.description}
                 </p>
               </div>
