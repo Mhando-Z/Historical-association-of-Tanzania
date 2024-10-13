@@ -223,14 +223,14 @@ function FAQSection() {
             className="flex flex-col text-sm md:text-base xl:text-lg "
           >
             <p className="mt-2 mb-2 text-gray-700 ">
-              HAT Short Contact Details, Note in our website we have a Contact
-              us section, which holds all our contact setails
+              Please use the contact us section in our website or the following
+              physical address.
             </p>
-            <ul className="pl-5 list-disc">
+            <ul className="pl-10">
               <li> Historical Association of Tanzania</li>
+              <li>P.O.Box 35050</li>
               <li>History Department</li>
               <li>University of Dar es Salaam</li>
-              <li>P.O.Box 35050</li>
               <li>16103, Dar es Salaam – Tanzania.</li>
             </ul>
           </motion.div>

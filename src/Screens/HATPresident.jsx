@@ -35,7 +35,7 @@ function HATPresident() {
           >
             {PresidentSect[0]?.title}
           </motion.h1>
-          <motion.h2
+          {/* <motion.h2
             initial={{ opacity: 0, y: 20 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ function HATPresident() {
             className="px-2 text-xl font-medium border-l-4 border-l-[#744517] xl:text-2xl"
           >
             {PresidentSect[0]?.subtitle}
-          </motion.h2>
+          </motion.h2> */}
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}

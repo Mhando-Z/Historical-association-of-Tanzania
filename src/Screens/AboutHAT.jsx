@@ -489,10 +489,10 @@ function AboutHAT() {
                 are:
                 <ul className="grid grid-cols-1 gap-5 mt-4 mb-4 list-disc md:grid-cols-3">
                   <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
-                    <strong>Ordinary Membership:</strong> 50,000 TZS per year.
+                    <strong>Ordinary Membership:</strong> 20,000 TZS per year.
                   </li>
                   <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
-                    <strong>Student Membership:</strong> 30,000 TZS per year.
+                    <strong>Student Membership:</strong> 5,000 TZS per year.
                   </li>
                   <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
                     <strong>Corporate Membership:</strong> 200,000 TZS per year.
