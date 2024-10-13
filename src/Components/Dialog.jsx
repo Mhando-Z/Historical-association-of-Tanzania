@@ -21,7 +21,7 @@ export default function Dialogue({ value, open, setOpen }) {
         className="fixed inset-0 bg-black bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
 
-      <div className="fixed inset-0 z-10 overflow-y-auto md:top-32 lg:top-24 xl:top-20">
+      <div className="fixed inset-0 z-10 overflow-y-auto md:top-32 lg:top-24 xl:top-28">
         <div className="flex items-end justify-center text-center sm:items-center">
           <DialogPanel
             transition
