@@ -21,11 +21,11 @@ export default function Dialogue({ value, open, setOpen }) {
         className="fixed inset-0 bg-black bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
 
-      <div className="fixed inset-0 z-10 overflow-y-auto lg:top-10 xl:top-20">
+      <div className="fixed inset-0 z-10 overflow-y-auto md:top-32 lg:top-24 xl:top-20">
         <div className="flex items-end justify-center text-center sm:items-center">
           <DialogPanel
             transition
-            className="relative transform max-w-6xl mt-36 overflow-hidden rounded-3xl bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform max-w-6xl mt-36 overflow-hidden rounded-3xl bg-white text-left transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <div className="bg-slate-100 h-[700px] overflow-y-auto md:p-8 px-2">
               <div className="flex flex-col sm:flex sm:items-start gap-y-4">
