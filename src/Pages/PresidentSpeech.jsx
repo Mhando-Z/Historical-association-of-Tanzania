@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Dots } from "react-activity";
 
 function PresidentSpeech() {
   const { PresidentSect } = useContext(HomePageContext);

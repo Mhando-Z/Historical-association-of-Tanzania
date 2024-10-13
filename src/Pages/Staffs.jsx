@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import ImageList from "../Components/ImgaList";
 import HomePageContext from "../Context/HomePageContext";
-import { Dots } from "react-activity";
 
 function Staffs() {
   const { StaffsSect } = useContext(HomePageContext);
