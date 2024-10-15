@@ -20,7 +20,9 @@ const Countdown = () => {
 
   return (
     <div
-      className={`flex flex-col ${ConferenceSect?.length === 0 ? "hidden" : ""} items-center justify-center h-[300px] bg-gray-100`}
+      className={`flex flex-col ${
+        ConferenceSect?.length === 0 ? "hidden" : ""
+      } items-center justify-center h-[300px] bg-blue-50`}
     >
       <h2 className="text-5xl text-[#b67a3d] font-black mb-10">
         {ConferenceSect[0]?.title2}

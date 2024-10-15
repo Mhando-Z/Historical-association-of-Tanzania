@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 function PresidentSpeech() {
   const { PresidentSect } = useContext(HomePageContext);
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const navigate = useNavigate();
+
+  const handleNaviate = () => {
+    navigate("President/");
   };
 
   // image url
@@ -67,26 +66,37 @@ function PresidentSpeech() {
                   transition={{ duration: 1 }}
                   className="flex flex-col gap-y-2"
                 >
-                  <p className="max-w-5xl text-xs leading-normal text-justify sm:text-sm md:text-base line-clamp-6">
+                  <p className="max-w-5xl text-base leading-normal md:text-justify line-clamp-6">
                     {dt.description}
                   </p>
-                  <p className="max-w-5xl mt-2 text-xs leading-normal text-justify sm:text-sm md:text-base line-clamp-6">
+                  <p className="max-w-5xl mt-2 text-base leading-normal md:text-justify line-clamp-6">
                     {dt.description2}
                   </p>
                   <motion.div className="flex justify-end w-full mt-6 ">
-                    <Link
-                      onClick={scrollToTop}
-                      to={"President/"}
-                      className="px-4 py-1.5 text-xs sm:text-sm md:text-base md:py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
+                    <motion.button
+                      onClick={handleNaviate}
+                      className="relative px-4 py-1.5 md:py-2 hover:text-white rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-medium "
+                      whileHover="hover"
+                      initial="initial"
                     >
                       <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.8 }}
-                        transition={{ type: "spring", ease: "easeOut" }}
-                      >
-                        ReadMore
-                      </motion.div>
-                    </Link>
+                        className="absolute inset-0 bg-[#b67a3d]"
+                        initial={{ x: "100%" }}
+                        variants={{
+                          hover: { x: 0 },
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 "
+                        initial={{ x: 0 }}
+                        variants={{
+                          hover: { x: "-100%" },
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <span className="relative z-10">ReadMore</span>
+                    </motion.button>
                   </motion.div>
                 </motion.div>
               </div>

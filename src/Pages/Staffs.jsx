@@ -14,7 +14,7 @@ function Staffs() {
       <div className="flex flex-col ">
         <h1 className=" flex text-3xl sm:text-3xl flex-col md:text-4xl xl:text-5xl font-extrabold mb-7 text-[#b67a3d]">
           Our Team
-          <span className="max-w-4xl mt-3 text-xs font-normal text-gray-800 sm:text-sm md:text-base xl:text-lg">
+          <span className="max-w-4xl mt-3 text-base font-normal text-gray-800">
             Our team is a group of passionate professionals dedicated to
             delivering top-notch services and solutions. Each of us brings
             unique skills and expertise, working together to ensure the best

@@ -94,7 +94,7 @@ const TestMonials = () => {
   }
 
   return (
-    <div className="py-10 mt-24 bg-white">
+    <div className="h-[500px] mt-24 py-20 md:bg-blue-50">
       <h2 className="mb-4 tracking-wider text-3xl font-bold text-center text-[#b67a3d]">
         TESTIMONIALS
       </h2>
@@ -102,7 +102,7 @@ const TestMonials = () => {
         If They Made It Happen, So Can You!
       </p>
 
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center ">
         <button onClick={handlePrev} className="absolute left-0">
           &#9664;
         </button>
@@ -123,13 +123,13 @@ const TestMonials = () => {
 
             {userReviews && userReviews[currentIndex] && (
               <div className="flex-grow mt-4 text-center px-7 md:px-0 md:mt-0 md:text-left">
-                <p className="text-xs leading-normal text-gray-700 sm:text-sm md:text-base">
+                <p className="leading-normal text-gray-700 ">
                   {userReviews[currentIndex]?.profile?.reviews}
                 </p>
-                <h4 className="mt-2 text-xs font-bold text-orange-500 md:text-base">
+                <h4 className="mt-2 font-bold text-orange-500 ">
                   {userReviews[currentIndex]?.username}
                 </h4>
-                <p className="text-xs text-gray-500 sm:text-sm md:text-base">
+                <p className="text-gray-500 ">
                   {userReviews[currentIndex]?.profile?.title}
                 </p>
               </div>
@@ -145,7 +145,7 @@ const TestMonials = () => {
       <div className="flex justify-center mt-4">
         {userReviews?.map((dt, index) => (
           <div
-            key={index + dt.id}
+            key={dt.id}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 mx-1 rounded-full cursor-pointer ${
               currentIndex === index ? "bg-orange-500" : "bg-gray-300"

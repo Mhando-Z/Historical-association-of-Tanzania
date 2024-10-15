@@ -1,19 +1,9 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import HomePageContext from "../Context/HomePageContext";
-import { BsFacebook } from "react-icons/bs";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 function ContactUs() {
-  const { ContactSect } = useContext(HomePageContext);
-
   return (
     <div className="flex flex-col ">
-      <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 md:bg-gray-100 md:p-20 sm:rounded-xl">
+      <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 md:p-20 sm:rounded-xl">
         {/* Get intouch section */}
         <div className="w-full md:flex md:flex-col md:items-center md:justify-center">
           <motion.div
@@ -61,103 +51,30 @@ function ContactUs() {
             {/* submit button */}
             <div className="flex items-end justify-end w-full">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.8 }}
-                transition={{ type: "spring", ease: "easeOut" }}
-                className="px-6 py-2 font-bold bg-white xl:text-lg ring-1 ring-black rounded-3xl"
+                // onClick={}
+                className="relative px-6 py-1.5 md:py-2 hover:text-white rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-medium "
+                whileHover="hover"
+                initial="initial"
               >
-                Send
+                <motion.div
+                  className="absolute inset-0 bg-[#b67a3d]"
+                  initial={{ x: "100%" }}
+                  variants={{
+                    hover: { x: 0 },
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div
+                  className="absolute inset-0 "
+                  initial={{ x: 0 }}
+                  variants={{
+                    hover: { x: "-100%" },
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">Send</span>
               </motion.button>
             </div>
-          </motion.div>
-        </div>
-      </div>
-      {/* Contact us Sections */}
-      <div className="container flex flex-col mx-auto mt-20">
-        <div className="flex flex-col-reverse justify-between w-full gap-x-20 xl:flex-row">
-          {/* contact details */}
-          <div className="flex flex-col gap-y-10">
-            <div className="flex mb-3">
-              <h1 className="xl:text-5xl md:text-4xl text-3xl font-black text-[#b67a3d]">
-                Contact Us
-              </h1>
-            </div>
-            <div className="flex flex-row items-center justify-between md:px-0 md:items-start xl:flex-col md: gap-y-5">
-              <div className="flex flex-col justify-center xl:justify-between gap-x-10">
-                <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
-                  Phone
-                </h1>
-                <div className="flex flex-col mt-2 text-sm md:text-base xl:text-lg">
-                  <h5 className="font-semibold">
-                    {ContactSect[0]?.phoneNumber1}
-                  </h5>
-                  <h5 className="font-semibold">
-                    {ContactSect[0]?.phoneNumber2}
-                  </h5>
-                  <h5 className="font-semibold">
-                    {ContactSect[0]?.phoneNumber3}
-                  </h5>
-                  <h5 className="font-semibold">
-                    {ContactSect[0]?.phoneNumber4}
-                  </h5>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center md:px-0 xl:justify-between gap-x-10">
-                <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
-                  Emails
-                </h1>
-                <div className="flex flex-col mt-1 md:text-base xl:text-lg">
-                  <Link className="font-semibold ">
-                    {ContactSect[0]?.email1}
-                  </Link>
-                  <Link className="font-semibold ">
-                    {ContactSect[0]?.email2}
-                  </Link>
-                  <Link className="font-semibold">
-                    {ContactSect[0]?.email3}
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center md:px-0 xl:justify-between gap-x-10">
-              <h1 className="text-xl font-bold text-purple-900 md:text-2xl">
-                Socials
-              </h1>
-              <div className="flex flex-row mt-8 text-3xl gap-x-10">
-                <Link to={`${ContactSect[0]?.facebook}`}>
-                  <BsFacebook className="text-blue-600 duration-1000 animate-bounce" />
-                </Link>
-                <Link to={`${ContactSect[0]?.instagram}`}>
-                  <FaInstagramSquare className="text-orange-600 duration-1000 animate-bounce" />
-                </Link>
-                <Link to={`${ContactSect[0]?.linkedin}`}>
-                  <FaLinkedin className="text-blue-600 duration-1000 animate-bounce" />
-                </Link>
-                <Link>
-                  <IoLogoWhatsapp className="text-green-600 duration-1000 animate-bounce" />
-                </Link>
-                <Link to={`${ContactSect[0]?.twitter}`}>
-                  <FaSquareXTwitter className="duration-1000 animate-bounce" />
-                </Link>
-              </div>
-            </div>
-          </div>
-          {/*Map section  */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, type: "spring" }}
-            className="flex mb-10"
-          >
-            <iframe
-              title="Historical association of Tanzania location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d284.54685453461934!2d39.203648745810696!3d-6.780309156601822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4ee6f9138fe9%3A0x85f5c7ce51ff2731!2sHistory%20Department!5e1!3m2!1sen!2stz!4v1719078991742!5m2!1sen!2stz"
-              style={{ border: "0" }}
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              className="flex rounded-xl  w-screen xl:h-[600px] h-[350px] xl:w-[900px] md:h-[500px]"
-            ></iframe>
           </motion.div>
         </div>
       </div>

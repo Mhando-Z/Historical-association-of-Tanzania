@@ -17,10 +17,10 @@ export default function NewsLetter() {
       <div className="px-4 mx-auto max-w-7xl">
         <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white font-roboto sm:text-4xl">
               Stay Updated! Subscribe to Our Newsletter
             </h2>
-            <p className="mt-4 text-lg font-semibold leading-8 text-white">
+            <p className="mt-4 font-semibold leading-6 text-white">
               Be the first to know about our latest updates, events, and
               exclusive insights. Join our community today and never miss out on
               the exciting developments from the Historical Association of
@@ -57,7 +57,7 @@ export default function NewsLetter() {
                 />
               </div>
               <dt className="mt-4 font-semibold text-white">Weekly Articles</dt>
-              <dd className="mt-2 leading-7 text-white">
+              <dd className="mt-2 leading-6 text-white">
                 Stay informed with our carefully curated weekly articles.
                 Explore in-depth insights, research findings, and
                 thought-provoking discussions on Tanzania's history and cultural
@@ -87,7 +87,7 @@ export default function NewsLetter() {
       {/* FOOTER SECTION*/}
       <div className="container flex flex-col mx-auto border-b border-white mt-14"></div>
       <div className="flex flex-col mt-12 md:container md:mx-auto ">
-        <div className="flex flex-col justify-between w-full px-5 gap-x-10 gap-y-4 md:flex-row">
+        <div className="flex flex-col justify-between w-full gap-x-10 gap-y-4 md:flex-row">
           {/* Logo */}
           <div>
             <img
@@ -97,61 +97,39 @@ export default function NewsLetter() {
             />
           </div>
 
-          {/* TERMS CONDITION AND POLICIES SECTION */}
-          <div className="flex flex-col items-center justify-center flex-1 gap-y-4">
-            <div className="flex flex-col">
-              <h1 className="text-xl font-medium text-white">Policies</h1>
-              <div className="flex flex-col gap-y-3">
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none ">
-                  <span className="mr-2">(1)</span>
-                  {footerSect[0]?.policies?.policy1}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(2)</span>
-                  {footerSect[0]?.policies?.policy2}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(3)</span>
-                  {footerSect[0]?.policies?.policy3}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(4)</span>
-                  {footerSect[0]?.policies?.policy4}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(5)</span>
-                  {footerSect[0]?.policies?.policy5}
-                </h1>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-xl font-medium text-white">
-                Terms of Service
-              </h1>
-              <div className="flex flex-col gap-y-3">
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(1)</span>
-                  {footerSect[0]?.termsofService.term1}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(2)</span>
-                  {footerSect[0]?.termsofService.term2}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(3)</span>
-                  {footerSect[0]?.termsofService.term3}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(4)</span>
-                  {footerSect[0]?.termsofService.term4}
-                </h1>
-                <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
-                  <span className="mr-2">(5)</span>
-                  {footerSect[0]?.termsofService.term5}
-                </h1>
-              </div>
+          {/* Socials */}
+          <div className="flex flex-col">
+            <div className="flex flex-row text-2xl text-gray-300 gap-x-10">
+              <Link
+                className="p-2 rounded-full ring-1 ring-white"
+                to={`${footerSect[0]?.contacts.facebook}`}
+              >
+                <BsFacebook />
+              </Link>
+              <Link
+                className="p-2 rounded-full ring-1 ring-white"
+                to={`${footerSect[0]?.contacts.instagram}`}
+              >
+                <FaInstagramSquare />
+              </Link>
+              <Link
+                className="p-2 rounded-full ring-1 ring-white"
+                to={`${footerSect[0]?.contacts.linkedin}`}
+              >
+                <FaLinkedin />
+              </Link>
+              <Link className="p-2 rounded-full ring-1 ring-white">
+                <IoLogoWhatsapp />
+              </Link>
+              <Link
+                className="p-2 rounded-full ring-1 ring-white"
+                to={`${footerSect[0]?.contacts.twitter}`}
+              >
+                <FaSquareXTwitter />
+              </Link>
             </div>
           </div>
+
           {/* Contacts section */}
           <div className="flex flex-col gap-y-4">
             {/* Emails section */}
@@ -184,46 +162,67 @@ export default function NewsLetter() {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col gap-x-4 md:flex-row">
+            {/* <div className="flex flex-col gap-x-4 md:flex-row">
               <h1 className="font-medium text-white md:text-xl">Location</h1>
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-white">
                   {footerSect[0]?.contacts.location}
                 </h1>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
-        {/* Socials */}
-        <div className="flex flex-col items-center justify-center mt-5">
-          <div className="flex flex-row mt-8 text-2xl text-gray-300 gap-x-10">
-            <Link
-              className="p-2 rounded-full ring-1 ring-white"
-              to={`${footerSect[0]?.contacts.facebook}`}
-            >
-              <BsFacebook />
-            </Link>
-            <Link
-              className="p-2 rounded-full ring-1 ring-white"
-              to={`${footerSect[0]?.contacts.instagram}`}
-            >
-              <FaInstagramSquare />
-            </Link>
-            <Link
-              className="p-2 rounded-full ring-1 ring-white"
-              to={`${footerSect[0]?.contacts.linkedin}`}
-            >
-              <FaLinkedin />
-            </Link>
-            <Link className="p-2 rounded-full ring-1 ring-white">
-              <IoLogoWhatsapp />
-            </Link>
-            <Link
-              className="p-2 rounded-full ring-1 ring-white"
-              to={`${footerSect[0]?.contacts.twitter}`}
-            >
-              <FaSquareXTwitter />
-            </Link>
+      </div>
+      {/* TERMS CONDITION AND POLICIES SECTION */}
+      <div className="container flex flex-col items-center justify-center flex-1 gap-5 mx-auto mt-10 md:flex-row md:flex gap-y-4">
+        <div className="flex flex-col">
+          <h1 className="text-xl font-medium text-white">Policies</h1>
+          <div className="flex flex-col mt-2 gap-y-3">
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none ">
+              <span className="mr-2">(1)</span>
+              {footerSect[0]?.policies?.policy1}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(2)</span>
+              {footerSect[0]?.policies?.policy2}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(3)</span>
+              {footerSect[0]?.policies?.policy3}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(4)</span>
+              {footerSect[0]?.policies?.policy4}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(5)</span>
+              {footerSect[0]?.policies?.policy5}
+            </h1>
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <h1 className="text-xl font-medium text-white">Terms of Service</h1>
+          <div className="flex flex-col mt-2 gap-y-3">
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(1)</span>
+              {footerSect[0]?.termsofService.term1}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(2)</span>
+              {footerSect[0]?.termsofService.term2}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(3)</span>
+              {footerSect[0]?.termsofService.term3}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(4)</span>
+              {footerSect[0]?.termsofService.term4}
+            </h1>
+            <h1 className="max-w-4xl text-white line-clamp-1 md:line-clamp-none">
+              <span className="mr-2">(5)</span>
+              {footerSect[0]?.termsofService.term5}
+            </h1>
           </div>
         </div>
       </div>

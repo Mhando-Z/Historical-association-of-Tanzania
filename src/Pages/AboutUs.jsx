@@ -22,14 +22,7 @@ function AboutUs() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    scrollToTop();
     navigate("AboutUs/");
-  };
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   // image url
@@ -44,15 +37,15 @@ function AboutUs() {
       variants={containerVariants}
     >
       <motion.h1
-        className="mb-8 text-2xl  sm:text-3xl md:text-4xl font-black font-roboto text-[#b67a3d]"
+        className="mb-8 text-2xl sm:text-3xl md:text-4xl font-black font-roboto text-[#b67a3d]"
         variants={itemVariants}
       >
         Who we Are
       </motion.h1>
       <div className="flex flex-col justify-between md:flex-row gap-x-5 ">
-        <div className="flex flex-col max-w-2xl ">
+        <div className="flex flex-col max-w-2xl xl:text-base ">
           <motion.p
-            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg"
+            className="mb-6 leading-normal text-gray-700 md:text-justify "
             variants={itemVariants}
           >
             The Historical Association of Tanzania (HAT) is dedicated to
@@ -63,7 +56,7 @@ function AboutUs() {
             the past among Tanzanians and the global community.
           </motion.p>
           <motion.p
-            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg "
+            className="mb-6 leading-normal text-gray-700 md:text-justify "
             variants={itemVariants}
           >
             Our association organizes events, lectures, and exhibitions that
@@ -73,7 +66,7 @@ function AboutUs() {
             in the field of history.
           </motion.p>
           <motion.p
-            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg "
+            className="mb-6 leading-normal text-gray-700 md:text-justify "
             variants={itemVariants}
           >
             At HAT, we believe that understanding history is crucial for
@@ -84,13 +77,28 @@ function AboutUs() {
           </motion.p>
           <motion.div className="flex w-full mt-5 mb-10 md:mt-10">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.8 }}
-              transition={{ type: "spring", ease: "easeOut" }}
               onClick={handleClick}
-              className="px-4 py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
+              className="relative px-4 py-1.5 md:py-2 hover:text-white rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-medium "
+              whileHover="hover"
+              initial="initial"
             >
-              ReadMore
+              <motion.div
+                className="absolute inset-0 bg-[#b67a3d]"
+                initial={{ x: "-100%" }}
+                variants={{
+                  hover: { x: 0 },
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div
+                className="absolute inset-0 "
+                initial={{ x: 0 }}
+                variants={{
+                  hover: { x: "100%" },
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10">ReadMore</span>
             </motion.button>
           </motion.div>
         </div>
@@ -99,7 +107,7 @@ function AboutUs() {
             <img
               src={`${IMAGE_BASE_URL}${AboutUSSect[0]?.image}`}
               alt="Historical Association of Tanzania"
-              className="w-full md:h-full  h-[450px] object-cover shadow-lg rounded-lg md:rounded-xl"
+              className="w-full md:h-full   h-[450px] object-cover shadow-lg rounded-lg md:rounded-xl"
             />
           </motion.div>
         </div>

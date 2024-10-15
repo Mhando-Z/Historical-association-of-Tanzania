@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
-import { Dots } from "react-activity";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -159,9 +158,6 @@ export default function PromoSect() {
 
                 <motion.button
                   onClick={handleRegister}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.8 }}
-                  transition={{ type: "spring", ease: "easeOut" }}
                   className="inline-block rounded-3xl hover:bg-opacity-0 hover:ring-2 hover:text-black hover:ring-black border border-transparent bg-[#b67a3d] px-5 py-2 text-center font-medium text-white"
                   variants={itemVariants}
                 >

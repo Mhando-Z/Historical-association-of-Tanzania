@@ -56,7 +56,7 @@ export default function Dialogue({ value, open, setOpen }) {
                               <td className="py-2 text-base font-medium sm:text-lg md:text-xl">
                                 Phone:
                               </td>
-                              <td className="py-2 text-xs sm:text-sm md:text-base">
+                              <td className="py-2 ">
                                 {StaffsSect[value]?.contact2}
                               </td>
                             </tr>
@@ -64,7 +64,7 @@ export default function Dialogue({ value, open, setOpen }) {
                               <td className="py-2 text-base font-medium sm:text-lg md:text-xl">
                                 Email:
                               </td>
-                              <td className="py-2 text-xs text-blue-800 sm:text-sm md:text-base">
+                              <td className="py-2 text-blue-800 ">
                                 {StaffsSect[value]?.contact1}
                               </td>
                             </tr>
@@ -78,7 +78,7 @@ export default function Dialogue({ value, open, setOpen }) {
                   <h1 className="mb-1 text-xl font-bold sm:text-2xl md:text-3xl">
                     Biography
                   </h1>
-                  <p className="text-xs leading-normal text-justify text-gray-900 sm:text-sm md:text-base">
+                  <p className="leading-normal text-gray-900 md:text-justify ">
                     {StaffsSect[value]?.description}
                   </p>
                 </div>
