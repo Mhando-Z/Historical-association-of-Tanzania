@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         lobstyled: ["Lobster Two", "sans-serif"],
+        Raleway: ["Raleway", "sans-serif"],
       },
       fontWeight: {
         hairline: 100,

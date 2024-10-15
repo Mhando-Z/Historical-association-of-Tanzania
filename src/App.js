@@ -59,7 +59,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-roboto">
+    <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-Raleway">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -72,7 +72,6 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-
       <HomePageDataProvider>
         <UserProvider>
           <BrowserRouter>
