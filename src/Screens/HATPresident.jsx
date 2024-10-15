@@ -32,7 +32,7 @@ function HATPresident() {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl font-medium md:text-3xl xl:text-4xl"
+            className="text-xl font-medium font-roboto md:text-3xl xl:text-4xl"
           >
             {PresidentSect[0]?.title}
           </motion.h1>
