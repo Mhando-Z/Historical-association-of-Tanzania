@@ -93,7 +93,7 @@ function Gallery() {
   return (
     <div className="flex flex-col justify-center min-h-screen mt-28">
       <div className="container flex flex-col mx-auto">
-        <h1 className="flex flex-row items-center mb-2 text-2xl font-lobstyled md:text-3xl gap-x-2">
+        <h1 className="flex flex-row items-center mb-2 text-2xl font-roboto md:text-3xl gap-x-2">
           Gallery
           <span>
             <ImCamera className="text-gray-500" />

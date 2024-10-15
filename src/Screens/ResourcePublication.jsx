@@ -89,7 +89,7 @@ function ResourcePublication() {
   return (
     <>
       <div className="container flex flex-col mx-auto mt-24 mb-7">
-        <h1 className="flex flex-row items-center mb-2 text-2xl font-lobstyled md:text-3xl gap-x-2">
+        <h1 className="flex flex-row items-center mb-2 text-2xl font-semibold font-roboto md:text-3xl gap-x-2">
           Research and Publications
           <span>
             <ImBook className="text-gray-500" />

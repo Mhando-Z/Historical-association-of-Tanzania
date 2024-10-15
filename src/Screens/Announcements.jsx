@@ -66,7 +66,7 @@ export default function Announcements() {
         <div className="container flex flex-col mx-auto">
           <motion.h1
             variants={itemVariants}
-            className="flex flex-row items-center mb-2 text-2xl font-lobstyled md:text-3xl gap-x-2"
+            className="flex flex-row items-center mb-2 text-2xl font-semibold font-roboto md:text-3xl gap-x-2"
           >
             Announcements
             <span>

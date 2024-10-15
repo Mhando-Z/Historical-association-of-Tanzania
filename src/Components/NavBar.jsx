@@ -132,7 +132,7 @@ function NavBar() {
             ) : (
               <Link
                 to={`Login/`}
-                className="px-5 py-2 md:text-sm lg:text-md xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
+                className="px-5 py-2 md:text-sm lg:text-lg xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
               >
                 Sign In
               </Link>
