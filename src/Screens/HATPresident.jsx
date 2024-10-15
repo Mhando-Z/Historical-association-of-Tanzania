@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 
 function HATPresident() {
   const { PresidentSect } = useContext(HomePageContext);
-  console.log(PresidentSect);
 
   // image link
   const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
 
   return (
-    <div className="flex flex-col min-h-screen mt-24">
+    <div className="flex flex-col min-h-screen mt-24 ">
       <div className="container flex flex-col mx-auto gap-y-5 gap-x-10 md:flex-row">
         {/* Basic Info */}
         <div className="flex flex-col">
@@ -32,7 +31,7 @@ function HATPresident() {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl font-medium font-roboto md:text-3xl xl:text-4xl"
+            className="text-2xl font-medium text-center md:text-left font-roboto md:text-3xl xl:text-4xl"
           >
             {PresidentSect[0]?.title}
           </motion.h1>
@@ -43,7 +42,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl text-xs tracking-tighter text-justify md:text-base sm:text-sm"
+              className="max-w-5xl text-xs leading-normal text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description}
             </motion.p>
@@ -53,7 +52,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl mt-2 text-xs tracking-tighter text-justify md:text-base sm:text-sm"
+              className="max-w-5xl mt-2 text-xs leading-normal text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description2}
             </motion.p>
@@ -73,7 +72,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl text-xs tracking-tighter text-justify md:text-base sm:text-sm"
+              className="max-w-5xl text-xs leading-normal text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description3}
             </motion.p>

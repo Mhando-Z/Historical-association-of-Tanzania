@@ -54,7 +54,7 @@ function PresidentSpeech() {
                 </p>
               </motion.div>
               <div className="flex flex-col mt-5 md:gap-y-4 gap-y-2">
-                <h1 className="max-w-lg text-3xl font-extrabold tracking-tighter text-center text-gray-800 font-roboto xl:max-w-2xl md:text-left md:text-4xl xl:text-5xl">
+                <h1 className="max-w-lg text-2xl font-extrabold tracking-tighter text-center text-gray-800 sm:text-3xl font-roboto xl:max-w-2xl md:text-left md:text-4xl xl:text-5xl">
                   {dt.title}
                 </h1>
                 {/* <h1 className="text-xl font-semibold text-gray-700 md:text-left md:text-2xl xl:text-3xl">
@@ -67,17 +67,17 @@ function PresidentSpeech() {
                   transition={{ duration: 1 }}
                   className="flex flex-col gap-y-2"
                 >
-                  <p className="max-w-5xl text-xs tracking-tighter text-justify sm:text-sm md:text-base line-clamp-6">
+                  <p className="max-w-5xl text-xs leading-normal text-justify sm:text-sm md:text-base line-clamp-6">
                     {dt.description}
                   </p>
-                  <p className="max-w-5xl mt-2 text-xs tracking-tighter text-justify sm:text-sm md:text-base line-clamp-6">
+                  <p className="max-w-5xl mt-2 text-xs leading-normal text-justify sm:text-sm md:text-base line-clamp-6">
                     {dt.description2}
                   </p>
                   <motion.div className="flex justify-end w-full mt-6 ">
                     <Link
                       onClick={scrollToTop}
                       to={"President/"}
-                      className="px-4 py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
+                      className="px-4 py-1.5 text-xs sm:text-sm md:text-base md:py-2 mt-2 font-medium text-[#744517] ring-2 ring-[#b67a3d] xl:py-2 hover:ring-2 hover:ring-black hover:bg-opacity-0 hover:text-black rounded-3xl "
                     >
                       <motion.div
                         whileHover={{ scale: 1.05 }}

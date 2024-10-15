@@ -95,7 +95,7 @@ const TestMonials = () => {
 
   return (
     <div className="py-10 mt-24 bg-white">
-      <h2 className="mb-4 font-lobstyled tracking-wider text-3xl font-bold text-center text-[#b67a3d]">
+      <h2 className="mb-4 tracking-wider text-3xl font-bold text-center text-[#b67a3d]">
         TESTIMONIALS
       </h2>
       <p className="mb-8 text-center text-gray-600">
@@ -123,13 +123,13 @@ const TestMonials = () => {
 
             {userReviews && userReviews[currentIndex] && (
               <div className="flex-grow mt-4 text-center px-7 md:px-0 md:mt-0 md:text-left">
-                <p className="text-lg text-gray-700">
+                <p className="text-xs leading-normal text-gray-700 sm:text-sm md:text-base">
                   {userReviews[currentIndex]?.profile?.reviews}
                 </p>
-                <h4 className="mt-2 font-bold text-orange-500">
+                <h4 className="mt-2 text-xs font-bold text-orange-500 md:text-base">
                   {userReviews[currentIndex]?.username}
                 </h4>
-                <p className="text-sm text-gray-500">
+                <p className="text-xs text-gray-500 sm:text-sm md:text-base">
                   {userReviews[currentIndex]?.profile?.title}
                 </p>
               </div>

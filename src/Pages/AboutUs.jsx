@@ -44,7 +44,7 @@ function AboutUs() {
       variants={containerVariants}
     >
       <motion.h1
-        className="mb-8 font-lobstyled text-3xl md:text-4xl font-black text-[#b67a3d]"
+        className="mb-8 text-2xl  sm:text-3xl md:text-4xl font-black font-roboto text-[#b67a3d]"
         variants={itemVariants}
       >
         Who we Are
@@ -52,7 +52,7 @@ function AboutUs() {
       <div className="flex flex-col justify-between md:flex-row gap-x-5 ">
         <div className="flex flex-col max-w-2xl ">
           <motion.p
-            className="mb-6 text-base leading-relaxed text-justify text-gray-700 xl:text-lg"
+            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg"
             variants={itemVariants}
           >
             The Historical Association of Tanzania (HAT) is dedicated to
@@ -63,7 +63,7 @@ function AboutUs() {
             the past among Tanzanians and the global community.
           </motion.p>
           <motion.p
-            className="mb-6 text-base leading-relaxed text-justify text-gray-700 xl:text-lg "
+            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg "
             variants={itemVariants}
           >
             Our association organizes events, lectures, and exhibitions that
@@ -73,7 +73,7 @@ function AboutUs() {
             in the field of history.
           </motion.p>
           <motion.p
-            className="mb-6 text-base leading-relaxed text-justify text-gray-700 xl:text-lg "
+            className="mb-6 text-xs leading-relaxed text-justify text-gray-700 sm:text-sm md:text-base xl:text-lg "
             variants={itemVariants}
           >
             At HAT, we believe that understanding history is crucial for

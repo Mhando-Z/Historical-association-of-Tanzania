@@ -38,33 +38,47 @@ export default function Dialogue({ value, open, setOpen }) {
                   <div className="flex flex-col items-center justify-center mt-2 md:gap-y-3 gap-y-1 md:mt-0 md:justify-normal md:items-start">
                     <DialogTitle
                       as="h1"
-                      className="max-w-lg text-3xl font-bold text-gray-900 md:text-5xl"
+                      className="max-w-lg text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl xl:text-5xl"
                     >
                       {StaffsSect[value]?.name}
                     </DialogTitle>
-                    <h1 className="text-2xl font-bold md:text-3xl ">
+                    <h1 className="text-xl font-bold sm:text-2xl md:text-3xl ">
                       {StaffsSect[value]?.position}
                     </h1>
                     <div className="flex flex-col">
-                      <h1 className="text-xl font-semibold">Contacts</h1>
-                      <div className="flex flex-row text-xl gap-x-7">
-                        <h1 className="">Phone:-</h1>
-                        <h1>{StaffsSect[value]?.contact2}</h1>
-                      </div>
-                      <div className="flex flex-row text-xl gap-x-7">
-                        <h1 className="">Email:-</h1>
-                        <h1 className="text-blue-800">
-                          {StaffsSect[value]?.contact1}
-                        </h1>
+                      <h1 className="text-base font-semibold sm:text-lg font-roboto md:text-xl">
+                        Contacts
+                      </h1>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left table-auto">
+                          <tbody>
+                            <tr className="items-center border-b">
+                              <td className="py-2 text-base font-medium sm:text-lg md:text-xl">
+                                Phone:
+                              </td>
+                              <td className="py-2 text-xs sm:text-sm md:text-base">
+                                {StaffsSect[value]?.contact2}
+                              </td>
+                            </tr>
+                            <tr className="items-center border-b">
+                              <td className="py-2 text-base font-medium sm:text-lg md:text-xl">
+                                Email:
+                              </td>
+                              <td className="py-2 text-xs text-blue-800 sm:text-sm md:text-base">
+                                {StaffsSect[value]?.contact1}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col px-5 mt-3 md:p-0">
-                  <h1 className="mb-1 text-2xl font-bold md:text-3xl">
+                  <h1 className="mb-1 text-xl font-bold sm:text-2xl md:text-3xl">
                     Biography
                   </h1>
-                  <p className="tracking-tighter text-justify text-gray-900 md:text-base xl:text-lg">
+                  <p className="text-xs leading-normal text-justify text-gray-900 sm:text-sm md:text-base">
                     {StaffsSect[value]?.description}
                   </p>
                 </div>
@@ -72,7 +86,7 @@ export default function Dialogue({ value, open, setOpen }) {
             </div>
             <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
               <Link
-                className="inline-flex justify-center w-full px-4 py-2 font-semibold text-white bg-red-600 rounded-3xl hover:bg-red-500 sm:ml-3 sm:w-auto"
+                className="inline-flex text-xs sm:text-sm md:text-base justify-center w-full px-4 py-1.5 md:py-2 font-semibold text-white bg-red-600 rounded-3xl hover:bg-red-500 sm:ml-3 sm:w-auto"
                 onClick={() => setOpen(false)}
               >
                 Cancel
