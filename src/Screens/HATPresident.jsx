@@ -43,7 +43,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl text-xs tracking-tighter text-justify md:text-sm"
+              className="max-w-5xl text-xs tracking-tighter text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description}
             </motion.p>
@@ -53,7 +53,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl mt-2 text-xs tracking-tighter text-justify md:text-sm"
+              className="max-w-5xl mt-2 text-xs tracking-tighter text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description2}
             </motion.p>
@@ -73,7 +73,7 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="max-w-5xl text-xs tracking-tighter text-justify md:text-sm"
+              className="max-w-5xl text-xs tracking-tighter text-justify md:text-base sm:text-sm"
             >
               {PresidentSect[0]?.description3}
             </motion.p>
@@ -81,10 +81,10 @@ function HATPresident() {
             {/* best Regards */}
             <div className="flex flex-col mt-4 mb-20">
               <h2 className="font-semibold text-md">Warm Regards</h2>
-              <p className="mt-2 text-xs nd:text-sm">
+              <p className="mt-2 text-xs md:text-base sm:text-sm">
                 {PresidentSect[0]?.name}
               </p>
-              <p className="mt-1 text-xs nd:text-sm">
+              <p className="mt-1 text-xs md:text-base sm:text-sm">
                 {PresidentSect[0]?.cheo}
               </p>
             </div>
