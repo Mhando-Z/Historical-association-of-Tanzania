@@ -78,11 +78,17 @@ function HATPresident() {
             </motion.p>
 
             {/* best Regards */}
-            <div className="flex flex-col mt-4 mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              viewport={{ once: true }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="flex flex-col mt-4 mb-20"
+            >
               <h2 className="font-medium text-md">Warm Regards</h2>
               <p className="mt-2 ">{PresidentSect[0]?.name}</p>
               <p className="mt-1 ">{PresidentSect[0]?.cheo}</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

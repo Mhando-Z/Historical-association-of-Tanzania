@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import HomePageContext from "../Context/HomePageContext";
-import { Link } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { Dots } from "react-activity";
 import { motion, AnimatePresence } from "framer-motion";
 
 function HeroSection() {
@@ -13,6 +11,11 @@ function HeroSection() {
   // timer Logic
   useEffect(() => {
     if (!heroSect || heroSect.length === 0) return;
+
+    // Fallback UI when there are no reviews
+    if (!heroSect || heroSect?.length === 0) {
+      return <div className="bg-white"></div>;
+    }
 
     const interval = setInterval(() => {
       setValue((prevValue) => {
@@ -50,13 +53,6 @@ function HeroSection() {
     setValue((prevValue) => (prevValue > 0 ? prevValue - 1 : prevValue));
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   // image url
   const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
 
@@ -85,22 +81,13 @@ function HeroSection() {
               transition={{ duration: 1 }}
               className="md:min-h-screen md:h-[700px] xl:h-[900px] lg:h-[700px] h-screen shadow-md w-screen object-cover object-center group-hover:opacity-75"
             />
-
-            {heroSect?.length === 0 && (
-              <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center">
-                <Dots color="#b67a3d" size={40} speed={0.7} animating={true} />
-                <p className="mt-4 text-lg text-gray-600">
-                  Loading content, please wait...
-                </p>
-              </div>
-            )}
           </motion.div>
         </AnimatePresence>
         <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
         <div className="container absolute top-0 bottom-[-600px] left-0 right-0 flex flex-row mx-auto mt-5 md:bottom-[-700px] rounded-2xl">
           {/* herosection text */}
           <div className="flex flex-col justify-center w-full gap-y-2">
-            <div className="flex flex-col justify-between md:flex-row">
+            <div className="flex flex-col justify-between bg-white md:flex-row">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -158,7 +145,7 @@ function HeroSection() {
                       ease: "easeOut",
                       delay: 2.5,
                     }}
-                    className="max-w-lg mt-1 text-base tracking-tighter text-justify xl:text-lg line-clamp-4 xl:max-w-2xl"
+                    className="max-w-lg mt-1 text-base leading-normal line-clamp-4 xl:max-w-2xl"
                   >
                     {heroSect[value]?.description}
                   </motion.p>
@@ -224,7 +211,7 @@ function HeroSection() {
                     in home automation. Enjoy exclusive access to resources,
                     networking opportunities, and more.
                   </p>
-                  <motion.div className="flex justify-end md:mb-7 md:items-end">
+                  {/* <motion.div className="flex justify-end md:mb-7 md:items-end">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.8 }}
@@ -235,7 +222,7 @@ function HeroSection() {
                         Sign Up
                       </Link>
                     </motion.button>
-                  </motion.div>
+                  </motion.div> */}
                 </motion.div>
               </motion.div>
             </div>
