@@ -49,17 +49,17 @@ function PresidentSpeech() {
                     className="h-[400px] w-full shadow-lg object-cover object-top md:object-center group-hover:opacity-75"
                   />
                 </div>
-                <p className="w-[300px] mt-2 text-sm font-medium justify-center text-center ">
+                <p className="w-[300px] mt-2 text-sm font-medium capitalize justify-center text-center ">
                   {dt.subtitle}
                 </p>
               </motion.div>
               <div className="flex flex-col mt-5 md:gap-y-4 gap-y-2">
-                <h1 className="max-w-lg text-3xl font-extrabold tracking-tighter text-center text-gray-800 xl:max-w-2xl md:text-left md:text-4xl xl:text-5xl">
+                <h1 className="max-w-lg text-3xl font-extrabold tracking-tighter text-center text-gray-800 font-roboto xl:max-w-2xl md:text-left md:text-4xl xl:text-5xl">
                   {dt.title}
                 </h1>
-                <h1 className="text-xl font-semibold text-gray-700 md:text-left md:text-2xl xl:text-3xl">
+                {/* <h1 className="text-xl font-semibold text-gray-700 md:text-left md:text-2xl xl:text-3xl">
                   {dt.subtitle}
-                </h1>
+                </h1> */}
                 <motion.div
                   initial={{ opacity: 0, y: -30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -67,8 +67,11 @@ function PresidentSpeech() {
                   transition={{ duration: 1 }}
                   className="flex flex-col gap-y-2"
                 >
-                  <p className="max-w-5xl tracking-tighter text-justify md:text-base xl:text-lg line-clamp-6">
+                  <p className="max-w-5xl text-xs tracking-tighter text-justify sm:text-sm md:text-base line-clamp-6">
                     {dt.description}
+                  </p>
+                  <p className="max-w-5xl mt-2 text-xs tracking-tighter text-justify sm:text-sm md:text-base line-clamp-6">
+                    {dt.description2}
                   </p>
                   <motion.div className="flex justify-end w-full mt-6 ">
                     <Link

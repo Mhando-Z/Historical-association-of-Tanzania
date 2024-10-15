@@ -13,7 +13,7 @@ function HATPresident() {
     <div className="flex flex-col min-h-screen mt-24">
       <div className="container flex flex-col mx-auto gap-y-5 gap-x-10 md:flex-row">
         {/* Basic Info */}
-        <div className="flex flex-col shadow">
+        <div className="flex flex-col">
           {/* image */}
           <motion.img
             initial={{ opacity: 0, y: 20 }}
