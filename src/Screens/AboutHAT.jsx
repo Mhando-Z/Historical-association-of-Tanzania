@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 // images imports
 import mage1 from "../Assets/AboutUs/03.jpg";
 import mage2 from "../Assets/AboutUs/16.jpg";
+
 // icons imports
 import { FaEye } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
@@ -323,6 +325,7 @@ function AboutHAT() {
 export default AboutHAT;
 
 // Houw to Join HAT component
+
 const HowToJoinSection = () => {
   const membershipTypes = [
     { type: "Ordinary Membership", fee: "20,000 TZS", icon: Users },
@@ -339,7 +342,7 @@ const HowToJoinSection = () => {
     {
       title: "Pay the Membership Fees",
       description:
-        " After submitting the application, fees should be paid via HAT’s designated bank accounts or mobile money platforms. The annual membership fees are",
+        " After submitting the application, fees should be paid via HAT’s designated bank accounts or mobile money platforms.",
     },
     {
       title: "Review and Approval",
@@ -348,21 +351,26 @@ const HowToJoinSection = () => {
     },
   ];
 
+  // Reference for viewport animations
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <section className="container flex flex-col px-4 mx-auto mb-16">
       <motion.h2
         className="mb-6 text-3xl font-bold text-gray-800"
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
         How to Join
       </motion.h2>
 
       <motion.div
+        ref={ref}
         className="space-y-6 text-gray-700"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={isInView ? { opacity: 1 } : {}}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
         <p className="text-lg">
@@ -380,7 +388,14 @@ const HowToJoinSection = () => {
                 key={index}
                 className="p-4 transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-lg"
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  delay: index * 0.1 + 0.3,
+                  duration: 0.5,
+                  type: "spring",
+                  stiffness: 300,
+                }}
               >
                 <membership.icon className="w-8 h-8 mb-2 text-blue-500" />
                 <h4 className="mb-2 font-semibold">{membership.type}</h4>
@@ -400,7 +415,7 @@ const HowToJoinSection = () => {
                 key={index}
                 className="flex items-start p-4 rounded-lg bg-gray-50"
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
               >
                 <CheckCircle className="flex-shrink-0 w-6 h-6 mt-1 mr-4 text-green-500" />
@@ -507,9 +522,21 @@ const MembershipSection = () => {
 
   return (
     <div className="container flex py-4 mx-auto">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         {/* Main Membership Section */}
-        <div className="col-span-1 p-6 bg-white rounded-lg shadow md:col-span-2">
+        <motion.div
+          className="col-span-1 p-6 bg-white rounded-lg shadow md:col-span-2"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="mb-4 text-2xl font-bold">
             Discover the Power of HAT Membership
           </h2>
@@ -519,15 +546,19 @@ const MembershipSection = () => {
             diverse membership types cater to individuals and organizations
             alike.
           </p>
-        </div>
+        </motion.div>
 
         {/* Membership Types */}
         {membershipTypes.map((type, index) => (
-          <div
+          <motion.div
             key={index}
             className={`bg-white p-6 rounded-lg shadow ${
               index % 2 === 1 ? "bg-orange-100" : ""
             }`}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-semibold">{type.title}</h3>
@@ -536,15 +567,28 @@ const MembershipSection = () => {
               </span>
             </div>
             <p className="text-gray-600">{type.description}</p>
-          </div>
+          </motion.div>
         ))}
 
         {/* Membership Benefits */}
-        <div className="col-span-1 py-6 bg-white rounded-lg md:col-span-2 lg:col-span-3">
+        <motion.div
+          className="col-span-1 py-6 bg-white rounded-lg md:col-span-2 lg:col-span-3"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <h3 className="mb-4 text-2xl font-bold">Membership Benefits</h3>
           <div className="space-y-4">
             {membershipBenefits.map((benefit, index) => (
-              <div key={index} className="pb-4 border-b border-gray-200">
+              <motion.div
+                key={index}
+                className="pb-4 border-b border-gray-200"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
                 <button
                   className="flex items-center justify-between w-full text-left focus:outline-none"
                   onClick={() => toggleBenefit(index)}
@@ -559,11 +603,11 @@ const MembershipSection = () => {
                 {expandedBenefit === index && (
                   <p className="mt-2 text-gray-600">{benefit.description}</p>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
