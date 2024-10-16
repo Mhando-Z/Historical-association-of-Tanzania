@@ -16,280 +16,20 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 function AboutHAT() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen mt-28">
-      <motion.div
-        className="container mx-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Header Section */}
-        <motion.div
-          className="mb-12 text-center"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-4xl font-bold text-gray-900">
-            Historical Association of Tanzania (HAT)
-          </h1>
-          <p className="mt-4 text-lg italic text-gray-600">
-            Preserving Tanzania's History since 1966
-          </p>
-        </motion.div>
-
-        {/* About Us Section */}
+      <motion.div>
+        {/* About Us section */}
         <section className="mb-16">
-          <motion.h2
-            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <BsFillInfoCircleFill className="text-2xl text-amber-600" />
-            <>About Us</>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-4 tracking-tighter text-gray-700 sm:text-justify"
-          >
-            <p>
-              The Historical Association of Tanzania (HAT) is one of the oldest
-              academic organisations in East Africa. It was founded in 1966 by
-              members of the History Department of Dar es Salaam University
-              College of the University of East Africa. By 1974, HAT had
-              branches in many secondary schools and colleges in Tanzania.
-            </p>
-            <p>
-              Apart from engaging historians in seminars and conferences, the
-              Association was also an important platform for the production and
-              dissemination of historical knowledge throughout the country.
-              Because it was based on and aligned with the national philosophy
-              of Ujamaa and self-reliance, the Association was funded by the
-              government and its institutions. However, funding began to dwindle
-              from the late 1980s when members of many branches of the
-              Association, including government departments and universities,
-              failed to pay their annual subscriptions. As a result, the
-              association became weak, and publications, particularly its
-              journal <em>Tanzania Zamani</em>, almost ceased, leading to the
-              deregistration of the association in the 1990s.
-            </p>
-            <p>
-              HAT was revived in 2017 and re-registered as a non-profit
-              organization in 2018. Since then, HAT has been able to revive its
-              annual conferences and seminars. The new HAT has several
-              objectives, including promoting and encouraging interest in the
-              study of history; supporting the teaching of Tanzanian history;
-              publishing bibliographies and information sheets; encouraging
-              historical writing; holding meetings; and encouraging the
-              formation of local branches of the Association.
-            </p>
-            <p>
-              Additionally, HAT has strengthened its partnership with the East
-              African Historical Society and launched a new initiative to
-              preserve Tanzanian historical documents through digitization. This
-              allows greater access to historical records and materials, helping
-              preserve the nation's history for future generations.
-            </p>
-          </motion.div>
-
-          {/* Image Placeholder */}
-          <motion.div
-            className="mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <div className="flex items-center justify-center w-full h-[300px] sm:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
-              <img
-                src={mage1}
-                alt="HAT group pic"
-                className="object-cover object-center w-full h-full rounded-md"
-              />
-            </div>
-          </motion.div>
+          <HAT />
         </section>
 
         {/* Vision Section */}
-        <section className="mb-16">
-          <motion.h2
-            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <FaEye className="text-2xl text-amber-600" />
-            <>Vision</>
-          </motion.h2>
-          <motion.p
-            className="tracking-tighter text-gray-700 sm:text-justify"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            To cultivate a deep, inclusive, and dynamic understanding of African
-            and global histories in Tanzania by fostering a community of
-            scholars, students, and the public who engage with the past to shape
-            a better future.
-          </motion.p>
-          <motion.div
-            className="mt-4 space-y-4 text-gray-700"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <p>HAT’s vision also includes efforts to:</p>
-            <ul className="pl-5 space-y-2 tracking-tighter list-disc sm:text-justify">
-              <li>
-                <strong>
-                  Preserve Tanzanian history through digitization and archiving:
-                </strong>
-                HAT aims to ensure that crucial historical documents, records,
-                and oral histories are digitized and archived. This effort is
-                essential in preserving Tanzania’s rich cultural and historical
-                heritage for future generations. Through digitization,
-                historical resources can be safeguarded against deterioration,
-                while also making them more accessible to researchers, students,
-                and the public.
-              </li>
-              <li>
-                <strong>
-                  Expand historical education by integrating technology and
-                  digital tools:
-                </strong>
-                HAT is committed to promoting historical education by
-                incorporating modern technology into the teaching and learning
-                process. By using digital platforms, online resources, and
-                virtual libraries, the association can enhance the study of
-                history, making it more interactive and engaging for students.
-                This also allows the organization to reach a broader audience,
-                including those in remote areas.
-              </li>
-              <li>
-                <strong>
-                  Promote global partnerships to broaden perspectives on
-                  Tanzanian and African histories:
-                </strong>
-                HAT actively seeks to establish partnerships with global
-                institutions, historians, and scholars to exchange knowledge and
-                resources. These partnerships allow HAT to introduce diverse
-                perspectives on African histories, fostering a more inclusive
-                understanding of both Tanzanian and global narratives. This
-                global collaboration also facilitates research opportunities and
-                helps Tanzanian history gain recognition on an international
-                scale.
-              </li>
-            </ul>
-          </motion.div>
+        <section className="container flex mx-auto mb-5">
+          <VisionSection />
         </section>
 
         {/* Mission Section */}
         <section className="mb-16">
-          <motion.h2
-            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <TbTargetArrow className="text-2xl text-amber-600" />
-            Mission
-          </motion.h2>
-          <motion.p
-            className="tracking-tighter text-gray-700 sm:text-justify"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            To unite all historians, students, history teachers, allied
-            professionals, and the general public in the study of African and
-            global histories in Tanzania. The mission extends to involving
-            community leaders, local councils, and schools, ensuring that the
-            study of history becomes an integral part of the educational
-            curriculum, thus embedding historical consciousness within Tanzanian
-            society.
-          </motion.p>
-          <motion.div
-            className="mt-4 space-y-4 tracking-tighter text-gray-700 sm:text-justify"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <p>HAT achieves its mission through the following actions:</p>
-            <ul className="pl-5 space-y-2 list-disc">
-              <li>
-                <strong>
-                  Organizing conferences, workshops, and seminars to promote
-                  historical discourse:
-                </strong>
-                HAT regularly organizes events such as conferences and workshops
-                that bring together historians, educators, and students to
-                discuss and debate historical topics. These platforms encourage
-                the exchange of ideas, foster new research, and strengthen the
-                community of history scholars in Tanzania.
-              </li>
-              <li>
-                <strong>
-                  Supporting research and publication efforts for emerging
-                  scholars:
-                </strong>
-                HAT offers resources and support to new and emerging scholars
-                who are conducting research in the field of history. By
-                providing a platform for these scholars to publish their work,
-                the association helps expand historical knowledge and encourages
-                the development of fresh perspectives on Tanzanian and African
-                histories.
-              </li>
-              <li>
-                <strong>
-                  Encouraging public engagement with history through outreach
-                  programs and online platforms:
-                </strong>
-                HAT works to make history more accessible to the general public.
-                Through outreach programs and digital platforms, the association
-                seeks to engage a broader audience with Tanzanian history,
-                promoting historical awareness and education among communities
-                that may not have easy access to formal historical discourse.
-              </li>
-            </ul>
-            <p className="mt-4">In addition, HAT aims to:</p>
-            <ul className="pl-5 space-y-2 list-disc">
-              <li>
-                <strong>
-                  Strengthen history education in Tanzanian schools through
-                  collaboration with the Ministry of Education:
-                </strong>
-                By working closely with the Ministry of Education, HAT seeks to
-                improve the teaching of history in schools across Tanzania. The
-                association advocates for better history curricula, more
-                resources for history teachers, and greater emphasis on the
-                importance of historical study within the Tanzanian education
-                system.
-              </li>
-              <li>
-                <strong>
-                  Develop online courses and resources for the public to engage
-                  more with Tanzanian history:
-                </strong>
-                HAT is developing digital courses and educational resources that
-                allow the public to engage with Tanzanian history from anywhere.
-                These resources make learning history more accessible,
-                particularly for those who may not have the opportunity to
-                attend formal classes or academic institutions.
-              </li>
-              <li>
-                <strong>
-                  Collaborate with international history associations to share
-                  resources and best practices:
-                </strong>
-                HAT seeks to build strong relationships with history
-                associations from around the world. These collaborations provide
-                valuable opportunities to share resources, research, and best
-                practices, while also helping Tanzanian history gain wider
-                recognition on the international stage.
-              </li>
-            </ul>
-          </motion.div>
+          <MissionSection />
         </section>
 
         {/* Membership Section */}
@@ -301,14 +41,15 @@ function AboutHAT() {
         <motion.div
           className="mt-8 mb-16"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1 }}
         >
-          <div className="flex items-center justify-center w-full h-[300px] md:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
+          <div className="flex container mx-auto items-center justify-center w-full h-[300px] md:h-[400px] xl:h-[500px] bg-gray-300 rounded-md">
             <img
               src={mage2}
               alt="HAT group pic"
-              className="object-cover object-center w-full h-full rounded-md"
+              className="object-cover object-center w-full h-full rounded-3xl"
             />
           </div>
         </motion.div>
@@ -325,7 +66,6 @@ function AboutHAT() {
 export default AboutHAT;
 
 // Houw to Join HAT component
-
 const HowToJoinSection = () => {
   const membershipTypes = [
     { type: "Ordinary Membership", fee: "20,000 TZS", icon: Users },
@@ -452,7 +192,6 @@ const HowToJoinSection = () => {
 };
 
 // membership design
-
 const MembershipSection = () => {
   const [expandedBenefit, setExpandedBenefit] = useState(null);
 
@@ -611,3 +350,406 @@ const MembershipSection = () => {
     </div>
   );
 };
+
+// mission section
+const MissionSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true }); // Trigger animation once when in view
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.section
+      ref={ref} // Reference for in-view detection
+      className="p-6 py-20 mb-10 bg-gradient-to-br from-amber-50 to-orange-50"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"} // Animate when in view
+    >
+      <div className="container flex flex-col mx-auto">
+        <motion.h2
+          className="flex flex-row items-center mb-6 text-2xl font-bold text-amber-800 md:text-3xl gap-x-3"
+          variants={itemVariants}
+        >
+          <TbTargetArrow className="text-3xl text-amber-600" />
+          Our Mission
+        </motion.h2>
+
+        <motion.p
+          className="mb-6 text-lg tracking-wide text-gray-700 sm:text-justify"
+          variants={itemVariants}
+        >
+          To unite all historians, students, history teachers, allied
+          professionals, and the general public in the study of African and
+          global histories in Tanzania. Our mission extends to involving
+          community leaders, local councils, and schools, ensuring that the
+          study of history becomes an integral part of the educational
+          curriculum, thus embedding historical consciousness within Tanzanian
+          society.
+        </motion.p>
+
+        <motion.div className="space-y-6" variants={containerVariants}>
+          <motion.h3
+            className="text-xl font-semibold text-amber-700"
+            variants={itemVariants}
+          >
+            HAT achieves its mission through:
+          </motion.h3>
+
+          <ul className="space-y-4">
+            {[
+              {
+                title:
+                  "Organizing conferences, workshops, and seminars to promote historical discourse",
+                description:
+                  "HAT regularly organizes events such as conferences and workshops that bring together historians, educators, and students to discuss and debate historical topics. These platforms encourage the exchange of ideas, foster new research, and strengthen the community of history scholars in Tanzania.",
+              },
+              {
+                title:
+                  "Supporting research and publication efforts for emerging scholars",
+                description:
+                  ":HAT offers resources and support to new and emerging scholars who are conducting research in the field of history. By providing a platform for these scholars to publish their work, the association helps expand historical knowledge and encourages the development of fresh perspectives on Tanzanian and African histories.",
+              },
+              {
+                title:
+                  "Encouraging public engagement with history through outreach programs and online platforms",
+                description:
+                  "HAT works to make history more accessible to the general public. Through outreach programs and digital platforms, the association seeks to engage a broader audience with Tanzanian history, promoting historical awareness and education among communities that may not have easy access to formal historical discourse.",
+              },
+            ].map((item, index) => (
+              <motion.li
+                key={index}
+                className="flex items-start p-4 bg-white rounded-md shadow-md"
+                variants={itemVariants}
+              >
+                <span className="mr-4 text-2xl text-amber-500">•</span>
+                <div>
+                  <h4 className="mb-2 text-lg font-semibold text-gray-800">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+
+          <motion.h3
+            className="mt-8 text-xl font-semibold text-amber-700"
+            variants={itemVariants}
+          >
+            Additional goals:
+          </motion.h3>
+
+          <ul className="space-y-4">
+            {[
+              {
+                title:
+                  "Strengthen history education in Tanzanian schools through collaboration with the Ministry of Education:",
+                description:
+                  ":By working closely with the Ministry of Education, HAT seeks to improve the teaching of history in schools across Tanzania. The association advocates for better history curricula, more resources for history teachers, and greater emphasis on the importance of historical study within the Tanzanian education system.",
+              },
+              {
+                title:
+                  " Develop online courses and resources for the public to engage more with Tanzanian history:",
+                description:
+                  ":HAT is developing digital courses and educational resources that allow the public to engage with Tanzanian history from anywhere. These resources make learning history more accessible, particularly for those who may not have the opportunity to attend formal classes or academic institutions.",
+              },
+              {
+                title:
+                  "Collaborate with international history associations to share resources and best practices:",
+                description:
+                  "HAT seeks to build strong relationships with history associations from around the world. These collaborations provide valuable opportunities to share resources, research, and best practices, while also helping Tanzanian history gain wider recognition on the international stage.",
+              },
+            ].map((item, index) => (
+              <motion.li
+                key={index}
+                className="flex items-start p-4 bg-white rounded-md shadow-md"
+                variants={itemVariants}
+              >
+                <span className="mr-4 text-2xl text-amber-500">•</span>
+                <div>
+                  <h4 className="mb-2 text-lg font-semibold text-gray-800">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+};
+
+// vison section
+const VisionSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  };
+
+  return (
+    <motion.section
+      className="p-6 mb-16 rounded-lg shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <motion.h2
+        className="flex flex-row items-center mb-6 text-2xl font-bold text-indigo-800 md:text-3xl gap-x-3"
+        variants={itemVariants}
+      >
+        <FaEye className="text-3xl text-indigo-600" />
+        Our Vision
+      </motion.h2>
+
+      <motion.p
+        className="mb-6 text-lg tracking-wide text-gray-700 sm:text-justify"
+        variants={itemVariants}
+      >
+        To cultivate a deep, inclusive, and dynamic understanding of African and
+        global histories in Tanzania by fostering a community of scholars,
+        students, and the public who engage with the past to shape a better
+        future.
+      </motion.p>
+
+      <motion.div className="space-y-6" variants={containerVariants}>
+        <motion.h3
+          className="text-xl font-semibold text-indigo-700"
+          variants={itemVariants}
+        >
+          HAT's vision also includes efforts to:
+        </motion.h3>
+
+        <ul className="space-y-4">
+          {[
+            {
+              title:
+                "Pursuing Tanzanian history through digitization and archiving",
+              description:
+                "HAT aims to ensure that crucial historical documents, records, and oral histories are digitized and archived. This effort is essential in preserving Tanzania’s rich cultural and historical heritage for future generations. Through digitization, historical resources can be safeguarded against deterioration, while also making them more accessible to researchers, students, and the public.",
+              icon: "📚",
+            },
+            {
+              title:
+                "Expand historical education by integrating technology and digital tools",
+              description:
+                "HAT is committed to promoting historical education by incorporating modern technology into the teaching and learning process. By using digital platforms, online resources, and virtual libraries, the association can enhance the study of history, making it more interactive and engaging for students. This also allows the organization to reach a broader audience, including those in remote areas.",
+              icon: "💻",
+            },
+            {
+              title:
+                "Promote global partnerships to broaden perspectives on Tanzanian and African histories:",
+              description:
+                "HAT actively seeks to establish partnerships with global institutions, historians, and scholars to exchange knowledge and resources. These partnerships allow HAT to introduce diverse perspectives on African histories, fostering a more inclusive understanding of both Tanzanian and global narratives. This global collaboration also facilitates research opportunities and helps Tanzanian history gain recognition on an international scale.",
+              icon: "🌍",
+            },
+          ].map((item, index) => (
+            <motion.li
+              key={index}
+              className="flex items-start p-4 transition-transform duration-200 transform bg-white rounded-md shadow-md hover:scale-105"
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+            >
+              <span className="mr-4 text-3xl">{item.icon}</span>
+              <div>
+                <h4 className="mb-2 text-lg font-semibold text-gray-800">
+                  {item.title}
+                </h4>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.section>
+  );
+};
+
+// About Us
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export function HAT() {
+  // Create refs for the image and content sections
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
+
+  // Create inView states to trigger animation
+  const isImageInView = useInView(imageRef, { once: true });
+  const isContentInView = useInView(contentRef, { once: true });
+
+  return (
+    <div className="px-4 py-12 mx-auto bg-white">
+      <motion.div
+        className="flex flex-col items-center gap-8 md:flex-row"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.2, // Staggering the animations
+            },
+          },
+        }}
+      >
+        {/* Image Section */}
+        <motion.div
+          className="w-full overflow-hidden md:w-1/2 rounded-3xl"
+          ref={imageRef}
+          initial="hidden"
+          animate={isImageInView ? "visible" : "hidden"}
+          variants={fadeIn}
+          transition={{ duration: 1 }} // Duration for image fade-in
+        >
+          <img
+            src={mage1}
+            alt="HAT representative"
+            className="object-cover w-full h-auto"
+          />
+        </motion.div>
+
+        {/* Content Section */}
+        <motion.div
+          className="w-full space-y-4 md:w-1/2"
+          ref={contentRef}
+          // initial="hidden"
+          // variants={fadeIn}
+          // animate={isContentInView ? "visible" : "hidden"}
+        >
+          {/* Title */}
+          <motion.h2
+            animate={isContentInView ? "visible" : "hidden"}
+            initial="hidden"
+            variants={fadeIn}
+            className="flex flex-col max-w-2xl gap-1 text-3xl font-bold text-gray-800 md:text-4xl"
+            transition={{ duration: 1, delay: 0.2 }} // Title shows up with delay
+          >
+            Historical Association of Tanzania (HAT)
+            <span className="mt-4 text-lg italic text-gray-600">
+              Pursuing Tanzania's History since 1966
+            </span>
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.h2
+            className="flex flex-row items-center mb-4 text-xl font-semibold text-gray-800 md:text-2xl gap-x-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }} // Staggered with delay
+          >
+            <BsFillInfoCircleFill className="text-2xl text-amber-600" />
+            <>About Us</>
+          </motion.h2>
+
+          {/* Paragraphs */}
+          <motion.p
+            animate={isContentInView ? "visible" : "hidden"}
+            initial="hidden"
+            variants={fadeIn}
+            className="text-lg text-gray-600"
+            transition={{ duration: 1, delay: 0.6 }} // First paragraph
+          >
+            The Historical Association of Tanzania (HAT) is one of the oldest
+            academic organisations in East Africa. It was founded in 1966 by
+            members of the History Department of Dar es Salaam University
+            College of the University of East Africa. By 1974, HAT had branches
+            in many secondary schools and colleges in Tanzania.
+          </motion.p>
+
+          <motion.p
+            animate={isContentInView ? "visible" : "hidden"}
+            initial="hidden"
+            variants={fadeIn}
+            className="text-lg text-gray-600"
+            transition={{ duration: 1, delay: 0.8 }} // Second paragraph
+          >
+            Apart from engaging historians in seminars and conferences, the
+            Association was also an important platform for the production and
+            dissemination of historical knowledge throughout the country.
+            Because it was based on and aligned with the national philosophy of
+            Ujamaa and self-reliance, the Association was funded by the
+            government and its institutions. However, funding began to dwindle
+            from the late 1980s when members of many branches of the
+            Association, including government departments and universities,
+            failed to pay their annual subscriptions. As a result, the
+            association became weak, and publications, particularly its journal{" "}
+            <em>Tanzania Zamani</em>, almost ceased, leading to the
+            deregistration of the association in the 1990s.
+          </motion.p>
+
+          <motion.p
+            animate={isContentInView ? "visible" : "hidden"}
+            initial="hidden"
+            variants={fadeIn}
+            className="text-lg text-gray-600"
+            transition={{ duration: 1, delay: 1 }} // Third paragraph
+          >
+            HAT was revived in 2017 and re-registered as a non-profit
+            organization in 2018. Since then, HAT has been able to revive its
+            annual conferences and seminars. The new HAT has several objectives,
+            including promoting and encouraging interest in the study of
+            history; supporting the teaching of Tanzanian history; publishing
+            bibliographies and information sheets; encouraging historical
+            writing; holding meetings; and encouraging the formation of local
+            branches of the Association.
+          </motion.p>
+
+          <motion.p
+            animate={isContentInView ? "visible" : "hidden"}
+            initial="hidden"
+            variants={fadeIn}
+            className="text-lg text-gray-600"
+            transition={{ duration: 3, delay: 1.2 }} // Fourth paragraph
+          >
+            Additionally, HAT has strengthened its partnership with the East
+            African Historical Society and launched a new initiative to preserve
+            Tanzanian historical documents through digitization. This allows
+            greater access to historical records and materials, helping preserve
+            the nation's history for future generations.
+          </motion.p>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
