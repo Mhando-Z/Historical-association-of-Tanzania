@@ -622,7 +622,7 @@ export function HAT() {
   return (
     <div className="px-4 py-12 mx-auto bg-white">
       <motion.div
-        className="flex flex-col items-center gap-8 md:flex-row"
+        className="flex flex-col gap-8 md:flex-row"
         initial="hidden"
         animate="visible"
         variants={{
@@ -650,13 +650,7 @@ export function HAT() {
         </motion.div>
 
         {/* Content Section */}
-        <motion.div
-          className="w-full space-y-4 md:w-1/2"
-          ref={contentRef}
-          // initial="hidden"
-          // variants={fadeIn}
-          // animate={isContentInView ? "visible" : "hidden"}
-        >
+        <motion.div className="w-full space-y-4 md:w-1/2" ref={contentRef}>
           {/* Title */}
           <motion.h2
             animate={isContentInView ? "visible" : "hidden"}
