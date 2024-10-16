@@ -15,7 +15,6 @@ axiosInstance.interceptors.request.use((config) => {
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-
   // If data is present, convert it to FormData
   // if (config.data) {
   //   const formData = new FormData();

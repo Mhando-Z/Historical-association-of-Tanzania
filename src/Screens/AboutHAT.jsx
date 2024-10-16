@@ -12,6 +12,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 import { ArrowRight, CheckCircle, DollarSign, Users } from "lucide-react";
 
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function AboutHAT() {
   return (
@@ -94,6 +95,11 @@ const HowToJoinSection = () => {
   // Reference for viewport animations
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/Login/");
+  };
 
   return (
     <section className="container flex flex-col px-4 mx-auto mb-16">
@@ -180,11 +186,30 @@ const HowToJoinSection = () => {
         </div>
 
         <motion.button
-          className="flex items-center px-6 py-3 text-white transition-colors duration-300 bg-blue-600 rounded-full hover:bg-blue-700"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          onClick={handleClick}
+          className="relative px-4 py-1.5 md:py-2 text-white  bg-blue-600  rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-blue-700 hover:ring-[#b67a3d] overflow-hidden  font-medium "
+          whileHover="hover"
+          initial="initial"
         >
-          Apply Now <ArrowRight className="w-5 h-5 ml-2" />
+          <motion.div
+            className="absolute bg-[#b67a3d] inset-0"
+            initial={{ x: "-100%" }}
+            variants={{
+              hover: { x: 0 },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.div
+            className="absolute inset-0 "
+            initial={{ x: 0 }}
+            variants={{
+              hover: { x: "100%" },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+          <span className="relative z-10 flex flex-row items-center">
+            Apply Now <ArrowRight className="w-5 h-5 ml-2" />
+          </span>
         </motion.button>
       </motion.div>
     </section>
