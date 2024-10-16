@@ -108,19 +108,28 @@ const Contact = () => {
           </Link>
         </div>
       </div>
+      {/* <iframe
+        title="Historical association of Tanzania location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232.78828307739545!2d39.20351960845884!3d-6.7802340452906105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4ee6f9138fe9%3A0x85f5c7ce51ff2731!2sHistory%20Department!5e1!3m2!1sen!2stz!4v1729054631444!5m2!1sen!2stz"
+        style={{ border: "0" }}
+        className="flex w-screen rounded h-[500px]"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe> */}
 
       {/* map section */}
       {show ? (
-        <div className="mt-10 mb-10">
-          <iframeame
+        <div className="mt-16">
+          <iframe
             title="Historical association of Tanzania location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d284.54685453461934!2d39.203648745810696!3d-6.780309156601822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4ee6f9138fe9%3A0x85f5c7ce51ff2731!2sHistory%20Department!5e1!3m2!1sen!2stz!4v1719078991742!5m2!1sen!2stz"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232.78828307739545!2d39.20351960845884!3d-6.7802340452906105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4ee6f9138fe9%3A0x85f5c7ce51ff2731!2sHistory%20Department!5e1!3m2!1sen!2stz!4v1729054631444!5m2!1sen!2stz"
             style={{ border: "0" }}
+            className="flex rounded w-screen h-[600px]"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            className="flex rounded  w-screen xl:h-[600px] h-[350px] xl:w-[900px] md:h-[500px]"
-          ></iframeame>
+          ></iframe>
         </div>
       ) : (
         ""
