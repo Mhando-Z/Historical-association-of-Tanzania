@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 // images imports
 import mage1 from "../Assets/AboutUs/03.jpg";
@@ -7,6 +7,9 @@ import mage2 from "../Assets/AboutUs/16.jpg";
 import { FaEye } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import { ArrowRight, CheckCircle, DollarSign, Users } from "lucide-react";
+
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 function AboutHAT() {
   return (
@@ -289,143 +292,7 @@ function AboutHAT() {
 
         {/* Membership Section */}
         <section className="mb-16">
-          <motion.h2
-            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Membership
-          </motion.h2>
-          <motion.div
-            className="space-y-4 text-gray-700"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <p>
-              Membership to the association is open to interested parties and is
-              divided into several tiers:
-            </p>
-            <ul className="pl-5 space-y-2 list-disc">
-              <li>
-                <strong>Founding Members:</strong> Members who started the
-                initial stage for registration of the association and whose
-                names have been registered at the Registrar’s Office of the
-                Ministry of Home Affairs.
-              </li>
-              <li>
-                <strong>Ordinary Members:</strong> Members who joined the
-                association after its registration.
-              </li>
-              <li>
-                <strong>Corporate Members:</strong> Membership is open to
-                corporate bodies, societies, and other institutions in Tanzania
-                and beyond, provided they subscribe to the aims and objectives
-                of the Association and are willing to advance these aims.
-              </li>
-              <li>
-                <strong>Honorary Members:</strong> Determined and granted by the
-                Executive Committee to any person who has distinguished
-                themselves in the promotion and attainment of the aims of the
-                Association. Such membership must be approved by no less than
-                two-thirds of the Executive Committee and ratified by the
-                General Meeting.
-              </li>
-            </ul>
-          </motion.div>
-        </section>
-
-        <section className="mb-16">
-          {/* Section Title */}
-          <motion.h2
-            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Membership Benefits
-          </motion.h2>
-
-          {/* Membership Benefits List */}
-          <motion.ul
-            className="pl-5 space-y-4 text-gray-700 list-disc"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            {/* Participation in Seminars and Conferences */}
-            <li>
-              <strong>Participation in Seminars and Conferences:</strong>{" "}
-              Members gain exclusive access to seminars and conferences
-              featuring renowned historians and guest speakers from both local
-              and international platforms. Topics range from Tanzanian
-              pre-colonial history to global historical events. These events
-              help members stay updated with the latest research and scholarly
-              discussions.
-            </li>
-
-            {/* Educational and Scholarship Opportunities */}
-            <li>
-              <strong>Educational and Scholarship Opportunities:</strong> HAT
-              provides scholarships for historical research and participation in
-              international history programs. These scholarships are open to
-              students, educators, and historians, offering funding for further
-              studies, research trips, and attending global conferences.
-            </li>
-
-            {/* Improvement of Teaching Knowledge */}
-            <li>
-              <strong>Improvement of Teaching Knowledge:</strong> Through HAT's
-              workshops and training, history teachers and educators benefit
-              from continuous professional development. This enhances their
-              teaching techniques, incorporating digital tools and interactive
-              methods to better engage students with historical studies.
-            </li>
-
-            {/* Access to Teaching Materials and Resources */}
-            <li>
-              <strong>Access to Teaching Materials and Resources:</strong>{" "}
-              Members enjoy access to a variety of printed and digital
-              materials, including research papers, historical documents, and
-              rare archival content. Additionally, HAT's upcoming digital
-              library will house important historical texts and journals for
-              members’ use.
-            </li>
-
-            {/* Networking Opportunities */}
-            <li>
-              <strong>Networking Opportunities:</strong> HAT fosters connections
-              between members, offering networking opportunities with local and
-              international historians, scholars, and educators. Partnerships
-              with organizations such as the African Studies Association allow
-              members to collaborate and expand their research and professional
-              circles.
-            </li>
-
-            {/* Exclusive Access to Archives and Digital Libraries */}
-            <li>
-              <strong>
-                Exclusive Access to Archives and Digital Libraries:
-              </strong>{" "}
-              Members receive privileged access to historical archives and
-              collections, including documents that are not publicly available.
-              HAT is also developing a digital library containing rare texts and
-              research materials that will support both scholarly and public
-              education.
-            </li>
-
-            {/* Collaboration on Research Projects */}
-            <li>
-              <strong>Collaboration on Research Projects:</strong> HAT members
-              can participate in national and international historical research
-              projects. By collaborating with universities and research
-              institutions, members contribute to groundbreaking studies on
-              Tanzanian and African history. HAT also provides platforms for
-              members to publish and share their research with the wider
-              academic community.
-            </li>
-          </motion.ul>
+          <MembershipSection />
         </section>
 
         {/* Image Placeholder */}
@@ -444,77 +311,9 @@ function AboutHAT() {
           </div>
         </motion.div>
 
+        {/* how to join HAT */}
         <section className="mb-16">
-          {/* Section Title */}
-          <motion.h2
-            className="mb-4 text-xl font-semibold text-gray-800 md:text-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            How to Join
-          </motion.h2>
-
-          {/* How to Join Details */}
-          <motion.div
-            className="space-y-4 text-gray-700"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            {/* Joining Process Introduction */}
-            <p>
-              An individual interested in joining HAT can do so by visiting the
-              association's website or contacting the association directly via
-              email or phone. Membership application forms are available online,
-              and once submitted, the applicant will receive confirmation within
-              a week.
-            </p>
-
-            {/* Detailed Joining Process */}
-            <p>To join HAT, interested individuals or institutions must:</p>
-
-            {/* Application Process */}
-            <ul className="pl-5 space-y-2 list-disc">
-              <li>
-                <strong>Complete an Application:</strong> Membership forms can
-                be obtained through HAT’s website or at any of its regional
-                offices. Applicants need to fill in personal or institutional
-                details, including their areas of historical interest.
-              </li>
-              <li>
-                <strong>Pay the Membership Fees:</strong> After submitting the
-                application, fees should be paid via HAT’s designated bank
-                accounts or mobile money platforms. The annual membership fees
-                are:
-                <ul className="grid grid-cols-1 gap-5 mt-4 mb-4 list-disc md:grid-cols-3">
-                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
-                    <strong>Ordinary Membership:</strong> 20,000 TZS per year.
-                  </li>
-                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
-                    <strong>Student Membership:</strong> 5,000 TZS per year.
-                  </li>
-                  <li className="flex flex-col items-center justify-center px-5 py-5 bg-gray-200 hover:shadow hover:shadow-amber-200 gap-y-2">
-                    <strong>Corporate Membership:</strong> 200,000 TZS per year.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <strong>Review and Approval:</strong> Applications are reviewed
-                by the Executive Committee. Successful applicants are added to
-                HAT’s membership registry and gain access to all membership
-                benefits.
-              </li>
-            </ul>
-
-            {/* Corporate Membership Requirements */}
-            <p>
-              <strong>Note:</strong> For Corporate membership, institutions must
-              submit a letter of interest along with their application form,
-              detailing their goals and how they intend to support HAT’s
-              objectives.
-            </p>
-          </motion.div>
+          <HowToJoinSection />
         </section>
       </motion.div>
     </div>
@@ -522,3 +321,249 @@ function AboutHAT() {
 }
 
 export default AboutHAT;
+
+// Houw to Join HAT component
+const HowToJoinSection = () => {
+  const membershipTypes = [
+    { type: "Ordinary Membership", fee: "20,000 TZS", icon: Users },
+    { type: "Student Membership", fee: "5,000 TZS", icon: Users },
+    { type: "Corporate Membership", fee: "200,000 TZS", icon: DollarSign },
+  ];
+
+  const joinSteps = [
+    {
+      title: "Complete an Application",
+      description:
+        " Membership forms can be obtained through HAT’s website or at any of its regional offices. Applicants need to fill in personal or institutional details, including their areas of historical interest.",
+    },
+    {
+      title: "Pay the Membership Fees",
+      description:
+        " After submitting the application, fees should be paid via HAT’s designated bank accounts or mobile money platforms. The annual membership fees are",
+    },
+    {
+      title: "Review and Approval",
+      description:
+        "Applications are reviewed by the Executive Committee. Successful applicants are added to HAT’s membership registry and gain access to all membership benefits.",
+    },
+  ];
+
+  return (
+    <section className="container flex flex-col px-4 mx-auto mb-16">
+      <motion.h2
+        className="mb-6 text-3xl font-bold text-gray-800"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        How to Join
+      </motion.h2>
+
+      <motion.div
+        className="space-y-6 text-gray-700"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <p className="text-lg">
+          An individual interested in joining HAT can do so by visiting the
+          association's website or contacting the association directly via email
+          or phone. Membership application forms are available online, and once
+          submitted, the applicant will receive confirmation within a week.
+        </p>
+
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold">Membership Types and Fees</h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {membershipTypes.map((membership, index) => (
+              <motion.div
+                key={index}
+                className="p-4 transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <membership.icon className="w-8 h-8 mb-2 text-blue-500" />
+                <h4 className="mb-2 font-semibold">{membership.type}</h4>
+                <p className="text-sm text-gray-600">
+                  {membership.fee} per year
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold">Joining Process</h3>
+          <div className="space-y-4">
+            {joinSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                className="flex items-start p-4 rounded-lg bg-gray-50"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
+              >
+                <CheckCircle className="flex-shrink-0 w-6 h-6 mt-1 mr-4 text-green-500" />
+                <div>
+                  <h4 className="mb-1 font-semibold">{step.title}</h4>
+                  <p className="max-w-3xl text-sm text-gray-600">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="p-4 rounded-lg bg-amber-50">
+          <h4 className="mb-2 font-semibold">Note for Corporate Membership</h4>
+          <p className="text-sm">
+            Institutions applying for Corporate membership must submit a letter
+            of interest along with their application form, detailing their goals
+            and how they intend to support HAT's objectives.
+          </p>
+        </div>
+
+        <motion.button
+          className="flex items-center px-6 py-3 text-white transition-colors duration-300 bg-blue-600 rounded-full hover:bg-blue-700"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Apply Now <ArrowRight className="w-5 h-5 ml-2" />
+        </motion.button>
+      </motion.div>
+    </section>
+  );
+};
+
+// membership design
+
+const MembershipSection = () => {
+  const [expandedBenefit, setExpandedBenefit] = useState(null);
+
+  const membershipTypes = [
+    {
+      title: "Founding Members",
+      description:
+        " Members who started the initial stage for registration of the association and whose names have been registered at the Registrar’s Office of the Ministry of Home Affairs.",
+    },
+    {
+      title: "Ordinary Members",
+      description: "Members who joined the association after its registration.",
+    },
+    {
+      title: "Corporate Members",
+      description:
+        " Membership is open to corporate bodies, societies, and other institutions in Tanzania and beyond, provided they subscribe to the aims and objectives of the Association and are willing to advance these aims.",
+    },
+    {
+      title: "Honorary Members",
+      description:
+        " Determined and granted by the Executive Committee to any person who has distinguished themselves in the promotion and attainment of the aims of the Association. Such membership must be approved by no less than two-thirds of the Executive Committee and ratified by the General Meeting.",
+    },
+  ];
+
+  const membershipBenefits = [
+    {
+      title: "Seminars and Conferences",
+      description:
+        " Members gain exclusive access to seminars and conferences featuring renowned historians and guest speakers from both local and international platforms. Topics range from Tanzanian pre-colonial history to global historical events. These events help members stay updated with the latest research and scholarly discussions.",
+    },
+    {
+      title: "Scholarship Opportunities",
+      description:
+        "HAT provides scholarships for historical research and participation in international history programs. These scholarships are open to students, educators, and historians, offering funding for further studies, research trips, and attending global conferences.",
+    },
+    {
+      title: "Improvement of Teaching Knowledge",
+      description:
+        "Through HAT's workshops and training, history teachers and educators benefit from continuous professional development. This enhances their teaching techniques, incorporating digital tools and interactive methods to better engage students with historical studies.",
+    },
+    {
+      title: "Access to Teaching Materials and Resources",
+      description:
+        "Members enjoy access to a variety of printed and digital materials, including research papers, historical documents, and rare archival content. Additionally, HAT's upcoming digital library will house important historical texts and journals for members’ use.",
+    },
+    {
+      title: "Networking Opportunities",
+      description:
+        "HAT fosters connections between members, offering networking opportunities with local and international historians, scholars, and educators. Partnerships with organizations such as the African Studies Association allow members to collaborate and expand their research and professional circles.",
+    },
+    {
+      title: "Exclusive Access to Archives and Digital Libraries",
+      description:
+        "Members receive privileged access to historical archives and collections, including documents that are not publicly available. HAT is also developing a digital library containing rare texts and research materials that will support both scholarly and public education.",
+    },
+    {
+      title: "Collaboration on Research Projects",
+      description:
+        " HAT members can participate in national and international historical research projects. By collaborating with universities and research institutions, members contribute to groundbreaking studies on Tanzanian and African history. HAT also provides platforms for members to publish and share their research with the wider academic community.",
+    },
+  ];
+
+  const toggleBenefit = (index) => {
+    setExpandedBenefit(expandedBenefit === index ? null : index);
+  };
+
+  return (
+    <div className="container flex py-4 mx-auto">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {/* Main Membership Section */}
+        <div className="col-span-1 p-6 bg-white rounded-lg shadow md:col-span-2">
+          <h2 className="mb-4 text-2xl font-bold">
+            Discover the Power of HAT Membership
+          </h2>
+          <p className="mb-4 text-gray-600">
+            Join the Historical Association of Tanzania and unlock a world of
+            opportunities in historical research, education, and networking. Our
+            diverse membership types cater to individuals and organizations
+            alike.
+          </p>
+        </div>
+
+        {/* Membership Types */}
+        {membershipTypes.map((type, index) => (
+          <div
+            key={index}
+            className={`bg-white p-6 rounded-lg shadow ${
+              index % 2 === 1 ? "bg-orange-100" : ""
+            }`}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-semibold">{type.title}</h3>
+              <span className="text-lg font-bold">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <p className="text-gray-600">{type.description}</p>
+          </div>
+        ))}
+
+        {/* Membership Benefits */}
+        <div className="col-span-1 py-6 bg-white rounded-lg md:col-span-2 lg:col-span-3">
+          <h3 className="mb-4 text-2xl font-bold">Membership Benefits</h3>
+          <div className="space-y-4">
+            {membershipBenefits.map((benefit, index) => (
+              <div key={index} className="pb-4 border-b border-gray-200">
+                <button
+                  className="flex items-center justify-between w-full text-left focus:outline-none"
+                  onClick={() => toggleBenefit(index)}
+                >
+                  <span className="font-semibold">{benefit.title}</span>
+                  {expandedBenefit === index ? (
+                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
+                {expandedBenefit === index && (
+                  <p className="mt-2 text-gray-600">{benefit.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
