@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function ContactUs() {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col mt-20 md:mt-0">
       <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 md:p-20 sm:rounded-xl">
         {/* Get intouch section */}
         <div className="w-full md:flex md:flex-col md:items-center md:justify-center">
