@@ -13,7 +13,7 @@ export default function NewsLetter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="flex flex-col min-h-screen isolate overflow-hidden bg-[#b67a3d] bg-opacity-95  py-16 sm:py-24 lg:py-32">
+    <div className="flex flex-col min-h-screen py-16 overflow-hidden bg-blue-800 isolate bg-opacity-95 sm:py-24 lg:py-32">
       <div className="px-4 mx-auto max-w-7xl">
         <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">

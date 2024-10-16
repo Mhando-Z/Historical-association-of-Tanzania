@@ -37,7 +37,7 @@ const ScrollToTopButton = () => {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="relative p-2 hover:text-white font-roboto rounded-3xl text-xs sm:text-sm md:text-xl ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-bold "
+          className="relative p-2 hover:text-white bg-gray-100 z-40 font-roboto rounded-3xl text-xs sm:text-sm md:text-xl ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-bold "
           whileHover="hover"
           initial="initial"
         >
