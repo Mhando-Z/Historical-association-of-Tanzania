@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 function PresidentSpeech() {
   const { PresidentSect } = useContext(HomePageContext);
+  console.log(PresidentSect);
+
   const navigate = useNavigate();
 
   const handleNaviate = () => {

@@ -59,6 +59,10 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     title: "",
     subtitle: "",
     description: "",
+    description2: "",
+    description3: "",
+    name: "",
+    cheo: "",
   });
   const [AnnounceData, setAnnounceData] = useState({
     title: "",
@@ -108,7 +112,11 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
           setPresoData({
             title: data.title,
             subtitle: data.subtitle,
+            name: data.name,
+            cheo: data.cheo,
             description: data.description,
+            description2: data.description2,
+            description3: data.description3,
           });
         }
       }
@@ -932,6 +940,44 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                 </div>
                                 <div className="sm:col-span-3">
                                   <label
+                                    htmlFor="name"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Name
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.name}
+                                      type="text"
+                                      name="name"
+                                      onChange={handleChange}
+                                      id="name"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="cheo"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Position
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.cheo}
+                                      type="text"
+                                      name="cheo"
+                                      onChange={handleChange}
+                                      id="cheo"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
                                     htmlFor="subtitle"
                                     className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
                                   >
@@ -962,6 +1008,42 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                                       onChange={handleChange}
                                       id="description"
                                       name="description"
+                                      rows={3}
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="description2"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Main-Body
+                                  </label>
+                                  <div className="mt-2">
+                                    <textarea
+                                      defaultValue={data[0]?.description2}
+                                      onChange={handleChange}
+                                      id="description2"
+                                      name="description2"
+                                      rows={3}
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="description3"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Conclusion
+                                  </label>
+                                  <div className="mt-2">
+                                    <textarea
+                                      defaultValue={data[0]?.description3}
+                                      onChange={handleChange}
+                                      id="description3"
+                                      name="description3"
                                       rows={3}
                                       className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                                     />

@@ -15,6 +15,10 @@ function PresidentSect() {
     title: "",
     subtitle: "",
     description: "",
+    description2: "",
+    description3: "",
+    name: "",
+    cheo: "",
     image: null,
     image2: null,
   });
@@ -70,8 +74,12 @@ function PresidentSect() {
   async function posPresotdata() {
     const formData = new FormData();
     formData.append("title", presoData.title);
+    formData.append("name", presoData.name);
+    formData.append("cheo", presoData.cheo);
     formData.append("subtitle", presoData.subtitle);
     formData.append("description", presoData.description);
+    formData.append("description2", presoData.description2);
+    formData.append("description3", presoData.description3);
     formData.append("image", presoData.image);
     formData.append("image2", presoData.image2);
 
@@ -171,12 +179,52 @@ function PresidentSect() {
                     />
                   </div>
                 </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">name</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      placeholder="name"
+                      required
+                      onChange={handleChange}
+                      name="name"
+                      id="name"
+                      autoComplete="given-name"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="cheo"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="ml-2">Position</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      placeholder="cheo"
+                      required
+                      onChange={handleChange}
+                      name="cheo"
+                      id="cheo"
+                      autoComplete="given-name"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
                 <div className="px-4 col-span-full">
                   <label
                     htmlFor="description"
                     className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
                   >
-                    <span className="">Description</span>
+                    <span className="">Introduction</span>
                   </label>
                   <div className="">
                     <textarea
@@ -190,6 +238,48 @@ function PresidentSect() {
                   </div>
                   <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
                     Number of words {presoData?.description.length}
+                  </p>
+                </div>
+                <div className="px-4 col-span-full">
+                  <label
+                    htmlFor="description2"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">Main Body</span>
+                  </label>
+                  <div className="">
+                    <textarea
+                      id="description2"
+                      onChange={handleChange}
+                      name="description2"
+                      rows={3}
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      defaultValue={""}
+                    />
+                  </div>
+                  <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
+                    Number of words {presoData?.description2.length}
+                  </p>
+                </div>
+                <div className="px-4 col-span-full">
+                  <label
+                    htmlFor="description3"
+                    className="block mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">Conclusion</span>
+                  </label>
+                  <div className="">
+                    <textarea
+                      id="description3"
+                      onChange={handleChange}
+                      name="description3"
+                      rows={3}
+                      className="block p-7 w-full h-[300px]  rounded-2xl border-0 text-gray-900 lg ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      defaultValue={""}
+                    />
+                  </div>
+                  <p className="px-4 mt-3 text-sm leading-6 text-gray-600">
+                    Number of words {presoData?.description3.length}
                   </p>
                 </div>
                 {/* image1 */}
