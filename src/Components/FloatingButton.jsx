@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import HomePageContext from "../Context/HomePageContext";
+import { motion } from "framer-motion";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,14 +35,30 @@ const ScrollToTopButton = () => {
   return (
     <div className="fixed bottom-4 right-4">
       {isVisible && (
-        <button
+        <motion.button
           onClick={scrollToTop}
-          className="bg-[#b67a3d]  text-white p-2 rounded-full shadow-lg ring-2 ring-[#a46425] hover:bg-[#bc8a59] transition duration-300 ease-in-out"
+          className="relative p-2 hover:text-white font-roboto rounded-3xl text-xs sm:text-sm md:text-xl ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-bold "
+          whileHover="hover"
+          initial="initial"
         >
-          <h1 className="transition-all duration-700 ease-in-out animate-bounce md:text-xl md:py-1 ">
-            ↑
-          </h1>
-        </button>
+          <motion.div
+            className="absolute inset-0 bg-[#b67a3d]"
+            initial={{ y: "100%" }}
+            variants={{
+              hover: { y: 0 },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.div
+            className="absolute inset-0 "
+            initial={{ y: 0 }}
+            variants={{
+              hover: { y: "-100%" },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+          <span className="relative z-10 md:py-1">↑</span>
+        </motion.button>
       )}
     </div>
   );

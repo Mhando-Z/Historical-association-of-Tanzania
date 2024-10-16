@@ -158,10 +158,27 @@ export default function PromoSect() {
 
                 <motion.button
                   onClick={handleRegister}
-                  className="inline-block rounded-3xl hover:bg-opacity-0 hover:ring-2 hover:text-black hover:ring-black border border-transparent bg-[#b67a3d] px-5 py-2 text-center font-medium text-white"
-                  variants={itemVariants}
+                  className="relative px-4 py-1.5 md:py-2 bg-[#b67a3d] text-white  rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-[#b67a3d] overflow-hidden hover:text-[#744517] font-medium "
+                  whileHover="hover"
+                  initial="initial"
                 >
-                  Register Now
+                  <motion.div
+                    className="absolute inset-0 bg-white"
+                    initial={{ x: "100%" }}
+                    variants={{
+                      hover: { x: 0 },
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 "
+                    initial={{ x: 0 }}
+                    variants={{
+                      hover: { x: "-100%" },
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <span className="relative z-10"> Register Now</span>
                 </motion.button>
               </div>
             </div>

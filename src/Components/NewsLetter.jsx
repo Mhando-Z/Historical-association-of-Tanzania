@@ -174,7 +174,7 @@ export default function NewsLetter() {
         </div>
       </div>
       {/* TERMS CONDITION AND POLICIES SECTION */}
-      <div className="container flex flex-col items-center justify-center flex-1 gap-5 mx-auto mt-10 md:flex-row md:flex gap-y-4">
+      <div className="container flex flex-col justify-center gap-5 mx-auto mt-10 md:flex-row">
         <div className="flex flex-col">
           <h1 className="text-xl font-medium text-white">Policies</h1>
           <div className="flex flex-col mt-2 gap-y-3">
