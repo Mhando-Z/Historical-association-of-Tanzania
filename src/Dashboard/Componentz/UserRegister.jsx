@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
+import { Dots } from "react-activity";
 
 export const Notifier = ({ data }) => {
   return (
@@ -46,6 +47,7 @@ const UserRegister = ({ handleRegistration }) => {
   const navigate = useNavigate();
   const [error, setError] = useState([]);
   const [view, setView] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -60,6 +62,7 @@ const UserRegister = ({ handleRegistration }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     setError([]);
     try {
       const { headers } = await axiosInstance.post(
@@ -68,15 +71,11 @@ const UserRegister = ({ handleRegistration }) => {
       );
       // Save generated token from back-end to local storage
       localStorage.setItem("token", headers["x-auth-token"]);
-
+      setLoading(false);
       setView(true); // Display the Notifier component
-
-      // Optionally, redirect the user after a short delay
-      // setTimeout(() => {
-      //   navigate("/Dashboard/UserHome");
-      // }, 10000); // 3-second delay before redirect
     } catch (error) {
       toast.error("User Registration failed");
+      setLoading(false);
       setError(error.response.data);
     }
   };
@@ -110,6 +109,13 @@ const UserRegister = ({ handleRegistration }) => {
             Create User account
           </h2>
         </div>
+        {loading ? (
+          <div className={`h-14 items-center justify-center flex `}>
+            <Dots color="#b67a3d" size={35} speed={0.8} animating={true} />
+          </div>
+        ) : (
+          ""
+        )}
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-5">
           <div className="">
             <label htmlFor="email" className="block text-gray-700">
@@ -195,7 +201,10 @@ const UserRegister = ({ handleRegistration }) => {
               transition={{ type: "spring", ease: "easeOut" }}
               className="flex flex-col w-full md:w-auto"
             >
-              <button className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1.5 hover:bg-[#d79f67] transition-colors">
+              <button
+                // onClick={() => setLoading(true)}
+                className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1.5 hover:bg-[#d79f67] transition-colors"
+              >
                 Register
               </button>
             </motion.div>
