@@ -92,7 +92,9 @@ const UserRegister = ({ handleRegistration }) => {
   return (
     <div
       className={`flex flex-col items-center justify-center text-sm lg:text-md ${
-        location.pathname === "/Register/" ? "min-h-screen" : ""
+        location.pathname === "/Register/"
+          ? "min-h-screen bg-gradient-to-t from-[#b67a3d] to-transparent"
+          : ""
       }`}
     >
       <motion.div
@@ -100,11 +102,11 @@ const UserRegister = ({ handleRegistration }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1, ease: "easeInOut", type: "spring" }}
-        className="relative flex flex-col w-full p-10 shadow-2xl xl:p-20 xl:max-w-xl rounded-2xl bg-slate-50"
+        className="relative flex flex-col w-full p-3 xl:p-10 xl:max-w-xl "
       >
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-sm ">
           <img className="w-auto h-10 mx-auto" src={logo} alt="Hat logo" />
-          <h2 className="mt-3 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
+          <h2 className="mt-5 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
             Create User account
           </h2>
         </div>
@@ -119,7 +121,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 block w-full outline-none sm:py-2 py-1 rounded ring-1 ring-[#b67a3d] px-10 border-gray-300 focus:bg-blue-50"
+              className="mt-1 block w-full outline-none sm:py-2 py-1.5 rounded ring-1 ring-[#b67a3d] px-10 border-gray-300 focus:bg-blue-50"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -136,7 +138,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="mt-1 sm:py-2 py-1   focus:bg-blue-50 ring-1 ring-[#b67a3d] px-10 outline-none rounded block w-full border-gray-300"
+              className="mt-1 sm:py-2 py-1.5  focus:bg-blue-50 ring-1 ring-[#b67a3d] px-10 outline-none rounded block w-full border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -153,7 +155,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="mt-1 block w-full   focus:bg-blue-50 sm:py-2 py-1 px-10 outline-none ring-1 ring-[#b67a3d] rounded border-gray-300"
+              className="mt-1 block w-full   focus:bg-blue-50 sm:py-2 py-1.5 px-10 outline-none ring-1 ring-[#b67a3d] rounded border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -170,7 +172,7 @@ const UserRegister = ({ handleRegistration }) => {
               name="password2"
               value={formData.password2}
               onChange={handleChange}
-              className="mt-1 block w-full outline-none  focus:bg-blue-50 ring-1 ring-[#b67a3d] rounded sm:py-2 py-1 px-10 border-gray-300"
+              className="mt-1 block w-full outline-none  focus:bg-blue-50 ring-1 ring-[#b67a3d] rounded sm:py-2 py-1.5 px-10 border-gray-300"
               required
             />
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
@@ -193,7 +195,7 @@ const UserRegister = ({ handleRegistration }) => {
               transition={{ type: "spring", ease: "easeOut" }}
               className="flex flex-col w-full md:w-auto"
             >
-              <button className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1 hover:bg-[#d79f67] transition-colors">
+              <button className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1.5 hover:bg-[#d79f67] transition-colors">
                 Register
               </button>
             </motion.div>
