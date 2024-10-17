@@ -189,7 +189,7 @@ function Publications() {
                   </div>
                   <motion.div
                     className={`${
-                      publication.video_url.length === 0 ? "hidden" : ""
+                      publication.video_url === null ? "hidden" : ""
                     }`}
                     variants={iframeVariants}
                   >
@@ -282,7 +282,7 @@ function Publications() {
           ))}
           <div
             className={`flex ${
-              other.length >= 11 ? "flex" : "hidden"
+              other?.length >= 11 ? "flex" : "hidden"
             } justify-end w-full mt-10`}
           >
             <motion.button
