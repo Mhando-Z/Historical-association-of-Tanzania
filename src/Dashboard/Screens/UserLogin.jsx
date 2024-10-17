@@ -230,16 +230,20 @@ export default function UserLogin() {
               </Link>
             </p>
           </div>
-          <Link to={"/"}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.8 }}
-              transition={{ type: "spring", ease: "easeOut" }}
-              className="absolute top-5 text-white font-bold cursor-pointer bg-[#b67a3d] rounded-3xl px-7 py-2 ring-inset ring-2 ring-white"
-            >
-              Back
-            </motion.div>
-          </Link>
+          {window.innerWidth <= 768 ? (
+            ""
+          ) : (
+            <Link to={"/"}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+                className="absolute top-5 text-white font-bold cursor-pointer bg-[#b67a3d] rounded-3xl px-7 py-2 ring-inset ring-2 ring-white"
+              >
+                Back
+              </motion.div>
+            </Link>
+          )}
         </motion.div>
       )}
     </div>

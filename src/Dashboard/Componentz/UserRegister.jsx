@@ -92,7 +92,7 @@ const UserRegister = ({ handleRegistration }) => {
     <div
       className={`flex flex-col items-center justify-center text-sm lg:text-md ${
         location.pathname === "/Register/"
-          ? "min-h-screen bg-gradient-to-t from-[#b67a3d] to-transparent"
+          ? "min-h-screen bg-gradient-to-t via-transparent from-[#b67a3d] to-transparent"
           : ""
       }`}
     >
@@ -203,7 +203,7 @@ const UserRegister = ({ handleRegistration }) => {
             >
               <button
                 // onClick={() => setLoading(true)}
-                className="bg-[#b67a3d] rounded text-white px-6 sm:py-2 py-1.5 hover:bg-[#d79f67] transition-colors"
+                className="bg-[#98642f] rounded text-white px-6 sm:py-2 py-1.5 hover:bg-[#d79f67] transition-colors"
               >
                 Register
               </button>

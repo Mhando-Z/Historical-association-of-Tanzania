@@ -36,6 +36,7 @@ function NavBar() {
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
         location.pathname === "/Register/" ||
+        location.pathname === `${window.innerWidth <= 768 ? "/Login/" : ""}` ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Resources/" ||
         location.pathname === "/Research/"

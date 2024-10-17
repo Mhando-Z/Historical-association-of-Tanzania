@@ -13,7 +13,6 @@ function Footer() {
         location.pathname === "/Announce/" ||
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
-        location.pathname === "/Register/" ||
         location.pathname === "/Resources/" ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
