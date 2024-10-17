@@ -76,7 +76,7 @@ function Resources() {
 
                 {/* heading, author name, and date */}
                 <div className="flex flex-col">
-                  <h1 className="text-2xl font-bold font-roboto">
+                  <h1 className="text-xl font-bold md:text-2xl font-roboto">
                     {resource?.title}
                   </h1>
                   <p className="text-sm">Author: {resource?.author}</p>
