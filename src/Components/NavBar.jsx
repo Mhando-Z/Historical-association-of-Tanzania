@@ -37,6 +37,7 @@ function NavBar() {
         location.pathname === "/AboutUs/" ||
         location.pathname === "/Register/" ||
         location.pathname === "/Publications/" ||
+        location.pathname === "/Resources/" ||
         location.pathname === "/Research/"
           ? `py-3 fixed top-0 left-0 w-full z-40 ${visible}`
           : "hidden"
@@ -56,7 +57,7 @@ function NavBar() {
 
           {/* Pages Links */}
           <motion.div
-            className="flex-row items-center justify-center hidden px-5 py-2 bg-white bg-opacity-60 hover:bg-opacity-85 rounded-3xl md:flex gap-x-10"
+            className="flex-row items-center justify-center hidden px-5 py-2 bg-white bg-opacity-60 hover:bg-opacity-85 rounded-3xl md:flex gap-x-5"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -65,15 +66,14 @@ function NavBar() {
               to={"/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1.5 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#9c6630] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1.5 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-2 hover:rounded-3xl"
               }
             >
               <motion.h1
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-lg"
               >
                 Home
               </motion.h1>
@@ -84,15 +84,14 @@ function NavBar() {
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1.5 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1.5 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-2 hover:rounded-3xl"
               }
             >
               <motion.h1
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-lg"
               >
                 About-Us
               </motion.h1>
@@ -102,17 +101,33 @@ function NavBar() {
               to={"Research/"}
               className={({ isActive }) =>
                 isActive
-                  ? "px-4 py-1 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
-                  : "px-4 py-1 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-1 hover:rounded-3xl"
+                  ? "px-4 py-1.5 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1.5 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-2 hover:rounded-3xl"
               }
             >
               <motion.h1
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="text-lg"
+                className=""
               >
                 Research
+              </motion.h1>
+            </NavLink>
+            <NavLink
+              to={"Resources/"}
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-1.5 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1.5 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-2 hover:rounded-3xl"
+              }
+            >
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+              >
+                Resources
               </motion.h1>
             </NavLink>
 
@@ -132,7 +147,7 @@ function NavBar() {
             ) : (
               <Link
                 to={`Login/`}
-                className="px-5 py-2 md:text-sm lg:text-lg xl:text-lg hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
+                className="px-5 py-1.5 md:text-sm text-base hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
               >
                 Sign In
               </Link>

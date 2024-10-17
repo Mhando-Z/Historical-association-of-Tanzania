@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import UserContext from "../Context/UserContext";
 import HomePageContext from "../Context/HomePageContext";
 import { Dots } from "react-activity";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { IoArrowBack } from "react-icons/io5";
+// icons imports
+import { MdOutlineFileDownload } from "react-icons/md";
 
 // Utility function to check if the URL is a YouTube URL
 const isYouTubeUrl = (url) => {
@@ -38,11 +40,16 @@ function Publications() {
   const { ResourcesSect } = useContext(HomePageContext);
   const [count, setCount] = useState(5);
   const locations = useLocation();
+  const navigate = useNavigate();
 
   const data = ResourcesSect?.filter((dt) => dt?.id === publishId);
   const publication = data ? data[0] : null;
 
   const other = ResourcesSect?.filter((dt) => dt?.id !== publication?.id);
+
+  if (publication?.length === 0 || !publication) {
+    navigate("/Research/");
+  }
 
   if (!publication) {
     return (
@@ -76,6 +83,7 @@ function Publications() {
 
   // image url
   const IMAGE_BASE_URL = "https://hat-dashboard.onrender.com";
+  // const IMAGE_BASE_URL = "http://127.0.0.1:8000/";
 
   return (
     <motion.div
@@ -131,6 +139,22 @@ function Publications() {
               >
                 Author-{publication.author}
               </motion.h2>
+
+              <div className="flex flex-col items-end justify-end">
+                {publication?.document ? (
+                  <a
+                    href={`${IMAGE_BASE_URL}${publication?.document}`}
+                    download
+                    className="px-4 flex flex-row  hover:bg-blue-700  items-center gap-x-2 py-1.5 md:py-2  bg-blue-600 text-white rounded-3xl"
+                    rel="noopener noreferrer"
+                  >
+                    <MdOutlineFileDownload className="text-xl" />
+                    Download PDF
+                  </a>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
             {/* descriptions */}
             <motion.div
@@ -141,7 +165,7 @@ function Publications() {
                 className="text-xl font-bold text-gray-800 lg:text-2xl"
                 variants={textVariants}
               >
-                Discussion
+                Report Summary
               </motion.h1>
               <motion.div
                 className="flex flex-col text-gray-800 gap-y-4"
@@ -217,9 +241,7 @@ function Publications() {
       {/* Other publications and repports */}
       <div className="mt-5">
         <div className="flex flex-col justify-center py-3 mb-10 ">
-          <h1 className="px-2 text-xl font-bold border-l-2 border-l-black md:text-2xl">
-            Other Publications
-          </h1>
+          <h1 className="text-xl font-bold md:text-2xl">Other Publications</h1>
         </div>
         <div className="gap-y-16">
           {other?.slice(0, count).map((post) => (

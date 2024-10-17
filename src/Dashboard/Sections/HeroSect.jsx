@@ -60,7 +60,9 @@ function HeroSect() {
     formData.append("title", heroData.title);
     formData.append("subtitle", heroData.subtitle);
     formData.append("description", heroData.description);
-    formData.append("image", heroData.image);
+    if (heroData.image) {
+      formData.append("image", heroData.image);
+    }
 
     try {
       const { data } = await axiosInstance.post("hat-api/heroSect/", formData);
@@ -80,7 +82,7 @@ function HeroSect() {
   };
 
   const handlePost = () => {
-    if (heroData.title !== "" && heroData.image !== null) {
+    if (heroData.title !== "" && heroData.description !== "") {
       postHerodata();
     } else {
       toast.error("Fill all sections");

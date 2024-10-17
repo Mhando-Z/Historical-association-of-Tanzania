@@ -17,6 +17,7 @@ export function HomePageDataProvider({ children }) {
   const [TermsSect, setTermsService] = useState([]);
   const [ConferenceSect, setConference] = useState([]);
   const [ResourcesSect, setResources] = useState([]);
+  const [Resources, setResourceSect] = useState([]);
   const [visible, setVisible] = useState("");
 
   // API CALLS
@@ -32,6 +33,12 @@ export function HomePageDataProvider({ children }) {
     try {
       const { data } = await axiosInstance.get("hat-api/Resources");
       setResources(data);
+    } catch (exp) {}
+  }
+  async function getResourceSectdata() {
+    try {
+      const { data } = await axiosInstance.get("hat-api/Resource");
+      setResourceSect(data);
     } catch (exp) {}
   }
 
@@ -111,6 +118,7 @@ export function HomePageDataProvider({ children }) {
     } catch (error) {}
   }
   useEffect(() => {
+    getResourceSectdata();
     getResourcedata();
     getCompanydata();
     getTerms();
@@ -142,6 +150,8 @@ export function HomePageDataProvider({ children }) {
         companies,
         ResourcesSect,
         visible,
+        Resources,
+        setResourceSect,
         setVisible,
         setConference,
         setCompany,

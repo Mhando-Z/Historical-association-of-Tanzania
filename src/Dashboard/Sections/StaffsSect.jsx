@@ -59,12 +59,14 @@ function StaffsSect() {
   async function postStaffsdata() {
     const formData = new FormData();
     formData.append("name", staffs.name);
-    formData.append("image", staffs.image);
     formData.append("position", staffs.position);
     formData.append("contact1", staffs.contact1);
     formData.append("contact2", staffs.contact2);
     formData.append("contact3", staffs.contact3);
     formData.append("description", staffs.description);
+    if (staffs.image) {
+      formData.append("image", staffs.image);
+    }
 
     try {
       const { data } = await axiosInstance.post("hat-api/Staffs/", formData);
@@ -78,7 +80,7 @@ function StaffsSect() {
   }
 
   const handlePost = () => {
-    if (staffs.name !== "" && staffs.image !== null) {
+    if (staffs.name !== "") {
       postStaffsdata();
     } else {
       toast.error("Fill all sections");

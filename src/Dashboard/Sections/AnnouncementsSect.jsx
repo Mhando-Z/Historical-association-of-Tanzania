@@ -15,9 +15,22 @@ function AnnouncementsSect() {
   const [AnnounceData, setData] = useState({
     title: "",
     description: "",
+    document: null,
     image: null,
     image2: null,
   });
+
+  const handleChange = (e) => {
+    const { name, files, value } = e.target;
+
+    if (name === "document") {
+      // Handle document (PDF)
+      const file = files[0];
+      if (file) {
+        setData((data) => ({ ...data, document: file })); // Save the file in state as a Blob
+      }
+    }
+  };
 
   const handleDrop = (acceptedFiles, imageIndex) => {
     const file = acceptedFiles[0];
@@ -56,8 +69,15 @@ function AnnouncementsSect() {
     const formData = new FormData();
     formData.append("title", AnnounceData.title);
     formData.append("description", AnnounceData.description);
-    formData.append("image", AnnounceData.image);
-    formData.append("image2", AnnounceData.image2);
+    if (AnnounceData.document) {
+      formData.append("document", AnnounceData.document);
+    }
+    if (AnnounceData.image) {
+      formData.append("image", AnnounceData.image);
+    }
+    if (AnnounceData.image2) {
+      formData.append("image2", AnnounceData.image2);
+    }
 
     try {
       const { data } = await axiosInstance.post("/hat-api/Announce/", formData);
@@ -77,7 +97,7 @@ function AnnouncementsSect() {
   };
 
   const handlePost = () => {
-    if (AnnounceData.title !== "" && AnnounceData.image !== null) {
+    if (AnnounceData.title !== "" && AnnounceData.description !== "") {
       postdata();
     } else {
       toast.error("Fill all sections");
@@ -134,6 +154,24 @@ function AnnouncementsSect() {
                       }
                       id="title"
                       autoComplete="given-name"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900   ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="document"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">Upload document</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="file"
+                      name="document"
+                      onChange={handleChange}
+                      id="document"
+                      accept=".pdf"
                       className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900   ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>

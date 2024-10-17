@@ -22,15 +22,23 @@ function Researchpublications() {
     ref3: "",
     ref4: "",
     ref5: "",
+    video_url: "",
+    document: null,
     image: null,
     image2: null,
-    video_url: "",
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, files, value } = e.target;
 
-    if (name === "image" || name === "image2") {
+    if (name === "document") {
+      // Handle document (PDF)
+      const file = files[0];
+      if (file) {
+        setData((data) => ({ ...data, document: file })); // Save the file in state as a Blob
+      }
+    } else if (name === "image" || name === "image2") {
+      // Handle images
       const file = files[0];
       const reader = new FileReader();
 
@@ -83,18 +91,29 @@ function Researchpublications() {
 
   async function postResourceData() {
     const formData = new FormData();
+    // Append non-null values to formData
     formData.append("title", resourceData.title);
     formData.append("subtitle", resourceData.subtitle);
     formData.append("author", resourceData.author);
     formData.append("description", resourceData.description);
-    formData.append("ref1", resourceData.ref1);
-    formData.append("ref2", resourceData.ref2);
-    formData.append("ref3", resourceData.ref3);
-    formData.append("ref4", resourceData.ref4);
-    formData.append("ref5", resourceData.ref5);
-    formData.append("image", resourceData.image);
-    formData.append("image2", resourceData.image2);
-    formData.append("video_url", resourceData.video_url);
+    // Add references
+    formData.append("ref1", resourceData.ref1 || "");
+    formData.append("ref2", resourceData.ref2 || "");
+    formData.append("ref3", resourceData.ref3 || "");
+    formData.append("ref4", resourceData.ref4 || "");
+    formData.append("ref5", resourceData.ref5 || "");
+    // Add video URL
+    formData.append("video_url", resourceData.video_url || "");
+    // Conditionally append files (only if they exist)
+    if (resourceData.document) {
+      formData.append("document", resourceData.document);
+    }
+    if (resourceData.image) {
+      formData.append("image", resourceData.image);
+    }
+    if (resourceData.image2) {
+      formData.append("image2", resourceData.image2);
+    }
 
     try {
       const { data } = await axiosInstance.post("hat-api/Resources/", formData);
@@ -104,8 +123,10 @@ function Researchpublications() {
       setPreviewURL2(null);
       toast.success("Data upload was a success");
     } catch (error) {
-      toast.error("Data upload was a failure");
-      console.error(error);
+      toast.error(`Data upload was a failure`);
+      console.error(error?.response?.data);
+      console.log(error?.response?.data);
+      console.log(resourceData);
     }
   }
 
@@ -114,7 +135,7 @@ function Researchpublications() {
   };
 
   const handlePost = () => {
-    if (resourceData.title !== "" && resourceData.image !== null) {
+    if (resourceData.title !== "" && resourceData.description !== "") {
       postResourceData();
     } else {
       toast.error("Fill all sections");
@@ -219,6 +240,24 @@ function Researchpublications() {
                       onChange={handleChange}
                       id="video_url"
                       autoComplete="given-name"
+                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900   ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="px-4 sm:col-span-3">
+                  <label
+                    htmlFor="document"
+                    className="block py-2 mb-2 text-sm font-medium leading-6 text-gray-900 capitalize xl:text-lg"
+                  >
+                    <span className="">Upload document</span>
+                  </label>
+                  <div className="">
+                    <input
+                      type="file"
+                      name="document"
+                      onChange={handleChange}
+                      id="document"
+                      accept=".pdf"
                       className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900   ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>

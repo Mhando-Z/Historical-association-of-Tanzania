@@ -47,6 +47,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-activity/dist/library.css";
 import "react-phone-input-2/lib/style.css";
 import ClearHistoryScroll from "./Components/ClearHistoryScroll";
+import Resources from "./Screens/Resources";
 
 function App() {
   const [users, setUser] = useState("");
@@ -84,6 +85,7 @@ function App() {
               <Route path="Publications/" element={<Publications />} />
               <Route path="Gallery/" element={<Gallery />} />
               <Route path="Research/" element={<ResourcePublication />} />
+              <Route path="Resources/" element={<Resources />} />
               <Route path="Announcements/" element={<Announcements />} />
               <Route path="Announce/" element={<Announce />} />
               <Route path="*" element={<PageNotFound />} />

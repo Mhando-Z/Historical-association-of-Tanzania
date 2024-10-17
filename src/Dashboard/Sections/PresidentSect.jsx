@@ -80,8 +80,12 @@ function PresidentSect() {
     formData.append("description", presoData.description);
     formData.append("description2", presoData.description2);
     formData.append("description3", presoData.description3);
-    formData.append("image", presoData.image);
-    formData.append("image2", presoData.image2);
+    if (presoData.image) {
+      formData.append("image", presoData.image);
+    }
+    if (presoData.image2) {
+      formData.append("image", presoData.image2);
+    }
 
     try {
       const { data } = await axiosInstance.post("hat-api/President/", formData);
@@ -102,7 +106,7 @@ function PresidentSect() {
   };
 
   const handlePost = () => {
-    if (presoData.title !== "" && presoData.image !== null) {
+    if (presoData.title !== "" && presoData.description !== "") {
       posPresotdata();
     } else {
       toast.error("Fill all sections");
