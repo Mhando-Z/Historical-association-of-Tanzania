@@ -47,7 +47,7 @@ function Publications() {
 
   const other = ResourcesSect?.filter((dt) => dt?.id !== publication?.id);
 
-  if (publication?.length === 0 || !publication) {
+  if (!publication) {
     navigate("/Research/");
   }
 
@@ -212,6 +212,7 @@ function Publications() {
                     )}
                   </motion.div>
                 </div>
+
                 <motion.p
                   className="text-xl font-bold tracking-tighter lg:text-2xl"
                   variants={textVariants}
