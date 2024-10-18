@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // icons impoers
 import { SlCalender } from "react-icons/sl";
 import { LuUser } from "react-icons/lu";
+// immages importd
+import nyerere1 from "../Assets/Images/nyerere1.jpg";
+import nyerere2 from "../Assets/Images/nyerere2.jpg";
 
 // Second Component
 const leadershipData = [
@@ -146,13 +149,88 @@ const HATLeadershipTimeline = () => {
   );
 };
 
-// Main Component
+// First component
 
+const PatronDisplay = () => {
+  return (
+    <div className=" bg-gradient-to-t from-gray-100 to-transparent">
+      <div className="container flex flex-col py-6 mx-auto">
+        <h2 className="text-3xl font-bold md:mb-20 md:text-4xl">Our Patrons</h2>
+        <div className="overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col items-center gap-6 md:flex-row"
+          >
+            <div className="">
+              {/* Image slides from bottom to top */}
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="relative overflow-hidden group"
+              >
+                <img
+                  src={nyerere1}
+                  alt="HAT first patron"
+                  className="object-contain cursor-pointer group-hover:grayscale md:rounded-t-full w-full h-[600px]"
+                />
+                <div className="absolute top-0 bottom-0 left-0 right-0 hidden bg-black group-hover:flex md:rounded-t-full">
+                  <motion.img
+                    src={nyerere2}
+                    alt="First Patron Mwalimu julius Kambarage Nyerere"
+                    className="object-cover md:rounded-t-full w-full h-[600px]"
+                  />
+                </div>
+              </motion.div>
+            </div>
+            <div className="w-full md:w-1/2">
+              {/* Text slides from top to bottom and shows in sequence */}
+              <motion.blockquote
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="mb-4 text-lg md:text-xl"
+              >
+                "President Julius Nyerere was the first HAT patron who served
+                from 1966-1999. He was very instrumental in pushing the study of
+                history through the department of history at the University of
+                Dar es Salaam."
+              </motion.blockquote>
+              <motion.p
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-xl font-semibold"
+              >
+                Julius Nyerere
+              </motion.p>
+              <motion.p
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="text-gray-600"
+              >
+                First HAT patron, 1966-1999
+              </motion.p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Main Component
 function Patrons() {
   return (
     <div className="flex flex-col min-h-screen mt-24 ">
       {/* Myerere section */}
-      <div></div>
+      <div className="mb-20 mb:mt-10">
+        <PatronDisplay />
+      </div>
       {/* Patrons Section */}
       <div className="mb-20">
         <HATLeadershipTimeline />

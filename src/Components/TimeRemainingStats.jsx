@@ -22,15 +22,21 @@ const Countdown = () => {
     <div
       className={`flex flex-col ${
         ConferenceSect?.length === 0 ? "hidden" : ""
-      } items-center justify-center h-[300px] bg-gradient-to-br mt-10 md:mt-0 from-orange-50 to-orange-100`}
+      } justify-center h-[300px] bg-gradient-to-t mt-10 md:mt-0 from-orange-50 to-transparent`}
     >
-      <h2 className="text-5xl text-[#b67a3d] font-black mb-10">
-        {ConferenceSect[0]?.title2}
-      </h2>
-      <div className="flex flex-row items-center justify-around w-full">
-        <TimeBox value={timeRemaining.days} label="DAYS" />
-        <TimeBox value={timeRemaining.hours} label="HOURS" />
-        <TimeBox value={timeRemaining.minutes} label="MINUTES" />
+      <div className="container flex flex-col items-center justify-between mx-auto md:flex-row">
+        <div className="p-5 border-gray-500">
+          <h1 className="max-w-xs text-[#b67a3d] text-4xl font-semibold capitalize font-roboto">
+            Count Down to Conference Day
+          </h1>
+        </div>
+        <div className="flex-grow">
+          <div className="flex flex-row items-center justify-around w-full">
+            <TimeBox value={timeRemaining.days} label="DAYS" />
+            <TimeBox value={timeRemaining.hours} label="HOURS" />
+            <TimeBox value={timeRemaining.minutes} label="MINUTES" />
+          </div>
+        </div>
       </div>
     </div>
   );

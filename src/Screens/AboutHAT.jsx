@@ -407,7 +407,7 @@ const MissionSection = () => {
   return (
     <motion.section
       ref={ref} // Reference for in-view detection
-      className="p-6 py-20 mb-10 bg-gradient-to-br from-amber-50 to-orange-50"
+      className="p-6 py-20 mb-10 bg-gradient-to-t from-amber-50 to-transparent"
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"} // Animate when in view

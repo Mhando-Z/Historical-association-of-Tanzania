@@ -94,7 +94,7 @@ const TestMonials = () => {
   }
 
   return (
-    <div className="h-[500px] mt-24 py-20 md:bg-gradient-to-br from-orange-50 to-orange-100">
+    <div className="h-[500px] mt-24 py-20 md:bg-gradient-to-t from-orange-50 to-transparent">
       <h2 className="mb-4 tracking-wider text-3xl font-bold text-center text-[#b67a3d]">
         TESTIMONIALS
       </h2>
