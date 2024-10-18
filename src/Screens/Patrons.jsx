@@ -155,7 +155,9 @@ const PatronDisplay = () => {
   return (
     <div className=" bg-gradient-to-t from-gray-100 to-transparent">
       <div className="container flex flex-col py-6 mx-auto">
-        <h2 className="text-3xl font-bold md:mb-20 md:text-4xl">Our Patrons</h2>
+        <h2 className="mb-5 text-3xl font-bold md:mb-20 md:text-4xl">
+          Our Patrons
+        </h2>
         <div className="overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -175,13 +177,13 @@ const PatronDisplay = () => {
                 <img
                   src={nyerere1}
                   alt="HAT first patron"
-                  className="object-contain cursor-pointer group-hover:grayscale md:rounded-t-full w-full h-[600px]"
+                  className="object-cover cursor-pointer group-hover:grayscale md:rounded-t-full w-full h-[500px] md:h-[600px]"
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 hidden bg-black group-hover:flex md:rounded-t-full">
                   <motion.img
                     src={nyerere2}
                     alt="First Patron Mwalimu julius Kambarage Nyerere"
-                    className="object-cover md:rounded-t-full w-full h-[600px]"
+                    className="object-cover md:rounded-t-full w-full h-[500px] md:h-[600px]"
                   />
                 </div>
               </motion.div>
