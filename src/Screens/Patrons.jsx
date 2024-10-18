@@ -166,28 +166,27 @@ const PatronDisplay = () => {
             transition={{ duration: 0.3 }}
             className="flex flex-col items-center gap-6 md:flex-row"
           >
-            <div className="">
-              {/* Image slides from bottom to top */}
-              <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="relative overflow-hidden group"
-              >
-                <img
-                  src={nyerere1}
-                  alt="HAT first patron"
-                  className="object-cover cursor-pointer group-hover:grayscale md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
+            {/* Image slides from bottom to top */}
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative overflow-hidden group"
+            >
+              <img
+                src={nyerere1}
+                alt="HAT first patron"
+                className="object-cover cursor-pointer group-hover:grayscale md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
+              />
+              <div className="absolute top-0 bottom-0 left-0 right-0 hidden bg-black group-hover:flex md:rounded-t-full">
+                <motion.img
+                  src={nyerere2}
+                  alt="First Patron Mwalimu julius Kambarage Nyerere"
+                  className="object-cover md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
                 />
-                <div className="absolute top-0 bottom-0 left-0 right-0 hidden bg-black group-hover:flex md:rounded-t-full">
-                  <motion.img
-                    src={nyerere2}
-                    alt="First Patron Mwalimu julius Kambarage Nyerere"
-                    className="object-cover md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
-                  />
-                </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
+
             <div className="w-full md:w-1/2">
               {/* Text slides from top to bottom and shows in sequence */}
               <motion.blockquote
