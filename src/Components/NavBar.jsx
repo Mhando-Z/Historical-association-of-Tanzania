@@ -38,6 +38,7 @@ function NavBar() {
         location.pathname === "/Register/" ||
         location.pathname === `${window.innerWidth <= 768 ? "/Login/" : ""}` ||
         location.pathname === "/Publications/" ||
+        location.pathname === "/Patrons/" ||
         location.pathname === "/Resources/" ||
         location.pathname === "/Research/"
           ? `py-3 fixed top-0 left-0 w-full z-40 ${visible}`
@@ -95,6 +96,23 @@ function NavBar() {
                 transition={{ type: "spring", ease: "easeOut" }}
               >
                 About-Us
+              </motion.h1>
+            </NavLink>
+            <NavLink
+              onClick={scrollToTop}
+              to={"Patrons/"}
+              className={({ isActive }) =>
+                isActive
+                  ? "px-4 py-1.5 text-sm rounded-3xl font-medium hover:ring-[#b67a3d] ring-[#d99958] text-white ring-2 bg-[#b67a3d]"
+                  : "px-4 py-1.5 text-sm hover:text-gray-100 hover:bg-[#b67a3d] hover:ring-[#b67a3d] hover:ring-2 hover:rounded-3xl"
+              }
+            >
+              <motion.h1
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.8 }}
+                transition={{ type: "spring", ease: "easeOut" }}
+              >
+                Patrons
               </motion.h1>
             </NavLink>
 

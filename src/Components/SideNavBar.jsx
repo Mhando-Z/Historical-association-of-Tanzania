@@ -13,6 +13,7 @@ import { FiLogIn } from "react-icons/fi";
 import { MdPersonAddAlt1 } from "react-icons/md";
 import ProfilePictures from "../Dashboard/Componentz/ProfilePicture";
 import { FaFileAlt } from "react-icons/fa";
+import { MdPeopleAlt } from "react-icons/md";
 
 const SideNavBar = ({ open, setOpen }) => {
   const { userData } = useContext(UserContext);
@@ -81,6 +82,18 @@ const SideNavBar = ({ open, setOpen }) => {
           >
             <BsFillInfoCircleFill />
             About Us
+          </NavLink>
+          <NavLink
+            to="/AboutUs/"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
+                : "text-gray-700 flex flex-row items-center w-full gap-x-2 hover:text-[#b67a3d] px-7 py-2 bg-slate-200"
+            }
+            onClick={closeMenu}
+          >
+            <MdPeopleAlt />
+            Patrons
           </NavLink>
           <NavLink
             to="/Research/"

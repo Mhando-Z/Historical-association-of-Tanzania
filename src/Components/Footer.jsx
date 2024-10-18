@@ -14,6 +14,7 @@ function Footer() {
         location.pathname === "/President/" ||
         location.pathname === "/AboutUs/" ||
         location.pathname === "/Resources/" ||
+        location.pathname === "/Patrons/" ||
         location.pathname === "/Publications/" ||
         location.pathname === "/Research/"
           ? "block"
