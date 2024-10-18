@@ -13,6 +13,7 @@ import { IoPerson } from "react-icons/io5";
 import { MdLocalPolice } from "react-icons/md";
 import { PiVideoConferenceFill } from "react-icons/pi";
 import { FaUserGroup } from "react-icons/fa6";
+import { FaFileAlt } from "react-icons/fa";
 import lgo from "../../Assets/Images/Logo3.png";
 // profile logos
 import stdprofile from "../../Assets/profiles/man.png";
@@ -66,6 +67,11 @@ const Sections = [
     sections: "Gallery",
     links: "GallerySect/",
     icon: <AiFillPicture />,
+  },
+  {
+    sections: "Resources",
+    links: "ResourceSect/",
+    icon: <FaFileAlt />,
   },
   {
     sections: "Conference",

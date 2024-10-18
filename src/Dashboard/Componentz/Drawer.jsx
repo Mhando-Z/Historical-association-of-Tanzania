@@ -24,6 +24,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
   const { ResourcesSect, setResources } = useContext(HomePageContext);
   const { companies, setCompany } = useContext(HomePageContext);
+  const { Resources, setResourceSect } = useContext(HomePageContext);
 
   //
   const locations = useLocation();
@@ -32,6 +33,13 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     name: "",
     image: null,
   });
+
+  const [ResourceData, setResoData] = useState({
+    title: "",
+    author: "",
+    description: "",
+  });
+
   const [resourceData, setResource] = useState({
     title: "",
     subtitle: "",
@@ -174,6 +182,18 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         }
       }
     }
+    if (locations?.pathname === "/Dashboard/ResourceSect/") {
+      if (dataId) {
+        const data = datas.find((dt) => dt.id === dataId);
+        if (data) {
+          setResoData({
+            title: data.title,
+            author: data.author,
+            description: data.description,
+          });
+        }
+      }
+    }
   }, [dataId, datas, locations]);
 
   // handle input values assignment
@@ -215,6 +235,11 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         return { ...data, [name]: value };
       });
     }
+    if (locations?.pathname === "/Dashboard/ResourceSect/") {
+      setResoData((data) => {
+        return { ...data, [name]: value };
+      });
+    }
   };
 
   // Asynchronous functions to update data
@@ -247,6 +272,30 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     } catch (error) {
       toast.error("Updates Failed");
       console.error("Error updating the resource section:", error);
+    }
+  }
+
+  async function updateResourceSect() {
+    const formData = new FormData();
+    formData.append("title", ResourceData.title);
+    formData.append("author", ResourceData.author);
+    formData.append("description", ResourceData.description);
+
+    try {
+      const response = await axiosInstance.put(
+        `hat-api/resources_details/${dataId}/`,
+        formData
+      );
+      // Update local state immediately after a successful update
+      const updatedResource = Resources.map((resource) =>
+        resource.id === dataId ? response.data : resource
+      );
+      toast.success("Updates Applied");
+      setResourceSect(updatedResource);
+      setOpen(false); // Close the drawer after update
+    } catch (error) {
+      toast.error("Updates Failed");
+      console.error("Error updating the Resource section:", error?.response);
     }
   }
 
@@ -424,6 +473,9 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
     if (locations?.pathname === "/Dashboard/AboutSect/") {
       UpdateAboutUs();
     }
+    if (locations?.pathname === "/Dashboard/ResourceSect/") {
+      updateResourceSect();
+    }
   };
 
   const handleSubmit = (e) => {
@@ -472,6 +524,105 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
                   </DialogTitle>
                 </div>
                 <div className="relative flex-1 px-2 mt-6">
+                  {/* "/Dashboard/ResourceSect/" */}
+                  {locations?.pathname === "/Dashboard/ResourceSect/" ? (
+                    <div className="flex flex-col">
+                      <div className="p-10 bg-slate-100 rounded-3xl">
+                        <form onSubmit={handleSubmit}>
+                          <div className="mt-5 space-y-12">
+                            <div className="pb-12">
+                              <h2 className="text-base font-semibold leading-7 text-gray-900 xl:text-xl">
+                                Resource Section
+                              </h2>
+                              <p className="mt-1 text-sm leading-6 text-gray-600">
+                                Perfom CRUD to this section
+                              </p>
+
+                              <div className="grid grid-cols-1 mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="title"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Title
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      onChange={handleChange}
+                                      defaultValue={data[0]?.title}
+                                      type="text"
+                                      name="title"
+                                      id="title"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="sm:col-span-3">
+                                  <label
+                                    htmlFor="author"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Author name
+                                  </label>
+                                  <div className="mt-2">
+                                    <input
+                                      defaultValue={data[0]?.author}
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="author"
+                                      id="author"
+                                      autoComplete="given-name"
+                                      className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="col-span-full">
+                                  <label
+                                    htmlFor="about"
+                                    className="block text-sm font-medium leading-6 text-gray-900 xl:text-lg"
+                                  >
+                                    Description
+                                  </label>
+                                  <div className="mt-2">
+                                    <textarea
+                                      defaultValue={data[0]?.description}
+                                      onChange={handleChange}
+                                      id="description"
+                                      name="description"
+                                      rows={3}
+                                      className="block overflow-y-auto w-full h-[300px] rounded-2xl border-0 p-7 text-gray-900 shadow-sm ring-1 ring-inset outline-none ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                                    />
+                                  </div>
+                                </div>
+                                {/* <div className="rounded-xl md:w-[680px] sm:w-[450px] w-full h-[300px]">
+                                  <iframe
+                                    src={`${IMAGE_BASE_URL}${data[0]?.document}`}
+                                    title="HAT PDF Preview"
+                                    className="w-full h-[400px] rounded-xl"
+                                  />
+                                </div> */}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex flex-col items-end justify-end">
+                            <motion.button
+                              onClick={handleUpdate}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.8 }}
+                              transition={{ type: "spring", ease: "easeOut" }}
+                              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+                            >
+                              Update
+                            </motion.button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   {/* "/Dashboard/heroSect/" */}
                   {locations?.pathname === "/Dashboard/heroSect/" ? (
                     <div className="flex flex-col">

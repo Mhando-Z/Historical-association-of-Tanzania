@@ -72,7 +72,7 @@ function Resources() {
             >
               <div className="grid grid-cols-[auto_1fr] gap-x-4">
                 {/* icon file */}
-                <FaFileAlt className="text-4xl text-blue-700" />
+                <FaFileAlt className="text-4xl text-blue-700 hover:text-red-700" />
 
                 {/* heading, author name, and date */}
                 <div className="flex flex-col">

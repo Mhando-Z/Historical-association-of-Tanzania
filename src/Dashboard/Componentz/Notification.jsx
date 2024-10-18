@@ -28,12 +28,28 @@ export default function Notification({ open, setOpen, dataId }) {
   const { ResourcesSect, setResources } = useContext(HomePageContext);
   //Companies section
   const { companies, setCompany } = useContext(HomePageContext);
+  // Resources
+  const { Resources, setResourceSect } = useContext(HomePageContext);
 
   // routing
   const locations = useLocation();
 
+  //  Resources section
+  async function deleteResourceSect() {
+    const original = Resources;
+    const del = Resources?.filter((pt) => pt.id !== dataId);
+    setResourceSect(del);
+    try {
+      await axiosInstance.delete(`/hat-api/resources_details/${dataId}/`);
+      toast.success("Deleted Successfully");
+    } catch (error) {
+      toast.error("Action Delete Failed");
+      setResourceSect(original);
+    }
+  }
   //  Companies section
   async function deleteCompany() {
+    const original = companies;
     const del = companies?.filter((pt) => pt.id !== dataId);
     setCompany(del);
     try {
@@ -41,11 +57,12 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setCompany(companies);
+      setCompany(original);
     }
   }
   // Resources and publications
   async function deleteResource() {
+    const original = ResourcesSect;
     const Reso = ResourcesSect?.filter((pt) => pt.id !== dataId);
     setResources(Reso);
     try {
@@ -53,11 +70,12 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setResources(ResourcesSect);
+      setResources(original);
     }
   }
   // Hero Section of landing page
   async function deleteHeroSect() {
+    const original = heroSect;
     const hero = heroSect?.filter((pt) => pt.id !== dataId);
     setHero(hero);
     try {
@@ -65,11 +83,12 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setHero(heroSect);
+      setHero(original);
     }
   }
   // Announcements Section
   async function deleteAnnouncement() {
+    const original = AnnounceSect;
     const Announce = AnnounceSect?.filter((pt) => pt.id !== dataId);
     setAnnounce(Announce);
     try {
@@ -77,12 +96,13 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setAnnounce(Announce);
+      setAnnounce(original);
     }
   }
 
   // Staffs Section
   async function deleteStaff() {
+    const original = StaffsSect;
     const staff = StaffsSect?.filter((pt) => pt.id !== dataId);
     setStaffs(staff);
     try {
@@ -90,12 +110,13 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setStaffs(staff);
+      setStaffs(original);
     }
   }
 
   // Gallery section
   async function deletePicturesSect() {
+    const original = gallerySect;
     const pictures = gallerySect?.filter((pt) => pt.id !== dataId);
     setGallery(pictures);
     try {
@@ -103,32 +124,34 @@ export default function Notification({ open, setOpen, dataId }) {
       toast.success("Deleted Successfully");
     } catch (error) {
       toast.error("Action Delete Failed");
-      setGallery(pictures);
+      setGallery(original);
     }
   }
 
   // AboutUs section
   async function deleteAboutUsSect() {
+    const original = AboutUSSect;
     const aboutUs = AboutUSSect?.filter((pt) => pt.id !== dataId);
     setAboutUs(aboutUs);
     try {
       await axiosInstance.delete(`/hat-api/About_Details/${dataId}/`);
       toast.success("Deleted Successfully");
     } catch (error) {
-      setAboutUs(aboutUs);
+      setAboutUs(original);
       toast.error("Action Delete Failed");
     }
   }
 
   // preso function
   async function deletePresoSect() {
+    const original = PresidentSect;
     const preso = PresidentSect?.filter((pt) => pt.id !== dataId);
     setPresident(preso);
     try {
       await axiosInstance.delete(`/hat-api/President_Details/${dataId}/`);
       toast.success("Deleted Successfully");
     } catch (error) {
-      setPresident(preso);
+      setPresident(original);
       toast.error("Action Delete Failed");
     }
   }
@@ -159,6 +182,9 @@ export default function Notification({ open, setOpen, dataId }) {
     if (locations?.pathname === "/Dashboard/AboutSect/") {
       deleteAboutUsSect();
     }
+    if (locations?.pathname === "/Dashboard/ResourceSect/") {
+      deleteResourceSect();
+    }
     setOpen(false);
   };
 
@@ -169,17 +195,17 @@ export default function Notification({ open, setOpen, dataId }) {
         className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
-            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div className="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
-                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
                   <ExclamationTriangleIcon
                     aria-hidden="true"
-                    className="h-6 w-6 text-red-600"
+                    className="w-6 h-6 text-red-600"
                   />
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -198,11 +224,11 @@ export default function Notification({ open, setOpen, dataId }) {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
               <button
                 type="button"
                 onClick={handleDelete}
-                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                className="inline-flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
               >
                 Delete
               </button>
@@ -210,7 +236,7 @@ export default function Notification({ open, setOpen, dataId }) {
                 type="button"
                 data-autofocus
                 onClick={() => setOpen(false)}
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                className="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
               >
                 Cancel
               </button>

@@ -49,6 +49,7 @@ import "react-phone-input-2/lib/style.css";
 import ClearHistoryScroll from "./Components/ClearHistoryScroll";
 import Resources from "./Screens/Resources";
 import Patrons from "./Screens/Patrons";
+import ResourceSect from "./Dashboard/Sections/ResourceSect";
 
 function App() {
   const [users, setUser] = useState("");
@@ -136,6 +137,7 @@ function App() {
                 <Route path="MembersMgt/" element={<MembersMgt />} />
                 <Route path="Announcement/" element={<AnnouncementsSect />} />
                 <Route path="AboutSect/" element={<AboutUsSect />} />
+                <Route path="ResourceSect/" element={<ResourceSect />} />
                 <Route path="UserProfile/" element={<UserProfile />} />
                 <Route path="PresoSect/" element={<PresidentSect />} />
                 <Route path="GallerySect/" element={<GallerySect />} />
