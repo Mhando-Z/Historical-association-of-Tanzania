@@ -84,7 +84,7 @@ const SideNavBar = ({ open, setOpen }) => {
             About Us
           </NavLink>
           <NavLink
-            to="/AboutUs/"
+            to="/Patrons/"
             className={({ isActive }) =>
               isActive
                 ? "bg-[#b67a3d] flex flex-row items-center w-full gap-x-2 font-medium text-white px-7 py-2 "
