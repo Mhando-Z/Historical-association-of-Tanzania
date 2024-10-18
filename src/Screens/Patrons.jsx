@@ -58,7 +58,9 @@ const HATLeadershipTimeline = () => {
   return (
     <div className="container flex flex-col mx-auto md:flex-row">
       <div>
-        <h1 className="mb-4 text-3xl font-bold ">Know Our Past Leadership</h1>
+        <h1 className="mb-4 text-3xl font-bold font-roboto ">
+          Know Our Past Leadership
+        </h1>
         <p className="max-w-xl mb-6">
           Since its establishment in 1966, HAT has had different leaders serving
           in different capacities. Click on a name to learn more about each
