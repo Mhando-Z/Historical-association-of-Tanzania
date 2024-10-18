@@ -177,13 +177,13 @@ const PatronDisplay = () => {
                 <img
                   src={nyerere1}
                   alt="HAT first patron"
-                  className="object-cover cursor-pointer group-hover:grayscale md:rounded-t-full w-full h-[500px] md:h-[600px]"
+                  className="object-cover cursor-pointer group-hover:grayscale md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
                 />
                 <div className="absolute top-0 bottom-0 left-0 right-0 hidden bg-black group-hover:flex md:rounded-t-full">
                   <motion.img
                     src={nyerere2}
                     alt="First Patron Mwalimu julius Kambarage Nyerere"
-                    className="object-cover md:rounded-t-full w-full h-[500px] md:h-[600px]"
+                    className="object-cover md:rounded-t-full w-screen md:w-full h-[500px] md:h-[600px]"
                   />
                 </div>
               </motion.div>
