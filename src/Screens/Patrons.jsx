@@ -195,10 +195,10 @@ const PatronDisplay = () => {
                 transition={{ delay: 0.3, duration: 0.8 }}
                 className="mb-4 text-lg md:text-xl"
               >
-                "President Julius Nyerere was the first HAT patron who served
+                President Julius Nyerere was the first HAT patron who served
                 from 1966-1999. He was very instrumental in pushing the study of
                 history through the department of history at the University of
-                Dar es Salaam."
+                Dar es Salaam.
               </motion.blockquote>
               <motion.p
                 initial={{ y: -50, opacity: 0 }}
