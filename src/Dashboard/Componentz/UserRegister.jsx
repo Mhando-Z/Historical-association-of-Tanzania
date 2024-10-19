@@ -123,7 +123,7 @@ export const Notifier = ({ data, setView }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="absolute inset-0 top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-opacity-50 md:bg-black"
+      className="absolute inset-0 top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center md:bg-opacity-50 md:bg-black"
     >
       <motion.div
         initial={{ y: -50 }}
