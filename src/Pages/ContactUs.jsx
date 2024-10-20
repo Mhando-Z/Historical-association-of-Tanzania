@@ -1,6 +1,46 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axiosInstance from "./../Context/axiosInstance";
+import { RefreshCw } from "lucide-react";
 
 function ContactUs() {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  // Function to handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target; // Get the name and value from the input field
+    setFormData({
+      ...formData,
+      [name]: value, // Update the corresponding field in the formData state
+    });
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await axiosInstance.post("/hat-users/send-email/", formData); // Send formData to the backend
+      toast.success("Message sent successfully!");
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+      setFormData({
+        email: "",
+        subject: "",
+        message: "",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col mt-20 md:mt-0">
       <div className="container flex flex-col items-center justify-center py-10 mx-auto mb-1 md:p-20 sm:rounded-xl">
@@ -23,9 +63,12 @@ function ContactUs() {
                 className="flex flex-row gap-x-8"
               >
                 <input
-                  type="text"
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  required
                   className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d] outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
-                  placeholder="Name"
+                  placeholder="Email"
                 />
               </motion.div>
               <motion.div
@@ -35,13 +78,19 @@ function ContactUs() {
               >
                 <input
                   type="text"
+                  name="subject"
+                  required
+                  onChange={handleChange}
                   className="w-full py-2 md:py-3 text-base shadow ring-[#b67a3d]  outline-none xl:text-xl focus:bg-blue-50 px-7 rounded-3xl placeholder ring-1"
-                  placeholder="Email"
+                  placeholder="Subject"
                 />
               </motion.div>
             </div>
             <div className="flex flex-col w-full">
               <textarea
+                name="message"
+                required
+                onChange={handleChange}
                 cols="30"
                 rows="8"
                 className="text-base shadow ring-[#b67a3d]  outline-none py-7 focus:bg-blue-50 xl:text-xl rounded-3xl px-7 ring-1"
@@ -72,7 +121,15 @@ function ContactUs() {
                   }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10">Send</span>
+                {loading ? (
+                  <RefreshCw className="animate-spin" />
+                ) : (
+                  <>
+                    <span onClick={handleSubmit} className="relative z-10">
+                      Send
+                    </span>
+                  </>
+                )}
               </motion.button>
             </div>
           </motion.div>

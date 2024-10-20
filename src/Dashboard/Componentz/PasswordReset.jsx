@@ -1,37 +1,47 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import logo from "../../Assets/Images/Logo3.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../Context/axiosInstance";
 import { motion } from "framer-motion";
-import { Dots } from "react-activity";
+import { KeyRound, Mail, RefreshCw } from "lucide-react";
 
 const PasswordResetRequest = () => {
   const [loading, setLoading] = useState(false);
-
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
 
-  const handleRequest = async (e) => {
-    e.preventDefault();
+  const handleSend = (e) => {
     setLoading(true);
+    if (email !== "") {
+      handleSubmit(e);
+    } else {
+      toast.error("Email is Required");
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axiosInstance.post("hat-users/password_reset/", { email });
-      toast.success("Password reset link sent to your email.");
-      navigate("/login");
+      await axiosInstance.post("hat-users/Password_Reset/", { email });
+      toast.success("Password reset email sent.");
       setLoading(false);
     } catch (error) {
-      toast.error("Failed to send password reset link.");
+      toast.error(
+        "Failed to send reset email. Please check the email provided."
+      );
       setLoading(false);
     }
   };
 
   return (
     <div className="flex flex-col items-center relative justify-center min-h-screen bg-gradient-to-t from-[#b67a3d] via-transparent via-90% to-transparent">
-      <div className="relative w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl">
+      <div className="relative w-full max-w-md p-8 md:shadow-2xl md:bg-white md:rounded-3xl">
+        <img className="w-auto h-10 mx-auto mb-2" src={logo} alt="Hat logo" />
         <h2 className="text-2xl font-semibold text-center text-gray-900">
           Reset Password
         </h2>
-        <form onSubmit={handleRequest} className="mt-6 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -43,35 +53,35 @@ const PasswordResetRequest = () => {
               <input
                 type="email"
                 id="email"
+                placeholder="Enter your Email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-2xl border-0 py-2 px-7 outline-none text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm"
               />
             </div>
           </div>
           <div>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.8 }}
-              transition={{ type: "spring", ease: "easeOut" }}
               type="submit"
               className="w-full py-2 px-4 bg-[#b67a3d] text-white rounded-3xl hover:bg-[#a46931] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b67a3d] transition duration-150 ease-in-out"
             >
-              Send Reset Link
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <Link
+                    onClick={handleSend}
+                    className="flex flex-row items-center justify-center gap-x-2"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span> Send Reset Link</span>
+                  </Link>
+                </>
+              )}
             </motion.button>
           </div>
         </form>
-        {loading ? (
-          <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-gray-800 bg-opacity-25 rounded-3xl">
-            <div className={`mt-5 h-20 items-center justify-center flex `}>
-              <Dots color="green" size={35} speed={0.7} animating={true} />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
       </div>
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -94,7 +104,13 @@ const PasswordResetConfirm = () => {
   const { uid, token } = useParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const handleSend = (e) => {
+    setLoading(true);
+    handleReset(e);
+  };
 
   const handleReset = async (e) => {
     e.preventDefault();
@@ -103,22 +119,26 @@ const PasswordResetConfirm = () => {
       return;
     }
     try {
-      const { data } = await axiosInstance.post("hat-users/password_reset/", {
-        uid,
-        token,
-        new_password: newPassword,
-      });
+      await axiosInstance.post(
+        `/hat-users/password_reset_confirm/${uid}/${token}/`,
+        {
+          new_password: newPassword,
+        }
+      );
 
       toast.success("Password reset successfully.");
       navigate("/login/");
     } catch (error) {
+      console.log(error);
+      setLoading(false);
       toast.error("Failed to reset password.");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-3xl">
+    <div className="flex flex-col bg-gradient-to-t from-[#b67a3d] via-transparent via-90% to-transparent items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 md:shadow-lg md:bg-white md:rounded-3xl">
+        <img className="w-auto h-10 mx-auto mb-2" src={logo} alt="Hat logo" />
         <h2 className="text-2xl font-semibold text-center text-gray-900">
           Set New Password
         </h2>
@@ -162,12 +182,24 @@ const PasswordResetConfirm = () => {
             </div>
           </div>
           <div>
-            <button
+            <motion.button
               type="submit"
               className="w-full py-2 px-4 bg-[#b67a3d] text-white rounded-3xl hover:bg-[#a46931] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b67a3d] transition duration-150 ease-in-out"
             >
-              Reset Password
-            </button>
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <Link
+                    onClick={handleSend}
+                    className="flex flex-row items-center justify-center gap-x-2"
+                  >
+                    <KeyRound className="w-4 h-4" />
+                    <span> Reset Password</span>
+                  </Link>
+                </>
+              )}
+            </motion.button>
           </div>
         </form>
       </div>

@@ -75,8 +75,6 @@ export const Notifier = ({ data, setView }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
-
   async function resendVerificationEmail(email) {
     setIsLoading(true);
     setError(null);

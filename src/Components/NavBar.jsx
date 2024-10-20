@@ -159,14 +159,16 @@ function NavBar() {
           <div className="flex-row hidden md:flex gap-x-3">
             {userData ? (
               <Link
-                to={userData?.is_staff ? "Dashboard/" : "Dashboard/UserHome"}
+                to={`${
+                  userData?.is_staff ? "Dashboard/" : "Dashboard/UserHome"
+                }`}
               >
                 <ProfileIcon data={userData} />
               </Link>
             ) : (
               <Link
                 to={`Login/`}
-                className="px-5 py-1.5 md:text-sm text-base hover:ring-1 hover:ring-[#d99958] font-medium rounded-3xl bg-[#b67a3d] text-white"
+                className="px-5 py-1.5  text-base  font-medium rounded-3xl bg-[#b67a3d] text-white"
               >
                 Sign In
               </Link>

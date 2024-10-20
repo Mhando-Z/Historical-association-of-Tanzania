@@ -98,7 +98,7 @@ function App() {
               />
               <Route
                 // path="Password-Reset/confirm/:uid/:token/"
-                path="Password-Reset/confirm/"
+                path="/Password-Reset/confirm/:uid/:token/"
                 element={<PasswordResetConfirm />}
               />
               {/* Logout Route */}
