@@ -33,7 +33,6 @@ import UserProfile from "./Dashboard/Componentz/UserProfile";
 import ConferenceSect from "./Dashboard/Sections/ConferenceSect";
 import UserHome from "./Dashboard/Users/Screens/UserHome";
 import Membership from "./Dashboard/Users/Screens/Membership";
-import UserConfernce from "./Dashboard/Users/Screens/UserConfernce";
 import MyPayments from "./Dashboard/Users/Screens/MyPayments";
 import Publications from "./Screens/Publications";
 import UserRegister from "./Dashboard/Componentz/UserRegister";
@@ -62,7 +61,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-between min-h-screen overflow-x-hidden font-Raleway">
+    <div className="flex flex-col justify-between min-h-screen overflow-x-hidden appearance-none font-Raleway">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -150,7 +149,6 @@ function App() {
                 {/* Normal Users Routes */}
                 <Route path="UserHome/" element={<UserHome />} />
                 <Route path="Membership/" element={<Membership />} />
-                <Route path="UserConference/" element={<UserConfernce />} />
                 <Route path="MyPayments/" element={<MyPayments />} />
                 <Route path="Announce/" element={<Announce />} />
                 <Route path="Publications/" element={<Publications />} />

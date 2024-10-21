@@ -95,16 +95,6 @@ const UserChoices = [
     links: "UserHome/",
     icon: <FaHome />,
   },
-  // {
-  //   sections: "Membership",
-  //   links: "Membership/",
-  //   icon: <FaUserGroup />,
-  // },
-  {
-    sections: "Conference",
-    links: "UserConference/",
-    icon: <FaUserGroup />,
-  },
   {
     sections: "My Payments",
     links: "MyPayments/",

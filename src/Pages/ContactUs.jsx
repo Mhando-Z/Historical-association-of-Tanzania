@@ -21,6 +21,18 @@ function ContactUs() {
     });
   };
 
+  const handleSend = (e) => {
+    if (
+      formData.email !== "" &&
+      formData.message !== "" &&
+      formData?.subject !== ""
+    ) {
+      handleSubmit(e);
+    } else {
+      toast.error("Please fill all inputs fields");
+    }
+  };
+
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,7 +112,7 @@ function ContactUs() {
             {/* submit button */}
             <div className="flex items-end justify-end w-full">
               <motion.button
-                // onClick={}
+                onClick={handleSend}
                 className="relative px-6 py-1.5 md:py-2 hover:text-white rounded-3xl text-xs sm:text-sm md:text-base ring-2 ring-[#b67a3d] overflow-hidden text-[#744517] font-medium "
                 whileHover="hover"
                 initial="initial"
@@ -125,9 +137,7 @@ function ContactUs() {
                   <RefreshCw className="animate-spin" />
                 ) : (
                   <>
-                    <span onClick={handleSubmit} className="relative z-10">
-                      Send
-                    </span>
+                    <span className="relative z-10">Send</span>
                   </>
                 )}
               </motion.button>

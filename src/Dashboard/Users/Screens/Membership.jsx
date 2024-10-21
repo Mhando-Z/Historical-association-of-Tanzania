@@ -262,7 +262,7 @@ const Membership = () => {
                   placeholder="Nationality"
                   required
                   onChange={handleChange}
-                  className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                  className="block capitalize p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
                 />
               </div>
 
@@ -277,11 +277,9 @@ const Membership = () => {
                   required
                   className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
                 >
-                  <option value="" disabled>
-                    Select Gender
-                  </option>
-                  <option value="male">male</option>
-                  <option value="female">female</option>
+                  <option value="">Rather not Say</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
                 </select>
               </div>
             </div>
@@ -308,16 +306,16 @@ const Membership = () => {
                 value={formData?.profile.title}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block capitalize p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
               <input
                 type="text"
                 name="branch"
-                placeholder="Branch"
+                placeholder="Institution or Organisation"
                 value={formData?.profile.branch}
                 required
                 onChange={handleChange}
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
+                className="block capitalize p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d]"
               />
             </div>
           </div>

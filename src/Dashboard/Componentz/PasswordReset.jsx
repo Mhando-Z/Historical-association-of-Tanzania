@@ -91,7 +91,7 @@ const PasswordResetRequest = () => {
       >
         <Link
           to={"/Login/"}
-          className="px-6 py-3 font-medium bg-[#a46931] rounded-3xl text-white"
+          className="px-4 py-1.5 md:py-2 text-sm font-medium bg-[#a46931] rounded-3xl text-white"
         >
           Log-in
         </Link>
@@ -129,7 +129,6 @@ const PasswordResetConfirm = () => {
       toast.success("Password reset successfully.");
       navigate("/login/");
     } catch (error) {
-      console.log(error);
       setLoading(false);
       toast.error("Failed to reset password.");
     }

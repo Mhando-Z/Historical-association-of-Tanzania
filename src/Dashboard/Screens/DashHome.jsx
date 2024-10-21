@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../../Context/UserContext";
 import { FaUser } from "react-icons/fa";
 import { BsPeopleFill } from "react-icons/bs";
@@ -9,10 +9,12 @@ import RegistrationStats from "../Charts/LineChart";
 import BarChart1 from "./../Charts/BarChart2";
 import { motion } from "framer-motion";
 import { FaChartSimple } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 function DashHome() {
   const { userData } = useContext(UserContext);
   const { users } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const paidMembershipUsers = users?.filter(
     (user) => user.profile.is_paid_membership === true
@@ -23,6 +25,12 @@ function DashHome() {
   const StudentUsers = users?.filter(
     (user) => user.profile.is_student === true
   );
+
+  useEffect(() => {
+    if (userData?.is_staff === false) {
+      navigate("/Dashboard/UserHome/");
+    }
+  }, []);
 
   return (
     <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mb-40">

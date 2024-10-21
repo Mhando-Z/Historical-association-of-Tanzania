@@ -125,8 +125,6 @@ function Researchpublications() {
     } catch (error) {
       toast.error(`Data upload was a failure`);
       console.error(error?.response?.data);
-      console.log(error?.response?.data);
-      console.log(resourceData);
     }
   }
 

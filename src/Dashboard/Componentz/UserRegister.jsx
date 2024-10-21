@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { Dots } from "react-activity";
 import { CheckCircle, Mail, User, RefreshCw } from "lucide-react";
+import { EyeOff } from "lucide-react";
+import { Eye } from "lucide-react";
 
 // export const Notifier = ({ data }) => {
 //   async function resendVerificationEmail(email) {
@@ -73,11 +75,10 @@ const MotionCheckCircle = motion(CheckCircle);
 
 export const Notifier = ({ data, setView }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   async function resendVerificationEmail(email) {
     setIsLoading(true);
-    setError(null);
+
     try {
       const response = await axiosInstance.post(
         "/hat-users/resend-email-verification/",
@@ -87,23 +88,16 @@ export const Notifier = ({ data, setView }) => {
       if (response.status === 200) {
         toast.success("Verification email resent. Please check your inbox.");
       } else {
-        setError(response.data.detail || "Unexpected error. Try again.");
         toast.error(response.data.detail || "Unexpected error. Try again.");
       }
     } catch (error) {
       console.error("Error resending verification email:", error);
       if (error.response) {
-        // Server responded with a status code other than 2xx
-        const errDetail = error.response.data.detail || "Error. Try again.";
-        setError(errDetail);
-        toast.error(errDetail);
       } else if (error.request) {
         // Request made but no response received
-        setError("No response from the server. Please check your network.");
         toast.error("No response from the server. Please check your network.");
       } else {
         // Something else went wrong
-        setError("Error: " + error.message);
         toast.error("Error: " + error.message);
       }
     } finally {
@@ -121,13 +115,13 @@ export const Notifier = ({ data, setView }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="absolute inset-0 top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center md:bg-opacity-50 md:bg-black"
+      className="absolute top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center bg-opacity-50 backdrop-blur-xl"
     >
       <motion.div
         initial={{ y: -50 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="w-full max-w-md p-8 mx-4 bg-white rounded-lg shadow-xl"
+        className="w-full max-w-md p-8 mx-4 bg-white rounded-lg shadow-2xl "
       >
         <div className="flex flex-col items-center text-center">
           <MotionCheckCircle
@@ -202,6 +196,8 @@ const UserRegister = ({ handleRegistration }) => {
   const [error, setError] = useState([]);
   const [view, setView] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -236,6 +232,11 @@ const UserRegister = ({ handleRegistration }) => {
     } else {
       handleRegistration();
     }
+  };
+
+  // toggle show password functions
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -305,15 +306,30 @@ const UserRegister = ({ handleRegistration }) => {
             <label htmlFor="password" className="block text-gray-700">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="mt-1 block w-full   focus:bg-blue-50 sm:py-2 py-1.5 px-3 outline-none ring-1 ring-[#b67a3d] rounded border-gray-300"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="mt-1 block w-full   focus:bg-blue-50 sm:py-2 py-1.5 px-3 outline-none ring-1 ring-[#b67a3d] rounded border-gray-300"
+                required
+              />
+              <button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4 text-gray-400" />
+                ) : (
+                  <Eye className="w-4 h-4 text-gray-400" />
+                )}
+              </button>
+            </div>
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
               <p>{error?.password ? error?.password[0] : ""}</p>
             </div>
@@ -322,15 +338,30 @@ const UserRegister = ({ handleRegistration }) => {
             <label htmlFor="password2" className="block text-gray-700">
               Confirm Password
             </label>
-            <input
-              type="password"
-              id="password2"
-              name="password2"
-              value={formData.password2}
-              onChange={handleChange}
-              className="mt-1 block w-full outline-none  focus:bg-blue-50 ring-1 ring-[#b67a3d] rounded sm:py-2 py-1.5 px-3 border-gray-300"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password2"
+                name="password2"
+                value={formData.password2}
+                onChange={handleChange}
+                className="mt-1 block w-full outline-none  focus:bg-blue-50 ring-1 ring-[#b67a3d] rounded sm:py-2 py-1.5 px-3 border-gray-300"
+                required
+              />
+              <button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4 text-gray-400" />
+                ) : (
+                  <Eye className="w-4 h-4 text-gray-400" />
+                )}
+              </button>
+            </div>
             <div className="flex justify-end w-full mt-1 text-red-600 lg:items-end">
               <p>{error?.password ? error?.password[0] : ""}</p>
             </div>
