@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function HeroSect() {
   const { heroSect, setHero } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [heroData, setData] = useState({
     title: "",
     subtitle: "",
@@ -69,8 +71,10 @@ function HeroSect() {
       const vibes = [data, ...heroSect];
       setHero(vibes);
       setPreviewURL(null);
+      setLoading(false);
       toast.success("Data upload was a success");
     } catch (error) {
+      setLoading(false);
       toast.error("Data upload was a failure");
       console.error(error.response);
     }
@@ -83,6 +87,7 @@ function HeroSect() {
 
   const handlePost = () => {
     if (heroData.title !== "" && heroData.description !== "") {
+      setLoading(true);
       postHerodata();
     } else {
       toast.error("Fill all sections");
@@ -135,7 +140,7 @@ function HeroSect() {
                       name="title"
                       id="title"
                       autoComplete="given-name"
-                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-2 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -155,7 +160,7 @@ function HeroSect() {
                       name="subtitle"
                       id="subtitle"
                       autoComplete="given-name"
-                      className="block w-full rounded border-0 py-2 px-7 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
+                      className="block w-full rounded border-0 py-2 px-2 outline-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#b67a3d] sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -256,9 +261,15 @@ function HeroSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-1 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-4 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

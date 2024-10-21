@@ -7,10 +7,12 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function GallerySect() {
   const { gallerySect, setGallery } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [picture, setData] = useState({
     title: "",
     image: null,
@@ -46,9 +48,11 @@ function GallerySect() {
       const vibes = [data, ...gallerySect];
       setGallery(vibes);
       setPreviewURL(null);
+      setLoading(false);
       toast.success("Image upload was a success");
     } catch (error) {
       console.error(error.response.data);
+      setLoading(false);
       toast.error("Image upload failed");
     }
   }
@@ -60,6 +64,7 @@ function GallerySect() {
   const handlePost = () => {
     if (picture.title !== "" && picture.image !== null) {
       postGallerydata();
+      setLoading(true);
     } else {
       toast.error("Fill all sections");
     }
@@ -181,9 +186,15 @@ function GallerySect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1.5 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

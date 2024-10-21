@@ -9,6 +9,7 @@ import { FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { PiVideoConference } from "react-icons/pi";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 // Date formatter component
 const formatDate = (dateString) => {
@@ -18,6 +19,7 @@ const formatDate = (dateString) => {
 function ConferenceSect() {
   const { ConferenceSect, setConference } = useContext(HomePageContext);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [dataId, setDataId] = useState("");
   const [conferenceData, setConferenceData] = useState({
     title: "",
@@ -72,7 +74,9 @@ function ConferenceSect() {
     try {
       await axiosInstance.delete(`/hat-api/Conference_Details/${Id}/`);
       toast.success("Deleted Successfully");
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       toast.error("Action Delete Failed");
       setConference(ConferenceSect);
     }
@@ -133,6 +137,7 @@ function ConferenceSect() {
   const handlePost = () => {
     if (conferenceData.title !== "" && conferenceData.description !== null) {
       postConferenceData();
+      setLoading(true);
     } else {
       toast.error("Fill all sections");
     }
@@ -429,9 +434,15 @@ function ConferenceSect() {
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
               type="submit"
-              className="block bg-[#b67a3d] text-white py-1 px-5 rounded-full font-medium  hover:bg-[#a56c28]"
+              className="block bg-[#b67a3d] text-white py-1.5 px-5 rounded-full font-medium  hover:bg-[#a56c28]"
             >
-              Submit
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10"> Submit</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

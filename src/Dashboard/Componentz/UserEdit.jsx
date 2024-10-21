@@ -196,7 +196,7 @@ const AdminUserManagement = () => {
               <PiUserListFill className="text-4xl" />
               <span className="">Users List</span>
             </h1>
-            <div className="relative w-full p-4 bg-white rounded-lg shadow">
+            <div className="relative w-full p-4 text-xs bg-white rounded-lg shadow md:text-sm">
               {/* Search Input */}
               <div className="mb-4">
                 <input

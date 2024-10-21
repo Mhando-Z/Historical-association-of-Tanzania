@@ -7,10 +7,12 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function CompanySect() {
   const { companies, setCompany } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [company, setData] = useState({
     title: "",
     image: null,
@@ -36,6 +38,7 @@ function CompanySect() {
 
   // handle synchronous functions
   async function postCompanyData() {
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", company.title);
     formData.append("image", company.image);
@@ -45,8 +48,10 @@ function CompanySect() {
       const updatedCompanies = [data, ...companies];
       setCompany(updatedCompanies);
       setPreviewURL(null);
+      setLoading(false);
       toast.success("Company data upload was a success");
     } catch (error) {
+      setLoading(false);
       toast.error("Company data upload failed");
     }
   }
@@ -199,9 +204,15 @@ function CompanySect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1.5 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

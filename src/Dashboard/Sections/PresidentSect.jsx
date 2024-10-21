@@ -6,11 +6,13 @@ import Table from "../Componentz/Table";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function PresidentSect() {
   const { PresidentSect, setPresident } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [presoData, setData] = useState({
     title: "",
     subtitle: "",
@@ -93,10 +95,12 @@ function PresidentSect() {
       setPresident(vibes);
       setPreviewURL1(null);
       setPreviewURL2(null);
+      setLoading(false);
       toast.success("data upload was a success");
     } catch (error) {
       toast.error("data upload was a failure");
       console.error(error);
+      setLoading(false);
     }
   }
 
@@ -108,6 +112,7 @@ function PresidentSect() {
   const handlePost = () => {
     if (presoData.title !== "" && presoData.description !== "") {
       posPresotdata();
+      setLoading(true);
     } else {
       toast.error("Fill all sections");
     }
@@ -433,7 +438,13 @@ function PresidentSect() {
               transition={{ type: "spring", ease: "easeOut" }}
               className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

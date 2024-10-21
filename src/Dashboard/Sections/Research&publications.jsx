@@ -12,6 +12,7 @@ function Researchpublications() {
   const { ResourcesSect, setResources } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [resourceData, setData] = useState({
     title: "",
     subtitle: "",
@@ -121,10 +122,12 @@ function Researchpublications() {
       setResources(vibes);
       setPreviewURL1(null);
       setPreviewURL2(null);
+      setLoading(false);
       toast.success("Data upload was a success");
     } catch (error) {
       toast.error(`Data upload was a failure`);
       console.error(error?.response?.data);
+      setLoading(false);
     }
   }
 
@@ -135,6 +138,7 @@ function Researchpublications() {
   const handlePost = () => {
     if (resourceData.title !== "" && resourceData.description !== "") {
       postResourceData();
+      setLoading(true);
     } else {
       toast.error("Fill all sections");
     }

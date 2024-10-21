@@ -8,11 +8,13 @@ import { MdEmail } from "react-icons/md";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { MdOutlineSettingsInputAntenna } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
   const { PolicieSect, setPolicy } = useContext(HomePageContext);
   const { TermsSect, setTermsService } = useContext(HomePageContext);
+  const [loading, setLoading] = useState(false);
 
   const dataId = ContactSect[0]?.id;
   const dataId1 = PolicieSect[0]?.id;
@@ -122,6 +124,7 @@ function ContactUsSect() {
   };
 
   const updateContactSect = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.put(
         `hat-api/Contact_Details/${dataId}/`,
@@ -132,8 +135,10 @@ function ContactUsSect() {
       );
       setContacts(updatedContacts);
       setEdit(!editContacts);
+      setLoading(false);
       toast.success("Contacts Update Successfull");
     } catch (error) {
+      setLoading(false);
       toast.error("Error updating the contact section");
       console.error("Error updating the contact section:", error);
     }
@@ -843,9 +848,15 @@ function ContactUsSect() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.8 }}
                 transition={{ type: "spring", ease: "easeOut" }}
-                className="px-4 py-1 bg-[#b67a3d] text-white rounded-3xl"
+                className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
               >
-                Update
+                {loading ? (
+                  <RefreshCw className="animate-spin" />
+                ) : (
+                  <>
+                    <span className="relative z-10 text-sm"> Update</span>
+                  </>
+                )}
               </motion.button>
             </div>
           </form>

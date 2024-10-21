@@ -7,11 +7,13 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function AnnouncementsSect() {
   const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [AnnounceData, setData] = useState({
     title: "",
     description: "",
@@ -85,8 +87,10 @@ function AnnouncementsSect() {
       setPreviewURL1(null);
       setPreviewURL2(null);
       setAnnounce(vibes);
+      setLoading(false);
       toast.success("Data upload was successful");
     } catch (error) {
+      setLoading(false);
       toast.error("Data upload failed");
       console.error(error);
     }
@@ -99,6 +103,7 @@ function AnnouncementsSect() {
   const handlePost = () => {
     if (AnnounceData.title !== "" && AnnounceData.description !== "") {
       postdata();
+      setLoading(true);
     } else {
       toast.error("Fill all sections");
     }
@@ -322,9 +327,15 @@ function AnnouncementsSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1.5 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10">Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

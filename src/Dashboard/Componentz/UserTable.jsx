@@ -53,7 +53,7 @@ const UserTable = ({ data }) => {
           className="p-2 border shadow outline-none focus:ring-1 focus:ring-[#b67a3d] border-gray-100 rounded w-full"
         />
       </div>
-      <div className="overflow-x-auto h-[600px]">
+      <div className="overflow-x-auto h-[600px] md:text-sm text-xs">
         <div className="relative">
           <table className="min-w-full border border-gray-300 bg-slate-100">
             <thead className="sticky top-0 bg-gray-200">

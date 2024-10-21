@@ -6,10 +6,12 @@ import HomePageContext from "../../Context/HomePageContext";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 export default function AboutUsSect() {
   const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [AboutData, setData] = useState({
     title: "",
     subtitle: "",
@@ -77,8 +79,10 @@ export default function AboutUsSect() {
       const vibes = [data, ...AboutUSSect];
       setAboutUs(vibes);
       setPreviewURL(null);
+      setLoading(false);
       toast.success("Data upload was a success");
     } catch (error) {
+      setLoading(false);
       toast.error("Data upload was a failure");
     }
   }
@@ -89,6 +93,7 @@ export default function AboutUsSect() {
 
   const handlePost = () => {
     if (AboutData.title !== "" && AboutData.image !== null) {
+      setLoading(true);
       postData();
     } else {
       toast.error("Fill all sections");
@@ -261,9 +266,15 @@ export default function AboutUsSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-1 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

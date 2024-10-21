@@ -4,9 +4,11 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import Table from "../Componentz/Table";
+import { RefreshCw } from "lucide-react";
 
 function ResourceSect() {
   const { Resources, setResourceSect } = useContext(HomePageContext);
+  const [loading, setLoading] = useState(false);
   const [ResourceData, setData] = useState({
     title: "",
     author: "",
@@ -41,9 +43,11 @@ function ResourceSect() {
       const { data } = await axiosInstance.post("/hat-api/Resource/", formData);
       const updatedResources = [data, ...Resources];
       setResourceSect(updatedResources);
+      setLoading(false);
       toast.success("Data upload was successful");
     } catch (error) {
       toast.error("Data upload failed");
+      setLoading(false);
       console.error(error);
     }
   }
@@ -54,6 +58,7 @@ function ResourceSect() {
 
   const handlePost = () => {
     if (ResourceData.title !== "" && ResourceData.description !== "") {
+      setLoading(true);
       postdata();
     } else {
       toast.error("Fill all sections");
@@ -191,9 +196,15 @@ function ResourceSect() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.8 }}
               transition={{ type: "spring", ease: "easeOut" }}
-              className="px-7 py-2 bg-[#b67a3d] text-white rounded-3xl"
+              className="px-5 py-1.5 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10">Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>

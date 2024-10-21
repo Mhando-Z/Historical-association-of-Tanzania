@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function StaffsSect() {
   const { StaffsSect, setStaffs } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [staffs, setData] = useState({
     name: "",
     description: "",
@@ -73,14 +75,17 @@ function StaffsSect() {
       const vibes = [data, ...StaffsSect];
       setStaffs(vibes);
       setPreviewURL(null);
+      setLoading(false);
       toast.success("Data upload was a success");
     } catch (error) {
+      setLoading(false);
       toast.error("Data upload failed");
     }
   }
 
   const handlePost = () => {
     if (staffs.name !== "") {
+      setLoading(true);
       postStaffsdata();
     } else {
       toast.error("Fill all sections");
@@ -306,7 +311,13 @@ function StaffsSect() {
               transition={{ type: "spring", ease: "easeOut" }}
               className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10 text-sm"> Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>
