@@ -11,7 +11,7 @@ function MembersMgt() {
   const { users } = useContext(UserContext);
 
   return (
-    <div className="container relative flex flex-col min-h-screen mx-auto mb-20 overflow-x-hidden py-9">
+    <div className="container relative flex flex-col min-h-screen mx-auto mb-20 overflow-x-hidden font-roboto py-9">
       <div className="flex flex-col w-full">
         <h1 className="flex flex-row items-center px-4 py-3 mb-5 font-bold uppercase md:text-lg gap-x-3">
           <MdManageAccounts className="text-3xl" />
