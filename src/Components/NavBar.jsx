@@ -206,9 +206,12 @@ export function Events() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 xl:text-xl text-md text-black">
+        <Menu.Button className="inline-flex w-full text-gray-600 items-center justify-center gap-x-1.5 text-sm">
           Events
-          <ChevronDownIcon className="w-5 h-5 text-black" aria-hidden="true" />
+          <ChevronDownIcon
+            className="w-5 h-5 text-gray-600"
+            aria-hidden="true"
+          />
         </Menu.Button>
       </div>
 
@@ -216,7 +219,7 @@ export function Events() {
         transition
         className="absolute right-0 z-10 w-56 mt-4 transition origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg bg-opacity-60 hover:bg-opacity-85 ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
-        <div className="py-1">
+        <div className="py-1 ">
           <Menu.Item>
             {({ active }) => (
               <motion.div>
@@ -224,8 +227,8 @@ export function Events() {
                   to={"Announcements/"}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
-                      : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
+                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-base"
+                      : "text-gray-600 block px-4 py-2 text-base hover:bg-[#cd9a68] hover:text-white"
                   }
                   onClick={scrollToTop} // The menu will close automatically after click
                 >
@@ -241,8 +244,8 @@ export function Events() {
                   to={"Gallery/"}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 xl:text-xl text-lg"
-                      : "text-gray-700 block px-4 py-2 xl:text-xl text-lg hover:bg-[#cd9a68] hover:text-white"
+                      ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-base"
+                      : "text-gray-600 block px-4 py-2 text-base hover:bg-[#cd9a68] hover:text-white"
                   }
                   onClick={() => {
                     scrollToTop();
