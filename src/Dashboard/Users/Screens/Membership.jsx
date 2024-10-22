@@ -133,8 +133,67 @@ const Membership = () => {
     fetchCitiesesData();
   }, [CountryCode]);
 
+  // Validation for each step
+  const validateStep = () => {
+    switch (step) {
+      case 1: // INTRODUCTION step
+        return true; // No validation for step 1
+
+      case 2: // PERSONAL INFO step
+        return (
+          formData.profile.first_name &&
+          formData.profile.middle_name &&
+          formData.profile.last_name
+        );
+
+      case 3: // CONTACT INFO step
+        return (
+          formData.profile.phone_number &&
+          formData.profile.nationality &&
+          formData.profile.gender
+        );
+
+      case 4: // WORK INFO step
+        return formData.profile.title && formData.profile.branch;
+
+      case 5: // LOCATION INFO step
+        return (
+          formData.profile.country &&
+          formData.profile.city &&
+          formData.profile.physical_address
+        );
+
+      case 6: // STUDENT INFO step (optional if not a student)
+        if (isStudent) {
+          return (
+            formData.profile.student_id &&
+            formData.profile.institution &&
+            formData.profile.course_of_study
+          );
+        }
+        return true;
+
+      case 7: // PAYMENT step
+        return true;
+      // return formData.profile.is_paid_membership;
+
+      case 8: // SUMMARY step
+        return true; // No validation for summary step
+
+      default:
+        return false;
+    }
+  };
+
+  // Handle next step
   const handleNext = () => {
-    if (step < steps.length) setStep(step + 1);
+    if (validateStep()) {
+      if (step < steps.length) {
+        setStep(step + 1);
+      }
+    } else {
+      toast.error("Please fill in all required fields for this step.");
+    }
   };
 
   const handleBack = () => {
@@ -275,7 +334,7 @@ const Membership = () => {
                   value={formData?.profile.gender}
                   onChange={handleChange}
                   required
-                  className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                  className="block appearance-none p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
                 >
                   <option value="">Rather not Say</option>
                   <option value="male">Male</option>
@@ -340,7 +399,7 @@ const Membership = () => {
                 value={formData?.profile.country}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block appearance-none p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Country
@@ -357,7 +416,7 @@ const Membership = () => {
                 value={formData?.profile.city}
                 onChange={handleChange}
                 required
-                className="block p-2 mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
+                className="block p-2 appearance-none mt-2 border placeholder:text-sm shadow focus:bg-blue-50 outline-none rounded px-7 ring-1 ring-[#b67a3d] bg-white"
               >
                 <option value="" disabled>
                   Select Region
