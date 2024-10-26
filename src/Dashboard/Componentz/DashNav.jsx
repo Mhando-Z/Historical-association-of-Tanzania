@@ -68,15 +68,9 @@ function DashNav({ handleClick }) {
               className="text-xl md:text-2xl"
             />
           </Link>
-          {userData?.is_staff ? (
-            <a href={"/"}>
-              <LuLaptop2 className="text-xl md:text-2xl" />
-            </a>
-          ) : (
-            <Link to={"/"}>
-              <LuLaptop2 className="text-xl md:text-2xl" />
-            </Link>
-          )}
+          <Link to={"/"}>
+            <LuLaptop2 className="text-xl md:text-2xl" />
+          </Link>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-7 ">
           <div className="relative flex flex-col items-center gap-x-2 ">
