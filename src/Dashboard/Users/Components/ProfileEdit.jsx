@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 function ProfileEdit() {
   const { userData, setUserData } = useContext(UserContext);
   const [newPassword, setNewPassword] = useState("");
-  const { countries } = useContext(UserContext);
+  const { countries, fetchUserData } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     profile: {
@@ -60,7 +60,7 @@ function ProfileEdit() {
           profile: response.data.profile,
         }));
       }
-
+      fetchUserData();
       toast.success("Profile updated successfully");
     } catch (error) {
       toast.error("Error updating profile");

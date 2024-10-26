@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axiosInstance from "../../Context/axiosInstance";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
@@ -7,11 +7,13 @@ import { HiMiniCheckBadge } from "react-icons/hi2";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { FaUserEdit } from "react-icons/fa";
 import { PiUserListFill } from "react-icons/pi";
+import UserContext from "../../Context/UserContext";
 
 const AdminUserManagement = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [notification, setNotification] = useState(false);
+  const { fetchUserData, getUsers } = useContext(UserContext);
   const [Id, setUserId] = useState("");
   // State for search query
   const [searchQuery, setSearchQuery] = useState("");
@@ -141,6 +143,7 @@ const AdminUserManagement = () => {
         )
       );
       setSelectedUser(null);
+      fetchUserData();
       toast.success("User updated successfully");
     } catch (error) {
       console.error("Error updating user:", error);
@@ -161,6 +164,8 @@ const AdminUserManagement = () => {
       await axiosInstance.delete(`/hat-users/admin/users/${Id}/`);
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== Id));
       toast.success("User deleted successfully");
+      fetchUserData();
+      getUsers();
       setNotification(!notification);
     } catch (error) {
       setNotification(!notification);

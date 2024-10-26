@@ -25,6 +25,7 @@ const steps = [
 
 const Membership = () => {
   const { userData, setUserData } = useContext(UserContext);
+  const { fetchUserData } = useContext(UserContext);
   const { countries } = useContext(UserContext);
   const [Regions, setRegion] = useState([]);
   const [CountryCode, setCountryCode] = useState("TZ");
@@ -106,6 +107,7 @@ const Membership = () => {
           profile: response.data.profile,
         }));
       }
+      fetchUserData();
       navigate("/Dashboard/UserProfile/");
       toast.success("Profile updated successfully");
     } catch (error) {
@@ -140,18 +142,17 @@ const Membership = () => {
         return true; // No validation for step 1
 
       case 2: // PERSONAL INFO step
-        return (
-          formData.profile.first_name &&
-          formData.profile.middle_name &&
-          formData.profile.last_name
-        );
+        if (!formData.profile.full_name) {
+          return (
+            formData.profile.first_name &&
+            formData.profile.middle_name &&
+            formData.profile.last_name
+          );
+        }
+        return true;
 
       case 3: // CONTACT INFO step
-        return (
-          formData.profile.phone_number &&
-          formData.profile.nationality &&
-          formData.profile.gender
-        );
+        return formData.profile.phone_number && formData.profile.nationality;
 
       case 4: // WORK INFO step
         return formData.profile.title && formData.profile.branch;
