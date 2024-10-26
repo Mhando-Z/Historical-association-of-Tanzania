@@ -87,6 +87,8 @@ export function UserProvider({ children }) {
         setId,
         setShow,
         setUserData,
+        // functions
+        fetchUserData,
       }}
     >
       {children}
