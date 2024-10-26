@@ -53,7 +53,7 @@ function Resources() {
             value={searchQuery}
             onChange={handleSearchInputChange}
             placeholder="Search resources by title, author, or description..."
-            className="w-full md:w-[700px] px-7 py-2 border  border-gray-300 outline-none rounded-3xl ring-1 fring-blue-500"
+            className="w-full md:w-[700px] px-7 py-2 border  border-gray-300 outline-none focus:ring-2 focus:ring-gray-500 rounded-3xl ring-1 ring-gray-300"
           />
         </div>
       </div>
