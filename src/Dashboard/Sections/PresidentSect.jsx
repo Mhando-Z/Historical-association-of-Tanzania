@@ -10,6 +10,7 @@ import { RefreshCw } from "lucide-react";
 
 function PresidentSect() {
   const { PresidentSect, setPresident } = useContext(HomePageContext);
+  const { getPresident } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -95,6 +96,7 @@ function PresidentSect() {
       setPresident(vibes);
       setPreviewURL1(null);
       setPreviewURL2(null);
+      getPresident();
       setLoading(false);
       toast.success("data upload was a success");
     } catch (error) {

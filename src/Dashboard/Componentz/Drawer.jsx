@@ -17,14 +17,18 @@ import { toast } from "react-toastify";
 // Fuction Component
 export default function Drawer({ open, setOpen, dataId, datas }) {
   // sections imports
-  const { heroSect, setHero } = useContext(HomePageContext);
-  const { PresidentSect, setPresident } = useContext(HomePageContext);
-  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
-  const { StaffsSect, setStaffs } = useContext(HomePageContext);
-  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
-  const { ResourcesSect, setResources } = useContext(HomePageContext);
-  const { companies, setCompany } = useContext(HomePageContext);
-  const { Resources, setResourceSect } = useContext(HomePageContext);
+  const { heroSect, setHero, getHerodata } = useContext(HomePageContext);
+  const { PresidentSect, setPresident, getPresident } =
+    useContext(HomePageContext);
+  const { AnnounceSect, setAnnounce, getAnnounce } =
+    useContext(HomePageContext);
+  const { StaffsSect, setStaffs, getStaffs } = useContext(HomePageContext);
+  const { AboutUSSect, setAboutUs, getAboutUs } = useContext(HomePageContext);
+  const { ResourcesSect, setResources, getResourcedata } =
+    useContext(HomePageContext);
+  const { companies, setCompany, getCompanydata } = useContext(HomePageContext);
+  const { Resources, setResourceSect, getResourceSectdata } =
+    useContext(HomePageContext);
 
   //
   const locations = useLocation();
@@ -268,6 +272,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       );
       toast.success("Updates Applied");
       setResources(updatedResource);
+      getResourcedata();
       setOpen(false); // Close the drawer after update
     } catch (error) {
       toast.error("Updates Failed");
@@ -291,6 +296,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         resource.id === dataId ? response.data : resource
       );
       toast.success("Updates Applied");
+      getResourceSectdata();
       setResourceSect(updatedResource);
       setOpen(false); // Close the drawer after update
     } catch (error) {
@@ -316,6 +322,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       );
       toast.success("Updates Applied");
       setHero(updatedHeroSect);
+      getHerodata();
       setOpen(false); // Close the drawer after update
     } catch (error) {
       toast.error("Updates Failed");
@@ -340,6 +347,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         preso.id === dataId ? response.data : preso
       );
       toast.success("Updates Applied");
+      getPresident();
       setPresident(updatedPresoSect);
       // Close the drawer after update
       setOpen(false);
@@ -364,6 +372,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         Announce.id === dataId ? response.data : Announce
       );
       setAnnounce(updatedAnnounce);
+      getAnnounce();
       // Close the drawer after update
       setOpen(false);
       toast.success("Updates Applied");
@@ -387,6 +396,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         company.id === dataId ? response.data : company
       );
       setCompany(update);
+      getCompanydata();
       // Close the drawer after update
       setOpen(false);
       toast.success("Updates Applied");
@@ -412,6 +422,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
         aboutus.id === dataId ? response.data : aboutus
       );
       setAboutUs(updateAboutus);
+      getAboutUs();
       // Close the drawer after update
       setOpen(false);
       toast.success("Updates Applied");
@@ -443,6 +454,7 @@ export default function Drawer({ open, setOpen, dataId, datas }) {
       // Close the drawer after update
       setOpen(false);
       toast.success("Updates Applied");
+      getStaffs();
     } catch (error) {
       console.error("Error updating the Staff section:", error);
       toast.error("Updates failed");

@@ -151,6 +151,7 @@ export function HomePageDataProvider({ children }) {
         ResourcesSect,
         visible,
         Resources,
+        // usestastes
         setResourceSect,
         setVisible,
         setConference,
@@ -165,6 +166,18 @@ export function HomePageDataProvider({ children }) {
         setStaffs,
         setAnnounce,
         setAboutUs,
+        // functions
+        getResourceSectdata,
+        getResourcedata,
+        getCompanydata,
+        getAnnounce,
+        getGallery,
+        getConference,
+        getStaffs,
+        getContacts,
+        getAboutUs,
+        getPresident,
+        getHerodata,
       }}
     >
       {children}

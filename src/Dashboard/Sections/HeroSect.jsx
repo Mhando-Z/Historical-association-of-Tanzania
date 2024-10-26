@@ -9,7 +9,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 function HeroSect() {
-  const { heroSect, setHero } = useContext(HomePageContext);
+  const { heroSect, setHero, getHerodata } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [heroData, setData] = useState({
@@ -71,6 +71,7 @@ function HeroSect() {
       const vibes = [data, ...heroSect];
       setHero(vibes);
       setPreviewURL(null);
+      getHerodata();
       setLoading(false);
       toast.success("Data upload was a success");
     } catch (error) {

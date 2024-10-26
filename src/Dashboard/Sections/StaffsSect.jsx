@@ -9,7 +9,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 function StaffsSect() {
-  const { StaffsSect, setStaffs } = useContext(HomePageContext);
+  const { StaffsSect, setStaffs, getStaffs } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [staffs, setData] = useState({
@@ -76,6 +76,7 @@ function StaffsSect() {
       setStaffs(vibes);
       setPreviewURL(null);
       setLoading(false);
+      getStaffs();
       toast.success("Data upload was a success");
     } catch (error) {
       setLoading(false);

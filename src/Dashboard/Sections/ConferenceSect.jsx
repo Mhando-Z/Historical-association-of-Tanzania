@@ -17,7 +17,8 @@ const formatDate = (dateString) => {
 };
 
 function ConferenceSect() {
-  const { ConferenceSect, setConference } = useContext(HomePageContext);
+  const { ConferenceSect, setConference, getConference } =
+    useContext(HomePageContext);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dataId, setDataId] = useState("");
@@ -74,6 +75,7 @@ function ConferenceSect() {
     try {
       await axiosInstance.delete(`/hat-api/Conference_Details/${Id}/`);
       toast.success("Deleted Successfully");
+      getConference();
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -99,6 +101,7 @@ function ConferenceSect() {
       const vibes = [data, ...ConferenceSect];
       setConference(vibes);
       toast.success("Data upload was a success");
+      getConference();
     } catch (error) {
       toast.error("Data upload was a failure");
       console.error(error);
@@ -124,6 +127,7 @@ function ConferenceSect() {
       );
       toast.success("Updates Applied");
       setConference(updated);
+      getConference();
       setShow(false); // Close the drawer after update
     } catch (error) {
       toast.error("Updates Failed");

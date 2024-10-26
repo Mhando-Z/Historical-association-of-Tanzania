@@ -10,7 +10,8 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 function AnnouncementsSect() {
-  const { AnnounceSect, setAnnounce } = useContext(HomePageContext);
+  const { AnnounceSect, setAnnounce, getAnnounce } =
+    useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ function AnnouncementsSect() {
   });
 
   const handleChange = (e) => {
-    const { name, files, value } = e.target;
+    const { name, files } = e.target;
 
     if (name === "document") {
       // Handle document (PDF)
@@ -88,6 +89,7 @@ function AnnouncementsSect() {
       setPreviewURL2(null);
       setAnnounce(vibes);
       setLoading(false);
+      getAnnounce();
       toast.success("Data upload was successful");
     } catch (error) {
       setLoading(false);

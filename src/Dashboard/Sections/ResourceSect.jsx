@@ -8,6 +8,7 @@ import { RefreshCw } from "lucide-react";
 
 function ResourceSect() {
   const { Resources, setResourceSect } = useContext(HomePageContext);
+  const { getResourceSectdata } = useContext(HomePageContext);
   const [loading, setLoading] = useState(false);
   const [ResourceData, setData] = useState({
     title: "",
@@ -44,6 +45,7 @@ function ResourceSect() {
       const updatedResources = [data, ...Resources];
       setResourceSect(updatedResources);
       setLoading(false);
+      getResourceSectdata();
       toast.success("Data upload was successful");
     } catch (error) {
       toast.error("Data upload failed");

@@ -10,7 +10,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 function CompanySect() {
-  const { companies, setCompany } = useContext(HomePageContext);
+  const { companies, setCompany, getCompanydata } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [company, setData] = useState({
@@ -49,6 +49,7 @@ function CompanySect() {
       setCompany(updatedCompanies);
       setPreviewURL(null);
       setLoading(false);
+      getCompanydata();
       toast.success("Company data upload was a success");
     } catch (error) {
       setLoading(false);

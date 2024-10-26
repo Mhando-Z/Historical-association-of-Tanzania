@@ -10,7 +10,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 function GallerySect() {
-  const { gallerySect, setGallery } = useContext(HomePageContext);
+  const { gallerySect, setGallery, getGallery } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [picture, setData] = useState({
@@ -50,6 +50,7 @@ function GallerySect() {
       setPreviewURL(null);
       setLoading(false);
       toast.success("Image upload was a success");
+      getGallery();
     } catch (error) {
       console.error(error.response.data);
       setLoading(false);

@@ -12,7 +12,7 @@ import { RefreshCw } from "lucide-react";
 
 function ContactUsSect() {
   const { ContactSect, setContacts } = useContext(HomePageContext);
-  const { PolicieSect, setPolicy } = useContext(HomePageContext);
+  const { PolicieSect, setPolicy, getContacts } = useContext(HomePageContext);
   const { TermsSect, setTermsService } = useContext(HomePageContext);
   const [loading, setLoading] = useState(false);
 
@@ -136,6 +136,7 @@ function ContactUsSect() {
       setContacts(updatedContacts);
       setEdit(!editContacts);
       setLoading(false);
+      getContacts();
       toast.success("Contacts Update Successfull");
     } catch (error) {
       setLoading(false);
@@ -155,6 +156,7 @@ function ContactUsSect() {
       );
       setPolicy(updatedPolicies);
       setEdit(!editContacts);
+      getContacts();
       toast.success("Policy Update Successfull");
     } catch (error) {
       toast.error("Error updating the Policy section");
@@ -173,6 +175,7 @@ function ContactUsSect() {
       );
       setTermsService(updatedTerms);
       setEdit(!editContacts);
+      getContacts();
       toast.success("Terms Update Successfull");
     } catch (error) {
       console.error("Error updating the Terms section:", error);

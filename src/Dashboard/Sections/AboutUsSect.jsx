@@ -9,7 +9,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { RefreshCw } from "lucide-react";
 
 export default function AboutUsSect() {
-  const { AboutUSSect, setAboutUs } = useContext(HomePageContext);
+  const { AboutUSSect, setAboutUs, getAboutUs } = useContext(HomePageContext);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [AboutData, setData] = useState({
@@ -81,6 +81,7 @@ export default function AboutUsSect() {
       setPreviewURL(null);
       setLoading(false);
       toast.success("Data upload was a success");
+      getAboutUs();
     } catch (error) {
       setLoading(false);
       toast.error("Data upload was a failure");

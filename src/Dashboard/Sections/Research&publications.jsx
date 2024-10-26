@@ -7,9 +7,11 @@ import axiosInstance from "../../Context/axiosInstance";
 import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 import { MdCreateNewFolder } from "react-icons/md";
+import { RefreshCw } from "lucide-react";
 
 function Researchpublications() {
   const { ResourcesSect, setResources } = useContext(HomePageContext);
+  const { getResourcedata } = useContext(HomePageContext);
   const [previewURL1, setPreviewURL1] = useState(null);
   const [previewURL2, setPreviewURL2] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -123,6 +125,7 @@ function Researchpublications() {
       setPreviewURL1(null);
       setPreviewURL2(null);
       setLoading(false);
+      getResourcedata();
       toast.success("Data upload was a success");
     } catch (error) {
       toast.error(`Data upload was a failure`);
@@ -523,7 +526,13 @@ function Researchpublications() {
               transition={{ type: "spring", ease: "easeOut" }}
               className="px-5 py-1 bg-[#b67a3d] text-white rounded-3xl"
             >
-              Add
+              {loading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <span className="relative z-10">Add</span>
+                </>
+              )}
             </motion.button>
           </div>
         </form>
