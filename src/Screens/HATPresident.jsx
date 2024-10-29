@@ -19,7 +19,8 @@ function HATPresident() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            src={`${IMAGE_BASE_URL}${PresidentSect[0]?.image}`}
+            // src={`${IMAGE_BASE_URL}${PresidentSect[0]?.image}`}
+            src={`${PresidentSect[0]?.image_url1}`}
             alt={PresidentSect[0]?.subtitle}
             className="max-w-screen object-top rounded-xl object-cover h-[450px]"
           />
@@ -62,7 +63,8 @@ function HATPresident() {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1 }}
-              src={`${IMAGE_BASE_URL}${PresidentSect[0]?.image2}`}
+              // src={`${IMAGE_BASE_URL}${PresidentSect[0]?.image2}`}
+              src={`${PresidentSect[0]?.image_url2}`}
               alt={PresidentSect[0]?.subtitle}
               className="max-w-screen opacity-70 object-top object-cover mt-2 mb-4 rounded-xl h-[450px]"
             />

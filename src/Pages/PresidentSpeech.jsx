@@ -44,7 +44,8 @@ function PresidentSpeech() {
               >
                 <div className="w-full overflow-hidden bg-gray-200 rounded-lg aspect-h-1 aspect-w-1 md:rounded-xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={`${IMAGE_BASE_URL}${dt.image}`}
+                    // src={`${IMAGE_BASE_URL}${dt.image}`}
+                    src={`${dt.image_url1}`}
                     alt={dt?.subtitle}
                     className="h-[400px] w-full shadow-lg object-cover object-top md:object-center group-hover:opacity-75"
                   />

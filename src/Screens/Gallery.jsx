@@ -121,7 +121,8 @@ function Gallery() {
           >
             <div className="md:h-[30rem] h-[20rem] col-span-2 relative">
               <motion.img
-                src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
+                // src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
+                src={`${gallerySect[value]?.image_url}`}
                 alt={gallerySect[value]?.title || "Gallery image"}
                 loading="lazy"
                 className="object-cover object-center w-full h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -164,7 +165,8 @@ function Gallery() {
                   onClick={() => handleSelect(index)}
                 >
                   <motion.img
-                    src={`${IMAGE_BASE_URL}${data?.image}`}
+                    // src={`${IMAGE_BASE_URL}${data?.image}`}
+                    src={`${data?.image_url}`}
                     alt={data?.title || "Gallery image"}
                     loading="lazy"
                     className="object-cover object-center w-full h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -191,7 +193,8 @@ function Gallery() {
               >
                 <div className="h-[10rem]">
                   <motion.img
-                    src={`${IMAGE_BASE_URL}${data?.image}`}
+                    // src={`${IMAGE_BASE_URL}${data?.image}`}
+                    src={`${data?.image_url}`}
                     alt={data?.title || "Gallery image"}
                     loading="lazy"
                     className="object-cover object-center w-full h-full transition-transform duration-300 ease-in-out transform rounded-xl"

@@ -42,7 +42,8 @@ export default function ImageList({ data }) {
                 <AnimatePresence mode="wait">
                   <motion.img
                     exit={{ opacity: 0, x: "-200vw" }}
-                    src={`${IMAGE_BASE_URL}${product.image}`}
+                    // src={`${IMAGE_BASE_URL}${product.image}`}
+                    src={`${product.image_url}`}
                     alt={product.name}
                     loading="lazy"
                     className="h-[400px] w-full group-hover:grayscale transition-all duration-500 ease-in object-cover object-center"
@@ -57,7 +58,8 @@ export default function ImageList({ data }) {
                       type: "spring",
                       ease: "easeOut",
                     }}
-                    src={`${IMAGE_BASE_URL}${product.image}`}
+                    // src={`${IMAGE_BASE_URL}${product.image}`}
+                    src={`${product.image_url}`}
                     alt="staffname"
                     className="object-cover object-top mt-5 rounded-full ring-2 ring-white size-32"
                   />

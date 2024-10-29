@@ -73,7 +73,8 @@ function HeroSection() {
             className="relative overflow-hidden aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7"
           >
             <motion.img
-              src={`${IMAGE_BASE_URL}${heroSect[value]?.image}`}
+              // src={`${IMAGE_BASE_URL}${heroSect[value]?.image}`}
+              src={`${heroSect[value]?.image_url}`}
               alt={heroSect[value]?.title}
               onError={(e) => (e.target.src = "/path/to/default-image.jpg")} // Fallback image
               initial={{ x: 300, opacity: 0 }}
