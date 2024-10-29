@@ -101,7 +101,8 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`${IMAGE_BASE_URL}${item?.image}`}
+                              // src={`${IMAGE_BASE_URL}${item?.image}`}
+                              src={`${item?.image_url}`}
                               alt={`Hat conference pictures ${index}`}
                               className="object-cover object-center w-full h-full"
                             />
@@ -123,7 +124,8 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`${IMAGE_BASE_URL}${item?.image}`}
+                              // src={`${IMAGE_BASE_URL}${item?.image}`}
+                              src={`${item?.image_url}`}
                               alt={`Hat conference pictures ${index + 2}`}
                               className="object-cover object-center w-full h-full"
                             />
@@ -145,7 +147,8 @@ export default function PromoSect() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ type: "spring", ease: "easeOut" }}
                               loading="lazy"
-                              src={`${IMAGE_BASE_URL}${item?.image}`}
+                              // src={`${IMAGE_BASE_URL}${item?.image}`}
+                              src={`${item?.image_url}`}
                               alt={`Hat conference pictures ${index + 5}`}
                               className="object-cover object-center w-full h-full"
                             />
