@@ -90,7 +90,8 @@ export default function Announcements() {
               variants={itemVariants}
             >
               <motion.img
-                src={`${IMAGE_BASE_URL}${post.image}`}
+                // src={`${IMAGE_BASE_URL}${post.image}`}
+                src={`${post.image_url1}`}
                 alt={post.title}
                 loading="lazy"
                 className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"

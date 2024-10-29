@@ -119,7 +119,8 @@ function ResourcePublication() {
           >
             <div className="md:h-[30rem] h-[20rem] col-span-2 relative">
               <motion.img
-                src={`${IMAGE_BASE_URL}${ResourcesSect[value]?.image}`}
+                // src={`${IMAGE_BASE_URL}${ResourcesSect[value]?.image}`}
+                src={`${ResourcesSect[value]?.image_url1}`}
                 alt={`News picture`}
                 loading="lazy"
                 className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -149,7 +150,8 @@ function ResourcePublication() {
                   onClick={() => handleSelect(data.id)}
                 >
                   <motion.img
-                    src={`${IMAGE_BASE_URL}${data?.image}`}
+                    // src={`${IMAGE_BASE_URL}${data?.image}`}
+                    src={`${data?.image_url1}`}
                     alt={ResourcesSect[value]?.title}
                     loading="lazy"
                     className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"
@@ -184,7 +186,8 @@ function ResourcePublication() {
               >
                 <div className="h-[10rem]">
                   <motion.img
-                    src={`${IMAGE_BASE_URL}${data?.image}`}
+                    // src={`${IMAGE_BASE_URL}${data?.image}`}
+                    src={`${data?.image_url1}`}
                     alt={ResourcesSect[value]?.title}
                     loading="lazy"
                     className="object-cover object-center w-screen h-full transition-transform duration-300 ease-in-out transform rounded-xl"

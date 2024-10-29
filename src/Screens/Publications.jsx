@@ -113,7 +113,8 @@ function Publications() {
           variants={imageVariants}
         >
           <img
-            src={`${IMAGE_BASE_URL}${publication.image}`}
+            // src={`${IMAGE_BASE_URL}${publication.image}`}
+            src={`${publication.image_url1}`}
             alt={publication.title}
             loading="lazy"
             className="object-cover h-[300px] md:h-[400px] rounded-xl max-w-screen aspect-video"
@@ -180,7 +181,8 @@ function Publications() {
                 <div className="grid grid-cols-1 gap-2 mr-2 md:grid-cols-2">
                   <div className="w-full">
                     <motion.img
-                      src={`${IMAGE_BASE_URL}${publication.image2}`}
+                      // src={`${IMAGE_BASE_URL}${publication.image2}`}
+                      src={`${publication.image_url2}`}
                       alt={publication.title}
                       loading="lazy"
                       className="object-cover w-full aspect-video "
@@ -253,7 +255,8 @@ function Publications() {
             >
               <motion.img
                 onClick={() => handleSelection(post.id)}
-                src={`${IMAGE_BASE_URL}${post.image}`}
+                // src={`${IMAGE_BASE_URL}${post.image}`}
+                src={`${post.image_url1}`}
                 alt={post.title}
                 loading="lazy"
                 className="h-[200px] w-full aspect-video rounded-xl hover:grayscale transition-all duration-500 ease-in object-cover object-center"
