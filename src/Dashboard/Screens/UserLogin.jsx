@@ -116,7 +116,8 @@ export default function UserLogin() {
           </div>
         ) : (
           <img
-            src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
+            // src={`${IMAGE_BASE_URL}${gallerySect[value]?.image}`}
+            src={`${gallerySect[value]?.image_url}`}
             alt={gallerySect[1]?.title}
             className="object-cover object-center w-full h-screen"
           />

@@ -82,10 +82,7 @@ function AboutUs() {
             </motion.button>
           </motion.div>
         </motion.div>
-        <motion.div
-          className="flex flex-col w-full md:w-1/2"
-          variants={itemVariants}
-        >
+        <motion.div className="flex flex-col w-full" variants={itemVariants}>
           <div className="relative overflow-hidden shadow-2xl rounded-2xl">
             <img
               // src={`${IMAGE_BASE_URL}${AboutUSSect[0]?.image}`}
