@@ -274,20 +274,41 @@ const HeroSection = () => {
     });
   };
 
+  // const slideVariants = {
+  //   enter: (direction) => ({
+  //     x: direction > 0 ? 1000 : -1000,
+  //   }),
+  //   center: {
+  //     zIndex: 1,
+  //     x: 0,
+  //     opacity: 1,
+  //   },
+  //   exit: (direction) => ({
+  //     zIndex: 0,
+  //     x: direction < 0 ? 1000 : -1000,
+  //   }),
+  // };
+
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: 0, // Start invisible when entering
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1,
+      opacity: 1, // Fully visible when centered
+      transition: {
+        duration: 0.5, // Adjust for smoother fade-in
+      },
     },
     exit: (direction) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: 0, // Fade out when exiting
+      transition: {
+        duration: 0.5, // Adjust for smoother fade-out
+      },
     }),
   };
 
