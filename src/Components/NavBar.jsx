@@ -15,12 +15,6 @@ function NavBar() {
   const location = useLocation();
   const { userData } = useContext(UserContext);
   const { visible } = useContext(HomePageContext);
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   const handleClick = () => {
     setOpen(!open);
@@ -82,7 +76,6 @@ function NavBar() {
             </NavLink>
 
             <NavLink
-              onClick={scrollToTop}
               to={"AboutUs/"}
               className={({ isActive }) =>
                 isActive
@@ -99,7 +92,6 @@ function NavBar() {
               </motion.h1>
             </NavLink>
             <NavLink
-              onClick={scrollToTop}
               to={"Patrons/"}
               className={({ isActive }) =>
                 isActive
@@ -197,12 +189,6 @@ function NavBar() {
 export default NavBar;
 
 export function Events() {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -230,7 +216,7 @@ export function Events() {
                       ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-base"
                       : "text-gray-600 block px-4 py-2 text-base hover:bg-[#cd9a68] hover:text-white"
                   }
-                  onClick={scrollToTop} // The menu will close automatically after click
+                  // The menu will close automatically after click
                 >
                   Announcements
                 </NavLink>
@@ -247,9 +233,7 @@ export function Events() {
                       ? "bg-[#b67a3d] hover:bg-[#b67a3d] text-white block px-4 py-2 text-base"
                       : "text-gray-600 block px-4 py-2 text-base hover:bg-[#cd9a68] hover:text-white"
                   }
-                  onClick={() => {
-                    scrollToTop();
-                  }} // The menu will close automatically after click
+                  onClick={() => {}} // The menu will close automatically after click
                 >
                   Gallery
                 </NavLink>

@@ -475,25 +475,6 @@ const HeroSection = () => {
           <ChevronRight className="w-6 h-6" />
         </motion.button>
       </div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-center pb-4">
-        <div className="flex space-x-2">
-          {heroSect.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => {
-                setDirection(index > currentIndex ? 1 : -1);
-                setCurrentIndex(index);
-              }}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? "bg-amber-800" : "bg-white/50"
-              }`}
-              whileHover={{ scale: 1.2 }}
-            />
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
