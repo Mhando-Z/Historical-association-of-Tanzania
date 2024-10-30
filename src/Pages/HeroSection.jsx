@@ -342,9 +342,9 @@ const HeroSection = () => {
           </div>
 
           <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-          <div className="container absolute top-0 bottom-[-600px] left-0 right-0 flex flex-row mx-auto mt-5 md:bottom-[-700px] rounded-2xl">
+          <div className="container absolute top-0 bottom-[-400px] left-0 right-0 flex flex-row mx-auto mt-5 md:bottom-[-700px] rounded-t-2xl">
             {/* Content Container */}
-            <div className="flex flex-col justify-center w-full gap-y-2 ">
+            <div className="flex flex-col justify-center w-full rounded-t-2xl gap-y-2 ">
               <div className="flex flex-col justify-between bg-white rounded-t-2xl md:flex-row">
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -355,7 +355,7 @@ const HeroSection = () => {
                     ease: "easeOut",
                     delay: 1,
                   }}
-                  className="flex flex-col flex-grow p-6 bg-white md:p-10 md:rounded-t-2xl"
+                  className="flex flex-col flex-grow p-6 bg-white md:p-10 rounded-t-2xl"
                 >
                   <AnimatePresence mode="wait">
                     <motion.h1
@@ -415,7 +415,7 @@ const HeroSection = () => {
                     ease: "easeOut",
                     delay: 1,
                   }}
-                  className="flex flex-col max-w-md bg-white rounded-r-2xl"
+                  className="flex flex-col max-w-md"
                 >
                   <motion.div
                     initial={{ opacity: 0, x: "100%" }}
@@ -426,7 +426,7 @@ const HeroSection = () => {
                       ease: "easeOut",
                       delay: 3,
                     }}
-                    className="z-40 flex flex-col px-6 md:p-10 gap-y-2 "
+                    className="flex-col hidden px-6 md:flex md:p-10 gap-y-2"
                   >
                     <h1 className="md:text-2xl text-xl font-bold text-[#b67a3d]">
                       Become a Member

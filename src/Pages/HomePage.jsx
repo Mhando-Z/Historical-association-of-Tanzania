@@ -18,6 +18,7 @@ function HomePage() {
       {/* herosection */}
       <HeroSection />
       {/* president Speech */}
+      <div className=""></div>
       <PresidentSpeech />
       {/* AboutUs Section */}
       <AboutUs />
