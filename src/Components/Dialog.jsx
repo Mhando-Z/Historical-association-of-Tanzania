@@ -31,7 +31,8 @@ export default function Dialogue({ value, open, setOpen }) {
               <div className="flex flex-col sm:flex sm:items-start gap-y-4">
                 <div className="flex flex-col w-full overflow-hidden aspect-h-1 md:flex-row gap-x-14 aspect-w-1 rounded-3xl xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={`${IMAGE_BASE_URL}${StaffsSect[value]?.image}`}
+                    // src={`${IMAGE_BASE_URL}${StaffsSect[value]?.image}`}
+                    src={`${StaffsSect[value]?.image_url}`}
                     alt={StaffsSect[value]?.name}
                     className="h-[400px] object-cover object-center group-hover:opacity-75"
                   />
