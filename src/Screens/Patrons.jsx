@@ -102,24 +102,30 @@ const HATLeadershipTimeline = () => {
                       index % 2 === 0 ? "justify-end" : "justify-start"
                     } space-x-2`}
                   >
-                    {index % 2 !== 0 && (
-                      <LuUser className="text-5xl text-gray-500 " />
-                    )}
-                    <div>
-                      <h2
-                        className="text-xl font-semibold transition-colors cursor-pointer md:text-2xl hover:text-blue-600"
-                        onClick={() => toggleExpand(index)}
-                      >
-                        {item.name}
-                      </h2>
-                      <p className="text-gray-600">{item.role}</p>
-                      {item.period && (
-                        <p className="text-sm text-gray-500">{item.period}</p>
-                      )}
+                    <div className={` ${index % 2 === 0 ? "pr-5 " : " pl-5"}`}>
+                      <div className="flex">
+                        {index % 2 !== 0 && (
+                          <LuUser className="text-5xl text-gray-500 " />
+                        )}
+                        <div>
+                          <h2
+                            className="text-xl font-semibold transition-colors cursor-pointer md:text-2xl hover:text-blue-600"
+                            onClick={() => toggleExpand(index)}
+                          >
+                            {item.name}
+                          </h2>
+                          <p className="text-gray-600">{item.role}</p>
+                          {item.period && (
+                            <p className="text-sm text-gray-500">
+                              {item.period}
+                            </p>
+                          )}
+                        </div>
+                        {index % 2 === 0 && (
+                          <LuUser className="text-5xl text-gray-500 " />
+                        )}
+                      </div>
                     </div>
-                    {index % 2 === 0 && (
-                      <LuUser className="text-5xl text-gray-500 " />
-                    )}
                   </div>
                   <AnimatePresence>
                     {expandedItem === index && (
@@ -128,7 +134,11 @@ const HATLeadershipTimeline = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="mt-2 text-gray-700"
+                        className={` ${
+                          index % 2 === 0
+                            ? "text-gray-700 mt-2 pr-7 md:pl-10"
+                            : "max-w-3xl pl-7 mt-2 text-gray-700"
+                        }`}
                       >
                         {item.description}
                       </motion.p>
@@ -138,8 +148,20 @@ const HATLeadershipTimeline = () => {
               )}
             </div>
             <div className="relative">
-              <div className="absolute z-10 w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 rounded-full top-1/2 left-1/2"></div>
-              <div className="w-8 h-0.5 bg-gray-200 absolute top-1/2 left-1/2 transform -translate-y-1/2"></div>
+              <div
+                className={`mt-3 rounded-lg  ${
+                  index % 2 === 0
+                    ? "absolute z-10 w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 rounded-full top-1/2 "
+                    : "absolute z-10 w-4 h-4 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 rounded-full top-1/2 left-1/2"
+                }`}
+              ></div>
+              <div
+                className={`mt-3 rounded-lg  ${
+                  index % 2 === 0
+                    ? "w-8 h-0.5 bg-blue-700 absolute top-1/2 right-1/2 transform -translate-y-1/2"
+                    : "w-8 h-0.5 bg-blue-700 absolute top-1/2 left-1/2 transform -translate-y-1/2"
+                }`}
+              ></div>
             </div>
             <div className="w-1/2"></div>
           </motion.div>
